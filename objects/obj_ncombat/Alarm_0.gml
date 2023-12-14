@@ -350,17 +350,19 @@ if (battle_special="WL10_reveal"){
     instance_deactivate_object(u);
     
     u=instance_nearest(xxx+20,240,obj_enunit);
-    u.dudes[1]="Rhino";
-	u.dudes_num[1]=30;
-    u.dudes[2]="Defiler";
-	u.dudes_num[2]=4;
-    u.dudes[3]="Heldrake";
-	u.dudes_num[3]=2;
+	u.dudes[1]="Cultist Elite";
+	u.dudes_num[1]=1000;
+    // u.dudes[1]="Rhino";
+	// u.dudes_num[1]=30;
+    // u.dudes[2]="Defiler";
+	// u.dudes_num[2]=4;
+    // u.dudes[3]="Heldrake";
+	// u.dudes_num[3]=2;
     instance_deactivate_object(u);
     
     u=instance_nearest(xxx+30,240,obj_enunit);
     u.dudes[1]="Cultist Elite";
-	u.dudes_num[1]=1500;
+	u.dudes_num[1]=500;
     // u.dudes[2]="Cultist Elite";u.dudes_num[2]=1500;
     u.dudes[2]="Helbrute";
 	u.dudes_num[2]=3;
@@ -427,6 +429,13 @@ if (enemy=2){
     u.dudes[1]="Imperial Guardsman";
 	u.dudes_num[1]=round(guar/5);
 	enemies[1]=u.dudes[1];
+	        // Spawn Leader
+    if (leader=1){
+        u.dudes[1]="Leader";
+        u.dudes_num[1]=1;
+        enemies[1]=1;
+        enemies_num[1]=1;
+    }
     instance_deactivate_object(u);
     
     f=round(threat/20000);
@@ -1962,14 +1971,14 @@ if (enemy=10) and (battle_special!="ship_demon") and (battle_special!="fallen1")
     // Small Chaos Cult Group
     if (threat=1){
         u=instance_nearest(xxx,240,obj_enunit);
-        enemy_dudes="150";
+        enemy_dudes="50";
 
-        u.dudes[1]="Arch Heretic";u.dudes_num[1]=1;
+        // u.dudes[1]="Arch Heretic";u.dudes_num[1]=1;
+        // enemies[1]=u.dudes[1];
+        u.dudes[1]="Cultist Elite";u.dudes_num[1]=5;
         enemies[1]=u.dudes[1];
-        u.dudes[2]="Cultist Elite";u.dudes_num[2]=30;
+        u.dudes[2]="Cultist";u.dudes_num[2]=45;
         enemies[2]=u.dudes[2];
-        u.dudes[3]="Cultist";u.dudes_num[3]=120;
-        enemies[3]=u.dudes[3];
     }
     // Medium Chaos Cult Group
     if (threat=2){
@@ -2183,7 +2192,7 @@ if (enemy=11) and (battle_special!="world_eaters") and (string_count("cs_meeting
         u.dudes[1]="Chaos Space Marine";
         u.dudes_num[1]=5;
         enemies[1]=u.dudes[1];
-        u.dudes[2]="Cultist";
+        u.dudes[2]="Cultist Elite";
         u.dudes_num[2]=30;
         enemies[2]=u.dudes[2];
     }
@@ -2201,7 +2210,7 @@ if (enemy=11) and (battle_special!="world_eaters") and (string_count("cs_meeting
         
         instance_deactivate_object(u);
         u=instance_nearest(xxx+10,240,obj_enunit);
-        u.dudes[1]="Cultist";
+        u.dudes[1]="Cultist Elite";
         u.dudes_num[1]=100;
         u.dudes[2]="Rhino";
         u.dudes_num[2]=2;
@@ -2231,7 +2240,7 @@ if (enemy=11) and (battle_special!="world_eaters") and (string_count("cs_meeting
         
         instance_deactivate_object(u);
         u=instance_nearest(xxx+20,240,obj_enunit);
-        u.dudes[1]="Cultist";
+        u.dudes[1]="Cultist Elite";
         u.dudes_num[1]=300;
         u.dudes[2]="Helbrute";
         u.dudes_num[2]=3;
@@ -2271,7 +2280,7 @@ if (enemy=11) and (battle_special!="world_eaters") and (string_count("cs_meeting
         
         instance_deactivate_object(u);
         u=instance_nearest(xxx+30,240,obj_enunit);
-        u.dudes[1]="Cultist";
+        u.dudes[1]="Cultist Elite";
         u.dudes_num[1]=600;
         u.dudes[2]="Helbrute";
         u.dudes_num[2]=3;
@@ -2316,7 +2325,7 @@ if (enemy=11) and (battle_special!="world_eaters") and (string_count("cs_meeting
         
         instance_deactivate_object(u);
         u=instance_nearest(xxx+30,240,obj_enunit);
-        u.dudes[1]="Cultist";
+        u.dudes[1]="Cultist Elite";
         u.dudes_num[1]=600;
         u.dudes[2]="Helbrute";
         u.dudes_num[2]=5;
@@ -2365,7 +2374,7 @@ if (enemy=11) and (battle_special!="world_eaters") and (string_count("cs_meeting
         
         instance_deactivate_object(u);
         u=instance_nearest(xxx+30,240,obj_enunit);
-        u.dudes[1]="Cultist";
+        u.dudes[1]="Cultist Elite";
         u.dudes_num[1]=1200;
         u.dudes[2]="Helbrute";
         u.dudes_num[2]=10;

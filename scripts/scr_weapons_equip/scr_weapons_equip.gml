@@ -38,28 +38,28 @@ function scr_weapons_equip() {
 	if (tc<3) and (tb=1) and (dude=1){var i;i=0; // Infantry Ranged
 	    i+=1;item_name[i]="(None)";
 	    i+=1;item_name[i]="Archeotech Laspistol";
-      i+=1;item_name[i]="Assault Cannon";
+		i+=1;item_name[i]="Assault Cannon";
 	   	i+=1;item_name[i]="Bolt Pistol";
 	    i+=1;item_name[i]="Bolter";
 		i+=1;item_name[i]="Stalker Pattern Bolter";
 	  	i+=1;item_name[i]="Combiflamer";
 	    i+=1;item_name[i]="Flamer";
-			i+=1;item_name[i]="Heavy Bolter";
+		i+=1;item_name[i]="Heavy Bolter";
 	    i+=1;item_name[i]="Heavy Flamer";
-			i+=1;item_name[i]="Hellrifle";
+		i+=1;item_name[i]="Hellrifle";
 	    i+=1;item_name[i]="Incinerator";
 	    i+=1;item_name[i]="Integrated Bolters";
-			i+=1;item_name[i]="Lascannon";
+		i+=1;item_name[i]="Lascannon";
 	    i+=1;item_name[i]="Lascutter";
 	    i+=1;item_name[i]="Meltagun";
 	    i+=1;item_name[i]="Missile Launcher";
 	    i+=1;item_name[i]="Multi-Melta";
-			i+=1;item_name[i]="Autocannon";
-			i+=1;item_name[i]="Plasma Gun";
-			i+=1;item_name[i]="Plasma Pistol";
-			i+=1;item_name[i]="Sniper Rifle";
-			i+=1;item_name[i]="Storm Bolter";
-			i+=1;item_name[i]="Webber";
+		i+=1;item_name[i]="Autocannon";
+		i+=1;item_name[i]="Plasma Gun";
+		i+=1;item_name[i]="Plasma Pistol";
+		i+=1;item_name[i]="Sniper Rifle";
+		i+=1;item_name[i]="Storm Bolter";
+		i+=1;item_name[i]="Webber";
 	}
 
 	if (tc<3) and (tb=2) and (dude=1){var i;i=0; // Infantry Melee
@@ -84,14 +84,14 @@ function scr_weapons_equip() {
 
 	if (tc<3) and (tb=1) and (dude=6){var i;i=0; // Dreadnought Ranged
 	    i+=1;item_name[i]="(None)";
-      i+=1;item_name[i]="Assault Cannon";
+		i+=1;item_name[i]="Assault Cannon";
 	    i+=1;item_name[i]="Missile Launcher";
 	    i+=1;item_name[i]="Multi-Melta";
-			i+=1;item_name[i]="Autocannon";
-			i+=1;item_name[i]="Twin Linked Heavy Bolter";
-			i+=1;item_name[i]="Twin Linked Lascannon";
-			i+=1;item_name[i]="Twin Linked Bolters";
-			i+=1;item_name[i]="Inferno Cannon";
+		i+=1;item_name[i]="Autocannon";
+		i+=1;item_name[i]="Twin Linked Heavy Bolter";
+		i+=1;item_name[i]="Twin Linked Lascannon";
+		i+=1;item_name[i]="Twin Linked Bolters";
+		i+=1;item_name[i]="Inferno Cannon";
 	}
 
 	if (tc<3) and (tb=2) and (dude=6){var i;i=0; // Dreadnought Melee
@@ -245,16 +245,21 @@ function scr_weapons_equip() {
 	    if (!instance_exists(obj_creation)) and (!instance_exists(obj_mass_equip)){
 	        i+=1;item_name[i]="(None)";
 	        i+=1;item_name[i]="Scout Armour";
-	        i+=1;item_name[i]="Power Armour";
+			i+=1;item_name[i]="MK1 Thunder Armour";
+	        i+=1;item_name[i]="MK2 Crusade Armour";
 	        i+=1;item_name[i]="MK3 Iron Armour";
 	        i+=1;item_name[i]="MK4 Maximus";
 	        i+=1;item_name[i]="MK5 Heresy";
 	        i+=1;item_name[i]="MK6 Corvus";
 	        i+=1;item_name[i]="MK7 Aquila";
 	        i+=1;item_name[i]="MK8 Errant";
+			i+=1;item_name[i]="Power Armour";
 	        i+=1;item_name[i]="Artificer Armour";
+			i+=1;item_name[i]="Early Terminator Armour";
+			i+=1;item_name[i]="Cataphractii";
+			i+=1;item_name[i]="Tartaros";
 	        i+=1;item_name[i]="Terminator Armour";
-	        i+=1;item_name[i]="Tartaros";
+	        i+=1;item_name[i]="Aegis";
 	    }
 
 	    if (instance_exists(obj_creation)) or (instance_exists(obj_mass_equip)){

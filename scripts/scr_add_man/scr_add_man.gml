@@ -117,42 +117,46 @@ function scr_add_man(man_role, target_company, choice_armour, choice_weapons, ch
 	    if (other_gear=true){
 			switch(man_role){
 	        case "Skitarii":
-	            obj_ini.wep1[target_company][good]="Hellgun";obj_ini.wep2[target_company][good]="";
+	            obj_ini.wep1[target_company][good]="Hellgun";obj_ini.wep2[target_company][good]="Combat Knife";
 	            obj_ini.armour[target_company][good]="Skitarii Armour";obj_ini.experience[target_company][good]=10;
 	            obj_ini.race[target_company][good]=3;
 				obj_ini.TTRPG[target_company, good] = new TTRPG_stats("mechanicus", target_company, good, "skitarii");
 				break;
 	        case "Techpriest":
-	            obj_ini.wep1[target_company][good]="Power Weapon";obj_ini.wep2[target_company][good]="Conversion Beam Projector";
+	            obj_ini.wep1[target_company][good]="Power Axe";obj_ini.wep2[target_company][good]="Conversion Beam Projector";
 	            obj_ini.armour[target_company][good]="Dragon Scales";obj_ini.gear[target_company][good]="Servo Arms";obj_ini.experience[target_company][good]=100;
 	            obj_ini.race[target_company][good]=3;
 				obj_ini.TTRPG[target_company, good] = new TTRPG_stats("mechanicus", target_company, good, "tech_priest");
 				break
-	        case "Ranger":
-	            obj_ini.wep1[target_company][good]="Ranger Long Rifle";obj_ini.wep2[target_company][good]="Shuriken Pistol";
-	            obj_ini.armour[target_company][good]="";obj_ini.experience[target_company][good]=80;
-	            obj_ini.race[target_company][good]=6
-				obj_ini.TTRPG[target_company, good] = new TTRPG_stats("mechanicus", target_company, good, "skitarii_ranger");
-				break;
+
 	         case "Crusader":
 	            obj_ini.wep1[target_company][good]="Power Sword";obj_ini.armuor[target_company][good]="Power Armour";
 	            obj_ini.gear[target_company][good]="Storm Shield";obj_ini.experience[target_company][good]=10;
 	            obj_ini.race[target_company][good]=4;
 				obj_ini.TTRPG[target_company, good] = new TTRPG_stats("inquisition", target_company, good, "inquisition_crusader");				
 				break;
+
 	        case "Sister of Battle":
-	            obj_ini.wep1[target_company][good]="Bolter";obj_ini.wep2[target_company][good]="Sarissa";
-	            obj_ini.armour[target_company][good]="Power Armour";obj_ini.experience[target_company][good]=60;
+	            obj_ini.wep1[target_company][good]="Light Bolter";obj_ini.wep2[target_company][good]="Sarissa";
+	            obj_ini.armour[target_company][good]="Light Power Armour";obj_ini.experience[target_company][good]=60;
 	            obj_ini.race[target_company][good]=5;
 				obj_ini.TTRPG[target_company, good] = new TTRPG_stats("adeptus_sororitas", target_company, good, "sister_of_battle");
 				break;
 	        case "Sister Hospitaler":
-	            obj_ini.wep1[target_company][good]="Bolter";obj_ini.wep2[target_company][good]="Sarissa";
-	            obj_ini.armour[target_company][good]="Power Armour";obj_ini.experience[target_company][good]=100;
+	            obj_ini.wep1[target_company][good]="Light Bolter";obj_ini.wep2[target_company][good]="Sarissa";
+	            obj_ini.armour[target_company][good]="Light Power Armour";obj_ini.experience[target_company][good]=100;
 	            obj_ini.gear[target_company][good]="Sororitas Medkit";
-	            obj_ini.hp[target_company][good]=40;obj_ini.race[target_company][good]=5;
+	            obj_ini.race[target_company][good]=5;
 				obj_ini.TTRPG[target_company, good] = new TTRPG_stats("adeptus_sororitas", target_company, good, "sister_hospitaler");
 				break;
+
+			case "Ranger":
+	            obj_ini.wep1[target_company][good]="Ranger Long Rifle";obj_ini.wep2[target_company][good]="Shuriken Pistol";
+	            obj_ini.armour[target_company][good]="";obj_ini.experience[target_company][good]=80;
+	            obj_ini.race[target_company][good]=6
+				obj_ini.TTRPG[target_company, good] = new TTRPG_stats("mechanicus", target_company, good, "skitarii_ranger");
+				break;
+
 	        case "Ork Sniper":
 	            obj_ini.wep1[target_company][good]="Sniper Rifle";obj_ini.wep2[target_company][good]="Choppa";
 	            obj_ini.armour[target_company][good]="";obj_ini.experience[target_company][good]=20;
@@ -161,7 +165,6 @@ function scr_add_man(man_role, target_company, choice_armour, choice_weapons, ch
 				obj_ini.TTRPG[target_company, good] = new TTRPG_stats("ork", target_company, good, "ork_Sniper");
 				
 				break;
-	        
 	        case "Flash Git":
 	            obj_ini.wep1[target_company][good]="Snazzgun";obj_ini.wep2[target_company][good]="Choppa";
 	            obj_ini.armour[target_company][good]="Ork Armour";obj_ini.experience[target_company][good]=40;

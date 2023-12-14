@@ -68,7 +68,7 @@ chapter_year=0;
 icon=1;icon_name="da";custom=0;
 founding=1;
 chapter_tooltip="";
-points=0;maxpoints=100;
+points=0;maxpoints=200;
 fleet_type=1;
 strength=5;cooperation=5;
 purity=5;stability=5;
@@ -79,7 +79,7 @@ flagship_name=scr_ship_name("imperial");
 recruiting_exists=1;
 homeworld_exists=1;
 homeworld_rule=1;
-aspirant_trial="Blood Duel";
+aspirant_trial="Challenge";
 discipline="default";
 
 battle_cry="For the Emperor";
@@ -196,16 +196,16 @@ repeat(61){i+=1;advantage[i]="";advantage_tooltip[i]="";disadvantage[i]="";dis_t
 
 i=1;
 advantage[i]="Ambushers";advantage_tooltip[i]="Your chapter is especially trained with ambushing foes; they have a bonus to attack during the start of a battle.";i+=1;
-advantage[i]="Battle Cousins";advantage_tooltip[i]="NOT IMPLEMENTED YET.";i+=1;
+// advantage[i]="Battle Cousins";advantage_tooltip[i]="NOT IMPLEMENTED YET.";i+=1;
 advantage[i]="Boarders";advantage_tooltip[i]="Boarding other ships is routine for the chapter.  Your infantry have a bonus to attack when boarding ships.";i+=1;
 advantage[i]="Bolter Drilling";advantage_tooltip[i]="Bolter drills are sacred to your chapter; all marines have increased attack with Bolter weaponry.";i+=1;
 advantage[i]="Brothers, All";advantage_tooltip[i]="Your chapter places great emphasis on camradery and loyalty.  You start with a well-equip Honor Guard.";i+=1;
-advantage[i]="Comrades in Arms";advantage_tooltip[i]="NOT IMPLEMENTED YET.";i+=1;
+// advantage[i]="Comrades in Arms";advantage_tooltip[i]="NOT IMPLEMENTED YET.";i+=1;
 advantage[i]="Crafters";advantage_tooltip[i]="Your chapter views artifacts as sacred; you start with better gear and maintain all equipment with more ease.";i+=1;
 advantage[i]="Daemon Binders";advantage_tooltip[i]="Powers are replaced with a more powerful Witchfire variant.  Perils are also less likely to occur but are more disasterous when they do.";i+=1;
 advantage[i]="Enemy: Eldar";advantage_tooltip[i]="Eldar are particularly hated by your chapter.  When fighting Eldar damage is increased.";i+=1;
 advantage[i]="Enemy: Fallen";advantage_tooltip[i]="Chaos Marines are particularly hated by your chapter.  When fighting the traitors damage is increased.";i+=1;
-advantage[i]="Enemy: Necrons";advantage_tooltip[i]="NOT IMPLEMENTED YET.";i+=1;
+// advantage[i]="Enemy: Necrons";advantage_tooltip[i]="NOT IMPLEMENTED YET.";i+=1;
 advantage[i]="Enemy: Orks";advantage_tooltip[i]="Orks are particularly hated by your chapter.  When fighting Orks damage is increased.";i+=1;
 advantage[i]="Enemy: Tau";advantage_tooltip[i]="Tau are particularly hated by your chapter.  When fighting Tau damage is increased.";i+=1;
 advantage[i]="Enemy: Tyranids";advantage_tooltip[i]="Tyranids are particularly hated by your chapter.  When fighting Tyranids damage is increased.";i+=1;
@@ -313,7 +313,7 @@ repeat(3){i+=1;// First is for the correct slot, second is for default
 
     race[i,5]=1;
     role[i,5]="Captain";
-    wep1[i,5]="Power Fist";
+    wep1[i,5]="Power Sword";
     wep2[i,5]="Bolt Pistol";
     armour[i,5]="Power Armour";
 
@@ -333,7 +333,7 @@ repeat(3){i+=1;// First is for the correct slot, second is for default
     race[i,8]=1;
     role[i,8]="Tactical Marine";
     wep1[i,8]="Bolter";
-    wep2[i,8]="Chainsword";
+    wep2[i,8]="Combat Knife";
     armour[i,8]="Power Armour";
 
     race[i,9]=1;

@@ -581,29 +581,50 @@ if (menu==1 && managing>0){
                 ach+=30;
                 acy+=8;
             }
-            if (unit.armour()=="MK3 Iron Armour") then ranged_attack-=0.1;
+			if (unit.armour()=="Light Power Armour"){
+				melee_attack-=0.15;
+				ranged_attack-=0.15;
+			}
+			if (unit.armour()=="MK1 Thunder Armour"){
+				melee_attack-=0.1;
+				ranged_attack-=0.1;
+			}
+            if (unit.armour()=="MK3 Iron Armour"){
+				melee_attack-=0.05
+				ranged_attack-=0.05;
+			}
             if (unit.armour()=="MK4 Maximus"){
+				melee_attack+=0.05;
                 ranged_attack+=0.05;
-                melee_attack+=0.05;
             }
             // heresy should be lower damage resistance, lowered ap for now so it's easier for players to digest
             if (unit.armour()=="MK5 Heresy"){
-                melee_attack+=0.2;
-                ranged_attack-=0.05;
+                melee_attack-=0.1;
+                ranged_attack-=0.1;
             }
             if (unit.armour()=="MK6 Corvus"){
-                ranged_attack+=0.1;
+				melee_attack+=0.15;
+                ranged_attack+=0.15;
             }
             if (string_count("Artificer",unit.armour())>0){
-                melee_attack+=0.1;
+                melee_attack+=0.20;
+				ranged_attack+=0.20;
+            }
+			if (unit.armour()=="Cataphractii"){
+                ranged_attack-=0.1;
+                melee_attack-=0.1;
+            }
+			if (unit.armour()=="Tartaros"){
+                ranged_attack+=0.05;
+                melee_attack+=0.05;
             }
             if (string_count("Terminator",unit.armour())>0){
-                ranged_attack-=0.1;
-                melee_attack+=0.2;
-            }
-            if (unit.armour()=="Tartaros"){
                 ranged_attack-=0.05;
-                melee_attack+=0.2;
+                melee_attack-=0.05;
+            }
+			if (unit.armour()=="Aegis"){
+                ranged_attack+=0.05;
+                melee_attack+=0.05;
             }
 
             ui_specialist=0;

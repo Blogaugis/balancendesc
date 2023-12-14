@@ -201,7 +201,7 @@ for(var i=100; i<103; i++){
     obj_controller.r_gear[i,4]="";
     
     obj_controller.r_role[i,5]="Captain";
-    obj_controller.r_wep1[i,5]="Power Fist";
+    obj_controller.r_wep1[i,5]="Power Sword";
     obj_controller.r_wep2[i,5]="Bolt Pistol";
     obj_controller.r_armour[i,5]="Power Armour";
     obj_controller.r_mobi[i,5]="";
@@ -223,7 +223,7 @@ for(var i=100; i<103; i++){
     
     obj_controller.r_role[i,8]="Tactical Marine";
     obj_controller.r_wep1[i,8]="Bolter";
-    obj_controller.r_wep2[i,8]="Chainsword";
+    obj_controller.r_wep2[i,8]="Combat Knife";
     obj_controller.r_armour[i,8]="Power Armour";
     obj_controller.r_mobi[i,8]="";
     obj_controller.r_gear[i,8]="";
@@ -716,7 +716,7 @@ audien_topic[14]="";
 // ** Sets default recruiting vars **
 recruits=0;
 recruiting_worlds="";
-recruit_trial="Blood Duel";
+recruit_trial="Challenge";
 recruit_last=0;
 for(var i=0; i<501; i++){
     recruit_name[i]="";
@@ -836,9 +836,9 @@ trade_mnum[2]=0;
 trade_mnum[3]=0;
 trade_mnum[4]=0;
 // ** Sets up starting requisition **
-requisition=500;
+requisition=2000;
 if (instance_exists(obj_ini)){
-    if (obj_ini.progenitor==0) /*and (obj_creation.custom=0)*/ and (global.chapter_name!="Doom Benefactors") then requisition=2000;
+    if (obj_ini.progenitor==0) /*and (obj_creation.custom=0)*/ and (global.chapter_name!="Doom Benefactors") then requisition=10000;
 }
 if (is_test_map==true) then requisition=50000;
 // ** Sets income **
@@ -969,10 +969,10 @@ disposition[13]=-20;
 // ** Max disposition for imperials **
 disposition_max[0]=0;
 disposition_max[1]=0;
-disposition_max[2]=40;
-disposition_max[3]=40;
-disposition_max[4]=40;
-disposition_max[5]=40;
+disposition_max[2]=60;
+disposition_max[3]=60;
+disposition_max[4]=60;
+disposition_max[5]=60;
 if (instance_exists(obj_ini)){
     disposition_max[2]=40+obj_ini.imperium_disposition;
     if (disposition_max[2]>100) then disposition_max[2]=100;
@@ -1077,7 +1077,7 @@ faction_gender[13]=1;
 known[0]=2;
 known[eFACTION.Player]=999;
 known[eFACTION.Imperium]=1;
-known[eFACTION.Mechanicus]=1;
+known[eFACTION.Mechanicus]=0;
 known[eFACTION.Inquisition]=0;
 known[eFACTION.Ecclesiarchy]=0;
 known[eFACTION.Eldar]=0;
@@ -1269,13 +1269,13 @@ var xx,yy,me,dist,go,plan;
 global.custom=1;
 
 // ** Sets up base training level and trainees at game start **
-training_apothecary=2;
+training_apothecary=0;
 apothecary_points=0;
 apothecary_aspirant=0;
-training_chaplain=2;
+training_chaplain=0;
 chaplain_points=0;
 chaplain_aspirant=0;
-training_psyker=2;
+training_psyker=0;
 psyker_points=0;
 psyker_aspirant=0;
 training_techmarine=0;
@@ -1333,8 +1333,8 @@ loyalty_hidden=100;// Updated when inquisitors do an inspection
 // ** Sets up gene seed **
 gene_seed=20;
 if (string_count("Sieged",obj_ini.strin2)>0) then gene_seed=floor(random_range(300,500));
-if (global.chapter_name=="Lamenters") then gene_seed=30;
-if (global.chapter_name=="Soul Drinkers") then gene_seed=60;
+if (global.chapter_name=="Lamenters") then gene_seed=200;
+if (global.chapter_name=="Soul Drinkers") then gene_seed=150;
 
 //   ** sets up the starting squads**
 squads = true;
