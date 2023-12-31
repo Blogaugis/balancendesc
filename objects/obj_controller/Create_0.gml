@@ -969,10 +969,10 @@ disposition[13]=-20;
 // ** Max disposition for imperials **
 disposition_max[0]=0;
 disposition_max[1]=0;
-disposition_max[2]=60;
-disposition_max[3]=60;
-disposition_max[4]=60;
-disposition_max[5]=60;
+disposition_max[2]=65;
+disposition_max[3]=65;
+disposition_max[4]=65;
+disposition_max[5]=65;
 if (instance_exists(obj_ini)){
     disposition_max[2]=40+obj_ini.imperium_disposition;
     if (disposition_max[2]>100) then disposition_max[2]=100;

@@ -100,6 +100,7 @@ if (did==1){
             if (obj_ini.home_name!="random") then ed.name=obj_ini.home_name;
             array_push(ed.p_feature[1], new new_planet_feature(P_features.Recruiting_World));//recruiting world
             array_push(ed.p_feature[2], new new_planet_feature(P_features.Monastery));ed.p_owner[2]=eFACTION.Player;ed.p_first[2]=1; //monestary
+			ed.dispo[2]=101;
             if (homeworld_rule!=1) then ed.dispo[2]=-5000;
             
             if (obj_ini.home_type=="Shrine") then known[eFACTION.Ecclesiarchy]=1;
