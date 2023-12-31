@@ -96,7 +96,7 @@ if (change_slide==35) or (change_slide==36) or (chapter=="Doom Benefactors") or 
         custom=0;
         founding=1;
         points=0;
-        maxpoints=100;
+        maxpoints=200;
         fleet_type=1;
         strength=5;
         cooperation=5;
@@ -115,7 +115,7 @@ if (change_slide==35) or (change_slide==36) or (chapter=="Doom Benefactors") or 
         flagship_name=scr_ship_name("imperial");
         recruiting_exists=1;
         homeworld_exists=1;homeworld_rule=1;
-        aspirant_trial="Blood Duel";
+        aspirant_trial="Challenge";
         discipline="default";
         battle_cry="For the Emperor";
         main_color=1;

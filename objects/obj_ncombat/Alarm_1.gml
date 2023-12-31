@@ -2,9 +2,42 @@
 var a1;a1="";
 
 if (ally>0) and (ally_forces>0){
+	if (ally=2){
+		if (ally_forces>=1) then a1="A group of imperial guardsmen have arrived to provide assistance.";
+	}
     if (ally=3){
         if (ally_forces>=1) then a1="Joining your forces are 10 Techpriests and 20 Skitarii.  Omnissian Power Axes come to life, crackling and popping with disruptive energy, and Conversion Beam Projectors are levelled to fire.  The Tech-Guard are silent as they form a perimeter around their charges, at contrast with their loud litanies and Lingua-technis bursts.";
     }
+	if (ally=4){
+		if (ally_forces>=1) then a1="Joining Your forces are a group of inquisition's forces.";
+	}
+	if (ally=5){
+		if (ally_forces>=1) then a1="Joining Your forces are a group of Blessed Sisters.";
+	}
+	if (ally=6){
+		if (ally_forces>=1) then a1="In an unusual turn of events, Eldar have joined in to provide support for Your forces.";
+	}
+	if (ally=7){
+		if (ally_forces>=1) then a1="Ork boyz have decided to help out.";
+	}
+	if (ally=8){
+		if (ally_forces>=1) then a1="A contingent of the T'au forces have arrived to help.";
+	}
+	if (ally=9){
+		if (ally_forces>=1) then a1="A contingent of the Tyranid forces have arrived to help.";
+	}
+	if (ally=10){
+		if (ally_forces>=1) then a1="Forces of Chaos have arrived to provide assistance.";
+	}
+	if (ally=11){
+		if (ally_forces>=1) then a1="A contingent of Chaos Space Marines have arrived to assist Your forces.";
+	}
+	if (ally=12){
+		if (ally_forces>=1) then a1="Daemons have arrived to help You.";
+	}
+	if (ally=13){
+		if (ally_forces>=1) then a1="Necrons have arrived to help.";
+	}
 }
 
 
