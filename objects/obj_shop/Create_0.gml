@@ -375,8 +375,8 @@ if (shop = "equipment2") {
     item_stocked[i] = scr_item_count("Early Terminator Armour");
     item_cost[i] = 275;
 	i += 1;
-    item[i] = "Cataphractii";
-    item_stocked[i] = scr_item_count("Cataphractii");
+    item[i] = "Cataphractii Pattern Terminator";
+    item_stocked[i] = scr_item_count("Cataphractii Pattern Terminator");
     nobuy[i] = 1;
 	if (obj_controller.stc_wargear >= 6) {
         nobuy[i] = 0;
@@ -398,14 +398,14 @@ if (shop = "equipment2") {
         nobuy[i] = 0;
         item_cost[i] = 300;
     } // if (rene=1){nobuy[i]=1;item_cost[i]=0;}
-    	i += 1;
-    item[i] = "Aegis";
-    item_stocked[i] = scr_item_count("Aegis");
-    nobuy[i] = 1;
-	if (obj_controller.stc_wargear >= 6) {
-        nobuy[i] = 0;
-        item_cost[i] = 400;
-    }
+    //i += 1;
+    //item[i] = "Aegis";
+    //item_stocked[i] = scr_item_count("Aegis");
+    //nobuy[i] = 1;
+	//if (obj_controller.stc_wargear >= 6) {
+        //nobuy[i] = 0;
+        //item_cost[i] = 400;
+    //}
 
     i += 1;
     x_mod[i] = 9;

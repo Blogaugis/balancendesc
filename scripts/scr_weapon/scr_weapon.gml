@@ -30,7 +30,7 @@ global.weapons={
       "master_crafted": 92,
       "artifact": 104
     },
-    "ranged_hands": 2,
+    "ranged_hands": 1,
     "ammo": 20,
     "range": 3.1,
     "spli": 1,
@@ -66,7 +66,7 @@ global.weapons={
         "artifact": 12
     } ,
     "melee_hands": 0.9,
-    "ranged_hands":1,
+    "ranged_hands":0.9,
     "tags":["shield"],
     "hp_mod":{
       "standard": 30,
@@ -82,7 +82,7 @@ global.weapons={
         "master_crafted": 5,
         "artifact": 6
     } ,
-    "melee_hands": 0.9,
+    "melee_hands": 0.1,
      "tags":["shield"],
     "hp_mod":{
       "standard": 15,
@@ -102,7 +102,7 @@ global.weapons={
     "spli": 1,
     "arp": 0,
     "tags":[],
-    "ranged_hands":2,
+    "ranged_hands":1,
     "tags":["arcane"],
     // ... (other attributes)
   },
@@ -233,7 +233,7 @@ global.weapons={
         },
         "description": "An obscenely large Chainsword, this two-handed weapon can carve through flesh and plasteel with equal ease.",
         "melee_hands": 2,
-        "ranged_hands": 1,
+        "ranged_hands": 0,
         "ammo": 0,
         "range": 1,
         "spli": 1,
@@ -285,8 +285,8 @@ global.weapons={
     "Master Crafted Power Sword": {
         "attack": {
             "standard": 185,
-            "master_crafted": 195,
-            "artifact": 205
+            "master_crafted": 215,
+            "artifact": 250
         },
         "melee_mod": {
             "standard": 1.1,
@@ -294,7 +294,7 @@ global.weapons={
             "artifact": 1.1
         },
         "description": "A master-crafted weapon is usually incredibly ornate and highly decorated compared to standard weapons of the same pattern, while also possessing augmented functionality. Any standard Imperial weapon can be master-crafted. Due to the improved design of a master-crafted weapon, it is more likely that a target will be hit by attacks from this weapon.",
-        "melee_hands": 1.1,
+        "melee_hands": 1,
         "ranged_hands": 0,
         "ammo": 0,
         "range": 1,
@@ -341,7 +341,7 @@ global.weapons={
             "artifact": 1.1
         },
         "description": "Power weapons, infused with arcane energy, are used by Howling Banshees and Dire Avenger Exarchs. Swords such as these are as much an artistic statement as a weapon and are effective against even heavily armored troops.",
-        "melee_hands": 1.1,
+        "melee_hands": 1,
         "ranged_hands": 0,
         "ammo": 0,
         "range": 1,
@@ -362,7 +362,7 @@ global.weapons={
             "artifact": 1.1
         },
         "description": "Often the signature weapons of elite warriors, power swords are perhaps the most dangerous of melee weapons in the galaxy.",
-        "melee_hands": 1.1,
+        "melee_hands": 1,
         "ranged_hands": 0,
         "ammo": 0,
         "range": 1,
@@ -402,7 +402,7 @@ global.weapons={
             "artifact": 1
         },
         "description": "A large, metal gauntlet surrounded by an energy field. Though large and slow, it dishes out tremendous damage.",
-        "melee_hands": 1.1,
+        "melee_hands": 1,
         "ranged_hands": 1,
         "ammo": 0,
         "range": 1,
@@ -457,7 +457,7 @@ global.weapons={
             "artifact": 1.3
         },
         "description": "This weapon unleashes a massive, disruptive field on impact. Only experienced marines can use Thunder Hammers.",
-        "melee_hands": 2,
+        "melee_hands": 1.9,
         "ranged_hands": 1,
         "ammo": 0,
         "range": 1,
@@ -508,9 +508,9 @@ global.weapons={
     },
     "Bolt Pistol": {
         "attack": {
-            "standard": 30,
-            "master_crafted": 35,
-            "artifact": 40
+            "standard": 75,
+            "master_crafted": 80,
+            "artifact": 85
         },
         "description": "A smaller, more compact version of the venerable Boltgun. Standard Godwyn pattern.",
         "melee_hands": 0,
@@ -573,8 +573,8 @@ global.weapons={
             "artifact": 85
         },
         "description": "A standard Bolter, a 2-handed firearm that launches bolts of explosive material. It's a versatile and iconic weapon of Space Marines.",
-        "melee_hands": 1,
-        "ranged_hands": 2,
+        "melee_hands": 0,
+        "ranged_hands": 1.1,
         "ammo": 16,
         "range": 12,
         "spli": 1,
@@ -588,8 +588,8 @@ global.weapons={
             "artifact": 65
         },
         "description": "A smaller, 0.5 caliber bolter, made to be used by regular humans, such as blessed sisters.",
-        "melee_hands": 1,
-        "ranged_hands": 2,
+        "melee_hands": 0,
+        "ranged_hands": 1,
         "ammo": 16,
         "range": 12,
         "spli": 1,
@@ -598,32 +598,32 @@ global.weapons={
     },
     "Heavy Flamer": {
         "attack": {
-            "standard": 500,
-            "master_crafted": 550,
-            "artifact": 600
+            "standard": 250,
+            "master_crafted": 275,
+            "artifact": 300
         },
         "description": "A much larger and bulkier flamer. Few armies carry them on hand, instead choosing to mount them to vehicles.",
         "melee_hands": 1,
         "ranged_hands": 2,
         "ammo": 8,
-        "range": 2,
+        "range": 3.1,
         "spli": 1,
-        "arp": -1,
+        "arp": 0,
         "tags":["flame","heavy_ranged"]
     },
     "CCW Heavy Flamer": {
         "attack": {
-            "standard": 250,
-            "master_crafted": 275,
-            "artifact": 300
+            "standard": 550,
+            "master_crafted": 575,
+            "artifact": 600
         },
         "description": "A powerful close combat weapon integrated with a flamer. It's capable of dealing both flame damage and melee attacks.",
         "melee_hands": 1,
         "ranged_hands": 0,
         "ammo": 6,
-        "range": 2.1,
+        "range": 3.1,
         "spli": 1,
-        "arp": -1,
+        "arp": 0,
         "tags":["dreadnought","flame"]
     },
     "Dreadnought Power Claw":{
@@ -674,10 +674,10 @@ global.weapons={
             "artifact": 300
         },
         "description": "A relatively quiet weapon, this gun vaporizes flesh and armor alike. Due to heat dissipation, it has only a short range.",
-        "melee_hands": 1,
-        "ranged_hands": 2,
+        "melee_hands": 0,
+        "ranged_hands": 1.1,
         "ammo": 4,
-        "range": 2.1,
+        "range": 3.1,
         "spli": 0,
         "arp": 1,
         "tags":["melta"]
@@ -690,9 +690,9 @@ global.weapons={
         },
         "description": "A Master Crafted Meltagun incorporates superior craftsmanship, advanced modifications, and enhancements compared to its standard counterpart.",
         "melee_hands": 0,
-        "ranged_hands": 2,
+        "ranged_hands": 1.1,
         "ammo": 4,
-        "range": 2.1,
+        "range": 3.1,
         "spli": 0,
         "arp": 1
     },
@@ -730,7 +730,7 @@ global.weapons={
         "attack": {
             "standard": 120,
             "master_crafted": 132,
-            "artifact": 144
+            "artifact": 154
         },
         "description": "A Master Crafted Plasma Pistol incorporates superior craftsmanship, advanced modifications, and enhancements compared to its standard counterpart.",
         "melee_hands": 0,
@@ -747,23 +747,23 @@ global.weapons={
             "artifact": 120
         },
         "description": "The Infernus Pistol is a compact and portable flamethrower-style weapon. It unleashes a torrent of fiery promethium, which engulfs its targets in flames.",
-        "melee_hands": 1,
+        "melee_hands": 0,
         "ranged_hands": 1,
         "ammo": 4,
-        "range": 2.1,
+        "range": 3.1,
         "spli": 0,
         "arp": 1,
         "tags":["flame","pistol"]
     },
     "Plasma Gun": {
         "attack": {
-            "standard": 250,
-            "master_crafted": 275,
-            "artifact": 300
+            "standard": 175,
+            "master_crafted": 192,
+            "artifact": 210
         },
         "description": "A 2-handed firearm that launches bolts of plasma. They are considered both sacred and dangerous, occasionally overheating.",
         "melee_hands": 0,
-        "ranged_hands": 2,
+        "ranged_hands": 1.9,
         "ammo": 16,
         "range": 12,
         "spli": 1,
@@ -772,13 +772,13 @@ global.weapons={
     },
     "Master Crafted Plasma Gun": {
         "attack": {
-            "standard": 175,
-            "master_crafted": 192,
-            "artifact": 210
+            "standard": 250,
+            "master_crafted": 275,
+            "artifact": 300
         },
         "description": "A Master Crafted Plasma Gun incorporates superior craftsmanship, advanced modifications, and enhancements compared to its standard counterpart.",
         "melee_hands": 0,
-        "ranged_hands": 2,
+        "ranged_hands": 1.9,
         "ammo": 16,
         "range": 14,
         "spli": 1,
@@ -791,7 +791,7 @@ global.weapons={
             "artifact": 96
         },
         "description": "Fires a solid shell and boasts powerful telescopic sights, allowing the user to target enemy weak points and distant foes.",
-        "melee_hands": 1,
+        "melee_hands": 0,
         "ranged_hands": 2,
         "ammo": 20,
         "range": 18,
@@ -801,9 +801,9 @@ global.weapons={
     },
     "Assault Cannon": {
         "attack": {
-            "standard": 240,
-            "master_crafted": 264,
-            "artifact": 288
+            "standard": 480,
+            "master_crafted": 490,
+            "artifact": 500
         },
         "description": "A heavy, rotary auto-cannon frequently used by Dreadnoughts and Terminators. Has an incredible rate of fire.",
         "melee_hands": 2.1,
@@ -876,7 +876,7 @@ global.weapons={
     "Integrated Bolters": {
         "attack": {
             "standard": 75,
-            "master_crafted": 82.5,
+            "master_crafted": 83,
             "artifact": 90
         },
         "description": "Integrated Bolters are a set of Bolter weapons that are integrated or built directly into the structure of the vehicle, armor, or Dreadnought.",
@@ -885,12 +885,12 @@ global.weapons={
         "ammo": 20,
         "range": 8.1,
         "spli": 1,
-        "arp": 1
+        "arp": 0
     },
     "Power Fists": {
         "attack": {
             "standard": 425,
-            "master_crafted": 467.5,
+            "master_crafted": 468,
             "artifact": 510
         },
         "description": "While not quite as strong as two Power Fists, these artifacts allow the use of an additional, third weapon.",
@@ -1225,12 +1225,12 @@ global.weapons={
     },
     "Storm Bolter": {
         "attack": {
-            "standard": 80,
-            "master_crafted": 88,
-            "artifact": 96
+            "standard": 150,
+            "master_crafted": 176,
+            "artifact": 196
         },
         "description": "Compact, and double-barreled, this bolt weapon is inaccurate but grants an enormous amount of firepower.",
-        "melee_hands": 1.1,
+        "melee_hands": 0,
         "ranged_hands": 1.1,
         "ammo": 10,
         "range": 10,
@@ -1240,9 +1240,9 @@ global.weapons={
     },
     "Flamer": {
         "attack": {
-            "standard": 350,
-            "master_crafted": 385,
-            "artifact": 420
+            "standard": 200,
+            "master_crafted": 220,
+            "artifact": 240
         },
         "melee_mod": {
             "standard": 0,
@@ -1250,10 +1250,10 @@ global.weapons={
             "artifact": 0
         },
         "description": "Blackened at the tip, this weapon unleashes a torrent of burning promethium - all the better to cleanse sin and impurity with.",
-        "melee_hands": 1,
+        "melee_hands": 0,
         "ranged_hands": 1,
         "ammo": 4,
-        "range": 2.1,
+        "range": 3.1,
         "spli": 1,
         "arp": -1,
         "tags":["flame"]
@@ -1268,7 +1268,7 @@ global.weapons={
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 4,
-        "range": 2.1,
+        "range": 3.1,
         "spli": 1,
         "arp": 0,
         "tags":["flame"]
@@ -1299,7 +1299,7 @@ global.weapons={
         "melee_hands": 1,
         "ranged_hands": 1,
         "ammo": 4,
-        "range": 2.1,
+        "range": 3.1,
         "spli": 1,
         "arp": -1,
         "tags":["flame"]
@@ -1668,22 +1668,22 @@ global.gear = {
                 "master_crafted": 12, // Augmented
                 "artifact": 15 // Augmented
             },                   
-        }
+        },
         "Dragon Scales":{
             "description": "A type of power armour that is worn by the techpriests of the adeptus mechanicus.",
              "armour_value": {
                 "standard": 20,
                 "master_crafted": 22, // Augmented
                 "artifact": 25 // Augmented
-            },
-        }
+            },                   
+        },
         "Light Power Armour":{
             "description": "A type of power armour that can be used by regular humans.",
              "armour_value": {
                 "standard": 10,
                 "master_crafted": 12, // Augmented
                 "artifact": 15 // Augmented
-            },
+            },                   
         }
     } , 
   "equipment": {
