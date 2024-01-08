@@ -1,30 +1,49 @@
 # Chapter Master
 
-Chapter Master (aka CM) is a strategy/simulation game written in GML2, originally designed and developed by Duke.\
-This project aims to continue development on the game, fix any bugs, expand and add features.
+This is a fork of Chapter Master: Adeptus Dominus.\
+Chapter Master (CM) is described as a strategy/simulation game written in GML2, originally designed and developed by Duke.\
+Currently, Chapter Master: Adeptus Dominus is further on development by a new team of developers.\
+It aims to continue development on the game, fix any bugs, expand and add features.
+
+## The Fork
+
+The aims of this fork are:\
+To be less tied to 40k lore and it's inconsistencies, and more about grimdark in general;\
+Tuning down the anti-player events and mechanics;\
+And otherwise being more generous to how player wants to play.
 
 ## Links
 
 [Discord](https://discord.gg/zAGpqHzsXQ)
+A place where majority of devs are hanging out.\
+[Bay12Forum](http://www.bay12forums.com/smf/index.php?topic=142620.0)
+Where Chapter Master was also discussed.\
+There also used to be a link on 1d4chan, and tg.
 
 ## Contributing
 
-Feel free to visit our Discord. We have dev, bug report, suggestion and discussion channels there.\
-If you can code or design or draw and you love WH40K then you'll have a great time with us.
+Discord is the best option on contacting the developers.\
+There are developer, bug report, suggestion and discussion channels there.\
+If you can code or design or draw and you have an interest in WH40K, or grimdark in general, you are welcome to join.
 
 ## Running the game locally and developing
 
-0. Ensure you have [GameMaker](https://gamemaker.io/en/download) installed.
+To simply play the game, you only need GameMaker.\
+0. Ensure you have [GameMaker](https://gamemaker.io/en/download) installed. Ideally versions IDE v2023.8.2.108; Runtime v2023.8.2.152.
 1. Clone the repo.
 2. Open ChapterMaster.yyp with GameMaker.
-3. In GameMaker, click the Run button or press F5 to build the project and start the game. The game will then run inside a web app managed by GameMaker, which should also open a new tab in your browser. 
+3. In GameMaker, click the Run button or press F5 to build the project and start the game.
+
+If You are using more advanced features of GameMaker, the further instructions are as follows:\
+
+The game will then run inside a web app managed by GameMaker, which should also open a new tab in your browser.\
 	- If no new tab opens check the output log in GameMaker, there should be a line like this:\
 	  _Attempting to open browser - "" with URL "http://localhost:51264/runner.html?game=ChapterMaster"._ \
       Use the link to open the game instance.
 4. Play the game!
 5. (Optional) Read the code, modify it, test, repeat.
 
-CM does not currently use any external dependencies expect GameMaker.
+CM does not currently use any external dependencies except GameMaker.
 
 For code changes, you can use any text editor you like, just remember to periodically compile and test in GameMaker.
 
