@@ -665,35 +665,37 @@ function scr_enemy_ai_e() {
                     // corr isn't really relevant as corruption in marines doesn't matter
                     // by default it takes 72 turns (6 years) to train
 
-
-                    if (p_type[run] = "Hive") and(recruit_chance <= 40) {
+					// Low-pop worlds
+                    if (p_type[run] = "Death") and(recruit_chance <= 10) {
                         aspirant = 1;
                     }
-                    if (p_type[run] = "Temperate") and(recruit_chance <= 20) {
+                    if (p_type[run] = "Desert") and(recruit_chance <= 10) {
+                        aspirant = 1;
+                    }
+                    if (p_type[run] = "Ice") and(recruit_chance <= 10) {
+                        aspirant = 1;
+                    }
+                    if (p_type[run] = "Lava") and(recruit_chance <= 10) {
+                        aspirant = 1;
+                    }
+					// Earth-likes
+                    if (p_type[run] = "Agri") and(recruit_chance <= 20) {
                         aspirant = 1;
                     }
                     if (p_type[run] = "Feudal") and(recruit_chance <= 20) {
                         aspirant = 1;
                     }
-                    if (p_type[run] = "Forge") and(recruit_chance <= 15) {
+                    if (p_type[run] = "Shrine") and(recruit_chance <= 20) {
                         aspirant = 1;
                     }
-                    if (p_type[run] = "Shrine") and(recruit_chance <= 15) {
+                    if (p_type[run] = "Temperate") and(recruit_chance <= 20) {
                         aspirant = 1;
                     }
-                    if (p_type[run] = "Desert") and(recruit_chance <= 15) {
+					// Hives
+                    if (p_type[run] = "Hive") and(recruit_chance <= 40) {
                         aspirant = 1;
                     }
-                    if (p_type[run] = "Ice") and(recruit_chance <= 15) {
-                        aspirant = 1;
-                    }
-                    if (p_type[run] = "Agri") and(recruit_chance <= 10) {
-                        aspirant = 1;
-                    } // there's no reason to use agri's
-                    if (p_type[run] = "Death") and(recruit_chance <= 10) {
-                        aspirant = 1;
-                    }
-                    if (p_type[run] = "Lava") and(recruit_chance <= 7) {
+                    if (p_type[run] = "Forge") and(recruit_chance <= 40) {
                         aspirant = 1;
                     }
 
@@ -764,22 +766,25 @@ function scr_enemy_ai_e() {
                         // gives planet buffs
 
                         if (p_type[run] = "Death") {
-                            obj_controller.recruit_exp[new_recruit] += 6;
+                            obj_controller.recruit_exp[new_recruit] += 5;
                         }
                         if (p_type[run] = "Ice") {
-                            obj_controller.recruit_exp[new_recruit] += 3;
+                            obj_controller.recruit_exp[new_recruit] += 5;
                         }
                         if (p_type[run] = "Desert") {
-                            obj_controller.recruit_exp[new_recruit] += 3;
+                            obj_controller.recruit_exp[new_recruit] += 5;
                         }
                         if (p_type[run] = "Lava") {
-                            obj_controller.recruit_exp[new_recruit] += 9;
+                            obj_controller.recruit_exp[new_recruit] += 5;
+                        }
+                        if (p_type[run] = "Feudal") {
+                            obj_controller.recruit_exp[new_recruit] += 2;
                         }
 
 
                         if (obj_controller.recruit_trial = "Hunting the Hunter") {
-                            if (p_type[run] = "Desert") or(p_type[run] = "Ice") or(p_type[run] == "Death") {
-                                obj_controller.recruit_exp[new_recruit] += irandom(13) + 7;
+                            if (p_type[run] == "Desert") or(p_type[run] == "Ice") or(p_type[run] == "Death") or(p_type[run] == "Feudal"){
+                                obj_controller.recruit_exp[new_recruit] += irandom(5) + 5;
                             }
                         }
 
@@ -793,25 +798,22 @@ function scr_enemy_ai_e() {
                             if (p_type[run] = "Desert") or(p_type[run] = "Ice") or(p_type[run] = "Death") or(p_type[run] = "Lava") {
                                 recruit_chance -= choose(0.7, 0.8, 0.8, 0.8, 0.9);
                             }
-                            if (p_type[run] = "Feudal") {
-                                recruit_chance -= choose(0.5, 0.6, 0.6, 0.7, 0.7, 0.8)
-                            }
+
                         }
                         if (obj_controller.recruit_trial = "Challenge") {
                             obj_controller.recruit_exp[new_recruit] += choose(0, 0, 0, 0, 0, 0, 0, 0, 10, 20);
                             scr_alert("green", "owner", "A worthy aspirant has risen to the rank of Neophyte, doing quite well against the challenger Astartes.", 0, 0);
                         }
 
-
                         if (obj_controller.recruit_trial = "Apprenticeship") {
-                            if (p_type[run] = "Lava") {
-                                recruit_chance -= choose(0.5, 0.6, 0.6, 0.7, 0.7);
-                            } // nocturne gaming
+                            if (p_type[run] = "Feudal") {
+                                recruit_chance -= choose(0.5, 0.6, 0.6, 0.7, 0.7, 0.8)
+                            }
                             obj_controller.recruit_exp[new_recruit] += irandom(5) + 34;
                         }
 
                         if (obj_controller.recruit_trial = "Knowledge of Self") {
-                            if (p_type[run] = "Temperate") then obj_controller.recruit_exp[new_recruit] += irandom(5) + 5; // this is the only one that gives bonus for temperates
+                            if (p_type[run] == "Temperate" or p_type[run] == "Shrine") then obj_controller.recruit_exp[new_recruit] += irandom(5) + 5;
                             obj_controller.recruit_exp[new_recruit] += irandom(10) + 15;
                         }
 
@@ -821,7 +823,7 @@ function scr_enemy_ai_e() {
                         obj_controller.recruit_distance[new_recruit] = 0;
                         obj_controller.recruit_training[new_recruit] = months_to_neo;
                         obj_controller.gene_seed -= 1;
-                        if (obj_controller.recruit_exp[new_recruit] >= 40) then obj_controller.recruit_exp[new_recruit] = 38; // we don't want immediate battle bros
+                        // if (obj_controller.recruit_exp[new_recruit] >= 40) then obj_controller.recruit_exp[new_recruit] = 38;
 
                         var i = 0;
 

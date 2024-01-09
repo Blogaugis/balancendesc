@@ -6,16 +6,67 @@
 for(var i=1; i<=4; i++){
     p_population[i]=0;// 10B
     switch (p_type[i]) {
-        case "Lava":
-            p_population[i] = irandom(1500) + 500;
-            p_station[i] = 2;
-            p_max_population[i] = 2000;
+			// Low population, harsh worlds
+        case "Death":
+            p_population[i] = irandom(2000000) + 3000000;
+            p_fortified[i] = choose(0, 1, 2);
+            p_station[i] = choose(2, 3);
+            p_max_population[i] = 5000000;
             break;
         case "Desert":
-            p_population[i] = irandom(150000000) + 100000000;
-            p_fortified[i] = choose(2, 3, 4);
+            p_population[i] = irandom(2000000) + 3000000;
+            p_fortified[i] = choose(0, 1);
             p_station[i] = 3;
-            p_max_population[i] = 250000000;
+            p_max_population[i] = 5000000;
+            break;
+        case "Ice":
+            p_population[i] = irandom(2000000) + 3000000;
+            p_fortified[i] = choose(0, 1);
+            p_station[i] = choose(1, 2, 3);
+            p_max_population[i] = 5000000;
+            break;
+        case "Lava":
+            p_population[i] = irandom(2000000) + 3000000;
+            p_fortified[i] = choose(0, 1);
+            p_station[i] = 2;
+            p_max_population[i] = 5000000;
+            break;
+			// Standard population, Earth-likes
+        case "Agri":
+            p_population[i] = irandom(15) + 5;
+            p_large[i] = 1;
+            p_fortified[i] = choose(1, 2, 3);
+            p_station[i] = choose(0, 1);
+            p_max_population[i] = 20;
+            break;
+        case "Feudal":
+            p_population[i] = irandom(19) + 1;
+            p_large[i] = 1;
+            p_fortified[i] = choose(1, 2, 3);
+            p_station[i] = choose(2, 3, 4);
+            p_max_population[i] = 20;
+            break;
+        case "Shrine":
+            p_population[i] = irandom(15) + 5;
+            p_large[i] = 1;
+            p_fortified[i] = choose(3, 4, 5);
+            p_station[i] = choose(4, 5);
+            p_max_population[i] = 20;
+            break;
+        case "Temperate":
+            p_population[i] = irandom(15) + 5;
+            p_large[i] = 1;
+            p_fortified[i] = choose(2, 3, 4);
+            p_station[i] = choose(3, 4);
+            p_max_population[i] = 20;
+            break;
+			// Highly populous worlds
+        case "Forge":
+            p_population[i] = random(145) + 5;
+            p_large[i] = 1;
+            p_fortified[i] = 5;
+            p_station[i] = 5;
+            p_max_population[i] = 150;
             break;
         case "Hive":
             p_population[i] = random(100) + 50;
@@ -24,50 +75,7 @@ for(var i=1; i<=4; i++){
             p_station[i] = choose(4, 5);
             p_max_population[i] = 150;
             break;
-        case "Agri":
-            p_population[i] = irandom(1000000) + 500000;
-            p_fortified[i] = choose(0, 1);
-            p_station[i] = choose(0, 1);
-            p_max_population[i] = 1500000;
-            break;
-        case "Temperate":
-            p_population[i] = irandom(4) + 2;
-            p_large[i] = 1;
-            p_fortified[i] = choose(3, 4);
-            p_station[i] = choose(3, 4);
-            p_max_population[i] = 6;
-            break;
-        case "Shrine":
-            p_population[i] = irandom(5) + 3;
-            p_large[i] = 1;
-            p_fortified[i] = choose(4, 5);
-            p_station[i] = choose(4, 5);
-            p_max_population[i] = 8;
-            break;
-        case "Ice":
-            p_population[i] = irandom(13500000) + 6500000;
-            p_fortified[i] = choose(1, 2, 3);
-            p_station[i] = choose(1, 2, 3);
-            p_max_population[i] = 20000000;
-            break;
-        case "Feudal":
-            p_population[i] = irandom(400000000) + 200000000;
-            p_fortified[i] = choose(2, 3);
-            p_station[i] = choose(2, 3, 4);
-            p_max_population[i] = 600000000;
-            break;
-        case "Forge":
-            p_population[i] = random(26) + 4;
-            p_large[i] = 1;
-            p_fortified[i] = 5;
-            p_station[i] = 5;
-            p_max_population[i] = 30;
-            break;
-        case "Death":
-            p_population[i] = irandom(300000) + 200000;
-            p_station[i] = choose(2, 3);
-            p_max_population[i] = 500000;
-            break;
+			// Other types
         case "Craftworld":
             p_population[i] = irandom_range(150000, 300000);
             p_station = 6;
@@ -124,22 +132,39 @@ var fleet, system_fleet=0,capital=0,frigate=0,escort=0;
 if (owner == eFACTION.Imperium) or (owner == eFACTION.Ork) or (owner == eFACTION.Mechanicus){
     for(var g=1; g<=4; g++){
         switch (p_type[g]) {
+				// Harsh worlds
+            case "Death":
+                system_fleet += 0.5;
+                break;
+            case "Desert":
+                system_fleet += 0.5;
+                break;
+            case "Ice":
+                system_fleet += 0.5;
+                break;
+            case "Lava":
+                system_fleet += 0.5;
+                break;
+				// Earth-likes
+				// One does not simply dismiss the importance of Agri worlds
+            case "Agri":
+                system_fleet += 2;
+                break;
+            case "Feudal":
+                system_fleet += 0.5;
+                break;
+            case "Shrine":
+                system_fleet += 2;
+                break;
+            case "Temperate":
+                system_fleet += 1;
+                break;
+				// industry hives
             case "Hive":
                 system_fleet += 4;
                 break;
             case "Forge":
                 system_fleet += 8;
-                break;
-            case "Desert":
-            case "Temperate":
-                system_fleet += 1;
-                break;
-            case "Feudal":
-            case "Ice":
-                system_fleet += 0.5;
-                break;
-            case "Shrine":
-                system_fleet += 2;
                 break;
         }
     }
@@ -225,7 +250,7 @@ if (owner == eFACTION.Tau){
     }
     
     for (var i = 1; i <= 4; i++) {
-        if (p_type[i] != "Dead") {
+        if (p_type[i] != "Death") {
             p_tau[i] = choose(1,2,3,4);
         }
     }
@@ -311,7 +336,7 @@ for(var i=1; i<=4; i++){
 
 if (name=="Kim Jong") and (owner == eFACTION.Chaos){
     for (var i = 1; i <= 4; i++) {
-        if (p_type[i] != "Dead") {
+        if (p_type[i] != "Death") {
             p_heresy[i] = 100;
             p_traitors[i] = 2;
         }
@@ -360,7 +385,7 @@ if (i==1) and (planets>0){
                             case 1:
                                 array_push(p_feature[i], new new_planet_feature(P_features.Sororitas_Cathedral))
                                 if (p_heresy[i]>10) then p_heresy[i]-=10;
-                                p_sisters[i]=choose(2,2,3);
+                                p_sisters[i]=choose(2, 3);
                                 goo=1;
                                 break;
                             case 2:

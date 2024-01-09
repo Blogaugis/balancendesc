@@ -1002,12 +1002,12 @@ if (slide=3){
     
     var asp_info;asp_info="";
     if (aspirant_trial="Blood Duel") then asp_info="-10-30% More recruits#-2-4 Years shorter training time#-10% Chance to burn gene-seed per speed";
-    if (aspirant_trial="Hunting the Hunter") then asp_info="-Planet Bonus': Desert, Ice, Death#-Up to 15 bonus XP on Neophytes";
-    if (aspirant_trial="Survival of the Fittest") then asp_info="-Planet Bonus': Desert, Ice, Death, Lava#-(+10-30% recruits)#-Planet Bonus: Feudal (+20-50% recruits)";
+    if (aspirant_trial="Hunting the Hunter") then asp_info="-Planet Bonus': Desert, Ice, Death, Feudal#-Up to 15 bonus XP on Neophytes";
+    if (aspirant_trial="Survival of the Fittest") then asp_info="-Planet Bonus': Desert, Ice, Death, Lava#-(+10-30% recruits)";
     if (aspirant_trial="Exposure") then asp_info="-Planet Bonus':#- Desert, Ice, Forge, Lava, Death#-1-3 Years shorter training time";
-    if (aspirant_trial="Knowledge of Self") then asp_info="-Planet Bonus: Temperate (up to 10 bonus xp)#-1.5-3 Years longer training#-Up to bonus 25 XP on Neophytes.";
+    if (aspirant_trial="Knowledge of Self") then asp_info="-Planet Bonus: Temperate, Shrine (up to 10 bonus xp)#-1.5-3 Years longer training#-Up to bonus 25 XP on Neophytes.";
     if (aspirant_trial="Challenge") then asp_info="-Standard generic choice #-Heroic Neophytes gain bonus 10-20 XP";
-    if (aspirant_trial="Apprenticeship") then asp_info="-Planet Bonus: Lava (+10-50% recruits)#-4-5 Years longer training time#-Almost able for immediate promotion";
+    if (aspirant_trial="Apprenticeship") then asp_info="-Planet Bonus: Feudal (+10-50% recruits)#-4-5 Years longer training time#-Almost able for immediate promotion";
     draw_text_ext_transformed(850,544,string_hash_to_newline(string(asp_info)),64,999,0.5,0.5,0);
      
     if (scr_hit(800,480,1000,510)=true){tooltip="Aspirant Trial";tooltip2="A special challenge is needed for Aspirants to be judged worthy of becoming Astartes.  After completing the Trial they then become a Neophyte, beginning implantation and training.";}
