@@ -571,9 +571,9 @@ if (did==1){
                 p_heresy[4]=floor(random_range(80,100));
 				// turns dead planets into less dead ones. Only if they're specially named systems though
 				if (p_type[1]=="Dead") then p_type[1]="Hive";
-                if (p_type[2]=="Dead") then p_type[2]="Temperate";
-                if (p_type[3]=="Dead") then p_type[3]="Desert";
-                if (p_type[4]=="Dead") then p_type[4]="Ice" or p_type[4]="Dead";
+                if (p_type[2]=="Dead") then p_type[2]="Temperate" or p_type[2]="Feudal" or p_type[2]="Agri";
+                if (p_type[3]=="Dead") then p_type[3]="Desert" or p_type[3]="Lava";
+                if (p_type[4]=="Dead") then p_type[4]="Ice" or p_type[4]="Death";
 				// make them chaos flavoured if planet is not dead
                 if (p_type[1]!="Dead") then p_traitors[1]=6;
 				if (p_type[2]!="Dead") then p_traitors[2]=6;

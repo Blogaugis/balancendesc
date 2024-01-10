@@ -6,7 +6,7 @@ function scr_chapter_new(argument0) {
 	var i;i=-1;
 	repeat(21){i+=1;world[i]="";world_type[i]="";world_feature[i]="";}
 	var i;i=-1;repeat(6){i+=1;adv[i]="";adv_num[i]=0;dis[i]="";dis_num[i]=0;}
-	points=100;maxpoints=100;custom=0;
+	points=100;maxpoints=200;custom=0;
 
 	hapothecary=scr_marine_name();
 	hchaplain=scr_marine_name();

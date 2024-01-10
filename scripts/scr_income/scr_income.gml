@@ -3,11 +3,12 @@ function scr_income() {
 	// Determines income
 
 
-	income_base=32;income_tribute=0;income_controlled_planets=0;
-	if (obj_ini.fleet_type!=1) then income_base=40;
+	income_base=50;income_tribute=0;income_controlled_planets=0;
+	if (obj_ini.fleet_type!=1) then income_base=50;
+		if(rene == 1) then income_base=0;
 
 	income_home=0;
-	if (obj_ini.fleet_type=1) then income_home=8;// Homeworld-based income
+	if (obj_ini.fleet_type=1) then income_home=10;// Homeworld-based income
 
 	income_fleet=0;
 	with(obj_p_fleet){
@@ -91,9 +92,24 @@ function scr_income() {
 	        if (dispo[o]>=100){
 	            if (planet_feature_bool(p_feature[1], P_features.Monastery)==0){
 	                obj_controller.income_controlled_planets+=1;obj_controller.income_tribute+=1;
-	                if (p_type[o]="Feudal") then obj_controller.income_tribute+=1;
-	                if (p_type[o]="Desert") or (p_type[o]="Temperate") then obj_controller.income_tribute+=2;
-	                if (p_type[o]="Forge") or (p_type[o]="Hive") then obj_controller.income_tribute+=3;
+					// low pops
+	                if (p_type[o]="Death") then obj_controller.income_tribute+=4;
+	                if (p_type[o]="Desert") then obj_controller.income_tribute+=4;
+	                if (p_type[o]="Ice") then obj_controller.income_tribute+=4;
+						// High tectonic activity tends to liberate more minerals and other resources in the depths of the planet
+	                if (p_type[o]="Lava") then obj_controller.income_tribute+=99999;
+					// Earth-likes
+						// Agri worlds feed other worlds
+	                if (p_type[o]="Agri") then obj_controller.income_tribute+=99999;
+						// Low literacy means low skill of labor
+	                if (p_type[o]="Feudal") then obj_controller.income_tribute+=4999;
+						// The church takes part of the tithe
+	                if (p_type[o]="Shrine") then obj_controller.income_tribute+=9999;
+						// The standard
+	                if (p_type[o]="Temperate") then obj_controller.income_tribute+=19999;
+					// The hives with insane number of pops
+	                if (p_type[o]="Hive") then obj_controller.income_tribute+=149999;
+	                if (p_type[o]="Forge") then obj_controller.income_tribute+=199999;
 	            }
 	        }
 	    }

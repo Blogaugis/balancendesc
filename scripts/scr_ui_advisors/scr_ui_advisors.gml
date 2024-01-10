@@ -4,6 +4,7 @@ function scr_ui_advisors() {
     var romanNumerals;
     romanNumerals = scr_roman_numerals();
     var recruitment_rates = [
+        "halted",
         "sluggish",
         "slow",
         "moderate",
