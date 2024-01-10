@@ -20,7 +20,7 @@ function scr_chapter_random(argument0) {
 	chapter="Unnamed";chapter_string="Unnamed";
 	icon=1;icon_name="da";
 	founding=1;found_secret=0;
-	points=0;maxpoints=100;
+	points=0;maxpoints=200;
 	fleet_type=1;strength=5;cooperation=5;purity=5;stability=5;
 	var i;i=-1;repeat(6){i+=1;adv[i]="";adv_num[i]=0;dis[i]="";dis_num[i]=0;}
 	homeworld="Temperate";homeworld_name=scr_star_name();

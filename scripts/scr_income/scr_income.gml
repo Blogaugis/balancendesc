@@ -5,7 +5,7 @@ function scr_income() {
 
 	income_base=50;income_tribute=0;income_controlled_planets=0;
 	if (obj_ini.fleet_type!=1) then income_base=50;
-		if(rene == 1) then income_base=0;
+		// if(rene == 1) then income_base=0;
 
 	income_home=0;
 	if (obj_ini.fleet_type=1) then income_home=10;// Homeworld-based income

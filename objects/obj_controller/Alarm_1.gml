@@ -95,6 +95,7 @@ if (did==1){
         if (obj_ini.recruiting_type!=obj_ini.home_type) and (obj_ini.home_name!=obj_ini.recruiting_name){
             ed.p_type[1]=obj_ini.recruiting_type;
             if (obj_ini.recruiting_name!="random") then ed.name=obj_ini.recruiting_name;
+			ed.dispo[1]=101;
             ed.p_type[2]=obj_ini.home_type;
             ed.planet[2]=1;
             if (obj_ini.home_name!="random") then ed.name=obj_ini.home_name;
@@ -104,7 +105,9 @@ if (did==1){
             if (homeworld_rule!=1) then ed.dispo[2]=-5000;
             
             if (obj_ini.home_type=="Shrine") then known[eFACTION.Ecclesiarchy]=1;
+			if (obj_ini.home_type=="Forge") then known[eFACTION.Mechanicus]=1;
             if (obj_ini.recruiting_type=="Shrine") then known[eFACTION.Ecclesiarchy]=1;
+			if (obj_ini.recruiting_type=="Forge") then known[eFACTION.Mechanicus]=1;
             
             ed.p_lasers[2]=8;
             ed.p_silo[2]=100;
@@ -129,9 +132,12 @@ if (did==1){
             array_push(ed.p_feature[2], new new_planet_feature(P_features.Monastery), new new_planet_feature(P_features.Recruiting_World))
 			ed.p_owner[2]=eFACTION.Player;
             ed.p_first[2]=eFACTION.Player;
+			ed.dispo[2]=101;
             if (homeworld_rule!=1) then ed.dispo[2]=-5000;
             if (obj_ini.home_type=="Shrine") then known[eFACTION.Ecclesiarchy]=1;
+			if (obj_ini.home_type=="Forge") then known[eFACTION.Mechanicus]=1;
             if (obj_ini.recruiting_type=="Shrine") then known[eFACTION.Ecclesiarchy]=1;
+			if (obj_ini.recruiting_type=="Forge") then known[eFACTION.Mechanicus]=1;
             
             ed.p_lasers[2]=8;
             ed.p_silo[2]=100;
@@ -153,8 +159,10 @@ if (did==1){
         if (obj_ini.recruiting_type!=obj_ini.home_type) and (obj_ini.home_name!=obj_ini.recruiting_name){
             ed.p_type[1]=obj_ini.recruiting_type;
             if (obj_ini.recruiting_name!="random") then ed.name=obj_ini.recruiting_name;
+			ed.dispo[1]=101;
             ed.p_type[2]=obj_ini.home_type;
             ed.planet[2]=1;
+			ed.dispo[2]=101;
             if (obj_ini.home_name!="random") then ed.name=obj_ini.home_name;
             array_push(ed.p_feature[1],new new_planet_feature(P_features.Recruiting_World))
             if (ed.p_type[1]=="random") then ed.p_type[1]=choose("Feral","Temperate","Desert","Ice");
@@ -165,6 +173,7 @@ if (did==1){
             ed.p_type[1]="Dead";
             ed.p_type[2]=obj_ini.home_type;
             ed.planet[2]=1;
+			ed.dispo[2]=101;
             if (obj_ini.home_name!="random") then ed.name=obj_ini.home_name;
             array_push(ed.p_feature[2],new new_planet_feature(P_features.Recruiting_World))
             if (ed.p_type[1]=="random") then ed.p_type[1]=choose("Feral","Temperate","Desert","Ice");
