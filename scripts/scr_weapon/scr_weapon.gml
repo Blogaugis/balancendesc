@@ -1478,15 +1478,20 @@ global.gear = {
       "description": "Mismatched basic armour used by ork forces"
     },
     "Scout Armour": {
+      "armour_value": {
+        "standard": 8,
+        "master_crafted": 9,
+        "artifact": 10
+      },
       "ranged_mod": {
         "standard": 15,
         "master_crafted": 20, // Augmented
         "artifact": 25 // Augmented
       },
       "melee_mod": {
-        "standard": 0,
-        "master_crafted": 5, // Augmented
-        "artifact": 10 // Augmented
+        "standard": 15,
+        "master_crafted": 20, // Augmented
+        "artifact": 25 // Augmented
       },
       "description": "A non-powered suit made up of carapace armour and ballistic nylon. Includes biohazard shielding, nutrient feed, and camouflage."
     },
