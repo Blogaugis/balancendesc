@@ -1999,6 +1999,7 @@ if (action="move") and (action_eta<5000){
         if (owner= eFACTION.Inquisition){x=action_x;y=action_y-32;
             if (string_count("DELETE",trade_goods)>0) then instance_destroy();
             if (obj_controller.known[eFACTION.Inquisition]=0) then obj_controller.known[eFACTION.Inquisition]=1;
+            if (obj_controller.known[eFACTION.Mechanicus]=0) then obj_controller.known[eFACTION.Mechanicus]=1;
         }
         if (owner=eFACTION.Eldar){x=action_x-24;y=action_y-24;}
         if (owner=eFACTION.Ork){x=action_x+30;y=action_y;}
