@@ -83,6 +83,7 @@ if (action="move") or (action="crusade1") or (action="crusade2") or (action="cru
         
         var b;b=0;repeat(4){b+=1;if (steh.p_first[b]<=5) and (steh.dispo[b]>-30) and (steh.dispo[b]<0) then steh.dispo[b]=min(obj_ini.imperium_disposition,obj_controller.disposition[2])+choose(-1,-2,-3,-4,0,1,2,3,4);}
         if (steh.p_owner[1]=5) or (steh.p_owner[2]=5) or (steh.p_owner[3]=5) or (steh.p_owner[4]=5){
+            if (obj_controller.faction_defeated[3]=0) and (obj_controller.known[eFACTION.Mechanicus]=0) then obj_controller.known[eFACTION.Mechanicus]=1;
             if (obj_controller.faction_defeated[5]=0) and (obj_controller.known[eFACTION.Ecclesiarchy]=0) then obj_controller.known[eFACTION.Ecclesiarchy]=1;
         }
         if (steh.owner = eFACTION.Eldar) and (obj_controller.faction_defeated[6]=0) and (obj_controller.known[eFACTION.Eldar]=0) then obj_controller.known[eFACTION.Eldar]=1;
