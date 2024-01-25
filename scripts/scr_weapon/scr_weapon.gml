@@ -864,7 +864,7 @@ global.weapons={
         "ammo": 20,
         "range": 8.1,
         "spli": 1,
-        "arp": 0
+        "arp": 0,
         "tags":["bolt"]
     },
     "Power Fist with Intergrated Bolters": {
