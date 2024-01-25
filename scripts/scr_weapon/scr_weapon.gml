@@ -1720,8 +1720,7 @@ global.gear = {
             "artifact": 14 
         }, 
         "tags":["vehicle","Upgrade"],              
-    }                
-} , 
+    },                
  // bionics and other stuff
   "gear": {
     "Bionics": {
