@@ -65,14 +65,19 @@ global.weapons={
         "master_crafted": 10,
         "artifact": 12
     } ,
+    "damage_resistance_mod": {
+      "standard": 5, // Adjusted
+      "master_crafted": 5, // Adjusted
+      "artifact": 5 // Adjusted
+    },
     "melee_hands": 0.9,
     "ranged_hands":0.9,
     "tags":["shield"],
-    "hp_mod":{
-      "standard": 30,
-      "master_crafted": 35,
-      "artifact": 40
-    },
+   // "hp_mod":{
+     // "standard": 30,
+     // "master_crafted": 35,
+     // "artifact": 40
+   // },
   },
   "Boarding Shield": {
     "description":"Protects twice as well when boarding. Used in siege or boarding operations, this shield offers additional protection.  It may be used with a 2-handed ranged weapon.",    
@@ -82,13 +87,18 @@ global.weapons={
         "master_crafted": 5,
         "artifact": 6
     } ,
+    "damage_resistance_mod": {
+      "standard": 5, // Adjusted
+      "master_crafted": 5, // Adjusted
+      "artifact": 5 // Adjusted
+    },
     "melee_hands": 0.1,
      "tags":["shield"],
-    "hp_mod":{
-      "standard": 15,
-      "master_crafted": 17.5,
-      "artifact": 20
-    },        
+   // "hp_mod":{
+     // "standard": 15,
+     // "master_crafted": 17.5,
+     // "artifact": 20
+   // },        
   },
   "Hellgun": {
     "abbreviation": "HGun",
@@ -101,9 +111,8 @@ global.weapons={
     "range": 6.1,
     "spli": 1,
     "arp": 0,
-    "tags":[],
     "ranged_hands":1,
-    "tags":["arcane"],
+    "tags":["las"],
     // ... (other attributes)
   },
   "Hellrifle": {
@@ -474,14 +483,14 @@ global.weapons={
             "master_crafted":  1.0,
             "artifact": 1.0
         },
-        "description": "Ancient Blades of various origins either through arcane forging or lost technique thes blades are beyond deadly.",
+        "description": "A collection of runes, inscriptions and other symbolics, allowing psykers to channel a higher variety of powers.",
         "melee_hands": 1,
         "ranged_hands": 1,
         "ammo": 0,
         "range": 1,
         "spli": 0,
         "arp": 0,
-        "tags":["arcane"],
+        "tags":["arcane", "psi"],
     },
     "Relic Blade": {
       "abbreviation": "Rblade",               
@@ -961,7 +970,7 @@ global.weapons={
         },
         "description": "The Heavy Bolter is a heavy weapon that fires larger and more powerful bolt shells compared to the standard Bolter.",
         "melee_hands": 1,
-        "ranged_hands": 2.25,
+        "ranged_hands": 2.2,
         "ammo": 10,
         "range": 16,
         "spli": 1,
@@ -1337,6 +1346,8 @@ global.gear = {
         "master_crafted": 15,
         "artifact": 20
       },
+      "melee_hands":0.1,
+      "ranged_hands":0.1,
       "description": "Heavily modified by the chapter artificers, and decorated without compare, this ancient Power Armour is beyond priceless.",
       "tags":["power_armour"],
     },
@@ -1748,31 +1759,41 @@ global.gear = {
         "abbreviation": "Rosa",
       "special_description": "",
       "description": "Also called the 'Soul's Armour', this amulet has a built-in, powerful shield generator. They are an icon of the Imperial Creed.",
-      "damage_resistance_mod": {
-        "standard": 15, // Adjusted
-        "master_crafted": 20, // Adjusted
-        "artifact": 25 // Adjusted
-      },
-      "hp_mod": {
-        "standard": 5,
-        "master_crafted": 10,
-        "artifact": 10
-      }
-    },
-    "Iron Halo": {
-        "abbreviation": "IrnHalo",
-      "special_description": "",
-      "description": "An ancient artifact, these powerful conversion field generators are granted to high ranking battle brothers or heroes. Bearers are often looked to for guidance.",
+      "armour_value": {
+        "standard": 1,
+        "master_crafted": 2,
+        "artifact": 3
+      } ,
       "damage_resistance_mod": {
         "standard": 10, // Adjusted
         "master_crafted": 15, // Adjusted
         "artifact": 20 // Adjusted
       },
-      "hp_mod": {
-        "standard": 20, // Adjusted
-        "master_crafted": 25, // Adjusted
-        "artifact": 30 // Adjusted
-      }
+     // "hp_mod": {
+       // "standard": 5,
+       // "master_crafted": 10,
+       // "artifact": 10
+     // }
+    },
+    "Iron Halo": {
+        "abbreviation": "IrnHalo",
+      "special_description": "",
+      "description": "An ancient artifact, these powerful conversion field generators are granted to high ranking battle brothers or heroes. Bearers are often looked to for guidance.",
+      "armour_value": {
+        "standard": 2,
+        "master_crafted": 3,
+        "artifact": 5
+      } ,
+      "damage_resistance_mod": {
+        "standard": 15, // Adjusted
+        "master_crafted": 20, // Adjusted
+        "artifact": 25 // Adjusted
+      },
+     // "hp_mod": {
+       // "standard": 20, // Adjusted
+       // "master_crafted": 25, // Adjusted
+       // "artifact": 30 // Adjusted
+     // }
     },
     "Plasma Bomb": {
     "abbreviation": "PlBomb",
@@ -1817,15 +1838,15 @@ global.gear = {
     "abbreviation": "Bike",
       "special_description": "",
       "description": "A robust bike that can propel a marine at very high speeds. Boasts highly responsive controls and Twin Linked Bolters.",
-      "hp_mod": {
-        "standard": 25,
-        "master_crafted": 25,
-        "artifact": 35
-      },
+     // "hp_mod": {
+       // "standard": 25,
+       // "master_crafted": 25,
+       // "artifact": 35
+     // },
       "damage_resistance_mod": {
-        "standard": 5,
-        "master_crafted": 10,
-        "artifact": 10
+        "standard": 10,
+        "master_crafted": 11,
+        "artifact": 12
       },
         "melee_hands": -0.5,
         "ranged_hands": -0.5,        
@@ -1835,15 +1856,15 @@ global.gear = {
     "abbreviation": "JmpPack",
       "special_description": "Jump Pack",
       "description": "A back-mounted device containing turbines or jets powerful enough to lift even a user in Power Armour.",
-      "hp_mod": {
-        "standard": 5,
-        "master_crafted": 5,
-        "artifact": 5
-      },
+     // "hp_mod": {
+       // "standard": 5,
+       // "master_crafted": 5,
+       // "artifact": 5
+     // },
       "damage_resistance_mod": {
         "standard": 10,
-        "master_crafted": 10,
-        "artifact": 10
+        "master_crafted": 15,
+        "artifact": 20
       },
       "tags":["jump"],
     },
@@ -1854,6 +1875,11 @@ global.gear = {
         "standard": 5,
         "master_crafted": 10,
         "artifact": 15
+      },
+      "melee_mod": {
+        "standard": -5,
+        "master_crafted": -3,
+        "artifact": 0
       },
     "melee_hands": -1,
     "ranged_hands": 1,      
