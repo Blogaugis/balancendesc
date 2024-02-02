@@ -1353,7 +1353,7 @@ global.gear = {
     },
 
     "Early Terminator Armour": {
-         "abbreviation": "ETerm", 
+         "abbreviation": "ETArm", 
       "armour_value": {
         "standard": 35,
         "master_crafted": 37,
@@ -1375,6 +1375,7 @@ global.gear = {
        "tags":["terminator"],
     },
     "Terminator Armour": {
+         "abbreviation": "TArm",
       "armour_value": {
         "standard": 45,
         "master_crafted": 46,
