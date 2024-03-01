@@ -1700,7 +1700,7 @@ global.gear = {
             },                   
         },
         "Light Power Armour":{
-            "abbreviation": "LPoArm"
+            "abbreviation": "LPoArm",
             "description": "A type of power armour that can be used by regular humans.",
              "armour_value": {
                 "standard": 10,
