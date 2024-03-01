@@ -1463,6 +1463,11 @@ global.gear = {
     },
      "Ork Armour": {
      "abbreviation": "OrkArm", 
+      "armour_value": {
+        "standard": 7,
+        "master_crafted": 8,
+        "artifact": 9
+      },     
       "ranged_mod": {
         "standard": 0,
         "master_crafted": 5, // Augmented
@@ -1686,6 +1691,7 @@ global.gear = {
             },                   
         },
         "Dragon Scales":{
+            "abbreviation": "DraArm",
             "description": "A type of power armour that is worn by the techpriests of the adeptus mechanicus.",
              "armour_value": {
                 "standard": 20,
@@ -1694,6 +1700,7 @@ global.gear = {
             },                   
         },
         "Light Power Armour":{
+            "abbreviation": "LPoArm"
             "description": "A type of power armour that can be used by regular humans.",
              "armour_value": {
                 "standard": 10,
@@ -1714,7 +1721,7 @@ global.gear = {
         "tags":["vehicle","armour"],              
     },
     "Heavy Armour":{
-        "abbreviation": "ArmCeri",
+        "abbreviation": "Hvy Arm",
         "description": "Simple but effective, extra armour plates can be attached to most vehicles to provide extra protection.",
          "armour_value": {
             "standard": 10,
@@ -1724,7 +1731,7 @@ global.gear = {
         "tags":["vehicle","armour"],              
     },
     "Artificer Hull":{
-        "abbreviation": "ArmCeri",
+        "abbreviation": "ArtiHull",
         "description": "Replacing numerous structural members and armour plates with thrice-blessed replacements, the vehicle’s hull is upgraded to be a rare work of mechanical art.",
          "armour_value": {
             "standard": 10,
