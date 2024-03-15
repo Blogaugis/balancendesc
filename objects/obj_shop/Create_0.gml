@@ -927,7 +927,7 @@ if (shop = "vehicles") {
         nobuy[i] = 1;
         item_cost[i] = 0;
     }
-}
+
 
 if (shop = "warships") {
     i = 0;
