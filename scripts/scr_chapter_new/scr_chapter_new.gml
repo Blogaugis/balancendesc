@@ -573,8 +573,12 @@ if (argument0="Minotaurs"){founding=10;points=450;
 	    fleet_type=fleet_type21;
 		strength=strength21;
 		purity=purity21;stability=stability21;cooperation=cooperation21;
-	    homeworld=homeworld_name;recruiting_world=recruiting_world21;recruiting_name=recruiting_name21;
+	    homeworld=homeworld21;
+		homeworld_name=homeworld_name21
+		recruiting_world=recruiting_world21;recruiting_name=recruiting_name21;
 	    homeworld_exists=homeworld_rule21;recruiting_exists=recruiting_exists21;homeworld_rule=homeworld_rule21;aspirant_trial=aspirant_trial21;
+		flagship_name=flagship_name21
+		discipline=discipline21
 	    // Pauldron2: Left, Pauldron: Right
 	    color_to_main=color_to_main21;
 		color_to_secondary=color_to_secondary21;color_to_trim=color_to_trim21;

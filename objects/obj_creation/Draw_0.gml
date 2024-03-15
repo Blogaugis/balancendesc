@@ -113,6 +113,7 @@ if (slate4>0){
 					if(chapter_made=1){
 					
 					cooldown=8000;chapter = chapter_id[21];
+					custom=1;
 					change_slide=1;goto_slide=2;
 					scr_chapter_new(chapter21)};
 					
@@ -922,7 +923,7 @@ if (slide=3){
         }
         draw_set_alpha(1);draw_text_transformed(644+333,218,string_hash_to_newline("Recruiting World"),0.6,0.6,0);
         
-        if (recruiting_exists=1){
+        if (recruiting_exists>=1){
             if (recruiting="Lava") then eh2=0;
             if (recruiting="Desert") then eh2=2;
             if (recruiting="Forge") then eh2=3;
@@ -935,7 +936,7 @@ if (slide=3){
             if (recruiting="Dead") then eh2=10;
             if (recruiting="Shrine") then eh2=16;
             
-            if (custom>1) then draw_sprite_stretched(spr_creation_arrow,0,865,285,32,32);// Left Arrow
+            if (custom>=1) then draw_sprite_stretched(spr_creation_arrow,0,865,285,32,32);// Left Arrow
             if (scr_hit(865,285,865+32,285+32)=true) and (mouse_left>=1) and (cooldown<=0) and (custom>1){
                 var onceh;onceh=0;cooldown=8000;
                 if (recruiting="Dead") and (onceh=0){recruiting="Ice";onceh=1;}
@@ -950,7 +951,7 @@ if (slide=3){
                 if (recruiting="Desert") and (onceh=0){recruiting="Lava";onceh=1;}
                 if (recruiting="Lava") and (onceh=0){recruiting="Dead";onceh=1;}
             }
-            if (custom>1) then draw_sprite_stretched(spr_creation_arrow,1,1055,285,32,32);// Right Arrow
+            if (custom>=1) then draw_sprite_stretched(spr_creation_arrow,1,1055,285,32,32);// Right Arrow
             if (scr_hit(1055,285,1055+32,285+32)=true) and (mouse_left>=1) and (cooldown<=0) and (custom>1){
                 var onceh;onceh=0;cooldown=8000;
                 if (recruiting="Dead") and (onceh=0){recruiting="Lava";onceh=1;}
@@ -986,6 +987,7 @@ if (slide=3){
                 if (text_selected="recruiting_name") then recruiting_name=keyboard_string;
                 draw_set_alpha(0.75);draw_rectangle(525+333,398,760+333,418,1);draw_set_alpha(1);
             }
+			
         }
     }
     
@@ -1872,7 +1874,22 @@ if (slide=6){
 		
 	
 	}
+	if((custom<=0)and(chapter=chapter_id[21])){
+	draw_rectangle(1000,135,1180,170,1)
+	draw_text_transformed(1090,135,string("Edit Chapter"),0.6,0.6,0);draw_set_font(fnt_40k_14b);
+	if (scr_hit(1000,135,1180,170)=true) {
+		tooltip2="Click to edit your chapter";
+		tooltip= "Do you want to edit your chapter?"
 	
+		if (mouse_left>=1){
+			custom=2
+			change_slide=1;goto_slide=2;
+			
+			}
+		}
+	
+	}
+
     
 }
 
