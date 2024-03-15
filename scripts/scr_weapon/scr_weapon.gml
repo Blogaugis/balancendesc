@@ -54,7 +54,7 @@ global.weapons={
   },
   "Storm Shield": {
     "description":"Protects twice as well when boarding. A powered shield that must be held with a hand.  While powered by the marines armour it shimmers with blue energy.",
-    "abbreviation": "StShield",
+    "abbreviation": "StrmShld",
     "attack": {
       "standard": 5,
       "master_crafted": 5,
@@ -81,7 +81,7 @@ global.weapons={
   },
   "Boarding Shield": {
     "description":"Protects twice as well when boarding. Used in siege or boarding operations, this shield offers additional protection.  It may be used with a 2-handed ranged weapon.",    
-    "abbreviation": "BoShield",
+    "abbreviation": "BrdShld",
     "armour_value": {
         "standard": 4,
         "master_crafted": 5,
@@ -101,7 +101,7 @@ global.weapons={
    // },        
   },
   "Hellgun": {
-    "abbreviation": "HGun",
+    "abbreviation": "HllGun",
     "attack": {
       "standard": 35,
       "master_crafted": 40,
@@ -117,7 +117,7 @@ global.weapons={
   },
   "Hellrifle": {
     "description":"Normally used by Radical Inquisitors, it appears an antiquated rifle but fires razor-sharp shards of Daemonic matter.",
-    "abbreviation": "HRifle",
+    "abbreviation": "HllRifle",
     "attack": {
       "standard": 150,
       "master_crafted": 160,
@@ -138,6 +138,7 @@ global.weapons={
             "artifact": 140
         },
         "description": "Known as a Lasrod or Gelt Gun, this pistol is an ancient design of Laspistol with much greater range and power.",
+        "abbreviation": "ArchLpstl",
         "melee_hands": 0,
         "ranged_hands": 1,
         "ammo": 0,
@@ -147,7 +148,7 @@ global.weapons={
         "tags":["pistol", "ancient","las"],
     },
     "Combat Knife": {
-        "abbreviation": "CmbtKni", 
+        "abbreviation": "CbKnf", 
         "attack": {
             "standard": 25,
             "master_crafted": 30,
@@ -178,7 +179,7 @@ global.weapons={
         "arp": 0
     },
     "Chainsword": {
-        "abbreviation": "ChSword",
+        "abbreviation": "ChSwrd",
         "attack": {
             "standard": 50,
             "master_crafted": 60,
@@ -215,7 +216,7 @@ global.weapons={
         "tags":["chain", "axe"],
     },
     "Company Standard": {
-       "abbreviation": "Stand",
+       "abbreviation": "CmpStnd",
       "special_description": "Boosts morale",
       "description": "A banner that represents the honor of a particular company and will bolster the morale abilities of nearby Space Marines.",
         "attack": {
@@ -256,7 +257,7 @@ global.weapons={
         "tags":["chain", "sword"],
     },
     "Power Sword": {
-         "abbreviation": "PoSword",
+         "abbreviation": "PwrSwrd",
         "attack": {
             "standard": 180,
             "master_crafted": 200,
@@ -278,7 +279,7 @@ global.weapons={
         "tags":["power", "sword"],
     },
     "Power Spear": {
-         "abbreviation": "PoSpear",
+         "abbreviation": "PwrSpear",
         "attack": {
             "standard": 200,
             "master_crafted": 250,
@@ -315,7 +316,7 @@ global.weapons={
         "tags":["power", "chain", "fist", "siege"],
     },
     "Lascutter": {
-       "abbreviation": "LCutter",
+       "abbreviation": "Lascttr",
         "attack": {
             "standard": 100,
             "master_crafted": 150,
@@ -328,7 +329,7 @@ global.weapons={
         "tags":["laser", "siege"],
     },    
     "Eldar Power Sword": {
-        "abbreviation": "EPoSword",
+        "abbreviation": "EldPwrSwrd",
         "attack": {
             "standard": 170,
             "master_crafted": 180,
@@ -350,7 +351,7 @@ global.weapons={
         "tags":["power", "sword","elder","xenos"],
     },
     "Power Weapon": {
-        "abbreviation": "PoWeap",
+        "abbreviation": "PwrWpn",
         "attack": {
             "standard": 135,
             "master_crafted": 145,
@@ -371,7 +372,7 @@ global.weapons={
         "tags":["power"],
     },
     "Power Axe": {
-       "abbreviation": "PoAxe",       
+       "abbreviation": "PwrAxe",       
         "attack": {
             "standard": 190,
             "master_crafted": 220,
@@ -391,8 +392,29 @@ global.weapons={
         "arp": 1,
         "tags":["power", "axe", "dual"],
     },
+    "Executioner Power Axe": {
+       "abbreviation": "ExPwrAxe",       
+        "attack": {
+            "standard": 300,
+            "master_crafted": 350,
+            "artifact": 400
+        },
+        "melee_mod": {
+            "standard": 10,
+            "master_crafted": 15,
+            "artifact": 20
+        },
+        "description": "A heavy two-handed power axe named after the Executioner chapter.",
+        "melee_hands": 2.5,
+        "ranged_hands": 2,
+        "ammo": 0,
+        "range": 1,
+        "spli": 1,
+        "arp": 1,
+        "tags":["power", "axe"],
+    },    
     "Power Fist": {
-       "abbreviation": "PoFist",       
+       "abbreviation": "PwrFist",       
         "attack": {
             "standard": 450,
             "master_crafted": 500,
@@ -413,7 +435,7 @@ global.weapons={
         "tags":["power","fist"],
     },
     "Lightning Claw": {
-    "abbreviation": "LiClaw",             
+    "abbreviation": "LghtClaw",             
         "attack": {
             "standard": 130,
             "master_crafted": 160,
@@ -429,7 +451,7 @@ global.weapons={
         "tags":["power","dual","fist"],
     },
     "Dreadnought Lightning Claw": {
-    "abbreviation": "DreadLiClaw",             
+    "abbreviation": "LghtClaw",             
         "attack": {
             "standard": 300,
             "master_crafted": 400,
@@ -450,7 +472,7 @@ global.weapons={
         "tags":["power", "vehicle","dual","fist"],
     },
     "Thunder Hammer": {
-      "abbreviation": "THammer",                
+      "abbreviation": "ThndHmr",                
         "attack": {
             "standard": 650,
             "master_crafted": 750,
@@ -493,7 +515,7 @@ global.weapons={
         "tags":["arcane", "psi"],
     },
     "Relic Blade": {
-      "abbreviation": "Rblade",               
+      "abbreviation": "RlcBld",               
         "attack": {
             "standard": 700,
             "master_crafted": 850,
@@ -514,7 +536,7 @@ global.weapons={
          "tags":["arcane", "sword"],
     },
     "Bolt Pistol": {
-         "abbreviation": "BoltPis",               
+         "abbreviation": "BltPstl",               
         "attack": {
             "standard": 75,
             "master_crafted": 80,
@@ -530,7 +552,7 @@ global.weapons={
         "tags":["bolt", "pistol"],
     },
     "Webber": {
-         "abbreviation": "Web",           
+         "abbreviation": "Webbr",           
         "attack": {
             "standard": 35,
             "master_crafted": 40,
@@ -546,7 +568,7 @@ global.weapons={
         "tags":["immobolise"]
     },
     "Underslung Bolter": {
-        "abbreviation": "USbolt",            
+        "abbreviation": "UndBltr",            
         "attack": {
             "standard": 60,
             "master_crafted": 70,
@@ -562,7 +584,7 @@ global.weapons={
          "tags":["bolt", "attached"]
     },
     "Stalker Pattern Bolter": {
-        "abbreviation": "SPatBolt",            
+        "abbreviation": "StlkBltr",            
         "attack": {
             "standard": 100,
             "master_crafted": 110,
@@ -578,7 +600,7 @@ global.weapons={
         "tags":["bolt","precision"]
     },
     "Bolter": {
-        "abbreviation": "Bolt",             
+        "abbreviation": "Bltr",             
         "attack": {
             "standard": 75,
             "master_crafted": 80,
@@ -610,7 +632,7 @@ global.weapons={
         "tags":["bolt"]
     },
     "Heavy Flamer": {
-        "abbreviation": "HvyFla",              
+        "abbreviation": "HvyFlmr",              
         "attack": {
             "standard": 250,
             "master_crafted": 275,
@@ -626,7 +648,7 @@ global.weapons={
         "tags":["flame","heavy_ranged"]
     },
     "CCW Heavy Flamer": {
-        "abbreviation": "CCWHvyFla",               
+        "abbreviation": "CCWHvyFlmr",               
         "attack": {
             "standard": 550,
             "master_crafted": 575,
@@ -642,7 +664,7 @@ global.weapons={
         "tags":["dreadnought","flame"]
     },
     "Dreadnought Power Claw":{
-      "abbreviation": "DreadPoCla",              
+      "abbreviation": "PwrClaw",              
         "attack": {
             "standard": 400,
             "master_crafted": 600,
@@ -670,7 +692,7 @@ global.weapons={
         "tags":["dreadnought","fist"]
     },       
     "Inferno Cannon": {
-        "abbreviation": "InfeCan",               
+        "abbreviation": "InfCann",               
         "attack": {
             "standard": 400,
             "master_crafted": 440,
@@ -686,7 +708,7 @@ global.weapons={
         "tags":["vehicle","flame","dreadnought"]
     },
     "Meltagun": {
-        "abbreviation": "Melt",
+        "abbreviation": "Mltgn",
         "attack": {
             "standard": 250,
             "master_crafted": 275,
@@ -718,7 +740,7 @@ global.weapons={
         "tags":["melta","heavy_ranged", "dreadnought"]
     },
     "Plasma Pistol": {
-        "abbreviation": "PlasPis",
+        "abbreviation": "PlsmPstl",
         "attack": {
             "standard": 115,
             "master_crafted": 130,
@@ -734,7 +756,7 @@ global.weapons={
         "tags":["plasma","pistol"]
     },
     "Infernus Pistol": {
-      "abbreviation": "InfPis" ,
+      "abbreviation": "InfPstl" ,
         "attack": {
             "standard": 100,
             "master_crafted": 110,
@@ -750,7 +772,7 @@ global.weapons={
         "tags":["flame","pistol"]
     },
     "Plasma Gun": {
-        "abbreviation": "Plas",
+        "abbreviation": "PlsmGn",
         "attack": {
             "standard": 175,
             "master_crafted": 192,
@@ -766,7 +788,7 @@ global.weapons={
         "tags":["plasma"]
     },
     "Sniper Rifle": {
-        "abbreviation": "Snipe",        
+        "abbreviation": "SnprRfl",        
         "attack": {
             "standard": 80,
             "master_crafted": 88,
@@ -782,7 +804,7 @@ global.weapons={
         "tags":["precision"]
     },
     "Assault Cannon": {
-        "abbreviation": "AsltCan",       
+        "abbreviation": "AssCann",       
         "attack": {
             "standard": 480,
             "master_crafted": 490,
@@ -798,7 +820,7 @@ global.weapons={
         "tags":["heavy_ranged","dreadnought"]
     },
     "Autocannon": {
-        "abbreviation": "AutCan",       
+        "abbreviation": "Autocnn",       
         "attack": {
             "standard": 180,
             "master_crafted": 198,
@@ -814,7 +836,7 @@ global.weapons={
         "tags":["heavy_ranged","dreadnought"]
     },
     "Missile Launcher": {
-      "abbreviation": "Missi",          
+      "abbreviation": "MsslLnch",          
         "attack": {
             "standard": 250,
             "master_crafted": 275,
@@ -830,7 +852,7 @@ global.weapons={
         "tags":["heavy_ranged","dreadnought"]
     },
     "Lascannon": {
-       "abbreviation": "LasCan",           
+       "abbreviation": "Lascnn",           
         "attack": {
             "standard": 200,
             "master_crafted": 220,
@@ -846,7 +868,7 @@ global.weapons={
          "tags":["heavy_ranged"]
     },
     "Conversion Beam Projector": {
-        "abbreviation": "CBP",            
+        "abbreviation": "CnvBmPrj",            
         "attack": {
             "standard": 500,
             "master_crafted": 550,
@@ -861,7 +883,7 @@ global.weapons={
         "arp": 1
     },
     "Integrated Bolters": {
-        "abbreviation": "IntBolt", 
+        "abbreviation": "IntgBltr", 
         "attack": {
             "standard": 75,
             "master_crafted": 83,
@@ -877,7 +899,7 @@ global.weapons={
         "tags":["bolt"]
     },
     "Power Fist with Intergrated Bolters": {
-       "abbreviation": "PoFist IntBolt",       
+       "abbreviation": "PwrFstBltr",       
         "attack": {
             "standard": 450,
             "master_crafted": 500,
@@ -899,14 +921,14 @@ global.weapons={
         "tags":["power","fist"],
     },    
     "Power Fists": {
-        "abbreviation": "PowFists", 
+        "abbreviation": "PwrFists", 
         "attack": {
             "standard": 425,
             "master_crafted": 468,
             "artifact": 510
         },
         "description": "While not quite as strong as two Power Fists, these artifacts allow the use of an additional, third weapon.",
-        "melee_hands": 2,
+        "melee_hands": 3,
         "ranged_hands": 0,
         "ammo": 0,
         "range": 1,
@@ -914,7 +936,7 @@ global.weapons={
         "arp": 0
     },
     "Twin Linked Heavy Bolter": {
-        "abbreviation": "TL Hvy Bolt", 
+        "abbreviation": "TwnHvyBltr", 
         "attack": {
             "standard": 240,
             "master_crafted": 264,
@@ -930,7 +952,7 @@ global.weapons={
         "tags":["heavy_ranged","vehicle","dreadnought"]
     },
     "Twin Linked Lascannon": {
-        "abbreviation": "TL LasCan", 
+        "abbreviation": "TwnLascnn", 
         "attack": {
             "standard": 250,
             "master_crafted": 275,
@@ -946,7 +968,7 @@ global.weapons={
         "tags":["heavy_ranged","vehicle","dreadnought"]
     },
     "Lascannons": {
-         "abbreviation": "LasCans", 
+         "abbreviation": "DblLascnn", 
         "attack": {
             "standard": 300,
             "master_crafted": 330,
@@ -962,7 +984,7 @@ global.weapons={
         "tags":["heavy_ranged","vehicle","dreadnought"]
     },
     "Heavy Bolter": {
-        "abbreviation": "HvyBolt", 
+        "abbreviation": "HvyBltr", 
         "attack": {
             "standard": 320,
             "master_crafted": 352,
@@ -984,6 +1006,7 @@ global.weapons={
             "artifact": 480
         },
         "description": "The Whirlwind Missile Launcher is a vehicle-mounted artillery weapon that launches a barrage of powerful missiles at the enemy.",
+        "abbreviation": "WhrlMssl", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 6,
@@ -991,6 +1014,10 @@ global.weapons={
         "spli": 1,
         "arp": 1
     },
+    "HK Missile": {
+        "abbreviation": "HKMssl", 
+        "description": "",
+    },  
     "Twin Linked Heavy Bolter Mount": {
         "attack": {
             "standard": 240,
@@ -998,6 +1025,7 @@ global.weapons={
             "artifact": 288
         },
         "description": "Twin-linked Heavy Bolters are an upgraded version of the standard Heavy Bolter weapon, which is known for its high rate of fire and effectiveness against infantry and light vehicles.",
+        "abbreviation": "TwnHvyBltr", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 20,
@@ -1012,6 +1040,7 @@ global.weapons={
             "artifact": 300
         },
         "description": "Lascannons are powerful anti-armour weapons that fire highly focused and devastating energy beams capable of penetrating even the toughest armour.",
+        "abbreviation": "TwnLascnn", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 10,
@@ -1026,6 +1055,7 @@ global.weapons={
             "artifact": 432
         },
         "description": "A twin mount of rotary autocannons, boasting an incredible rate of fire.",
+        "abbreviation": "TwnAssCnn", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 5,
@@ -1040,6 +1070,7 @@ global.weapons={
             "artifact": 300
         },
         "description": "An archaic twin-linked autocannon design dating back to the Great Crusade. Effective against a variety of targets.",
+        "abbreviation": "RprAtcnn", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 25,
@@ -1054,6 +1085,7 @@ global.weapons={
             "artifact": 576
         },
         "description": "Quad-linked Heavy Bolters are a significantly upgraded version of the standard Heavy Bolter mount; already punishing in a single mount, this quad mount is devastating against a variety of targets.",
+        "abbreviation": "QdHvyBltrs", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 10,
@@ -1068,6 +1100,7 @@ global.weapons={
             "artifact": 450
         },
         "description": "Lascannons are powerful anti-armour weapons that fire highly focused and devastating energy beams capable of penetrating even the toughest armour.",
+        "abbreviation": "TwnLascnns", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 5,
@@ -1082,6 +1115,7 @@ global.weapons={
             "artifact": 350
         },
         "description": "Lascannons are powerful anti-armour weapons that fire highly focused and devastating energy beams capable of penetrating even the toughest armour.",
+        "abbreviation": "Lscnns", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 5,
@@ -1096,6 +1130,7 @@ global.weapons={
             "artifact": 486
         },
         "description": "Hurricane Bolters are large hex-mount bolter arrays that are able to deliver a withering hail of anti-infantry fire at short ranges.",
+        "abbreviation": "HrrcnBltrs", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 20,
@@ -1110,6 +1145,7 @@ global.weapons={
             "artifact": 720
         },
         "description": "A huge vehicle-mounted flamethrower, the heat produced by this terrifying weapon can crack even armoured ceramite.",
+        "abbreviation": "FlmstrmCnns", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 6,
@@ -1124,6 +1160,7 @@ global.weapons={
             "artifact": 660
         },
         "description": "A much larger and bulkier flamer. Few armies carry them on hand, instead choosing to mount them to vehicles.",
+        "abbreviation": "TwnHvyFlmrs", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 12,
@@ -1139,6 +1176,7 @@ global.weapons={
             "artifact": 180
         },
         "description": "A Twin-linked Bolter consists of two Bolter weapons mounted side by side, typically on a vehicle or a special weapon platform.",
+        "abbreviation": "TwnBltrs", 
         "melee_hands": 1,
         "ranged_hands": 2,
         "ammo": 30,
@@ -1146,7 +1184,7 @@ global.weapons={
         "spli": 1,
     },        
     "Twin Linked Multi-Melta Sponsons": {
-        "abbreviation": "TL MMelt Spons", 
+        "abbreviation": "TwnMltMelts", 
         "attack": {
             "standard": 450,
             "master_crafted": 495,
@@ -1162,7 +1200,7 @@ global.weapons={
         "tags":["vehicle", "Sponson", "melta"]
     },
     "Twin Linked Volkite Culverin Sponsons": {
-        "abbreviation": "TL VolcCulv Spons", 
+        "abbreviation": "TwnVlkCulvs", 
         "attack": {
             "standard": 480,
             "master_crafted": 528,
@@ -1177,8 +1215,20 @@ global.weapons={
         "arp": 0,
         "tags":["vehicle", "Sponson", "volkite"]
     },
+    "Heavy Bolter Sponsons": {
+        "abbreviation": "HvyBltrs", 
+        "description": "",
+    },  
+    "Heavy Flamer Sponsons": {
+        "abbreviation": "HvyFlmrs", 
+        "description": "",
+    },  
+    "Volkite Culverin Sponsons": {
+        "abbreviation": "VlkClvs", 
+        "description": "",
+    },  
     "Autocannon Turret": {
-        "abbreviation": "AutCanTur", 
+        "abbreviation": "Autocnn", 
         "attack": {
             "standard": 130,
             "master_crafted": 528,
@@ -1194,7 +1244,7 @@ global.weapons={
         "tags":["vehicle", "turrent"]
     },     
     "Storm Bolter": {
-        "abbreviation": "StrmBlt", 
+        "abbreviation": "StrmBltr", 
         "attack": {
             "standard": 150,
             "master_crafted": 176,
@@ -1210,7 +1260,7 @@ global.weapons={
         "tags":["bolt"]
     },
     "Flamer": {
-        "abbreviation": "Flame", 
+        "abbreviation": "Flmr", 
         "attack": {
             "standard": 200,
             "master_crafted": 220,
@@ -1237,6 +1287,7 @@ global.weapons={
             "artifact": 240
         },
         "description": "",
+        "abbreviation": "UndrFlmr", 
         "melee_hands": 0,
         "ranged_hands": 0,
         "ammo": 4,
@@ -1246,13 +1297,13 @@ global.weapons={
         "tags":["flame"]
     },
     "Combiflamer": {
-        "abbreviation": "ComFlame", 
+        "abbreviation": "CmbFlmr", 
         "attack": {
             "standard": 100,
             "master_crafted": 130,
             "artifact": 160
         },
-        "description": "a standard bolter with a single shot flamer attached for tactical use",
+        "description": "A standard bolter with a single shot flamer attached for tactical use",
         "melee_hands": 1,
         "ranged_hands": 1.5,
         "ammo": 15,
@@ -1269,6 +1320,7 @@ global.weapons={
             "artifact": 240
         },
         "description": "This flamer weapon includes special promethium and sacred oils. It is particularly effective against Daemons and their ilk.",
+        "abbreviation": "Incnrtr", 
         "melee_hands": 1,
         "ranged_hands": 1,
         "ammo": 4,
@@ -1283,6 +1335,7 @@ global.weapons={
             "master_crafted": 100,
             "artifact": 150
         },
+        "abbreviation": "FrcWpn", 
         "description": "An advanced, psychically-attuned close combat weapon that is only fully effective in the hands of a psyker.",
         "melee_hands": 1,
         "ranged_hands": 1,
@@ -1297,20 +1350,49 @@ global.weapons={
             "master_crafted": 300,
             "artifact": 350
         },
-        "description": "A Predator-compatible turret mounting a pair of anti-armour lascannons. ",
+        "abbreviation": "TwnLscnn", 
+        "description": "A Predator-compatible turret mounting a pair of anti-armour lascannons.",
         "range": 1,
         "spli": 0,
         "arp": 1,
         "range":20,
         "amm":10,
         "tags":["las", "twin_linked", "vehicle","turret"]
-    },   
+    },
+    "Twin Linked Assault Cannon Turret": {
+        "abbreviation": "TwnAssCnn", 
+        "description": "",
+    },  
+    "Flamestorm Cannon Turret": {
+        "abbreviation": "FlmstrmCnn", 
+        "description": "",
+    },  
+    "Magna-Melta Turret": {
+        "abbreviation": "MgnMlt", 
+        "description": "",
+    },  
+    "Plasma Destroyer Turret": {
+        "abbreviation": "PlsmDestr", 
+        "description": "",
+    },  
+    "Heavy Conversion Beamer Turret": {
+        "abbreviation": "HvyCnvBmr", 
+        "description": "",
+    },  
+    "Neutron Blaster Turret": {
+        "abbreviation": "NtrnBlstr", 
+        "description": "",
+    },  
+    "Volkite Saker Turret": {
+        "abbreviation": "VlkSkr", 
+        "description": "",
+    },
 }
 
 global.gear = {
   "armour": {
     "Power Armour": {
-        "abbreviation": "PoArm", 
+        "abbreviation": "PwrArm", 
       "armour_value": {
         "standard": 20,
         "master_crafted": 25,
@@ -1330,7 +1412,7 @@ global.gear = {
       "tags":["power_armour"],
     },
     "Artificer Armour": {
-        "abbreviation": "ArtiPoArm", 
+        "abbreviation": "Artfcr", 
       "armour_value": {
         "standard": 37,
         "master_crafted": 38,
@@ -1375,7 +1457,7 @@ global.gear = {
        "tags":["terminator"],
     },
     "Terminator Armour": {
-         "abbreviation": "TArm",
+         "abbreviation": "Indmts",
       "armour_value": {
         "standard": 45,
         "master_crafted": 46,
@@ -1394,10 +1476,11 @@ global.gear = {
       "melee_hands":2,
       "ranged_hands":2,
       "description": "The toughest and most powerful armour designed by humanity. Only the most veteran of Astartes are allowed to wear these.",
-       "tags":["terminator"],
+      "tags":["terminator"],
+      "req_exp":90,
     },
     "Dreadnought": {
-         "abbreviation": "Dread", 
+         "abbreviation": "Drdnght", 
       "armour_value": {
         "standard": 60,
         "master_crafted": 65,
@@ -1418,7 +1501,7 @@ global.gear = {
       "description": "A massive war-machine that can be piloted by an honored Space Marine, who otherwise would have fallen in combat."
     },
     "Tartaros": {
-        "abbreviation": "Tarto", 
+        "abbreviation": "Tartrs", 
       "armour_value": {
         "standard": 45,
         "master_crafted": 46,
@@ -1437,10 +1520,11 @@ global.gear = {
       "melee_hands":2,
       "ranged_hands":2,      
       "description": "Even more advanced than the Indomitus Terminator Armour, this upgraded armour offers greater mobility at no cost to protection.",
-      "tags":["teminator"],
+      "tags":["terminator"],
+      "req_exp":90,
     },
     "Cataphractii Pattern Terminator":{
-        "abbreviation": "Catii", 
+        "abbreviation": "Catphr", 
       "armour_value": {
         "standard": 50,
         "master_crafted": 51,
@@ -1459,7 +1543,8 @@ global.gear = {
       "melee_hands":2,
       "ranged_hands":2,      
       "description": "Among the first issued to the Space Marine Legions, it is functionally distinct from other patterns, bearing additional plating and shield generators installed within the shoulder pads",
-        "tags":["teminator"],
+      "tags":["terminator"],
+      "req_exp":90,
     },
      "Ork Armour": {
      "abbreviation": "OrkArm", 
@@ -1481,7 +1566,7 @@ global.gear = {
       "description": "Mismatched basic armour used by ork forces"
     },
     "Scout Armour": {
-        "abbreviation": "scout",
+        "abbreviation": "SctArm",
       "armour_value": {
         "standard": 8,
         "master_crafted": 9,
@@ -1660,7 +1745,7 @@ global.gear = {
     "description": "The newest and most advanced of the standard mark power armours as such production has not yet reached maximum capacity creating a supply shortage.",
     "tags":["power_armour"],
     },
-    "MK10 Indomitus": {
+    "MK10 Tacticus": {
         "abbreviation": "MK10",
       "armour_value": {
         "standard": 24,
@@ -1677,7 +1762,7 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
-      "description": "The MK10 Indomitus is the most advanced pattern of power armour available to the Space Marines, featuring advanced materials and systems.",
+      "description": "The MK10 Tacticus is the most advanced pattern of power armour available to the Space Marines, featuring advanced materials and systems.",
       "tags":["power_armour"],
     }, 
  // ally faction armour
@@ -1691,7 +1776,7 @@ global.gear = {
             },                   
         },
         "Dragon Scales":{
-            "abbreviation": "DraArm",
+            "abbreviation": "DrgnArm",
             "description": "A type of power armour that is worn by the techpriests of the adeptus mechanicus.",
              "armour_value": {
                 "standard": 20,
@@ -1711,7 +1796,7 @@ global.gear = {
     } , 
  // Vehicle equipment
     "Armoured Ceramite":{
-        "abbreviation": "ArmCeri",
+        "abbreviation": "ArmCrmt",
         "description": "Supplemental ceramite armour packages provide protection far beyond stock configurations",
          "armour_value": {
             "standard": 20,
@@ -1721,7 +1806,7 @@ global.gear = {
         "tags":["vehicle","armour"],              
     },
     "Heavy Armour":{
-        "abbreviation": "Hvy Arm",
+        "abbreviation": "HvyArm",
         "description": "Simple but effective, extra armour plates can be attached to most vehicles to provide extra protection.",
          "armour_value": {
             "standard": 10,
@@ -1731,7 +1816,7 @@ global.gear = {
         "tags":["vehicle","armour"],              
     },
     "Artificer Hull":{
-        "abbreviation": "ArtiHull",
+        "abbreviation": "ArtHll",
         "description": "Replacing numerous structural members and armour plates with thrice-blessed replacements, the vehicle’s hull is upgraded to be a rare work of mechanical art.",
          "armour_value": {
             "standard": 10,
@@ -1743,7 +1828,8 @@ global.gear = {
  // bionics and other stuff
   "gear": {
     "Bionics": {
-      "special_description": "Restores critcal health",
+        "abbreviation": "Bncs",
+      "special_description": "Restores critical health",
       "description": "Bionics may be given to wounded marines to quickly get them back into combat-ready status, replacing damaged flesh.",
       "hp_mod": {
         "standard": 30, // Adjusted
@@ -1752,19 +1838,19 @@ global.gear = {
       }
     },    
     "Narthecium": {
-    "abbreviation": "Narth",
-      "special_description": "Medical field kit",
+    "abbreviation": "Nrthcm",
+      "special_description": "Heals Allies",
       "description": "An advanced medical field kit, these allow Space Marines to heal or recover Gene-Seed from fallen marines.",
         "melee_hands": -0.5,
         "ranged_hands": -0.5,       
     },
     "Psychic Hood": {
-    "abbreviation": "PsyHood",
+    "abbreviation": "PsyHd",
       "special_description": "-50% chance of perils*",
       "description": "An arcane hood that protects Psykers from enemy psychic powers and enhances their control.",
     },
     "Rosarius": {
-        "abbreviation": "Rosa",
+        "abbreviation": "Rsrius",
       "special_description": "",
       "description": "Also called the 'Soul's Armour', this amulet has a built-in, powerful shield generator. They are an icon of the Imperial Creed.",
       "armour_value": {
@@ -1809,18 +1895,20 @@ global.gear = {
       "description": "A special plasma charge, this bomb can be used to seal underground caves or destroy enemy structures.",
     },
     "Exterminatus": {
+        "abbreviation": "Extrmnts",
       "special_description": "Destroys planets",
       "description": "A weapon of the Emperor, and His divine judgment, this weapon can be placed upon a planet to obliterate it entirely.",
     },
     "Servo Arms": {
-    "abbreviation": "ServArm",
-      "special_description": "Integrated flamer, repairs",
+    "abbreviation": "SrvArms",
+      "special_description": "Integrated Flamer, Repairs Vehicles",
       "description": "A pair of powerful, mechanical arms. They include several tools that allow trained marines to repair vehicles rapidly.",
         "melee_hands": 0.25,
         "ranged_hands": 0.25,  
     },
     "Master Servo Arms": {
-      "special_description": "Integrated flamer, repairs",
+    "abbreviation": "MsSrvArms",
+      "special_description": "Integrated Flamer, Repairs Vehicles",
       "description": "This master servo harness includes additional mechanical arms and tools, allowing a greater capacity and rate of repairs.",
         "melee_hands": 0.25,
         "ranged_hands": 0.25,  
@@ -1828,23 +1916,30 @@ global.gear = {
     "Smoke Launchers": {
       "special_description": "",
       "description": "Useful for providing concealment in open terrain, these launchers project wide-spectrum concealing smoke to prevent accurate targeting of the vehicle. ",
+      "abbreviation": "SmkLnchrs",
       "tags":["smoke","conceal"]
     },
     "Dozer Blades": {
       "special_description": "",
       "description": "An attachment for the front of vehicles, useful for clearing difficult terrain and can be used as an improvised weapon. ",
+      "abbreviation": "DzrBlds",
       "tags":[]
     },
     "Searchlight": {
       "special_description": "",
       "description": "A simple solution for fighting in dark environments, searchlights serve to illuminate enemies for easier targeting. ",
+      "abbreviation": "SrchLght",
       "tags":[]
-    },            
+    },
+    "Frag Assault Launchers": {
+        "abbreviation": "FrgAssLnchrs", 
+        "description": "",
+    },             
   },
   "mobility":{
    "Bike": {
     "abbreviation": "Bike",
-      "special_description": "",
+      "special_description": "Integrated Twin Linked-Bolters",
       "description": "A robust bike that can propel a marine at very high speeds. Boasts highly responsive controls and Twin Linked Bolters.",
      // "hp_mod": {
        // "standard": 25,
@@ -1861,8 +1956,8 @@ global.gear = {
     },
 
     "Jump Pack": {
-    "abbreviation": "JmpPack",
-      "special_description": "Jump Pack",
+    "abbreviation": "JmpPck",
+      "special_description": "",
       "description": "A back-mounted device containing turbines or jets powerful enough to lift even a user in Power Armour.",
      // "hp_mod": {
        // "standard": 5,
@@ -1877,8 +1972,8 @@ global.gear = {
       "tags":["jump"],
     },
     "Heavy Weapons Pack": {
-    "abbreviation": "HvyPack",
-      "description": "A Heavy power pack commonly used by devastators in conjunction with a heavy ranged weapon.",
+    "abbreviation": "HvyWpPck",
+      "description": "A heavy ammunition backpack commonly used by devastators in conjunction with a heavy ranged weapon.",
       "ranged_mod": {
         "standard": 5,
         "master_crafted": 10,
@@ -1891,7 +1986,6 @@ global.gear = {
       },
     "melee_hands": -1,
     "ranged_hands": 1,      
-      "tags":["power"],
     }
     // Add more mobility items as needed...
   }
@@ -1918,59 +2012,159 @@ function equipment_struct(item_data, core_type,quality="none") constructor{
             self[$names[i]]=defaults[i];
         }
     }
-    spe_desc = special_description;
-    static special_description_gen = function(){
-        spe_desc+=" "
-        if (attack!=0){
-            spe_desc+=$"DAM {attack},#"
-        }
-        if (ranged_mod!=0){
-            spe_desc += $"Ranged {ranged_mod}%,#"
-        }
-        if (melee_mod!=0){
-            spe_desc += $"Melee {melee_mod}%,#"
-        }
-        if (hp_mod!=0){
-            spe_desc += $"HP {hp_mod}%,#"
-        }
-        if (damage_resistance_mod!=0){
-            spe_desc += $"Damage Res {damage_resistance_mod}%,#"
-        }
-        if (armour_value!=0){
-            spe_desc += $"AC {armour_value},#"
-        }
-        if (ammo!=0){
-            spe_desc += $"Ammo {ammo},#"
-        }
-        if (range>1.1){
-            spe_desc += $"Range {range},#"
-        }
-        if (arp>0){
-            spe_desc += $"Armour piercing,#"
-        } else if (arp<0){
-            spe_desc += $"Low Penetration,#"
-        }
-        if (spli!=0){
-            if (range>1.1){
-                spe_desc += $"Ranged, Rapid Fire,#"
-            } else {
-                spe_desc += $"Melee, Splash,#"
+
+    static item_tooltip_desc_gen = function(){
+        item_desc_tooltip = ""
+        var stat_order;
+        var item_type = type;
+        if (type==""){
+            if struct_exists(global.gear[$ "armour"],name){
+                item_type = "armour"
             }
-        } 
-        if (melee_hands!=0){
-            spe_desc += $"melee carry {-1*melee_hands},#"
+            else if struct_exists(global.gear[$ "mobility"],name){
+                item_type = "mobility"
+            }
+            else if struct_exists(global.gear[$ "gear"],name){
+                item_type = "gear"
+            }
+            else if struct_exists(global.weapons,name){
+                item_type = "weapon"
+            }
+            else{
+                item_desc_tooltip = "Error: Item not found!"
+                return item_desc_tooltip
+            }
         }
-        if (ranged_hands!=0){
-            spe_desc += $"ranged carry {-1*ranged_hands},#"
+        switch (item_type) {
+            case "armour":
+                stat_order = ["description", "armour_value", "damage_resistance_mod", "hp_mod", "attack", "ranged_mod", "melee_mod", "ammo", "range", "melee_hands", "ranged_hands", "arp", "spli", "special_description", "req_exp", "tags"];
+                break;
+            case "mobility":
+                stat_order = ["description", "special_description", "armour_value", "hp_mod", "damage_resistance_mod", "attack", "ranged_mod", "melee_mod", "ammo", "range", "melee_hands", "ranged_hands", "arp", "spli", "req_exp", "tags"];
+                break;
+            case "gear":
+                stat_order = ["description", "special_description", "armour_value", "hp_mod", "damage_resistance_mod", "attack", "ranged_mod", "melee_mod", "ammo", "range", "melee_hands", "ranged_hands", "arp", "spli", "req_exp", "tags"];
+                break;
+            case "weapon":
+                stat_order = ["description", "attack", "ranged_mod", "melee_mod", "ammo", "range", "armour_value", "hp_mod", "damage_resistance_mod", "melee_hands", "ranged_hands", "arp", "spli", "special_description", "req_exp", "tags"];
+                break;
+            }
+        for (var i = 0; i < array_length(stat_order); i++) {
+            var stat = stat_order[i];
+            switch (stat) {
+                case "description":
+                    if (description!=""){
+                        item_desc_tooltip += $"{description}##"
+                    }
+                    break;
+                case "armour_value":
+                    if (armour_value!=0){
+                        if item_type = "armour"{
+                            item_desc_tooltip += $"Armour: {armour_value}#"
+                        }
+                        else{
+                            item_desc_tooltip += $"Armour: {format_number_with_sign(armour_value)}#"
+                        }
+                    }
+                    break;
+                case "hp_mod":
+                    if (hp_mod!=0){
+                        item_desc_tooltip += $"Health Mod: {format_number_with_sign(hp_mod)}%#"
+                    }
+                    break;
+                case "damage_resistance_mod":
+                    if (damage_resistance_mod!=0){
+                        item_desc_tooltip += $"Damage Res: {format_number_with_sign(damage_resistance_mod)}%#"
+                    }
+                    break;
+                case "attack":
+                    if (attack!=0){
+                        item_desc_tooltip += $"Damage: {attack}#"
+                    }
+                    break;
+                case "ranged_mod":
+                    if (ranged_mod!=0){
+                        item_desc_tooltip += $"Ranged Mod: {format_number_with_sign(ranged_mod)}%#"
+                    }
+                    break;
+                case "melee_mod":
+                    if (melee_mod!=0){
+                        item_desc_tooltip += $"Melee Mod: {format_number_with_sign(melee_mod)}%#"
+                    }
+                    break;
+                case "ammo":
+                    if (ammo!=0){
+                        item_desc_tooltip += $"Ammo: {ammo}#"
+                    }
+                    break;
+                case "range":
+                    if (range>1.1){
+                        item_desc_tooltip += $"Range: {range}#"
+                    }
+                    break;
+                case "melee_hands":
+                    if (melee_hands != 0) {
+                        if item_type = "weapon"{
+                            item_desc_tooltip += $"Melee Burden: {melee_hands}#"
+                        }
+                        else{
+                            item_desc_tooltip += $"Melee Cap: {format_number_with_sign(melee_hands)}#"
+                        }
+                    }
+                    break;
+                case "ranged_hands":
+                    if (ranged_hands != 0) {
+                        if item_type = "weapon"{
+                            item_desc_tooltip += $"Ranged Burden: {ranged_hands}#"
+                        }
+                        else{
+                            item_desc_tooltip += $"Ranged Cap: {format_number_with_sign(ranged_hands)}#"
+                        }
+                    }
+                    break;
+                case "arp":
+                    if (arp>0){
+                        item_desc_tooltip += $"Armour Piercing#"
+                    } else if (arp<0){
+                        item_desc_tooltip += $"Low Penetration#"
+                    }
+                    break;
+                case "spli":
+                    if (spli!=0){
+                        if (range>1.1){
+                            item_desc_tooltip += $"Ranged, Rapid Fire#"
+                        } else {
+                            item_desc_tooltip += $"Melee, Splash#"
+                        }
+                    }
+                    break;
+                case "special_description":
+                    if (special_description!=""){
+                        item_desc_tooltip += $"{special_description}#"
+                    }
+                    break;
+                case "req_exp":
+                    if (req_exp>0){
+                        item_desc_tooltip += $"Requires {req_exp} XP#"
+                    }
+                    break;
+                case "tags":
+                    if (array_length(tags)>0){
+                        var tagString = ""
+                        for (var j = 0; j < array_length(tags); j++) {
+                            tagString += tags[j]
+                            if (j < array_length(tags) - 1) {
+                                tagString += ", "
+                            }
+                        }
+                        item_desc_tooltip += $"#Keywords:#{tagString}#"
+                    }
+                    break;
+            }
         }
-        if (req_exp>0){
-            spe_desc += $"requires {req_exp} exp,#"
-        }
-        if (array_length(tags)>0){
-            spe_desc += $"[{string(tags)}],#"
-        }  
-        return  spe_desc
+        return item_desc_tooltip
     }
+
     static has_tag =  function(tag){
         return array_contains(tags, tag);
     }
@@ -2053,6 +2247,7 @@ function gear_weapon_data(search_area="any",item,wanted_data="all", sub_class=fa
             equip_area=global.weapons;
             if (struct_exists(equip_area,item)){
                 item_data_set=equip_area[$item];
+                search_area="weapon";
             }
         }
     } else {
@@ -2107,6 +2302,10 @@ function quality_string_conversion(quality){
     if (struct_exists(qaulity_conversions, quality)){
         return qaulity_conversions[$ quality]
     } else {return "";}
+}
+
+function format_number_with_sign(number){
+    return number > 0 ? "+" + string(number) : string(number);
 }
 
 /*
