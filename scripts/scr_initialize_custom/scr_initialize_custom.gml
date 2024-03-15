@@ -54,6 +54,7 @@ function scr_initialize_custom() {
 
 	if (progenitor=10){// Pretty sure that's random?
 	var legions=["Dark Angels",
+				"2nd Legion",
 				"Emperor's Children",
 				"Iron Warriors",
 				"White Scars",
@@ -62,6 +63,7 @@ function scr_initialize_custom() {
 				"Night Lords",
 				"Blood Angels",
 				"Iron Hands",
+				"11th Legion",
 				"World Eaters",
 				"Ultramarines",
 				"Death Guard",
@@ -71,7 +73,7 @@ function scr_initialize_custom() {
 				"Salamanders",
 				"Raven Guard",
 				"Alpha Legion"]		
-		global.founding_secret = legions[irandom(17)];
+		global.founding_secret = legions[irandom(19)];
 	}
 
 
