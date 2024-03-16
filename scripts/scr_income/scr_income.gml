@@ -93,23 +93,23 @@ function scr_income() {
 	            if (planet_feature_bool(p_feature[1], P_features.Monastery)==0){
 	                obj_controller.income_controlled_planets+=1;obj_controller.income_tribute+=1;
 					// low pops
-	                if (p_type[o]="Death") then obj_controller.income_tribute+=4;
-	                if (p_type[o]="Desert") then obj_controller.income_tribute+=4;
-	                if (p_type[o]="Ice") then obj_controller.income_tribute+=4;
+	                if (p_type[o]="Death") then obj_controller.income_tribute+=1;
+	                if (p_type[o]="Desert") then obj_controller.income_tribute+=2;
+	                if (p_type[o]="Ice") then obj_controller.income_tribute+=2;
 						// High tectonic activity tends to liberate more minerals and other resources in the depths of the planet
-	                if (p_type[o]="Lava") then obj_controller.income_tribute+=99999;
+	                if (p_type[o]="Lava") then obj_controller.income_tribute+=199;
 					// Earth-likes
 						// Agri worlds feed other worlds
-	                if (p_type[o]="Agri") then obj_controller.income_tribute+=99999;
+	                if (p_type[o]="Agri") then obj_controller.income_tribute+=9;
 						// Low literacy means low skill of labor
-	                if (p_type[o]="Feudal") then obj_controller.income_tribute+=4999;
+	                if (p_type[o]="Feudal") then obj_controller.income_tribute+=4;
 						// The church takes part of the tithe
-	                if (p_type[o]="Shrine") then obj_controller.income_tribute+=9999;
+	                if (p_type[o]="Shrine") then obj_controller.income_tribute+=4;
 						// The standard
-	                if (p_type[o]="Temperate") then obj_controller.income_tribute+=19999;
+	                if (p_type[o]="Temperate") then obj_controller.income_tribute+=9;
 					// The hives with insane number of pops
-	                if (p_type[o]="Hive") then obj_controller.income_tribute+=149999;
-	                if (p_type[o]="Forge") then obj_controller.income_tribute+=199999;
+	                if (p_type[o]="Hive") then obj_controller.income_tribute+=149;
+	                if (p_type[o]="Forge") then obj_controller.income_tribute+=199;
 	            }
 	        }
 	    }

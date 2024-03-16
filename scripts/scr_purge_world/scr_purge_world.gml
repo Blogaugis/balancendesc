@@ -23,7 +23,7 @@ function scr_purge_world(star, planet, action_type, action_score) {
 
 
 
-	if (action_type=1){// Bombardment
+	if (action_type=1){// Orbital and the safest option - the way to reduce heresy, without waking up the dormant chaos lord
 	    txt1="The heavens rumble and thunder as your ship";
 	    if (ships_selected>1) then txt1+="s";
 	    txt1+=" unload";
@@ -80,7 +80,7 @@ function scr_purge_world(star, planet, action_type, action_score) {
 	}
 
 
-	if (action_type=2){// Burn baby burn
+	if (action_type=2){// Fiery option
 	    var i;i=0;
 	    repeat(4){i+=1;
 	        if (star.p_problem[planet,i]="cleanse") and (isquest=0){isquest=1;thequest="cleanse";questnum=i;}
@@ -131,7 +131,7 @@ function scr_purge_world(star, planet, action_type, action_score) {
 	}
 
 
-	if (action_type=3){// Blam!
+	if (action_type=3){// The selective option
 	    var i;i=0;
 	    repeat(4){i+=1;
 	        if (star.p_problem[planet,i]="purge") and (isquest=0){isquest=1;thequest="purge";questnum=i;}
@@ -189,7 +189,7 @@ function scr_purge_world(star, planet, action_type, action_score) {
     
 	    // Advantages
 	    o=0;yep=0;repeat(4){o+=1;if (obj_ini.adv[o]="Ambushers") then yep=1;}if (yep=1) then ambush=true;
-	    o=0;yep=0;repeat(4){o+=1;if (obj_ini.adv[o]="Lightning Warriors") then yep=1;}if (yep=1) then chance+=5;
+	    o=0;yep=0;repeat(4){o+=1;if (obj_ini.adv[o]="Lightning Warriors") then yep=1;}if (yep=1) then chance-=5; // High speed should mean they are able to deal with things faster than others would realise that something's up.
 	    o=0;yep=0;repeat(4){o+=1;if (obj_ini.dis[o]="Shitty Luck") then yep=1;}if (yep=1) then chance+=20;
     
 	    // Size

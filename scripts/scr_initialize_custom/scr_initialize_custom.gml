@@ -72,8 +72,9 @@ function scr_initialize_custom() {
 				"Word Bearers",
 				"Salamanders",
 				"Raven Guard",
-				"Alpha Legion"]		
-		global.founding_secret = legions[irandom(19)];
+				"Alpha Legion",
+				"Chimeric"]		
+		global.founding_secret = legions[irandom(20)];
 	}
 
 
