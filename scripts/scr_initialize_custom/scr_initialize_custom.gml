@@ -422,7 +422,7 @@ function scr_initialize_custom() {
 	var techs=20,epistolary=4,apothecary=6,codiciery=6,lexicanum=10,terminator=10,veteran=89;
 	devastator=20;
 
-	whirlwind=4;
+	whirlwind=2;
 
 	specials=0;firsts=0;seconds=0;thirds=0;fourths=0;fifths=0;
 	sixths=0;sevenths=0;eighths=0;ninths=0;tenths=0;
@@ -2054,7 +2054,7 @@ function scr_initialize_custom() {
 
 	            dready=1;
 	            if (string_count("Sieged",strin2)>0) or (obj_creation.custom=0) then dready+=1;
-	            rhinoy=8;whirly=whirlwind;speedy=2;
+	            rhinoy=6;whirly=whirlwind;speedy=2;
 	            if (second=0) then stahp=1;
 			
 	      }
@@ -2063,7 +2063,7 @@ function scr_initialize_custom() {
 	            temp1-=2;
 	            // dready=2;
 	            if (string_count("Sieged",strin2)>0) or (obj_creation.custom=0) then dready+=2;
-	            rhinoy=8;whirly=whirlwind;speedy=2;
+	            rhinoy=6;whirly=whirlwind;speedy=2;
 	            if (third=0) then stahp=1;
 	        }
 	        if (company=4){
@@ -2071,7 +2071,7 @@ function scr_initialize_custom() {
 	            temp1-=2;
 	            // dready=2;
 	            if (string_count("Sieged",strin2)>0) or (obj_creation.custom=0) then dready+=2;
-	            rhinoy=8;whirly=whirlwind;speedy=2;
+	            rhinoy=6;whirly=whirlwind;speedy=2;
 	            if (fourth=0) then stahp=1;
 	        }
 	        if (company=5){
@@ -2079,7 +2079,7 @@ function scr_initialize_custom() {
 	            temp1-=2;
 	            // dready=2;
 	            if (string_count("Sieged",strin2)>0) or (obj_creation.custom=0) then dready+=2;
-	            rhinoy=8;whirly=whirlwind;speedy=2;
+	            rhinoy=6;whirly=whirlwind;speedy=2;
 	            if (fifth=0) then stahp=1;
 	        }
 	        if (company=6){
@@ -2087,14 +2087,14 @@ function scr_initialize_custom() {
 	            temp1-=2;
 	            // dready=2;
 	            if (string_count("Sieged",strin2)>0) or (obj_creation.custom=0) then dready+=2;
-	            rhinoy=8;whirly=whirlwind;speedy=0;
+	            rhinoy=4;whirly=whirlwind;speedy=0;
 	            if (sixth=0) then stahp=1;
 	        }
 	        if (company=7){
 	            temp1=seventh;company_unit2="";company_unit3="";
 	            temp1-=2;
 	            if (obj_creation.custom=0) then dready=2;
-	            rhinoy=8;whirly=0;speedy=8;
+	            rhinoy=4;whirly=0;speedy=8;
 	            if (seventh=0) then stahp=1;
 	        }
 	        if (company=8){
@@ -2117,7 +2117,7 @@ function scr_initialize_custom() {
 	            company_unit2="";
 	            company_unit3="";
 	            dready=0;
-	            rhinoy=8;
+	            rhinoy=6;
 	            whirly=0;
 	            speedy=0;
 
@@ -2251,7 +2251,7 @@ function scr_initialize_custom() {
 	        wep1[company][k]="Chainsword";
 	  		name[company][k]=global.name_generator.generate_space_marine_name();
 	        wep2[company][k]="Company Standard";
-	        armour[company][k]="MK5 Heresy";
+	        armour[company][k]="MK8 Errant";
 	        
 	        if (company=8) then mobi[company][k]="Jump Pack";
 	        spawn_unit = TTRPG[company][k];
