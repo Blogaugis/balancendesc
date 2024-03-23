@@ -419,7 +419,7 @@ function scr_initialize_custom() {
 	var second=100,third=100,fourth=100,fifth=100,sixth=100,seventh=100,eighth=100,ninth=100,tenth=100;
 	var assault=20,siege=0,temp1=0, intolerant=0;
 	var k, i, v;k=0;i=0;v=0;
-	var techs=20,epistolary=4,apothecary=6,codiciery=6,lexicanum=10,terminator=10,veteran=89;
+	var techs=20,epistolary=3,apothecary=6,codiciery=6,lexicanum=12,terminator=10,veteran=89;
 	devastator=20;
 
 	whirlwind=2;
@@ -448,10 +448,10 @@ function scr_initialize_custom() {
 	if (array_contains(obj_creation.dis,"Psyker Intolerant")){epistolary=0;codiciery=0;lexicanum=0;veteran+=10;tenth+=10;intolerant=1;}
 	if (array_contains(obj_creation.dis,"Sieged")){
 		techs-=10;
-		epistolary-=3;
+		epistolary-=1;
 		apothecary-=4;
-		codiciery-=3;
-		lexicanum-=5;
+		codiciery-=2;
+		lexicanum-=3;
 		terminator-=10;
 		veteran-=50;
 	    second-=30;
@@ -569,10 +569,10 @@ function scr_initialize_custom() {
 		    sixth=0;
 		    fifth=0;
 		    techs=8;
-		    epistolary=6;
+		    epistolary=2;
 		    apothecary=5;
-		    codiciery=3;
-		    lexicanum=5;
+		    codiciery=4;
+		    lexicanum=8;
 		    terminator=5;
 		    veteran+=10;
 		    break;

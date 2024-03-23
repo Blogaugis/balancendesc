@@ -50,14 +50,14 @@ function scr_random_event(execute_now) {
 			var has_bad_luck = scr_has_disadv("Shitty Luck");
 			var luck_roll = irandom(100);
 			if (has_bad_luck){
-				if (luck_roll<=30) then player_luck=luck.good;
-			    if (luck_roll>30) and (luck_roll<45) then player_luck=luck.neutral;
-				if (luck_roll>=45) then player_luck=luck.bad;
+				if (luck_roll<=25) then player_luck=luck.good;
+			    if (luck_roll>25) and (luck_roll<55) then player_luck=luck.neutral;
+				if (luck_roll>=55) then player_luck=luck.bad;
 			}
 			else{
-			    if (luck_roll<=45) then player_luck=luck.good;
-			    if (luck_roll>45) and (luck_roll<55) then player_luck=luck.neutral;
-				if (luck_roll>=55) then player_luck=luck.bad;
+			    if (luck_roll<=33) then player_luck=luck.good;
+			    if (luck_roll>33) and (luck_roll<67) then player_luck=luck.neutral;
+				if (luck_roll>=67) then player_luck=luck.bad;
 			}
 
 		
@@ -65,24 +65,24 @@ function scr_random_event(execute_now) {
 				if(player_luck == luck.good){
 					events = 
 					[
-						EVENT.space_hulk,
 						EVENT.promotion,
-						EVENT.strange_building,
-						EVENT.sororitas,
+						EVENT.strange_building, // Not sure if techmarine in the mood for building is a good thing
+						EVENT.sororitas, // This requires checks for renegade or traitor
 						EVENT.rogue_trader,
-						EVENT.inquisition_mission,
-						EVENT.inquisition_planet,
-						EVENT.mechanicus_mission
 					];
 				}
 				else if(player_luck == luck.neutral){
 					events = 
 					[
+						EVENT.space_hulk,
+						EVENT.inquisition_mission,
+						EVENT.inquisition_planet,
+						EVENT.mechanicus_mission,
 						EVENT.strange_behavior,
 						EVENT.fleet_delay,
 						EVENT.harlequins,
 						EVENT.succession_war,
-						EVENT.random_fun,
+						// EVENT.random_fun,
 					];
 				}
 				else if(player_luck == luck.bad){
@@ -1047,7 +1047,7 @@ function scr_random_event(execute_now) {
 		var eligible_stars=[];
 	    with(obj_star){
 	        for(var planet = 1; planet <= planets; planet++){
-				if(p_owner[planet] == eFACTION.Imperium && p_type[planet] != "Dead" && p_type[planet] != "Ice" &&p_type[planet] != "Lava") {
+				if(p_owner[planet] == eFACTION.Imperium && p_type[planet] != "Dead" && p_type[planet] != "Ice" && p_type[planet] != "Lava") {
 					array_push(eligible_stars,id);
 					break;
 				}
@@ -1234,17 +1234,17 @@ function scr_random_event(execute_now) {
 			{
 				case 7:
 					text = "Orks";
-					star_id.p_orks[planet] += 4;
+					star_id.p_orks[planet] += 2;
 					star_id.p_orks[planet] = min(star_id.p_orks[planet], max_enemies_on_planet);
 					break;
 				case 8:
 					text = "Tau";
-					star_id.p_tau[planet] += 4;
+					star_id.p_tau[planet] += 2;
 					star_id.p_tau[planet] = min(star_id.p_tau[planet], max_enemies_on_planet);
 					break;
 				case 9:
 					text = "Tyranids";
-					star_id.p_tyranids[planet] += 5;
+					star_id.p_tyranids[planet] += 2;
 					star_id.p_tyranids[planet] = min(star_id.p_tyranids[planet], max_enemies_on_planet);
 					break;
 				//case 10: this doesn't work
