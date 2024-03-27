@@ -677,7 +677,9 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
                 trade_theirs[2]="Ork Sniper";
                 trade_theirs[3]="Flash Git";
             }
+			// Tau to be added
             if (diplomacy==8) then trade_theirs[1]="Test";
+			// Also add heretic/chaos trade options
         }
     }
     if (trading==0) and ((diplo_option[1]!="") or (diplo_option[2]!="") or (diplo_option[3]!="") or (diplo_option[4]!="")){
