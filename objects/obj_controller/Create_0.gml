@@ -709,7 +709,7 @@ last_fleet_inspection=0;
 
 // chaos_turn=100+((floor(random(10))+1)*choose(-1,1));
 // ** Sets when chaos will arrive **
-chaos_turn=2;
+chaos_turn=4;
 // ** Sets fleets**
 chaos_fleets=0;
 tau_fleets=0;
@@ -898,7 +898,7 @@ trade_mnum[2]=0;
 trade_mnum[3]=0;
 trade_mnum[4]=0;
 // ** Sets up starting requisition **
-requisition=2000;
+requisition=5000;
 if (instance_exists(obj_ini)){
     if (obj_ini.progenitor==0) /*and (obj_creation.custom=0)*/ and (global.chapter_name!="Doom Benefactors") then requisition=10000;
 }
@@ -1031,10 +1031,10 @@ disposition[13]=-20;
 // ** Max disposition for imperials **
 disposition_max[0]=0;
 disposition_max[1]=0;
-disposition_max[2]=65;
-disposition_max[3]=65;
-disposition_max[4]=65;
-disposition_max[5]=65;
+disposition_max[2]=95;
+disposition_max[3]=95;
+disposition_max[4]=95;
+disposition_max[5]=95;
 if (instance_exists(obj_ini)){
     disposition_max[2]=40+obj_ini.imperium_disposition;
     if (disposition_max[2]>100) then disposition_max[2]=100;

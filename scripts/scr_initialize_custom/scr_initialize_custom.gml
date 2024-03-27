@@ -203,9 +203,9 @@ function scr_initialize_custom() {
 		}
 	    if (obj_creation.fleet_type=3){
 	        if (global.chapter_name="Lamenters"){
-	            strike_cruisers=1;
-	            gladius=2;
-	            hunters=2;
+	            strike_cruisers=2;
+	            gladius=3;
+	            hunters=3;
 				battle_barges=1;
 				flagship_name="Mater Lachrymarum"
 	        }
@@ -423,7 +423,7 @@ function scr_initialize_custom() {
 	var techs=20,epistolary=3,apothecary=6,codiciery=6,lexicanum=12,terminator=10,veteran=89;
 	devastator=20;
 
-	whirlwind=2;
+	whirlwind=0;
 
 	specials=0;firsts=0;seconds=0;thirds=0;fourths=0;fifths=0;
 	sixths=0;sevenths=0;eighths=0;ninths=0;tenths=0;
@@ -2040,7 +2040,7 @@ function scr_initialize_custom() {
 
 	        // if (company=2){dready=1;
 	        	if (string_count("Sieged",strin2)>0) or (obj_creation.custom=0) then dready+=1;
-	        rhinoy=8;whirly=whirlwind;speedy=2;
+	        rhinoy=0;whirly=whirlwind;speedy=0;
 	    }
 
 		// random xp for each marine company
@@ -2055,7 +2055,7 @@ function scr_initialize_custom() {
 
 	            dready=1;
 	            if (string_count("Sieged",strin2)>0) or (obj_creation.custom=0) then dready+=1;
-	            rhinoy=6;whirly=whirlwind;speedy=2;
+	            rhinoy=0;whirly=whirlwind;speedy=0;
 	            if (second=0) then stahp=1;
 			
 	      }
@@ -2064,7 +2064,7 @@ function scr_initialize_custom() {
 	            temp1-=2;
 	            // dready=2;
 	            if (string_count("Sieged",strin2)>0) or (obj_creation.custom=0) then dready+=2;
-	            rhinoy=6;whirly=whirlwind;speedy=2;
+	            rhinoy=0;whirly=whirlwind;speedy=0;
 	            if (third=0) then stahp=1;
 	        }
 	        if (company=4){
@@ -2072,7 +2072,7 @@ function scr_initialize_custom() {
 	            temp1-=2;
 	            // dready=2;
 	            if (string_count("Sieged",strin2)>0) or (obj_creation.custom=0) then dready+=2;
-	            rhinoy=6;whirly=whirlwind;speedy=2;
+	            rhinoy=0;whirly=whirlwind;speedy=0;
 	            if (fourth=0) then stahp=1;
 	        }
 	        if (company=5){
@@ -2080,7 +2080,7 @@ function scr_initialize_custom() {
 	            temp1-=2;
 	            // dready=2;
 	            if (string_count("Sieged",strin2)>0) or (obj_creation.custom=0) then dready+=2;
-	            rhinoy=6;whirly=whirlwind;speedy=2;
+	            rhinoy=0;whirly=whirlwind;speedy=0;
 	            if (fifth=0) then stahp=1;
 	        }
 	        if (company=6){
@@ -2088,21 +2088,21 @@ function scr_initialize_custom() {
 	            temp1-=2;
 	            // dready=2;
 	            if (string_count("Sieged",strin2)>0) or (obj_creation.custom=0) then dready+=2;
-	            rhinoy=4;whirly=whirlwind;speedy=0;
+	            rhinoy=0;whirly=whirlwind;speedy=0;
 	            if (sixth=0) then stahp=1;
 	        }
 	        if (company=7){
 	            temp1=seventh;company_unit2="";company_unit3="";
 	            temp1-=2;
 	            if (obj_creation.custom=0) then dready=2;
-	            rhinoy=4;whirly=0;speedy=8;
+	            rhinoy=0;whirly=0;speedy=0;
 	            if (seventh=0) then stahp=1;
 	        }
 	        if (company=8){
 	            temp1=eighth;company_unit2="";company_unit3="";
 	            temp1-=2;
 	            if (obj_creation.custom=0) then dready=2;
-	            rhinoy=2;whirly=0;speedy=2;
+	            rhinoy=0;whirly=0;speedy=0;
 	            if (eighth=0) then stahp=1;
 	        }
 	        if (company=9){
@@ -2110,7 +2110,7 @@ function scr_initialize_custom() {
 	            company_unit2="";
 	            company_unit3="";
 	            if (obj_creation.custom=0) then dready=2;
-	            rhinoy=2;whirly=0;speedy=0;
+	            rhinoy=0;whirly=0;speedy=0;
 	            if (ninth=0) then stahp=1;
 	        }
 	        if (company=10){
@@ -2118,7 +2118,7 @@ function scr_initialize_custom() {
 	            company_unit2="";
 	            company_unit3="";
 	            dready=0;
-	            rhinoy=6;
+	            rhinoy=0;
 	            whirly=0;
 	            speedy=0;
 
@@ -2215,7 +2215,7 @@ function scr_initialize_custom() {
 	            wep1[company][k]=wep1[101,15];
 	        	name[company][k]=global.name_generator.generate_space_marine_name();
 	            wep2[company][k]=wep2[101,15];
-	            armour[company][k]="MK7 Aquila";
+	            armour[company][k]="MK8 Errant";
 	            if (company<=2) then armour[company][k]=choose("MK8 Errant","MK6 Corvus");
 	            gear[company][k]=gear[101,15];
 	            
