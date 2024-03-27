@@ -183,10 +183,11 @@ if (refresh=true) and (obj_controller.settings>0){
                         if (obj_ini.armour[co][i]="Artificer Armour") then yes=true;
                     }
                     if (req_armour="Terminator Armour"){
-						if (obj_ini.armour[co][i]="Cataphractii Pattern Terminator") then yes=true;
+						if (obj_ini.armour[co][i]="Early Terminator Armour") then yes=true;
+						if (obj_ini.armour[co][i]="Terminator Armour") then yes=true;
 						if (obj_ini.armour[co][i]="Tartaros") then yes=true;
-                        if (obj_ini.armour[co][i]="Terminator Armour") then yes=true;
-                        if (obj_ini.armour[co][i]="Aegis") then yes=true;
+						if (obj_ini.armour[co][i]="Cataphractii Pattern Terminator") then yes=true;
+						// if (obj_ini.armour[co][i]="Aegis") then yes=true;
                     }
                     if (req_armour="Scout Armour") and (obj_ini.armour[co][i]="Scout Armour") then yes=true;
                     if (string_count("&",obj_ini.armour[co][i])>0) then yes=true;
@@ -347,7 +348,7 @@ if (refresh=true) and (obj_controller.settings>0){
         have_armour_num+=scr_item_count("Cataphractii Pattern Terminator");
         have_armour_num+=scr_item_count("Tartaros");
         have_armour_num+=scr_item_count("Terminator Armour");
-        have_armour_num+=scr_item_count("Aegis");
+       // have_armour_num+=scr_item_count("Aegis");
     }
     if (req_armour="Scout Armour") then have_armour_num+=scr_item_count("Scout Armour");
     

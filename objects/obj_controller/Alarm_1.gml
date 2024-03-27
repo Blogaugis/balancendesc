@@ -248,7 +248,7 @@ if (did==1){
     ed.planet[1]=1;ed.planet[2]=1;
     ed.image_index=4;
     ed.p_type[1]="Forge";
-    ed.p_type[2]="Ice";
+    ed.p_type[2]="Lava";
 	/*
     ed.p_owner[1]=3;
 	ed.p_owner[2]=3;
@@ -416,19 +416,19 @@ if (did==1){
         }// end repeat
 
         // important later on for having other chapters homeworlds or civil war imperiums
-        if (p_type[1]!="Forge") and (p_type[1]!="Ice"){
+        if (p_type[1]!="Forge") and (p_type[1]!="Lava"){
             p_owner[1] = eFACTION.Imperium;
             p_first[1] = p_owner[1];
         }  
-        if (p_type[2]!="Forge") and (p_type[2]!="Ice"){
+        if (p_type[2]!="Forge") and (p_type[2]!="Lava"){
             p_owner[2] = eFACTION.Imperium
             p_first[2] = p_owner[2];
         }
-        if (p_type[3]!="Forge") and (p_type[3]!="Ice"){
+        if (p_type[3]!="Forge") and (p_type[3]!="Lava"){
             p_owner[3] = eFACTION.Imperium;
             p_first[3] = p_owner[3]
         }
-        if (p_type[4]!="Forge") and (p_type[4]!="Ice"){
+        if (p_type[4]!="Forge") and (p_type[4]!="Lava"){
             p_owner[4] = eFACTION.Imperium;
             p_first[4] = p_owner[4]
         }

@@ -54,8 +54,11 @@ function scr_add_man(man_role, target_company, choice_armour, choice_weapons, ch
 				break
 
 	         case "Crusader":
-	            obj_ini.wep1[target_company][good]="Power Sword";obj_ini.armuor[target_company][good]="Power Armour";
-	            obj_ini.gear[target_company][good]="Storm Shield";obj_ini.experience[target_company][good]=10;
+	            obj_ini.wep1[target_company][good]="Power Sword";
+	            obj_ini.wep2[target_company][good]="Storm Shield";
+				obj_ini.armuor[target_company][good]="Light Power Armour";
+				obj_ini.experience[target_company][good]=10;
+				obj_ini.hp[target_company][good]=40;
 	            obj_ini.race[target_company][good]=4;
 				unit = new TTRPG_stats("inquisition", target_company, good, "inquisition_crusader");				
 				break;

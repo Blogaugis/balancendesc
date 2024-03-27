@@ -203,10 +203,11 @@ function scr_initialize_custom() {
 		}
 	    if (obj_creation.fleet_type=3){
 	        if (global.chapter_name="Lamenters"){
-	            strike_cruisers=2;
+	            strike_cruisers=1;
 	            gladius=2;
-	            hunters=1;
-				battle_barges=0;
+	            hunters=2;
+				battle_barges=1;
+				flagship_name="Mater Lachrymarum"
 	        }
 	        if (global.chapter_name="Blood Ravens"){
 	            battle_barges=1;
@@ -562,7 +563,7 @@ function scr_initialize_custom() {
 			terminator+=80;
 			break;
 		case "Lamenters":
-		    tenth=0;
+		    tenth=50;
 		    ninth=0;
 		    eighth=0;
 		    seventh=0;
@@ -981,7 +982,7 @@ function scr_initialize_custom() {
 						{"max":9,"min":4,
 							"loadout":{//devastator
 								"required":{
-									"wep1":["Bolter",4], 
+									"wep1":["Heavy Bolter",4], 
 									"wep2":["Combat Knife",4]
 								}
 							}
@@ -1050,7 +1051,7 @@ function scr_initialize_custom() {
 	                    "option" :{
 	                        "wep1":[
 	                            [["Bolter","Stalker Pattern Bolter"], 2],
-	                            [["Missile Launcher","Heavy Bolter"], 1]],
+	                            [["Flamer","Meltagun"], 1]],
 	                        "wep2":[
 	                            [["Chainsword","Combat Knife"], 5],
 	                        ]
@@ -1413,17 +1414,17 @@ function scr_initialize_custom() {
 	// all of this can now be handled in teh struct and no longer neades complex methods
 	switch(obj_creation.chapter_master_specialty){
 		case 1:
-			experience[company,1]=550;
+			experience[company,1]=400;
 			spe[company,1]+="$";
 			break;
 		case 2:
-			experience[company,1]=650;
+			experience[company,1]=500;
 			spe[company,1]+="@";
 			chapter_master.add_trait("champion");
 			break;
 		case 3:
 			//TODO phychic powers need a redo but after weapon refactor
-			experience[company,1]=550;
+			experience[company,1]=400;
 			gear[company,1]="Psychic Hood";
 		    var let="";
 		    letmax=5;
@@ -1466,14 +1467,14 @@ function scr_initialize_custom() {
 	armour[company,2]="Artificer Armour";
 	gear[company,2]="Master Servo Arms";
 	chaos[company,2]=0;
-	experience[company,2]=475;
+	experience[company,2]=350;
 	spawn_unit = TTRPG[company,2];
 	if (spawn_unit.technology<40){
 		spawn_unit.technology=40;
 	}
 	spawn_unit.add_trait("mars_trained");
 	spawn_unit.add_bionics("right_arm", "standard",false);
-	if (global.chapter_name="Lamenters") then armour[company,2]="MK6 Corvus";
+	if (global.chapter_name="Lamenters") then armour[company,2]="MK4 Maximus";
 	if (global.chapter_name="Iron Hands"){
 		repeat(9){spawn_unit.add_bionics("none", "standard",false);}
 	} else{
@@ -1490,8 +1491,8 @@ function scr_initialize_custom() {
 	armour[company,3]="Artificer Armour";
 	gear[company,3]=gear[101,14];
 	chaos[company,3]=-100;
-	experience[company,3]=525;
-	if (global.chapter_name="Lamenters") then armour[company,3]="MK6 Corvus";
+	experience[company,3]=350;
+	if (global.chapter_name="Lamenters") then armour[company,3]="MK4 Maximus";
 	spawn_unit = TTRPG[company,3];
 	if (spawn_unit.piety<45){
 		spawn_unit.piety = 45;
@@ -1508,8 +1509,8 @@ function scr_initialize_custom() {
 	wep2[company,4]=wep2[100,15];
 	armour[company,4]="Artificer Armour";
 	gear[company,4]=gear[101,15];
-	chaos[company,4]=0;experience[company,4]=500;
-	if (global.chapter_name="Lamenters") then armour[company,4]="MK6 Corvus";
+	chaos[company,4]=0;experience[company,4]=350;
+	if (global.chapter_name="Lamenters") then armour[company,4]="MK4 Maximus";
 
 	// Chief Librarian
 	TTRPG[company][5]=new TTRPG_stats("chapter", company,5);
@@ -1522,8 +1523,8 @@ function scr_initialize_custom() {
 	wep2[company,5]=wep2[101,17];
 	armour[company,5]="Artificer Armour";
 	gear[company,5]=gear[101,17];
-	chaos[company,5]=0;experience[company,5]=550;
-	if (global.chapter_name="Lamenters") then armour[company,5]="MK6 Corvus";
+	chaos[company,5]=0;experience[company,5]=350;
+	if (global.chapter_name="Lamenters") then armour[company,5]="MK4 Maximus";
 	if (obj_creation.discipline="default"){let="D";letmax=7;}
 	if (obj_creation.discipline="biomancy"){let="B";letmax=5;}
 	if (obj_creation.discipline="pyromancy"){let="P";letmax=5;}
@@ -1585,7 +1586,7 @@ function scr_initialize_custom() {
 	    wep1[company][k]=wep1[101,17];
 	    name[company][k]=global.name_generator.generate_space_marine_name();
 	    wep2[company][k]=wep2[101,17];
-	    armour[company][k]="MK7 Aquila";
+	    armour[company][k]="MK8 Errant";
 	    gear[company][k]=gear[101,17];
 	    
 	    experience[company][k]=125;
@@ -1671,7 +1672,7 @@ function scr_initialize_custom() {
 	    wep1[company][k]=wep1[101,15];
 	    name[company][k]=global.name_generator.generate_space_marine_name();
 	    wep2[company][k]=wep2[101,15];
-	    armour[company][k]="MK7 Aquila";
+	    armour[company][k]="MK8 Errant";
 	    gear[company][k]=gear[101,15];
 	    
 	    experience[company][k]=100;
@@ -1760,7 +1761,7 @@ function scr_initialize_custom() {
 		spawn_unit.spawn_exp();
 		armour[company][k]="Terminator Armour";
 	    if (string_count("Crafter",strin)>0) then armour[company][k]="Tartaros";
-	    if (terminator<=0) then armour[company][k]="MK6 Corvus";
+	    if (terminator<=0) then armour[company][k]="MK3 Iron Armour";
 	    if (global.chapter_name="Iron Hands") then armour[company][k]="Terminator Armour";
 	    if (mobi[101,5]!="") then mobi[company][k]=mobi[101,5];
 	    if (armour[company][k]="Terminator Armour") or (armour[company][k]="Tartaros"){
@@ -1793,7 +1794,7 @@ function scr_initialize_custom() {
 	            armour[company][k]="Terminator Armour";
 	            gear[company][k]=gear[101,14]
 	            if (string_count("Crafter",strin)>0) then armour[company][k]="Tartaros";
-	            if (terminator<=0) then armour[company][k]="MK6 Corvus";
+	            if (terminator<=0) then armour[company][k]="MK3 Iron Armour";
 	            if (mobi[101,14]!="") then mobi[company][k]=mobi[101,14];
 	            if (armour[company][k]="Terminator") or (armour[company][k]="Tartaros") then man_size+=1;
 	        }
@@ -1815,7 +1816,7 @@ function scr_initialize_custom() {
 	    gear[company][k]=gear[101,15];
 	    
 	    if (string_count("Crafter",strin)>0) then armour[company][k]="Tartaros";
-	    if (terminator<=0) then armour[company][k]="MK6 Corvus";
+	    if (terminator<=0) then armour[company][k]="MK3 Iron Armour";
 	    if (mobi[101,15]!="") then mobi[company][k]=mobi[101,15];
 	    if (armour[company][k]="Terminator") or (armour[company][k]="Tartaros") then man_size+=1;
 
@@ -1837,7 +1838,7 @@ function scr_initialize_custom() {
 			spawn_unit.spawn_old_guard();
 			spawn_unit.spawn_exp();
 	        if (string_count("Crafter",strin)>0) then armour[company][k]="Tartaros";
-	        if (terminator<=0) then armour[company][k]="MK6 Corvus";
+	        if (terminator<=0) then armour[company][k]="MK3 Iron Armour";
 	        if (mobi[101,15]!="") then mobi[company][k]=mobi[101,15];
 	        if (armour[company][k]="Terminator") or (armour[company][k]="Tartaros") then man_size+=1;
 	    }
@@ -1874,7 +1875,7 @@ function scr_initialize_custom() {
 		spawn_unit.spawn_exp();
 	    
 	    if (string_count("Crafter",strin)>0) then armour[company][k]="Tartaros";
-	    if (terminator<=0) then armour[company][k]="MK6 Corvus";
+	    if (terminator<=0) then armour[company][k]="MK3 Iron Armour";
 	    if (armour[company][k]="Terminator") or (armour[company][k]="Tartaros") then man_size+=1;
 
 	    k+=1;
@@ -1892,7 +1893,7 @@ function scr_initialize_custom() {
 	    armour[company][k]="Terminator Armour";
 	    
 	    if (string_count("Crafter",strin)>0) then armour[company][k]="Tartaros";
-	    if (terminator<=0) then armour[company][k]="MK6 Corvus";
+	    if (terminator<=0) then armour[company][k]="MK3 Iron Armour";
 	    if (armour[company][k]="Terminator") or (armour[company][k]="Tartaros") then man_size+=1;
 	}
 
@@ -1926,7 +1927,7 @@ function scr_initialize_custom() {
 	    wep1[company][k]=wep1[101,3];
 	    name[company][k]=global.name_generator.generate_space_marine_name();
 	    wep2[company][k]=wep2[101,3];
-	    armour[company][k]="MK6 Corvus";
+	    armour[company][k]="MK3 Iron Armour";
 	    
 	    mobi[company][k]=mobi[101,3];
 	    spawn_unit = TTRPG[company][k]

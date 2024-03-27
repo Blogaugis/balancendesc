@@ -295,7 +295,7 @@ global.weapons={
         "ranged_hands": 0,
         "ammo": 0,
         "range": 1,
-        "spli": 0,
+        "spli": 1,
         "arp": 1,
         "special_description": "Parry",
         "tags":["power", "spear"],
@@ -545,9 +545,9 @@ global.weapons={
         "description": "A smaller, more compact version of the venerable Boltgun. Standard Godwyn pattern.",
         "melee_hands": 0,
         "ranged_hands": 1,
-        "ammo": 18,
+        "ammo": 15,
         "range": 3.1,
-        "spli": 0,
+        "spli": 1,
         "arp": 0,
         "tags":["bolt", "pistol"],
     },
@@ -622,7 +622,7 @@ global.weapons={
             "master_crafted": 57,
             "artifact": 65
         },
-        "description": "A smaller, 0.5 caliber bolter, made to be used by regular humans, such as blessed sisters.",
+        "description": "A smaller, ~0.5 caliber bolter, made to be used by regular humans, such as blessed sisters.",
         "melee_hands": 0,
         "ranged_hands": 1,
         "ammo": 16,
@@ -751,7 +751,7 @@ global.weapons={
         "ranged_hands": 1,
         "ammo": 0,
         "range": 3.1,
-        "spli": 0,
+        "spli": 1,
         "arp": 1,
         "tags":["plasma","pistol"]
     },
@@ -767,7 +767,7 @@ global.weapons={
         "ranged_hands": 1,
         "ammo": 4,
         "range": 3.1,
-        "spli": 0,
+        "spli": 1,
         "arp": 1,
         "tags":["flame","pistol"]
     },
@@ -798,8 +798,8 @@ global.weapons={
         "melee_hands": 0,
         "ranged_hands": 2,
         "ammo": 20,
-        "range": 18,
-        "spli": 1,
+        "range": 25,
+        "spli": 0,
         "arp": 0,
         "tags":["precision"]
     },
@@ -838,8 +838,8 @@ global.weapons={
     "Missile Launcher": {
       "abbreviation": "MsslLnch",          
         "attack": {
-            "standard": 250,
-            "master_crafted": 275,
+            "standard": 200,
+            "master_crafted": 250,
             "artifact": 300
         },
         "description": "This heavy weapon is capable of firing either armor-piercing or fragmentation rockets. Has a low ammunition count.",
@@ -848,15 +848,15 @@ global.weapons={
         "ammo": 6,
         "range": 24,
         "spli": 1,
-        "arp": 0,
+        "arp": 1,
         "tags":["heavy_ranged","dreadnought"]
     },
     "Lascannon": {
        "abbreviation": "Lascnn",           
         "attack": {
-            "standard": 200,
-            "master_crafted": 220,
-            "artifact": 240
+            "standard": 300,
+            "master_crafted": 320,
+            "artifact": 340
         },
         "description": "A formidable laser weapon, this lascannon can pierce most vehicle or power armor from a tremendous range.",
         "melee_hands": 1,
@@ -945,7 +945,7 @@ global.weapons={
         "description": "Twin-linked Heavy Bolters are an upgraded version of the standard Heavy Bolter weapon, which is known for its high rate of fire and effectiveness against infantry and light vehicles.",
         "melee_hands": 0,
         "ranged_hands": 0,
-        "ammo": 20,
+        "ammo": 10,
         "range": 16,
         "spli": 1,
         "arp": 1,
@@ -961,7 +961,7 @@ global.weapons={
         "description": "Lascannons are powerful anti-armour weapons that fire highly focused and devastating energy beams capable of penetrating even the toughest armor.",
         "melee_hands": 0,
         "ranged_hands": 0,
-        "ammo": 10,
+        "ammo": 8,
         "range": 20,
         "spli": 0,
         "arp": 1,
@@ -977,7 +977,7 @@ global.weapons={
         "description": "Lascannons are powerful anti-armour weapons that fire highly focused and devastating energy beams capable of penetrating even the toughest armor.",
         "melee_hands": 1,
         "ranged_hands": 2.25,
-        "ammo": 5,
+        "ammo": 8,
         "range": 20,
         "spli": 0,
         "arp": 1,
@@ -986,9 +986,9 @@ global.weapons={
     "Heavy Bolter": {
         "abbreviation": "HvyBltr", 
         "attack": {
-            "standard": 320,
-            "master_crafted": 352,
-            "artifact": 384
+            "standard": 125,
+            "master_crafted": 152,
+            "artifact": 184
         },
         "description": "The Heavy Bolter is a heavy weapon that fires larger and more powerful bolt shells compared to the standard Bolter.",
         "melee_hands": 1,
@@ -1391,49 +1391,28 @@ global.weapons={
 
 global.gear = {
   "armour": {
-    "Power Armour": {
-        "abbreviation": "PwrArm", 
+    "Dreadnought": {
+         "abbreviation": "Drdnght", 
       "armour_value": {
-        "standard": 20,
-        "master_crafted": 25,
-        "artifact": 30
+        "standard": 60,
+        "master_crafted": 65,
+        "artifact": 70
       },
       "ranged_mod": {
         "standard": 0,
-        "master_crafted": 5,
-        "artifact": 10
+        "master_crafted": 5, // Augmented
+        "artifact": 10 // Augmented
       },
       "melee_mod": {
         "standard": 0,
-        "master_crafted": 5,
-        "artifact": 10
+        "master_crafted": 5, // Augmented
+        "artifact": 10 // Augmented
       },
-      "description": "A suit of Adeptus Astartes power armour. The Mark can no longer be determined- it appears to be a combination of several types.",
-      "tags":["power_armour"],
+      "melee_hands":8,
+      "ranged_hands":8,      
+      "description": "A massive war-machine that can be piloted by an honored Space Marine, who otherwise would have fallen in combat."
     },
-    "Artificer Armour": {
-        "abbreviation": "Artfcr", 
-      "armour_value": {
-        "standard": 37,
-        "master_crafted": 38,
-        "artifact": 39
-      },
-      "ranged_mod": {
-        "standard": 10,
-        "master_crafted": 15,
-        "artifact": 20
-      },
-      "melee_mod": {
-        "standard": 10,
-        "master_crafted": 15,
-        "artifact": 20
-      },
-      "melee_hands":0.1,
-      "ranged_hands":0.1,
-      "description": "Heavily modified by the chapter artificers, and decorated without compare, this ancient Power Armour is beyond priceless.",
-      "tags":["power_armour"],
-    },
-
+ // Terminator armours
     "Early Terminator Armour": {
          "abbreviation": "ETArm", 
       "armour_value": {
@@ -1453,7 +1432,7 @@ global.gear = {
       },
       "melee_hands":1,
       "ranged_hands":1,
-      "description": "An early and non-standard variant of heavy power armor. With the non-standard nature, it tends to be the weakest of terminator armours.",
+      "description": "An early variant of heavy power armor. It generally is a modified heavy-duty industrial armour, it tends to be the weakest of terminator armours.",
        "tags":["terminator"],
     },
     "Terminator Armour": {
@@ -1478,27 +1457,6 @@ global.gear = {
       "description": "The toughest and most powerful armour designed by humanity. Only the most veteran of Astartes are allowed to wear these.",
       "tags":["terminator"],
       "req_exp":90,
-    },
-    "Dreadnought": {
-         "abbreviation": "Drdnght", 
-      "armour_value": {
-        "standard": 60,
-        "master_crafted": 65,
-        "artifact": 70
-      },
-      "ranged_mod": {
-        "standard": 0,
-        "master_crafted": 5, // Augmented
-        "artifact": 10 // Augmented
-      },
-      "melee_mod": {
-        "standard": 0,
-        "master_crafted": 5, // Augmented
-        "artifact": 10 // Augmented
-      },
-      "melee_hands":8,
-      "ranged_hands":8,      
-      "description": "A massive war-machine that can be piloted by an honored Space Marine, who otherwise would have fallen in combat."
     },
     "Tartaros": {
         "abbreviation": "Tartrs", 
@@ -1546,25 +1504,7 @@ global.gear = {
       "tags":["terminator"],
       "req_exp":90,
     },
-     "Ork Armour": {
-     "abbreviation": "OrkArm", 
-      "armour_value": {
-        "standard": 7,
-        "master_crafted": 8,
-        "artifact": 9
-      },     
-      "ranged_mod": {
-        "standard": 0,
-        "master_crafted": 5, // Augmented
-        "artifact": 10 // Augmented
-      },
-      "melee_mod": {
-        "standard": 0,
-        "master_crafted": 5, // Augmented
-        "artifact": 10 // Augmented
-      },
-      "description": "Mismatched basic armour used by ork forces"
-    },
+ // Scout-tier armours
     "Scout Armour": {
         "abbreviation": "SctArm",
       "armour_value": {
@@ -1584,7 +1524,51 @@ global.gear = {
       },
       "description": "A non-powered suit made up of carapace armour and ballistic nylon. Includes biohazard shielding, nutrient feed, and camouflage."
     },
-
+ // Power armours
+    "Power Armour": {
+        "abbreviation": "PwrArm", 
+      "armour_value": {
+        "standard": 20,
+        "master_crafted": 25,
+        "artifact": 30
+      },
+      "ranged_mod": {
+        "standard": 0,
+        "master_crafted": 5,
+        "artifact": 10
+      },
+      "melee_mod": {
+        "standard": 0,
+        "master_crafted": 5,
+        "artifact": 10
+      },
+      "melee_hands": 0.1,
+      "ranged_hands": 0.1,
+      "description": "A suit of Adeptus Astartes power armour. The Mark can no longer be determined- it appears to be a combination of several types.",
+      "tags":["power_armour"],
+    },
+    "Artificer Armour": {
+        "abbreviation": "Artfcr", 
+      "armour_value": {
+        "standard": 37,
+        "master_crafted": 38,
+        "artifact": 39
+      },
+      "ranged_mod": {
+        "standard": 10,
+        "master_crafted": 15,
+        "artifact": 20
+      },
+      "melee_mod": {
+        "standard": 10,
+        "master_crafted": 15,
+        "artifact": 20
+      },
+      "melee_hands": 0.25,
+      "ranged_hands": 0.25,
+      "description": "Heavily modified by the chapter artificers, and decorated without compare, this ancient Power Armour is beyond priceless.",
+      "tags":["power_armour"],
+    },
     "MK1 Thunder Armour": {
         "abbreviation": "MK1",
       "armour_value": {
@@ -1622,6 +1606,8 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
+      "melee_hands": 0.05,
+      "ranged_hands": 0.05,
       "description": "Armour made with Great Crusade in mind. Often believed to be the most efficient power armour design.",
        "tags":["power_armour"],
     },
@@ -1642,6 +1628,8 @@ global.gear = {
         "master_crafted": 0, // Augmented
         "artifact": 5 // Augmented
       },
+      "melee_hands": 0.05,
+      "ranged_hands": 0.05,
       "description": "An ancient set of Armorum Ferrum. Has thicker armour plating but the added weight slows down the wearer.",
        "tags":["power_armour"],
     },
@@ -1662,13 +1650,15 @@ global.gear = {
         "master_crafted": 10, // Augmented
         "artifact": 15 // Augmented
       },
+      "melee_hands": 0.1,
+      "ranged_hands": 0.1,
       "description": "Armour dating to the end of the Great Crusade. Often considered the ultimate Space Marine armour. The components are no longer reproducible.",
       "tags":["power_armour"],
     },
     "MK5 Heresy": {
     "abbreviation": "MK5",
       "armour_value": {
-        "standard": 14,
+        "standard": 15,
         "master_crafted": 17,
         "artifact": 20
       },
@@ -1682,6 +1672,8 @@ global.gear = {
         "master_crafted": 0,
         "artifact": 5
       },
+      "melee_hands": 0.05,
+      "ranged_hands": 0.05,
       "description": "A non-standard variants of Power armour, that were developed during the Horus Heresy, made from various components that could still be produced. With the ad-hoc nature of these suits, it is one of the weaker armours.",
       "tags":["power_armour"],
     },
@@ -1702,6 +1694,8 @@ global.gear = {
         "master_crafted": 20, // Augmented
         "artifact": 25 // Augmented
       },
+      "melee_hands": 0.1,
+      "ranged_hands": 0.1,
       "description": "Relatively old beakie armour, sleek as can be. Boosted olfactory and auditory sensors increase the ranged accuracy of the wearer. Making it more fragile.",
       "tags":["power_armour"],
     },
@@ -1722,6 +1716,8 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
+      "melee_hands": 0.05,
+      "ranged_hands": 0.05,
       "description": "The staple power armour of the adeptus astartes and the only power armour still widely manufactured.",
       "tags":["power_armour"],
     },
@@ -1742,6 +1738,8 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
+      "melee_hands": 0.15,
+      "ranged_hands": 0.15,
     "description": "The newest and most advanced of the standard mark power armours as such production has not yet reached maximum capacity creating a supply shortage.",
     "tags":["power_armour"],
     },
@@ -1762,6 +1760,8 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
+      "melee_hands": 0.15,
+      "ranged_hands": 0.15,
       "description": "The MK10 Tacticus is the most advanced pattern of power armour available to the Space Marines, featuring advanced materials and systems.",
       "tags":["power_armour"],
     }, 
@@ -1792,7 +1792,26 @@ global.gear = {
                 "master_crafted": 12, // Augmented
                 "artifact": 15 // Augmented
             },                   
-        }
+        },
+        "Ork Armour": {
+            "abbreviation": "OrkArm", 
+                "armour_value": {
+                "standard": 7,
+                "master_crafted": 8,
+                "artifact": 9
+                },
+            "ranged_mod": {
+            "standard": 0,
+            "master_crafted": 5, // Augmented
+            "artifact": 10 // Augmented
+            },
+            "melee_mod": {
+            "standard": 0,
+            "master_crafted": 5, // Augmented
+            "artifact": 10 // Augmented
+            },
+        "description": "Mismatched basic armour used by ork forces"
+        },
     } , 
  // Vehicle equipment
     "Armoured Ceramite":{
@@ -1841,8 +1860,8 @@ global.gear = {
     "abbreviation": "Nrthcm",
       "special_description": "Heals Allies",
       "description": "An advanced medical field kit, these allow Space Marines to heal or recover Gene-Seed from fallen marines.",
-        "melee_hands": -0.5,
-        "ranged_hands": -0.5,       
+        "melee_hands": 0.15,
+        "ranged_hands": 0.15,       
     },
     "Psychic Hood": {
     "abbreviation": "PsyHd",
@@ -1910,8 +1929,8 @@ global.gear = {
     "abbreviation": "MsSrvArms",
       "special_description": "Integrated Flamer, Repairs Vehicles",
       "description": "This master servo harness includes additional mechanical arms and tools, allowing a greater capacity and rate of repairs.",
-        "melee_hands": 0.25,
-        "ranged_hands": 0.25,  
+        "melee_hands": 0.5,
+        "ranged_hands": 0.5,  
     },
     "Smoke Launchers": {
       "special_description": "",

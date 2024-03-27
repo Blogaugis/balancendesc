@@ -328,7 +328,7 @@ function scr_weapons_equip() {
 			i+=1;item_name[i]="Cataphractii";
 			i+=1;item_name[i]="Tartaros";
 	        i+=1;item_name[i]="Terminator Armour";
-	        i+=1;item_name[i]="Aegis";
+	        // i+=1;item_name[i]="Aegis";
 	    }
 
 	    else i+=1;

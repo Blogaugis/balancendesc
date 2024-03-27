@@ -85,6 +85,9 @@ if (action="move") or (action="crusade1") or (action="crusade2") or (action="cru
         if (steh.p_owner[1]=3) or (steh.p_owner[2]=3) or (steh.p_owner[3]=3) or (steh.p_owner[4]=3){         
             if (obj_controller.faction_defeated[3]=0) and (obj_controller.known[eFACTION.Mechanicus]=0) then obj_controller.known[eFACTION.Mechanicus]=1;
         }
+        if (steh.p_owner[1]=4) or (steh.p_owner[2]=4) or (steh.p_owner[3]=4) or (steh.p_owner[4]=4){         
+            if (obj_controller.faction_defeated[4]=0) and (obj_controller.known[eFACTION.Inquisition]=0) then obj_controller.known[eFACTION.Inquisition]=1;
+        }
         if (steh.p_owner[1]=5) or (steh.p_owner[2]=5) or (steh.p_owner[3]=5) or (steh.p_owner[4]=5){
             if (obj_controller.faction_defeated[5]=0) and (obj_controller.known[eFACTION.Ecclesiarchy]=0) then obj_controller.known[eFACTION.Ecclesiarchy]=1;
         }
