@@ -1966,7 +1966,7 @@ function scr_initialize_custom() {
 	    veh_pilots[company,v]=0;
 	    veh_lid[company,v]=0;veh_wid[company,v]=2;
 	}
-	var predrelic=2;
+	var predrelic=0;
 	if (global.chapter_name="Iron Hands") then predrelic=3;
 	repeat(predrelic){
 		v+=1;
