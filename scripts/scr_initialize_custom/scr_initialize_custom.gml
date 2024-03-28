@@ -52,7 +52,7 @@ function scr_initialize_custom() {
 	    }*/
 	}
 
-	if (progenitor=10){// Pretty sure that's random?
+	if (progenitor=10){// Yet to find out if it's random
 	var legions=["Dark Angels",
 				"2nd Legion",
 				"Emperor's Children",
@@ -1951,7 +1951,7 @@ function scr_initialize_custom() {
 		name[company][k]=global.name_generator.generate_space_marine_name();
 	}
 
-	for(i=0;i<4;i++){
+	for(i=0;i<0;i++){
 		v+=1;
 		man_size+=10;
 	    veh_race[company,v]=1;
