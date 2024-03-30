@@ -918,7 +918,7 @@ repeat(20){j+=1;
 		dudes_ac[j]=30;dudes_hp[j]=150;men+=dudes_num[j];}
     if (dudes[j]="Chaos Sorcerer"){
 		scr_en_weapon("Plasma Pistol",true,dudes_num[j],dudes[j],j);
-		scr_en_weapon("Force Weapon",true,dudes_num[j],dudes[j],j);
+		scr_en_weapon("Force Staff",true,dudes_num[j],dudes[j],j);
 		dudes_ac[j]=17;dudes_hp[j]=100;men+=dudes_num[j];}
     if (dudes[j]="Warpsmith"){
 		scr_en_weapon("Chainfist",true,dudes_num[j],dudes[j],j);
@@ -993,15 +993,15 @@ repeat(20){j+=1;
 		dudes_ac[j]=20;dudes_hp[j]=150;men+=dudes_num[j];}
     if (dudes[j]="Noise Marine"){
 		scr_en_weapon("Sonic Blaster",true,dudes_num[j],dudes[j],j);
-		scr_en_weapon("Combat Knife",true,dudes_num[j],dudes[j],j);
+		scr_en_weapon("Chainsword",true,dudes_num[j],dudes[j],j);
 		dudes_ac[j]=20;dudes_hp[j]=100;men+=dudes_num[j];}
     if (dudes[j]="Rubric Marine"){
 		scr_en_weapon("Rubric Bolter",true,dudes_num[j],dudes[j],j);
-		scr_en_weapon("Combat Knife",true,dudes_num[j],dudes[j],j);
+		scr_en_weapon("Chainsword",true,dudes_num[j],dudes[j],j);
 		dudes_ac[j]=30;dudes_hp[j]=125;men+=dudes_num[j];}
     if (dudes[j]="Rubric Sorcerer"){
 		scr_en_weapon("Witchfire",true,dudes_num[j],dudes[j],j);
-		scr_en_weapon("Force Weapon",true,dudes_num[j],dudes[j],j);
+		scr_en_weapon("Force Staff",true,dudes_num[j],dudes[j],j);
 		dudes_ac[j]=30;dudes_hp[j]=150;men+=dudes_num[j];}
       
     if (dudes[j]="Cultist"){

@@ -184,9 +184,12 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 	if (obj_ncombat.enemy>=10) or (obj_ncombat.enemy=2) or (obj_ncombat.enemy=5) or (obj_ncombat.enemy=1){
 
 	    if (argument0="Plasma Pistol"){atta=70;arp=1;rang=3.1;}
-	    if (argument0="Power Weapon"){atta=120;arp=1;rang=1;}
-	    if (argument0="Power Sword"){atta=120;arp=1;rang=1;}
-	    if (argument0="Force Weapon"){atta=400;arp=1;rang=1;}
+
+	    if (argument0="Power Weapon"){atta=120;arp=1;rang=1;spli=1;}
+	    if (argument0="Power Sword"){atta=120;arp=1;rang=1;spli=1;}
+	    if (argument0="Force Weapon"){atta=400;arp=1;rang=1;spli=1;}
+	    if (argument0="Force Staff"){atta=400;arp=1;rang=1;spli=1;}
+
 	    if (argument0="Chainfist"){atta=300;arp=1;rang=1;spli=1;}
 	    if (argument0="Meltagun"){atta=200;arp=1;rang=3.1;amm=4;}
 	    if (argument0="Flamer"){atta=100;arp=-1;rang=3.1;amm=4;spli=1;}
@@ -197,9 +200,9 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 	    if (argument0="Power Fist"){atta=425;arp=1;rang=1;}
 	    if (argument0="Possessed Claws"){atta=250;arp=1;rang=1;spli=1;}
 	    if (argument0="Missile Launcher"){atta=200;arp=1;rang=20;amm=4;spli=1;}
-	    if (argument0="Chainsword"){atta=45;arp=0;rang=1;}
+	    if (argument0="Chainsword"){atta=45;arp=0;rang=1;spli=1;}
 	    if (argument0="Bolt Pistol"){atta=35;arp=0;rang=3.1;amm=18;}
-	    if (argument0="Chainaxe"){atta=55;arp=0;rang=1;}
+	    if (argument0="Chainaxe"){atta=55;arp=0;rang=1;spli=1;}
 	    if (argument0="Poisoned Chainsword"){atta=90;arp=0;rang=1;if (obj_ini.preomnor=1){atta=130;}}
 	    if (argument0="Sonic Blaster"){atta=120;arp=0;rang=3.1;spli=1;}
 	    if (argument0="Rubric Bolter"){atta=80;arp=0;rang=12;amm=15;spli=1;}// Bursts
@@ -229,7 +232,7 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 	    if (argument0="Blessed Weapon"){atta=150;arp=1;rang=1;}
 	    if (argument0="Electro-Flail"){atta=125;arp=1;rang=1;spli=1;}
 	    if (argument0="Neural Whip"){atta=85;arp=0;rang=1;spli=1}
-  	    if (argument0="Sarissa"){atta=40;arp=0;rang=1;}
+  	    if (argument0="Sarissa"){atta=40;arp=0;rang=1;spli=1;}
 	    if (argument0="Seraphim Pistols"){atta=200;arp=1;rang=4;}
 	    if (argument0="Laser Mace"){atta=200;arp=1;rang=5.1;amm=3;}
 	    if (argument0="Heavy Bolter"){atta=120;arp=0;rang=16;amm=20;spli=1;}
