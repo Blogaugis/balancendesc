@@ -160,7 +160,7 @@ if (obj_controller.disposition[4]<=20) or (obj_controller.loyalty<=33) and (dema
 if (obj_controller.disposition[4]>20) and (obj_controller.loyalty>33) and (demanding==1) then demanding=0;
 // Main menu movement
 if ((menu==0) and (formating==0)) or (instance_exists(obj_fleet)){
-    var spd=12,keyb="";
+    var spd=2,keyb=""; // player move speed on campaign map
     if ((!instance_exists(obj_ingame_menu)) and (!instance_exists(obj_ncombat))) or (instance_exists(obj_fleet)){
         if ((keyboard_check(vk_left)) or (mouse_x<=__view_get( e__VW.XView, 0 )+2) or (keyboard_check(ord("A")))) and (x>800) then x-=spd;
         if ((keyboard_check(vk_right)) or (mouse_x>=__view_get( e__VW.XView, 0 )+1598) or (keyboard_check(ord("D")))) and (x<(room_width-800)) then x+=spd;
@@ -514,10 +514,10 @@ if (menu==1 && (managing>0 || managing<0)){
         if (managing<=10) then c=managing;
         if (managing>20) then c=managing-10;
         
-        var top,sel,unit,temp1="",temp2="",temp3="",temp4="",temp5="",force_tool=0;
+        var top,sel,temp1="",temp2="",temp3="",temp4="",temp5="",force_tool=0;
         top=man_current;
         sel=top;
-        
+        var unit = "";
         yy+=77;
         for(var r=0; r<(min(man_max,man_see)); r++){
             force_tool=0;
@@ -529,7 +529,7 @@ if (menu==1 && (managing>0 || managing<0)){
                 or (temp[114]="refresh")) then force_tool=1;
             }
             
-            if (((mouse_x>=xx+25 && mouse_y>=yy+64 && mouse_x<xx+974 && mouse_y<yy+85) || force_tool==1)){
+            if (((mouse_x>=xx+25 && mouse_y>=yy+64 && mouse_x<xx+974 && mouse_y<yy+85) || force_tool==1) && is_struct(unit)){
                 temp[120] = unit; // unit_struct
             }
             draw_set_color(38144);
@@ -692,7 +692,8 @@ if (unload>0){
     for(var q=1; q<=500; q++){
         if (man[q]=="man") and (ma_loc[q]==selecting_location) and (ma_wid[q]<1)and (man_sel[q]!=0){
             if (b==0) then b=ma_lid[q];
-            unit=obj_ini.TTRPG[manaj][ide[q]];
+            unit=display_unit[q];
+            if (!is_struct(unit)) then continue;
             if (unit.name()=="") then continue;
             obj_ini.loc[manaj][ide[q]]=obj_ini.ship_location[b];
             obj_ini.lid[manaj][ide[q]]=0;
@@ -716,7 +717,7 @@ if (unload>0){
         }
     }
     selecting_location="";
-    for(var i=0; i<501; i++){
+    for(var i=0; i<500; i++){
         man_sel[i]=0;
     }
     obj_ini.ship_carrying[b]-=man_size;
