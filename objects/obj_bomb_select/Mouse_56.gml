@@ -236,6 +236,10 @@ if (__b__){
             // Start bombardment here
             scr_bomb_world(p_target,obj_controller.selecting_planet,target,bomb_score,str);
         }
+		if((mouse_x>=xx+310) and (mouse_y>=yy+420) and (mouse_x<xx+444) and (mouse_y<yy+445)){
+		instance_destroy()
+		}
+		
     }
     instance_activate_object(obj_star_select);
 }

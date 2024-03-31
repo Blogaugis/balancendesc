@@ -175,6 +175,19 @@ if (max_ships>0)and (instance_exists(obj_star_select)){
         draw_text(xx+379,yy+382,string_hash_to_newline("Bombard!"));
         draw_set_halign(fa_left);
     }
+	
+	 if (sel!=""){
+        draw_set_halign(fa_center);
+        draw_set_font(fnt_menu);
+        draw_set_color(38144);
+        
+        draw_rectangle(xx+310,yy+420,xx+444,yy+445,1);draw_set_alpha(0.5);
+        draw_rectangle(xx+311,yy+421,xx+443,yy+444,1);draw_set_alpha(1);
+        
+        draw_text(xx+379,yy+424,string_hash_to_newline("Cancel?"));
+        draw_set_halign(fa_left);
+    }
+	
 }
 
 draw_set_font(fnt_tiny);
