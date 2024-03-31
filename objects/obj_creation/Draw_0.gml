@@ -381,29 +381,39 @@ if (slide=2){
         draw_set_halign(fa_left);
         
         if (scr_hit(516,242,674,266)=true){tooltip="Homeworld";tooltip2="Your chapter has a homeworld that they base on.  Contained upon it is a massive Fortress Monastery, which provides high levels of defense and automated weapons.";}
-        if (scr_hit(768,242,866,266)=true){tooltip="Fleet Based";tooltip2="Rather than a homeworld your chapter begins near their recruiting world.  The fleet includes a Battle Barge, which serves as a mobile base, and powerful ship.";}
-        if (scr_hit(952,242,1084,266)=true){tooltip="Penitent";tooltip2="As with Fleet Based, but you must crusade and fight until your penitence meter runs out.  Note that recruiting is disabled until then.";}// Avoiding fights will result in excomunicatus traitorus.
-        
+        if (scr_hit(668,242,766,266)=true){tooltip="Fleet Based";tooltip2="Rather than a homeworld your chapter begins near their recruiting world.  The fleet includes a Battle Barge, which serves as a mobile base, and powerful ship.";}
+        if (scr_hit(852,242,984,266)=true){tooltip="Penitent";tooltip2="As with Fleet Based, but you must crusade and fight until your penitence meter runs out.  Note that recruiting is disabled until then.";}// Avoiding fights will result in excomunicatus traitorus.
+		if (scr_hit(1015,242,1015+32,266)=true){tooltip="Renegade";tooltip2="Either due to unfortunate circumstances or through personal treachery, your chapter has left the light of the Imperium. You have been declared traitor and have been left to fend for yourself. You will also be hunted on sight by loyal Imperials. ";}// Avoiding fights will result in excomunicatus traitorus.
+		
         if (custom<2) then draw_set_alpha(0.5);
         yar=0;if (fleet_type=1) then yar=1;draw_sprite(spr_creation_check,yar,519,239);yar=0;
         if (scr_hit(519,239,519+32,239+32)=true) and (cooldown<=0) and (mouse_left>=1) and (custom=2){cooldown=8000;
-            if (points+20<=maxpoints) and (fleet_type=3){points+=20;fleet_type=1;}
+            if (points+20<=maxpoints) and (fleet_type=3 or fleet_type=4){points+=20;fleet_type=1;}
             if (fleet_type=2){fleet_type=1;}
         }
         draw_text_transformed(551,239,string_hash_to_newline("Homeworld"),0.6,0.6,0);
         
-        yar=0;if (fleet_type=2) then yar=1;draw_sprite(spr_creation_check,yar,771,239);yar=0;
-        if (scr_hit(771,239,771+32,239+32)=true) and (cooldown<=0) and (mouse_left>=1) and (custom=2){cooldown=8000;
-            if (points+20<=maxpoints) and (fleet_type=3){points+=20;fleet_type=2;}
+        yar=0;if (fleet_type=2) then yar=1;draw_sprite(spr_creation_check,yar,671,239);yar=0;
+        if (scr_hit(671,239,671+32,239+32)=true) and (cooldown<=0) and (mouse_left>=1) and (custom=2){cooldown=8000;
+            if (points+20<=maxpoints) and (fleet_type=3 or fleet_type=4){points+=20;fleet_type=2;}
             if (fleet_type=1){fleet_type=2;}
         }
-        draw_text_transformed(804,239,string_hash_to_newline("Fleet Based"),0.6,0.6,0);
+        draw_text_transformed(704,239,string_hash_to_newline("Fleet Based"),0.6,0.6,0);
         
-        yar=0;if (fleet_type=3) then yar=1;draw_sprite(spr_creation_check,yar,958,239);yar=0;
-        if (scr_hit(958,239,958+32,239+32)=true) and (cooldown<=0) and (mouse_left>=1) and (custom=2){if (fleet_type!=3) then points-=20;fleet_type=3;cooldown=8000;}
-        draw_text_transformed(990,239,string_hash_to_newline("Penitent"),0.6,0.6,0);
+        yar=0;if (fleet_type=3) then yar=1;draw_sprite(spr_creation_check,yar,858,239);yar=0;
+        if (scr_hit(858,239,858+32,239+32)=true) and (cooldown<=0) and (mouse_left>=1) and (custom=2){if (fleet_type!=3) then points=0-20;fleet_type=3;cooldown=8000;}
+        draw_text_transformed(890,239,string_hash_to_newline("Penitent"),0.6,0.6,0);
         draw_set_alpha(1);
-        
+		
+		
+		yar=0;if (fleet_type=4) then yar=1;draw_sprite(spr_creation_check,yar,1015,239);yar=0;
+		draw_set_color(c_red);
+        if (scr_hit(1015,239,1015+32,239+32)=true) and (cooldown<=0) and (mouse_left>=1) and (custom=2){if (fleet_type!=4) then points=0-100;fleet_type=4;cooldown=8000;}
+        draw_text_transformed(1045,239,string_hash_to_newline("Renegade"),0.6,0.6,0);
+        draw_set_alpha(1);
+		
+		draw_set_color(38144);
+		
         draw_line(445,289,1125,289);
         draw_line(445,290,1125,290);
         draw_line(445,291,1125,291);
