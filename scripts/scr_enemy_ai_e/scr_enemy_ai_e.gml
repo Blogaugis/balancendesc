@@ -827,7 +827,7 @@ function scr_enemy_ai_e() {
 
                         var i = 0;
 
-                        repeat(5) {
+                        /*repeat(5) {
                             i = 0;
                             repeat(300) {
                                 i += 1;
@@ -852,7 +852,7 @@ function scr_enemy_ai_e() {
                                     obj_controller.recruit_training[i] = obj_controller.recruit_training[500];
                                 }
                             }
-                        }
+                        }*/
                         // End sorting
                     }
                     // End aspirant!=0
