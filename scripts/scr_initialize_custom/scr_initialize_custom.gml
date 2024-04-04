@@ -1527,7 +1527,7 @@ function scr_initialize_custom() {
 	role[company,2]="Forge Master";
 	wep1[company,2]="Conversion Beam Projector";
 	name[company,2]=obj_creation.fmaster;
-	wep2[company,2]="Power Weapon";
+	wep2[company,2]="Power Sword";
 	armour[company,2]="Artificer Armour";
 	gear[company,2]="Master Servo Arms";
 	chaos[company,2]=0;
@@ -2727,7 +2727,7 @@ function scr_initialize_custom() {
 	    scr_add_item("Bolt Pistol",80);
 	    scr_add_item("Heavy Bolter",40);
 	    scr_add_item("Lascannon",40);
-	    scr_add_item("Power Weapon",12);
+	    scr_add_item("Power Sword",12);
 	    scr_add_item("Rosarius",4);
 	}
 	if (string_count("Sieged",strin2)=0){
