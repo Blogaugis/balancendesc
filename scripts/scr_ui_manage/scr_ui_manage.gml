@@ -439,7 +439,7 @@ function scr_ui_manage() {
 					}else if global.body_parts_display[part] == "Torso"{
 						bionic_tooltip += $"  CON: +4#  STR: +1#  DEX: -1#";				
 					}else if global.body_parts_display[part] == "Throat"{
-						bionic_tooltip += $"  CHA: -1#";
+						bionic_tooltip += $"  CON: +1#  CHA: -1#";
 					}else{ 
 						bionic_tooltip += $"  CON: +1#";		
 					}

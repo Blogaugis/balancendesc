@@ -183,7 +183,7 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 
 	if (obj_ncombat.enemy>=10) or (obj_ncombat.enemy=2) or (obj_ncombat.enemy=5) or (obj_ncombat.enemy=1){
 
-	    if (argument0="Plasma Pistol"){atta=70;arp=1;rang=3.1;}
+	    if (argument0="Plasma Pistol"){atta=100;arp=1;rang=5;spli=1;}
 
 	    if (argument0="Power Weapon"){atta=120;arp=1;rang=1;spli=1;}
 	    if (argument0="Power Sword"){atta=120;arp=1;rang=1;spli=1;}

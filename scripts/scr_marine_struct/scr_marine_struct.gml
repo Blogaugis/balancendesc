@@ -6,7 +6,7 @@
 	role[100][16]:{"armour":},
 	"Standard Bearer":{"armour":[["MK3 Iron Armour", 3]]},
 	role[100][7]:{"armour":[]},  //company champion
-	role[100][8]:{"armour":[["MK8 Errant", 3],["MK3 Iron Armour", 3],["MK4 Maximus", 3],["MK5 Heresy", 3]]},     //tacticals
+	role[100][8]:{"armour":[["MK8 Errant", 3],["MK5 Heresy", 3],["MK4 Maximus", 3],["MK3 Iron Armour", 3]]},     //tacticals
 	role[100][10]:{"armour":},		
 	role[100][9]:{"armour":},
 	role[100][12]:{"armour":},
@@ -27,7 +27,7 @@ global.religions={
 	"cult_mechanicus":{"name":"Cult Mechanicus"}, 
 	"eight_fold_path":{"name":"The Eight Fold Path"}
 };
-global.power_armour=["MK7 Aquila","MK6 Corvus","MK5 Heresy","MK3 Iron Armour","MK4 Maximus","Power Armour"];
+global.power_armour=["MK8 Errant","MK7 Aquila","MK6 Corvus","MK5 Heresy","MK4 Maximus","MK3 Iron Armour","Power Armour"];
 enum location_types {
 	planet,
 	ship,
@@ -39,61 +39,62 @@ enum location_types {
 global.phy_levels =["Rho","Pi","Omicron","Xi","Nu","Mu","Lambda","Kappa","Iota","Theta","Eta","Zeta","Epsilon","Delta","Gamma","Beta","Alpha","Alpha Plus","Beta","Gamma Plus"]
 global.trait_list = {
 	"champion":{
-		weapon_skill : [10,5,"max"],      
-		ballistic_skill:[10,5, "max"],
-		display_name : "Champion",
+		weapon_skill : 5,      
+		ballistic_skill: 5,
+		display_name : "Master of Arms",
 		flavour_text : "Through either natural talent, or obsessive training {0} is a master of arms",
 		effect:"increase Melee Cap"
 	},
 	"lightning_warriors":{
-		constitution: -6,
-		dexterity :6,
-		weapon_skill : 5,
+		constitution: -2,
+		dexterity :2,
+		weapon_skill : 2,
 		flavour_text : "{0} is a master of speed covering distances quickly to enter the fray",
 		display_name : "Lightning Warrior",
 	},
 	"slow_and_purposeful":{
-		constitution:6,
-		dexterity : -6,
+		constitution:2,
+		dexterity : -2,
 		strength : 2,
 		flavour_text : "{0} is implacable, advancing in combat with methodical reason",
 		display_name : "Slow and Purposeful",
 
 	},
 	"melee_enthusiast":{
-		weapon_skill : 5,
-		strength : 3,		
+		weapon_skill : 2,
+		strength : 1,		
 		flavour_text : "nothing can keep {0} from the fury of close up battle",	
 		display_name : "Melee Enthusiast",
 
 	},
 	"shitty_luck":{
-		luck:-4,
+		luck: -4,
 		flavour_text : "for all their talent {0} is dogged by poor luck",
-		display_name : "Shitty Luck",
+		display_name : "Unlucky",
 	},
 	"very_hard_to_kill":{
-		constitution:15,
-		luck:2,
+		constitution: 15,
+		luck: 2,
 		flavour_text : "{0} is possed of a toughness and luck unsurpassed by most",
 		display_name : "Very Hard To Kill",
 		
 	},
 	"paragon":{
-		constitution:12,
-		luck:2,
-		strength:10,
-		dexterity:10,
-		intelligence:6,
-		charisma:6,
-		weapon_skill:10,
-		ballistic_skill:10,
+		constitution: 20,
+		luck: 2,
+		strength: 10,
+		dexterity: 10,
+		intelligence: 6,
+		charisma: 6,
+		weapon_skill: 10,
+		ballistic_skill: 10,
 		flavour_text : "{0} walks in the footsteps of the primarchs of old",
 		display_name : "Paragon",
 
 	},
 	"warp_touched":{
-		intelligence:4,
+		intelligence: 4,
+		wisdom : 4,
 		flavour_text : " {0} Has interacted with the warp in away that has forever marked them",
 		display_name : "Warp Touched",		
 	},
@@ -106,8 +107,8 @@ global.trait_list = {
 		luck : 1,
 		constitution : 1,
 		strength :1,
-		weapon_skill : [2, 2, "max"],
-		ballistic_skill :[2, 2, "max"],
+		weapon_skill : 2,
+		ballistic_skill : 2,
 		flavour_text : "{0} has seen many a young warrior rise and die before him but he remains",
 		display_name : "Old Guard"
 	},
@@ -116,7 +117,7 @@ global.trait_list = {
 		constitution : 1,
 		strength :1,
 		weapon_skill : 1,
-		ballistic_skill :1,
+		ballistic_skill : 1,
 		flavour_text : "{0} is a seasoned warrior having fought for many years",
 		display_name : "Seasoned",		
 	},
@@ -131,186 +132,204 @@ global.trait_list = {
 		display_name : "Ancient",		
 	},
 	"tinkerer":{
-		technology:[5,2,"max"],
+		technology: 5,
+		intelligence: 1,
+		wisdom : 1,
 		display_name:"Tinkerer",
 		flavour_text:"{0} has a knack for tinkering around with various technological devices and apparatuses often augmenting and improving his own equipment",
 	},
 	"lead_example":{
-		weapon_skill:[2,1,"max"],
-		ballistic_skill :[2,1,"max"],
-		constitution :[2,1, "max"],
-		dexterity:2,
-		strength:1,
-		luck:1,
-		intelligence:1,
-		wisdom:1,
-		charisma:3,
+		weapon_skill: 1,
+		ballistic_skill : 1,
+		constitution : 1,
+		dexterity: 2,
+		strength: 1,
+		luck: 1,
+		intelligence: 1,
+		wisdom: 1,
+		charisma: 3,
 		display_name:"Lead by Example",
 		flavour_text :"In his many years of service, {0} has rissen through the ranks and has always lead by example and from the front, he has the respect of all of his brothers",
 	},
 	"still_standing":{
-		weapon_skill:[6,2,"max"],
-		ballistic_skill :[6,2,"max"],
-		constitution :[3,1, "max"],
-		dexterity:5,
-		luck:3,
-		wisdom:[3,3,1],
-		charisma:1,
+		weapon_skill: 1,
+		ballistic_skill : 1,
+		constitution : 2,
+		dexterity: 5,
+		luck: 1,
+		wisdom: 2,
+		charisma: 1,
 		display_name:"Still Standing",
 		flavour_text :"{0} survived inmessurable odds, either through killing a warboss, killing a nid queen, or other incredible deed, while all his brothers were injured",
 
 	},
 	"lone_survivor":{
-		weapon_skill:[8,2,"max"],
-		ballistic_skill :[8,2,"max"],
-		constitution :[8,1, "max"],
-		dexterity:[4,2, "max"],
-		strength:[4,2, "max"],
-		luck:5,
-		wisdom:[2,1,"max"],
-		intelligence:[3,3,"max"],
-		charisma:[-3, 1, "min"],
+		weapon_skill:2,
+		ballistic_skill :2,
+		constitution : 5,
+		dexterity: 1,
+		strength: 1,
+		luck: 2,
+		wisdom: 2,
+		intelligence: 2,
+		charisma: -1,
 		display_name:"Lone Survivor",
 		flavour_text :"{0} survived a battle where all his deployed brothers died. He is more reclusive, but gained immeasurable combat capabilities and is harder to kill.",
 	},
 	"beast_slayer":{
-		weapon_skill:[3,2,"max"],
-		ballistic_skill :[4,2,"max"],
-		constitution :[2,1, "max"],
+		weapon_skill:4,
+		ballistic_skill :4,
+		constitution :2,
 		dexterity:1,
-		strength:4,
+		strength:1,
 		wisdom:3,
 		charisma:1,
-		display_name:"Lone Survivor",
+		display_name:"Beast Slayer",
 		flavour_text :"{0} has defeated a huge beast in single combat, this proves his toughness and his great ability to overcome powerful enemies of the imperium",
 
 	},	
-	"mars_trained":{
-		technology:[10,5,"max"],
-		intelligence:[5,5,"max"],
+	"mars_trained":{ // This trait might warrant Gaussian calculation, as it is education trait, and some teachers can be on the poor side
+		technology: 5,
+		intelligence: 1,
 		display_name:"Trained On Mars",
 		flavour_text:"{0} Has had the best instruction in the imperium on technology from the Tech Priests of Mars"
 	},
 	"flesh_is_weak":{
-		technology:[2,1,"max"],
-		constitution:[1,1,"max"],
-		piety:[3,1,"max"],
+		technology: 2,
+		constitution: 1,
+		piety: 1,
 		display_name:"Weakness of Flesh",
 		flavour_text:"{0} tries to cast aside all perceived weaknesses of the flesh",
 		effect:"faith boosts from bionic replacements"
 	},
 	"zealous_faith":{
-		strength:[1,1,"max"],
-		texhnology:-2,
-		wisdom:3,
-		intelligence:-2,
-		piety:[5,2,"max"],
+		strength: 1,
+		constitution : 2,
+		technology: -2,
+		wisdom: 3,
+		intelligence: -2,
+		piety: 5,
 		display_name:"Zealous Faith",
 		flavour_text:"{0} puts great emphasis on his faith, able to draw strength from it in crisis"
 	},
 	"feet_floor":{
-		wisdom:1,
-		dexterity:-2,
+		wisdom: 1,
+		dexterity: -2,
 		display_name:"Feet On the Ground",
 		flavour_text:"{0} prefers to keep both feet on the ground",
 		effect:"reduction in combat effectiveness when using Bikes or Jump Packs"
 	},
 	"tyrannic_vet":{
-		wisdom :[2,3,"max"],
-		dexterity:1,
-		weapon_skill:1,
-		ballistic_skill:1,
-		constitution:1,
+		wisdom : 1,
+		dexterity: 1,
+		weapon_skill: 1,
+		ballistic_skill: 1,
+		constitution: 1,
 		display_name:"Tyrannic War Veteran",
 		flavour_text:"{0} Is a veteran of the many wars against the the Tyranid swarms",
 		effect:"Increased lethality against tyranids"
 	},
 	"blood_for_blood":{
-		strength:[3,2,"max"],
-		weapon_skill:1,
-		piety:2,
+		strength: 5,
+		constitution : 2,
+		weapon_skill: 2,
+		piety: 2,
 		display_name:"Blood For the Blood God",
 		flavour_text:"{0} Has spilled blood in the name of the blood god",
 		effect:"Has the attention of Khorne"
 	},
 	"blunt":{
-		strength:[2,2,"max"],
-		wisdom:2,
-		charisma:-2,
-		intelligence:-4,
 		weapon_skill:1,
+		ballistic_skill: 1,
+		strength: 1,
+		dexterity: 1,
+		constitution: 1,
+		wisdom: -2,
+		technology: -2,
+		intelligence: -2,
 		display_name:"Blunt",
-		flavour_text:"{0} tends towards simplistic approaches to achieve goals",
+		flavour_text:"{0} prefers simplistic approaches to achieve goals",
 	},
 	"skeptic":{
-		piety:[-6,4,"min"],
-		wisdom:1,
+		piety: -5,
+		technology: 2,
+		intelligence: 2,
 		display_name:"Skeptic",
 		flavour_text:"{0} has a skeptical outlook and puts little thought in trivial matters like religion and faith",
 	},
 	"scholar":{
-		intelligence:[4,2,"max"],
-		wisdom:1,
-		technology:2,
-		stength:-1,
+		intelligence: 2,
+		wisdom: 2,
+		technology: 1,
+		strength: -1,
+		dexterity: -1,
+		constitution: -1,
 		display_name:"Scholar",
-		flavour_text:"{0} has an keen mind and enjoys to read and train it where possible",
+		flavour_text:"{0} has shown preference to reading than doing physical exercises",
 	},
 	"brute":{
-		strength:[4,2,"max"],
-		weapon_skill:[2,2,"max"],
-		ballistic_skill:[-2,1,"min"],
-		wisdom:-5,
-		intelligence:-5,
-		charisma:-2,
+		strength: 1,
+		weapon_skill: 5,
+		ballistic_skill: 5,
+		wisdom: -1,
+		intelligence: -1,
+		charisma: -5,
 		display_name:"Brute",
 		flavour_text:"{0} is a brutal character solving problems often with intimidation or violence",
 	},
 	"charismatic":{
-		charisma:[10,4,"max"],
+		charisma: 5,
 		display_name:"Charismatic",
-		flavour_text:"{0} is liked by most without even trying",
+		flavour_text:"{0} possesses exceptional charisma, capable to move others with words and articulation",
 	},
 	"recluse":{
-		charisma:[-3,2,"min"],
-		dexterity:1,
-		wisdom:1,
+		charisma: -5,
+		intelligence: 2,
+		wisdom: 2,
+		technology: 1,
 		display_name:"Reclusive",
 		flavour_text:"{0} is generally withdrawn and reclusive avoiding social engagements were possible",
 	}	,
 	"nimble":{
 		display_name:"Nimble",
-		flavour_text:"{0} is natrually nible and light on their feet",
-		dexterity:[4,3,"max"],
-		weapon_skill:1,
-		constitution:-3,
+		flavour_text:"{0} is quite capable to move around, though strength is lacking",
+		dexterity: 4,
+		ballistic_skill: 1,
+		weapon_skill: 1,
+		constitution:-2,
+		strength: -2,
 	},
-	"jaded":{
+	"jaded":{ // This trait might warrant Gaussian calculation, as it is backstory trait.
 		display_name:"Jaded",
-		flavour_text:"{0}'s past has led to a deep distrust and cynicla outlook on most parts of their life",
-		charisma:-2,
-		wisdom:-1,
+		flavour_text:"{0}'s past has led to a deep distrust and cynical outlook on most parts of their life",
+		charisma: -1,
+		wisdom: 1,
+		intelligence: 1,
+		piety: -1,
 	},
 	"observant":{
 		display_name:"Observant",
 		flavour_text:"{0} tends to notics things that most don't",
-		wisdom:[5,2,"max"],
-		dexterity:2
+		wisdom: 4,
+		dexterity: 2,
+		ballistic_skill: 1,
+		weapon_skill: 1,
 	},
-	"perfectionist":{
+	"perfectionist":{ // Might warrant Gaussian calculation, as it is perfectionism in this character's mind
 		display_name:"Perfectionist",
-		flavour_text:"{0} Is obsessive with doing things correctly",
+		flavour_text:"{0} Is obsessive with doing things in perfect way",
 		wisdom:[2,2,"max"],
 		weapon_skill:[2,2,"max"],
 		ballistic_skill:[2,2,"max"],
 		intelligence:[2,1],
 		piety:[2,1],
+		constitution: -2,
 	},
-	"guardian":{
+	"guardian":{ // Again, migth warrant Gaussian stuff, as it is his mental trait
 		display_name:"Guardian",
 		weapon_skill:[2,2,"max"],
 		ballistic_skill:[2,2,"max"],
-		charisma:2,
+		charisma: 2,
 		flavour_text:"{0} Has a natural sense of protection and will guard those under his protection unto death",
 		effect:"Is a better guardian or body guard",
 	},
@@ -321,19 +340,23 @@ global.trait_list = {
 		dexterity:[2,2,"max"],
 		charisma:2,
 		wisdom:1,
-		flavour_text:"{0} is possessed of a fine cunning",
+		flavour_text:"{0} is possessed of a fine cunning", // I don't understand what this description is trying to say.
 	},
 	"strong":{
 		display_name:"Strong",
-		strength:[6,2,"max"],
-		flavour_text:"{0} Is very strong",
+		strength: 5,
+		constitution: 2,
+		flavour_text:"{0} is stronger than most",
 	},	
 	"slow":{
-		display_name:"slow",
-		dexterity:[-3,3,"min"],
-		flavour_text:"{0} is many things but fast ain't one of em",
+		display_name:"Slow",
+		ballistic_skill: -1,
+		weapon_skill: -1,
+		dexterity: -4,
+		constitution: 2,
+		flavour_text:"{0} tends to live more slowly than others, at least it is less stressful by comparison",
 	},			
-	"deathworld":{
+	"deathworld":{ // Backstory trait
 		display_name:"Deathworld Born",
 		strength:[2,2,"max"],
 		constitution:[2,2,"max"],
@@ -348,7 +371,10 @@ global.trait_list = {
 	},
 	"technophobe":{
 		display_name:"Technophobe",
-		technology:[-7,2,"min"],
+		technology: -5,
+		piety: 1,
+		constitution: 1,
+		intelligence: -1,
 		flavour_text:"{0} Has a deep mistrust and loathing of technology",
 	},
 	"fast_learner":{
@@ -368,15 +394,15 @@ global.trait_list = {
 	},
 	"tech_heretic":{
 		display_name:"Tech Heretic",
-		technology:[3,1,"max"],
-		intelligence:1,
+		technology: 1,
+		intelligence: 1,
 		flavour_text:"{0} Engages in study and beliefs considered heretical in the eyes of Mars and the Imperium",
 		//effect:"bonus to fist type weaponry",
 	},
 	"crafter":{
 		display_name:"Crafter",
-		technology:[6,1,"max"],
-		intelligence:1,
+		technology: 5,
+		intelligence: 1,
 		flavour_text:"{0} Is particularly skilled at building things, often making them to a superior quality as well",
 		effect:"provides more total forge points especially when assigned to a forge",
 	}	
@@ -384,13 +410,13 @@ global.trait_list = {
 global.base_stats = { //tempory stats subject to change by anyone that wishes to try their luck
 	"chapter_master":{
 			title : "Adeptus Astartes",
-			strength:[42,5],
-			constitution:[44,3],
-			dexterity:[44,3],
+			strength:[45,5],
+			constitution:[45,3],
+			dexterity:[45,3],
 			weapon_skill : [50,5, "max"],
 			ballistic_skill : [50,5, "max"],			
-			intelligence:[44,3],
-			wisdom:[44,3],
+			intelligence:[45,3],
+			wisdom:[45,3],
 			charisma :[40,3],
 			religion : "imperial_cult",
 			piety : [30,3],
@@ -418,19 +444,19 @@ global.base_stats = { //tempory stats subject to change by anyone that wishes to
 	},
 	"scout":{
 			title : "Adeptus Astartes",
-			strength:[36,4],
-			constitution:[36,3],
+			strength:[35,4],
+			constitution:[35,3],
 			weapon_skill : [30,2,"max"],
 			ballistic_skill : [30,2,"max"],
-			dexterity:[36,3],
-			intelligence:[38,3],
+			dexterity:[35,3],
+			intelligence:[35,3],
 			wisdom:[35,3],
 			charisma :[30,5],
 			religion : "imperial_cult",
-			piety : [28,3],
+			piety : [29,3],
 			luck :10,
-			technology :[28,3],
-			skills: {weapons:{"bolter":3, "chainsword":3, "ccw":3, "bolt_pistol":3}},
+			technology :[29,3],
+			skills: {weapons:{"bolter":2, "chainsword":2, "ccw":2, "bolt_pistol":2}},
 			start_gear:{"armour":"power_armour", "wep1":"bolter", "wep2":"chainsword"},
 			base_group : "astartes",
 	},
@@ -455,35 +481,35 @@ global.base_stats = { //tempory stats subject to change by anyone that wishes to
 	},			
 	"skitarii":{
 			title : "Skitarii",
-			strength:20,
-			constitution:28,
+			strength:[15,1],
+			constitution:[20,1],
 			weapon_skill : [20,5],
 			ballistic_skill : [20,5],			
-			dexterity:25,
-			intelligence:25,
-			wisdom:10,
-			charisma :5,
+			dexterity:[25,1],
+			intelligence:[25,1],
+			wisdom:[10,1],
+			charisma :[5,1], // Considering they mostly talk in... binary? It should be of no surprise they have low social skills...
 			religion : "cult_mechanicus",
-			piety : 20,
-			technology :30,
-			luck :5,
+			piety : [20,1],
+			technology :[30,1],
+			luck :10,
 			skills: {weapons:{"hellgun":1,}},	
 			start_gear:{"armour":"skitarii_armour", "wep1":"hellgun"},
 			base_group : "skitarii",
 	},
 	"tech_priest":{
-			strength:[12,1],
+			strength:[20,1],
 			constitution:[30,1],
 			dexterity:[20,1],
-			weapon_skill : [15,5],
-			ballistic_skill : [15,5],				
+			weapon_skill : [25,5],
+			ballistic_skill : [25,5],				
 			intelligence:[30,3],
 			wisdom:[20,3],
-			charisma :[8,1],
+			charisma :[30,1], // "I hold the secrets, of the machine." "As You wish, so shall it be done." "Ah, a challenge worthy of my skill!"
 			religion : "cult_mechanicus",
 			title : "Tech Priest",
 			piety : [45,3],
-			luck :6,
+			luck :10,
 			technology :[55,3],
 			skills: {weapons:{"power_weapon":2,}},	
 			start_gear:{"armour":"dragon_scales", "wep1":"power_weapon"},
@@ -501,90 +527,100 @@ global.base_stats = { //tempory stats subject to change by anyone that wishes to
 			charisma :2,
 			religion : "cult_mechanicus",
 			piety : 10,
-			technology :8,
-			luck :5,
+			technology :25,
+			luck :10,
 			skills: {weapons:{"ranger_long_rifle":1,}},	
 			start_gear:{"armour":"skitarii_armour", "wep1":"hellgun", "wep2":"shuriken_pistol"},
 			base_group : "skitarii",
 	},
 	"inquisition_crusader":{
-			title : "Inquisition Crusador",
-			strength:4,
-			constitution:26,
-			dexterity:4,
-			intelligence:3,
-			wisdom:2,
-			charisma :2,
+			title : "Inquisition Crusader",
+			weapon_skill : [10,1],
+			ballistic_skill : [10,1],
+			strength:[10,1],
+			constitution:[10,1],
+			dexterity:[10,1],
+			intelligence:[10,1],
+			wisdom:[10,1],
+			charisma :[15,1],
 			religion : "imperial_cult",
-			piety : 10,
-			technology :3,
-			luck :4,
+			piety :[40,5],
+			technology :[10,1],
+			luck : 10,
 			skills: {},	
-			start_gear:{"armour":"Power Armour", "wep1":"Power Sword", "wep2":"Storm Shield"},
+			start_gear:{"armour":"Light Power Armour", "wep1":"Power Sword", "wep2":"Storm Shield"},
 			base_group : "human",
 	},
 	"sister_of_battle":{
 			title : "Sister of Battle",
-			strength:5,
-			constitution:28,
-			dexterity:6,
-			intelligence:5,
-			wisdom:5,
-			charisma :2,
+			weapon_skill : [12,1],
+			ballistic_skill : [12,1],
+			strength:[10,1],
+			constitution:[10,1],
+			dexterity:[10,1],
+			intelligence:[10,1],
+			wisdom:[10,1],
+			charisma :[15,1],
 			religion : "imperial_cult",
-			piety : 20,
-			technology :3,
-			luck :4,
+			piety :[40,5],
+			technology :[10,1],
+			luck : 10,
 			skills: {},	
-			start_gear:{"armour":"Power Armour", "wep1":"Power Sword", "wep2":"Storm Shield"},
+			start_gear:{"armour":"Light Power Armour", "wep1":"Light Bolter", "wep2":"Sarissa"},
 			base_group : "human",
 	},
 	"sister_hospitaler":{
-			title : "Sister of Battle",
-			strength:5,
-			constitution:28,
-			dexterity:6,
-			intelligence:5,
-			wisdom:5,
-			charisma :5,
+			title : "Sister Hospitaler",
+			weapon_skill : [15,1],
+			ballistic_skill : [15,1],
+			strength:[12,1],
+			constitution:[12,1],
+			dexterity:[12,1],
+			intelligence:[12,1],
+			wisdom:[12,1],
+			charisma :[16,1],
 			religion : "imperial_cult",
-			piety : 20,
-			technology :3,
-			luck :4,
+			piety : [40,4],
+			technology :[12,1],
+			luck :10,
 			skills: {},	
-			start_gear:{"armour":"Power Armour", "wep1":"Power Sword", "wep2":"Storm Shield"},
+			start_gear:{"armour":"Light Power Armour", "wep1":"Light Bolter", "wep2":"Sarissa"},
 			base_group : "human",
 	},
 	"ork_sniper":{
 			title : "Ork Sniper",
-			strength:24,
-			constitution:29,
-			dexterity:30,
-			intelligence:10,
-			wisdom:20,
-			charisma :25,
+			weapon_skill : [9,1],
+			ballistic_skill : [20,1],
+			strength:[20,1],
+			constitution:[20,1],
+			dexterity:[8,1],
+			intelligence:[10,1],
+			wisdom:[20,1],
+			charisma :[25,1],
 			religion : "gorkamorka",
-			piety : 20,
-			technology :8,
-			luck :6,
+			piety : [20,1],
+			technology :[10,1],
+			luck :10,
 			skills: {},	
-			start_gear:{"armour":"Power Armour", "wep1":"Power Sword", "wep2":"Storm Shield"},
+			start_gear:{"armour":"Ork Armour", "wep1":"Sniper Rifle", "wep2":"Choppa"},
 			base_group : "ork",
 	},
 	"flash_git":{
 			title : "Flash Git",
-			strength:30,
-			constitution:23,
-			dexterity:15,
-			intelligence:5,
-			wisdom:3,
-			charisma :4,
+			weapon_skill : [25,1],
+			ballistic_skill : [40,1],
+			strength:[40,1],
+			constitution:[40,1],
+			dexterity:[8,1],
+			intelligence:[10,1],
+			wisdom:[25,1],
+			charisma :[26,1],
 			religion : "gorkamorka",
-			piety : 20,
-			technology :2,
-			luck :4,
+			piety : [20,1],
+			technology :[20,1],
+			luck :10,
 			skills: {},	
-			start_gear:{"armour":"Power Armour", "wep1":"Power Sword", "wep2":"Storm Shield"},
+			start_gear:{"armour":"Ork Armour", "wep1":"Snazzgun", "wep2":"Choppa"},
 			base_group : "ork",
 	}
 }
@@ -1293,6 +1329,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 					strength++;
 					dexterity--;						
 				}	else if (new_bionic_pos == "throat"){
+					constitution += 1;
 					charisma--;					
 				}else{ 
 					constitution++;
@@ -2125,24 +2162,24 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 		switch(role()){
 			case obj_ini.role[100][5]:  //captain
 				if(old_guard>=75){
-					update_armour("MK3 Iron Armour",false,false);
+					update_armour(choose("MK3 Iron Armour","MK4 Maximus","MK6 Corvus","MK7 Aquila","MK8 Errant"),false,false);
 					update_age(age - gauss(400, 200))
 					add_trait("old_guard");
 					add_exp(50);
 					bionic_count = choose(0,0,1,2,3)
 				} // 25% of iron within
 				else{
-					update_armour(choose("MK5 Heresy","MK6 Corvus","MK7 Aquila", "MK4 Maximus","MK8 Errant"),false,false);
+					update_armour(choose("MK4 Maximus","MK6 Corvus","MK7 Aquila","MK8 Errant"),false,false);
 					update_age(age - gauss(400, 25));
 					add_trait("seasoned");
 					add_exp(25);
 				}
 				break;
 			case  obj_ini.role[100][15]:  //apothecary
-				update_armour("MK7 Aquila",false,false);
-				if (company<=2){update_armour(choose("MK8 Errant","MK6 Corvus"),false,false)
+				update_armour(choose("MK3 Iron Armour","MK4 Maximus","MK6 Corvus","MK7 Aquila","MK8 Errant"),false,false);
+				if (company<=2){update_armour(choose("MK3 Iron Armour","MK4 Maximus","MK6 Corvus","MK8 Errant"),false,false)
 				}else{
-					update_armour(choose("MK5 Heresy","MK6 Corvus","MK7 Aquila", "MK4 Maximus","MK8 Errant"),false,false);
+					update_armour(choose("MK6 Corvus","MK7 Aquila","MK8 Errant"),false,false);
 				}
 				update_age(age - gauss(400, 250));
 				if (intelligence<40){
@@ -2150,7 +2187,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 				}
 				break;
 			case "Standard Bearer":
-				 update_armour("MK5 Heresy",false,false);
+				 update_armour(choose("MK3 Iron Armour","MK4 Maximus","MK6 Corvus","MK8 Errant"),false,false);
 				 update_age(age - gauss(400, 250));
 				break;
 			case  obj_ini.role[100][8]:		//tacticals
@@ -2167,7 +2204,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 						add_exp(choose(75,50));
 					} //3%
 					else if (old_guard>=91 and old_guard<=96){
-						update_armour("MK5 Heresy",false,false);
+						update_armour("MK8 Errant",false,false);
 						update_age(age - gauss(300, 100));
 						add_trait("seasoned");
 						add_exp(choose(25,50));
@@ -2180,13 +2217,13 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 					else if (company<=2){
 						update_armour("MK6 Corvus",false,false)
 						} // company 1 and 2 taccies get beakies by default
-					else{update_armour("MK7 Aquila",false,false)};
+					else{update_armour(choose("MK5 Heresy","MK7 Aquila"),false,false)};
 				break;
 			case  obj_ini.role[100][10]:		//assualts
 				// due to assault marines not wanting corvus due to worse ac, given them better chances with melee oriented armours. 
 				// melee is risky af anyway so let's reward players who go assault marine heavy at game start
 				if (old_guard>=99 and old_guard<=97){
-					update_armour("MK8 Errant",false,false);
+					update_armour("MK4 Maximus",false,false);
 					update_age(age - gauss(150, 30));
 					add_exp(25);
 				} // 3% 
@@ -2197,19 +2234,19 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 					add_exp(choose(10, 30, 50));
 				} // 6% 
 				else if (old_guard>=80 and old_guard<=90){
-					update_armour("MK4 Maximus",false,false);
+					update_armour("MK6 Corvus",false,false);
 					update_age(age - gauss(300, 75));
 					add_trait("old_guard")
 					add_exp(25);
 				} // 12%
 				else if (old_guard>=57 and old_guard<=79){
-					update_armour("MK5 Heresy",false,false);
+					update_armour("MK7 Aquila",false,false);
 					update_age(age - gauss(240, 40));
 					add_trait("seasoned")
 					add_exp(choose(10,25));
 				} // 24%
 				else{
-					update_armour("MK7 Aquila",false,false);
+					update_armour(choose("MK5 Heresy","MK7 Aquila"),false,false);
 					update_age(age - gauss(150, 30));
 				};
 				break;	
@@ -2229,21 +2266,21 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 				else if (company<=2) {
 					update_armour("MK6 Corvus",false,false);
 				} // company 1 and 2 taccies get beakies by default
-				else{update_armour("MK7 Aquila",false,false)};
+				else{update_armour(choose("MK5 Heresy","MK7 Aquila"),false,false)};
 				break;
 			case  obj_ini.role[100][3]: //veterans
 				if ((old_guard>=80)and (old_guard>=95)){
-					update_armour(choose("MK4 Maximus","MK8 Errant"),false,false);
+					update_armour(choose("MK3 Iron Armour","MK4 Maximus","MK6 Corvus","MK8 Errant"),false,false);
 					update_age(age - gauss(150, 30));
 					add_trait(choose("old_guard"));
 					add_exp(choose(50, 75));					
 				} else if (old_guard>95){
-					update_armour(choose("MK4 Maximus","MK3 Iron Armour"),false,false);
+					update_armour(choose("MK6 Corvus","MK4 Maximus","MK3 Iron Armour"),false,false);
 					update_age(age - gauss(300, 100));
 					add_trait(choose("old_guard"));
 					add_exp(choose(125, 100));
 				} else if (old_guard<35){
-					update_armour(choose("MK4 Maximus","MK3 Iron Armour"),false,false);
+					update_armour(choose("MK6 Corvus","MK4 Maximus","MK3 Iron Armour"),false,false);
 					update_age(age - gauss(150, 30));
 					add_trait(choose("old_guard"));
 					add_exp(choose(25, 50));					
@@ -2256,7 +2293,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 				}
 				break;
 			case obj_ini.role[100][16]: //techmarines
-				update_armour(choose("MK8 Errant","MK6 Corvus","MK4 Maximus","MK3 Iron Armour"),false,false)
+				update_armour(choose("MK3 Iron Armour","MK4 Maximus","MK6 Corvus","MK8 Errant"),false,false)
 				if ((global.chapter_name=="Iron Hands" || obj_ini.progenitor=6 || array_contains(obj_ini.dis, "Tech-Heresy"))){
 					add_bionics("right_arm","standard",false);
 					bionic_count = choose(6,6,7,7,7,8,9);
@@ -2304,7 +2341,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 				bionic_count = choose(0,0,0,0,0,0,0,0,0,0,0,1);
 				break;
 			case  obj_ini.role[100][14]:  //chaplain
-				update_armour(choose("MK5 Heresy","MK6 Corvus","MK7 Aquila", "MK4 Maximus","MK8 Errant"),false,false);
+				update_armour(choose("MK4 Maximus","MK6 Corvus","MK7 Aquila","MK8 Errant"),false,false);
 				update_age(age - gauss(400, 250));
 				if (piety<35){
 					piety=35;
@@ -2314,17 +2351,18 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 				}
 				add_exp(irandom(50));
 				break;
-			case "Codiciery":
-				update_armour(choose("MK5 Heresy","MK6 Corvus","MK7 Aquila", "MK4 Maximus","MK8 Errant"),false,false);
+				 // Librarians, it seems
+			case "Lexicanum":
+				update_armour(choose("MK5 Heresy","MK7 Aquila"),false,false);
 				update_age(age - gauss(150, 20));
 				break;
-			case "Lexicanum":
-				update_armour(choose("MK5 Heresy","MK6 Corvus","MK7 Aquila", "MK4 Maximus","MK8 Errant"),false,false);
+			case "Codiciery":
+				update_armour(choose("MK3 Iron Armour","MK4 Maximus","MK6 Corvus","MK7 Aquila","MK8 Errant"),false,false);
 				update_age(age - gauss(200, 30));
 				add_trait("seasoned");
 				break;
 			case obj_ini.role[100,17]:
-				update_armour(choose("MK5 Heresy","MK6 Corvus","MK7 Aquila", "MK4 Maximus","MK8 Errant"),false,false);
+				update_armour(choose("MK3 Iron Armour","MK4 Maximus","MK6 Corvus","MK7 Aquila","MK8 Errant"),false,false);
 				update_age(age - gauss(400, 250));
 				add_trait("seasoned");
 				break;		
