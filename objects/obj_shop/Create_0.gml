@@ -93,8 +93,8 @@ if (shop = "equipment") {
     i += 1;
     item[i] = "Chainsword";
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 2;
-    forge_cost[i] = 20;
+    item_cost[i] = 5;
+    forge_cost[i] = 25;
     i += 1;
     x_mod[i] = 9;
     item[i] = "Eviscerator";
@@ -108,14 +108,14 @@ if (shop = "equipment") {
     i += 1;
     item[i] = "Chainaxe";
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 3;
+    item_cost[i] = 6;
     forge_cost[i] = 30;
     i += 1;
     item[i] = "Power Axe";
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 30;
     if (research.power_fields[0]>1){
-        forge_cost[i] = 100;
+        forge_cost[i] = 150;
     }
     if (rene = 1) {
         nobuy[i] = 1;
@@ -126,7 +126,7 @@ if (shop = "equipment") {
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 25;
     if (research.power_fields[0]>1){
-        forge_cost[i] = 100;
+        forge_cost[i] = 125;
     }
     if (rene = 1) {
         nobuy[i] = 1;
@@ -135,9 +135,9 @@ if (shop = "equipment") {
 		    i += 1;
     item[i] = "Power Spear";
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 40;
+    item_cost[i] = 30;
     if (research.power_fields[0]>1){
-        forge_cost[i] = 100;
+        forge_cost[i] = 150;
     }
     if (rene = 1) {
         nobuy[i] = 1;
@@ -190,9 +190,10 @@ if (shop = "equipment") {
     i += 1;
     item[i] = "Force Staff";
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 50;
+    item_cost[i] = 80;
     if (research.psi[0]>0){
         forge_cost[i] = 500;
+        item_cost[i] = 50;
     }
     if (rene = 1) {
         nobuy[i] = 1;
@@ -265,17 +266,17 @@ if (shop = "equipment") {
     i += 1;
     item[i] = "Bolt Pistol";
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 2;
+    item_cost[i] = 5;
     forge_cost[i] = 25;
     i += 1;
     item[i] = "Bolter";
-    item_cost[i] = 3;
+    item_cost[i] = 7;
     forge_cost[i] = 35;
     item_stocked[i] = scr_item_count(item[i]);
     i += 1;
     item[i] = "Stalker Pattern Bolter";
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 8;
+    item_cost[i] = 10;
     if (research.bolt[0]>0){
         forge_cost[i] = 90;
     }
@@ -283,8 +284,8 @@ if (shop = "equipment") {
     x_mod[i] = 9;
     item[i] = "Combiflamer";
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 6;
-    forge_cost[i] = 65;
+    item_cost[i] = 12;
+    forge_cost[i] = 95;
     if (research.bolt[0]<1) then forge_cost[i] = 0;
     if (rene = 1) {
         nobuy[i] = 1;
@@ -293,8 +294,8 @@ if (shop = "equipment") {
     i += 1;
     item[i] = "Heavy Bolter";
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 10;
-    forge_cost[i] = 110;
+    item_cost[i] = 20;
+    forge_cost[i] = 200;
     if (research.bolt[0]<2) then forge_cost[i] = 0;
     if (rene = 1) {
         nobuy[i] = 1;
@@ -311,14 +312,14 @@ if (shop = "equipment") {
     }
     i += 1;
     item[i] = "Flamer";
-    item_cost[i] = 3;
+    item_cost[i] = 7;
     forge_cost[i] = 35;
     if (research.flame[0]<1) then forge_cost[i] = 0;
     item_stocked[i] = scr_item_count(item[i]);
     i += 1;
     item[i] = "Heavy Flamer";
-    item_cost[i] = 10;
-    forge_cost[i] = 110;
+    item_cost[i] = 15;
+    forge_cost[i] = 150;
      if (research.flame[0]<1) then forge_cost[i] = 0;
     item_stocked[i] = scr_item_count(item[i]);
     if (rene = 1) {
@@ -334,6 +335,7 @@ if (shop = "equipment") {
     item[i] = "Integrated Bolters";
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 12;
+    forge_cost[i] = 120;
     i += 1;
     item[i] = "Meltagun";
     item_cost[i] = 15;
@@ -372,10 +374,10 @@ if (shop = "equipment") {
     }
     i += 1;
     item[i] = "Plasma Cannon";
-    forge_cost[i] = 600;
     if (research.plasma[0]<1) then forge_cost[i] = 0;
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 300;
+    item_cost[i] = 100;
+    forge_cost[i] = 950;
     if (rene = 1) {
         nobuy[i] = 1;
         item_cost[i] = 0;
@@ -392,20 +394,20 @@ if (shop = "equipment") {
     nobuy[i] = 1;
     i += 1;
     item[i] = "Sniper Rifle";
-    item_cost[i] = 5;
-    forge_cost[i] = 55;
+    item_cost[i] = 8;
+    forge_cost[i] = 75;
     item_stocked[i] = scr_item_count(item[i]);
 
     i += 1;
     item[i] = "Missile Launcher";
-    item_cost[i] = 15;
-    forge_cost[i] = 300;
+    item_cost[i] = 25;
+    forge_cost[i] = 250;
     item_stocked[i] = scr_item_count(item[i]);
     i += 1;
     item[i] = "Lascannon";
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 15;
-    forge_cost[i] = 500;
+    item_cost[i] = 25;
+    forge_cost[i] = 250;
     if (research.las[0]<1) then forge_cost[i] = 0;
     if (rene = 1) {
         nobuy[i] = 1;
@@ -597,15 +599,7 @@ if (shop = "equipment2") {
             tooltip_overide[i] = mk_4_tool_tip;
             tooltip_overide[i]+= "#STC wargear component 6";
         }
-    } // if (rene=1){nobuy[i]=1;item_cost[i]=0;}
-    //i += 1;
-    //item[i] = "Aegis";
-    //item_stocked[i] = scr_item_count("Aegis");
-    //nobuy[i] = 1;
-	//if (obj_controller.stc_wargear >= 6) {
-        //nobuy[i] = 0;
-        //item_cost[i] = 400;
-    //}
+    }
 
     i += 1;
     x_mod[i] = 9;
@@ -622,8 +616,8 @@ if (shop = "equipment2") {
     x_mod[i] = 9;
     item[i] = "Heavy Weapons Pack";
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 25;    
-    forge_cost[i] = 250;
+    item_cost[i] = 15;    
+    forge_cost[i] = 150;
     if (rene = 1) {
         nobuy[i] = 1;
         item_cost[i] = 0;
@@ -645,7 +639,7 @@ if (shop = "equipment2") {
     item[i] = "Bionics";
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 5;
-    forge_cost[i] = 20;
+    forge_cost[i] = 25;
     i += 1;
     x_mod[i] = 9;
     item[i] = "Narthecium";
@@ -714,10 +708,12 @@ if (shop = "vehicles") {
     i += 1;
     item[i] = "Dreadnought";
     item_stocked[i] = scr_item_count(item[i]);
-    nobuy[i] = 1; // if (rene=1){nobuy[i]=1;item_cost[i]=0;}
+    nobuy[i] = 1;
+    item_cost[i] = 0;
     if (obj_controller.in_forge){
         if (obj_controller.stc_wargear >= 6) {
             if (research.armour[1].stealth[0] >0 && research.armour[1].armour[0] >1){
+                nobuy[i] = 0;
                 forge_cost[i] = 5000;
                 item_cost[i] = 500;
             } else {
@@ -735,7 +731,6 @@ if (shop = "vehicles") {
         }
     }
 
-    } // if (rene=1){nobuy[i]=1;item_cost[i]=0;}
     i += 1;
     x_mod[i] = 9;
     item[i] = "Close Combat Weapon";
@@ -748,7 +743,8 @@ if (shop = "vehicles") {
     i += 1;
     item[i] = "Bike";
     item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 33;
+    item_cost[i] = 35;
+    forge_cost[i] = 300;
     i += 1;
     item[i] = "Rhino";
     item_stocked[i] = scr_vehicle_count(item[i], "");
@@ -819,6 +815,7 @@ if (shop = "vehicles") {
     if (obj_controller.stc_vehicles >= 6) {
         nobuy[i] = 0;
         item_cost[i] = 500;
+        forge_cost[i] = 5000;
     } // if (rene=1){nobuy[i]=1;item_cost[i]=0;}
     i += 1;
     x_mod[i] = 9;
@@ -869,6 +866,7 @@ if (shop = "vehicles") {
     item[i] = "Whirlwind";
     item_stocked[i] = scr_vehicle_count(item[i]);
     item_cost[i] = 200;
+    forge_cost[i] = 2000;
     if (rene = 1) {
         nobuy[i] = 1;
         item_cost[i] = 0;
@@ -889,26 +887,15 @@ if (shop = "vehicles") {
     if (obj_controller.stc_vehicles >= 6) {
         nobuy[i] = 0;
         item_cost[i] = 200;
-    } // if (rene=1){nobuy[i]=1;item_cost[i]=0;}
-    i += 1;
+        forge_cost[i] = 2000;
+    }
 
+    i += 1;
     x_mod[i] = 9;
     item[i] = "Twin Linked Bolters";
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 8;
 
-    i += 1;
-    x_mod[i] = 9;
-    item[i] = "Force Staff";
-    item_stocked[i] = scr_item_count(item[i]);
-    if (obj_controller.in_forge){
-        if (research.psi[0]>0) then forge_cost[i] = 500;
-    }
-    item_cost[i] = 80;
-    if (rene = 1) {
-        nobuy[i] = 1;
-        item_cost[i] = 0;
-    }
     i += 1;
     x_mod[i] = 9;
     item[i] = "Twin Linked Heavy Bolter";
@@ -990,16 +977,16 @@ if (shop = "vehicles") {
         nobuy[i] = 1;
         item_cost[i] = 0;
     }
-    i += 1;
-    x_mod[i] = 9;
-    item[i] = "Void Shield";
-    item_stocked[i] = scr_item_count(item[i]);
-    item_cost[i] = 250;
-    if (rene = 1) {
-        nobuy[i] = 1;
-        item_cost[i] = 0;
-    }
-
+   // i += 1;
+   // x_mod[i] = 9;
+   // item[i] = "Void Shield";
+   // item_stocked[i] = scr_item_count(item[i]);
+   // item_cost[i] = 250;
+   // if (rene = 1) {
+   //     nobuy[i] = 1;
+   //     item_cost[i] = 0;
+   // }
+}
 
 if (shop = "warships") {
     i = 0;
