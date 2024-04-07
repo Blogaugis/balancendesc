@@ -14,7 +14,7 @@ function scr_add_man(man_role, target_company, choice_armour, choice_weapons, ch
 	var i,good, wep1, wep2, gear, mobi, arm, e, missing, unit;
 	i=0;e=0;good=0;wep1="";wep2="";gear="";mobi="";arm="";missing=0;
 
-	repeat(300){
+	repeat(500){
 	    i+=1;
 	    if (good=0){
 	        if (obj_ini.name[target_company,i]="") or (obj_ini.role[target_company,i]="") then good=i;
