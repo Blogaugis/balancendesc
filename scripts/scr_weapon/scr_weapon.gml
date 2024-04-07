@@ -458,7 +458,8 @@ global.weapons={
         "range": 1,
         "spli": 1,
         "arp": 1,
-        "tags":["dreadnought","fist"]
+        "special_properties": ["Parry"],
+        "tags":["dreadnought", "fist", "dual"]
     },
     "Power Fist with Intergrated Bolters": {
        "abbreviation": "PwrFstBltr",       
@@ -694,9 +695,9 @@ global.weapons={
     "Storm Bolter": {
         "abbreviation": "StrmBltr", 
         "attack": {
-            "standard": 150,
-            "master_crafted": 176,
-            "artifact": 196
+            "standard": 90,
+            "master_crafted": 125,
+            "artifact": 175
         },
         "description": "Compact, and double-barreled, this bolt weapon is inaccurate but grants an enormous amount of firepower.",
         "melee_hands": 0,
