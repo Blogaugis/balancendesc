@@ -351,6 +351,7 @@ if (refresh=true) and (obj_controller.settings>0){
        // have_armour_num+=scr_item_count("Aegis");
     }
     if (req_armour="Scout Armour") then have_armour_num+=scr_item_count("Scout Armour");
+    have_armour_num+=scr_item_count(req_armour);
     
     have_gear_num+=scr_item_count(req_gear);
     have_mobi_num+=scr_item_count(req_mobi);

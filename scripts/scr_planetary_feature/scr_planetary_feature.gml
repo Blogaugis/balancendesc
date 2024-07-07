@@ -53,6 +53,8 @@ function new_planet_feature(feature_type, other_data={}) constructor{
 		sealed = 0;
 		player_hidden = 1;
 		planet_display = "Genestealer Cult";
+		cult_age = 0;
+		hiding=true;
 		break;
 		case P_features.Necron_Tomb:
 		awake = 0;
@@ -264,6 +266,18 @@ function search_planet_features(planet, search_feature){
 	return feature_positions;
 }
 
+function return_planet_features(planet, search_feature){
+	var feature_count = array_length(planet);
+	var feature_positions = [];
+	if (feature_count > 0){
+		for (var fc = 0; fc < feature_count; fc++){
+			if (planet[fc].f_type == search_feature){
+				array_push(feature_positions, planet[fc]);
+			}
+		}
+	}
+	return feature_positions;	
+}
 
 // returns 1 if dearch feature is on at least one planet in system returns 0 is search feature is not found in system
 function system_feature_bool(system, search_feature){
@@ -283,8 +297,12 @@ function planet_feature_bool(planet, search_feature){
 	var feature_exists = 0;
 	if (feature_count > 0){
 	for (var fc = 0; fc < feature_count; fc++){
-		if (planet[fc].f_type == search_feature){
-			feature_exists = 1;
+		if (!is_array(search_feature)){
+			if (planet[fc].f_type == search_feature){
+				feature_exists = 1;
+			}
+		} else {
+			feature_exists = array_contains(search_feature,planet[fc].f_type);
 		}
 		if (feature_exists == 1){break;}
 	}}
@@ -294,7 +312,7 @@ function planet_feature_bool(planet, search_feature){
 
 //deletes all occurances of del_feature on planet
 function delete_features(planet, del_feature){
-	var delete_Array = search_planet_features(planet, del_feature)
+	var delete_Array = search_planet_features(planet, del_feature);
 	if (array_length(delete_Array) >0){
 		for (var d=0;d<array_length(delete_Array);d++){
 			array_delete(planet, delete_Array[d],1)
@@ -376,41 +394,43 @@ function scr_planetary_feature(planet_num) {
 		var feat = p_feature[planet_num][f];
 		if (feat.player_hidden ==1){
 			feat.player_hidden =0;
+			var numeral_n = planet_numeral_name(planet_num);
 			switch (feat.f_type){
 				case P_features.Sororitas_Cathedral:
 					if (obj_controller.known[eFACTION.Ecclesiarchy]=0) then obj_controller.known[eFACTION.Ecclesiarchy]=1;
-				    var lop="Sororitas Cathedral discovered on "+string(name)+" "+scr_roman(planet_num)+".";debugl(lop);
-				    scr_alert("green","feature",lop,x,y);scr_event_log("",lop);
+				    var lop=$"Sororitas Cathedral discovered on {numeral_n}.";
+				    scr_alert("green","feature",lop,x,y);
+				    scr_event_log("",lop);
 				    if (p_heresy[planet_num]>10) then p_heresy[planet_num]-=10;
 				    p_sisters[planet_num]=choose(2,2,3);goo=1;
 					break;
 				case P_features.Necron_Tomb:
-				    var lop="Necron Tomb discovered on "+string(name)+" "+scr_roman(planet_num)+"."debugl(lop);
+				    var lop=$"Necron Tomb discovered on {numeral_n}.";
 				    scr_alert("red","feature",lop,x,y);
 				    scr_event_log("red",lop);
 					break;
 				case P_features.Artifact:
-					var lop="Artifact discovered on "+string(name)+" "+scr_roman(planet_num)+"."debugl(lop);
+					var lop=$"Artifact discovered on {numeral_n}.";
 					scr_alert("green","feature",lop,x,y);
 					scr_event_log("",lop);
 					break;
 				case P_features.STC_Fragment:
-					var lop="STC Fragment located on "+string(name)+" "+scr_roman(planet_num)+"."debugl(lop);
+					var lop=$"STC Fragment located on {numeral_n}.";
 					 scr_alert("green","feature",lop,x,y);
 					 scr_event_log("",lop);
 					 break;
 				case P_features.Ancient_Ruins:
-					var lop=$"A {feat.ruins_size} Ancient Ruins discovered on {string(name)} {scr_roman(planet_num)}."debugl(lop);
+					var lop=$"A {feat.ruins_size} Ancient Ruins discovered on {string(name)} {scr_roman(planet_num)}.";
 					scr_alert("green","feature",lop,x,y);
 					scr_event_log("",lop);
 					break;
 				case P_features.Cave_Network:
-					var lop="Extensive Cave Network discovered on "+string(name)+" "+scr_roman(planet_num)+"."debugl(lop);
+					var lop=$"Extensive Cave Network discovered on {numeral_n}.";
 			        scr_alert("green","feature",lop,x,y);
 			        scr_event_log("",lop);
 					break;
 				case P_features.OrkWarboss:
-				    var lop="Ork Warboss discovered on "+string(name)+" "+scr_roman(planet_num)+"."debugl(lop);
+				    var lop=$"Ork Warboss discovered on {numeral_n}.";
 				    scr_alert("red","feature",lop,x,y);
 				    scr_event_log("red",lop);
 					break;		
@@ -427,6 +447,6 @@ function create_starship_event(){
 	}else {
 		var planet=irandom(star.planets-1)+1;
 		array_push(star.p_feature[planet], new new_planet_feature(P_features.Starship))
-		scr_event_log("","Ancient Starship discovered on "+string(star.name)+" "+scr_roman(planet)+".");
+		scr_event_log("","Ancient Starship discovered on "+string(star.name)+" "+scr_roman(planet)+".", star.name);
 	}
 }

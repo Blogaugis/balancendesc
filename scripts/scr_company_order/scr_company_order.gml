@@ -87,7 +87,6 @@ function scr_company_order(company) {
 	        temp_loc[co][v]=loc[co][unit_num];
 	        temp_name[co][v]=name[co][unit_num];
 	        temp_role[co][v]=role[co][unit_num];
-	        temp_lid[co][v]=lid[co][unit_num];
 	        temp_wep1[co][v]=wep1[co][unit_num];
 	        temp_wep2[co][v]=wep2[co][unit_num];
 	        temp_armour[co][v]=armour[co][unit_num];
@@ -204,8 +203,8 @@ function scr_company_order(company) {
 	}
 
 	//comand squads only get built to a max of one and are specialist so sit outside of general squad creation
-	if (struct_exists(squadless,role[100,5])) && (struct_exists(squadless,role[100,7])) && (struct_exists(squadless,role[100,15])) && (struct_exists(squadless,"Standard Bearer")){
-		if (array_length(squadless[$role[100,5]])>0) && (array_length(squadless[$role[100,7]])>0) && (array_length(squadless[$role[100,15]])>0) && (array_length(squadless[$"Standard Bearer"])>0){
+	if (struct_exists(squadless,role[100,5])) && (struct_exists(squadless,role[100,7])) && (struct_exists(squadless,role[100][11])){
+		if (array_length(squadless[$role[100,5]])>0) && (array_length(squadless[$role[100,7]])>0) && (array_length(squadless[$role[100][11]])>0){
 			new_squad_index=false;
 			if (array_length(empty_squads)>0){
 				new_squad_index = empty_squads[0];
@@ -276,7 +275,6 @@ function scr_company_order(company) {
 	        loc[co][i]=temp_loc[co][i];
 	        name[co][i]=temp_name[co][i];
 	        role[co][i]=temp_role[co][i];
-	        lid[co][i]=temp_lid[co][i];
 	        wep1[co][i]=temp_wep1[co][i];
 	        wep2[co][i]=temp_wep2[co][i];
 	        armour[co][i]=temp_armour[co][i];
@@ -338,7 +336,7 @@ function role_hierarchy(){
 			"Codiciery",
 			"Lexicanum",
 			string("{0} Aspirant",obj_ini.role[100,17]),
-			"Standard Bearer",
+			obj_ini.role[100][11],
 			obj_ini.role[100][7],
 			"Death Company",
 			obj_ini.role[100][19],

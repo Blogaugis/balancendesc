@@ -24,6 +24,7 @@ function scr_weapons_equip() {
 	    tb=tab;tc=tab;
 	    dude=obj_controller.settings;
 	}
+	var standard_equip = (instance_exists(obj_controller)) and (!instance_exists(obj_mass_equip)) and (instance_exists(obj_popup));
 
 	if (dude<50) and (dude!=6) then dude=1
 
@@ -37,7 +38,7 @@ function scr_weapons_equip() {
 	var equip_data;
 	if (tc<3) and (dude=1){
 		if(tb=1){
-			if (!instance_exists(obj_creation)&& !instance_exists(obj_mass_equip)){ // Infantry Ranged
+			if (standard_equip){ // Infantry Ranged
 				item_name[1]="(None)";
 				item_name[2]="(any)";
 				var valid=3;
@@ -49,7 +50,7 @@ function scr_weapons_equip() {
 					}				
 					equip_data = gear_weapon_data("weapon", obj_ini.equipment[i]);
 					if (is_struct(equip_data) && obj_ini.equipment_number[i]>0){
-						if (equip_data.range>1.1){
+						if (equip_data.range>1.1 && !equip_data.has_tag("vehicle")){
 							item_name[valid]=equip_data.name;
 							valid++;
 						}
@@ -83,7 +84,7 @@ function scr_weapons_equip() {
 					i+=1;item_name[i]="Webber";				
 			}
 		}else if (tb=2){
-			if (!instance_exists(obj_creation)&& !instance_exists(obj_mass_equip)){
+			if (standard_equip){
 				item_name[1]="(None)";
 				item_name[2]="(any)";
 				var valid=3;				
@@ -95,7 +96,7 @@ function scr_weapons_equip() {
 					}				
 					equip_data = gear_weapon_data("weapon", obj_ini.equipment[i]);
 					if (is_struct(equip_data) && obj_ini.equipment_number[i]>0){
-						if (equip_data.range<=1.1){
+						if (equip_data.range<=1.1  && !equip_data.has_tag("vehicle")){
 							item_name[valid]=equip_data.name;
 							valid++;
 						}
@@ -126,11 +127,12 @@ function scr_weapons_equip() {
 		}
 	}
 
-	if (tc<3) and (tb=1) and (dude=6){var i=0; // Dreadnought Ranged
+	if (tc<3) and (tb=1) and (dude=6){
+		var i=0; // Dreadnought Ranged
 			item_name[1]="(None)";
 			item_name[2]="(any)";
 			var valid=3;
-			if (!instance_exists(obj_creation)) and (!instance_exists(obj_controller)){
+			if (standard_equip){
 				for (i=1;i<array_length(obj_ini.equipment);i++){
 					if (obj_popup.master_crafted==1){
 						if (!array_contains(obj_ini.equipment_quality[i],"master_crafted")){
@@ -145,12 +147,33 @@ function scr_weapons_equip() {
 						}
 					}
 				}
+			} else {
+				i+=1;
+				item_name[i]="Multi-Melta";
+				i+=1;
+				item_name[i]="Twin Linked Heavy Flamer Sponsons";
+				i+=1;
+				item_name[i]="Plasma Cannon";
+				i+=1;
+				item_name[i]="Assault Cannon";
+				i+=1;
+				item_name[i]="Autocannon";	
+				i+=1;
+				item_name[i]="Missile Launcher";
+				i+=1;
+				item_name[i]="Twin Linked Lascannon";
+				i+=1;
+				item_name[i]="Twin Linked Assault Cannon Mount";
+				i+=1;
+				item_name[i]="Twin Linked Heavy Bolter";	
+				i+=1;
+				item_name[i]="Heavy Conversion Beam Projector";
 			}
 	}
 
 	if (tc<3) and (tb=2) and (dude=6){
 		var i=0; // Dreadnought Melee
-		if (!instance_exists(obj_creation)) and (!instance_exists(obj_controller)){
+		if (standard_equip){
 			item_name[1]="(None)";
 			item_name[2]="(any)";
 			var valid=3;		
@@ -171,6 +194,10 @@ function scr_weapons_equip() {
 		} else {
 			i+=1;
 			item_name[i]="Close Combat Weapon";
+			i+=1;
+			item_name[i]="Dreadnought Power Claw";
+			i+=1;
+			item_name[i]="Dreadnought Lightning Claw";
 		}
 	}
 
@@ -186,7 +213,7 @@ function scr_weapons_equip() {
 			i=0; // Land Raider Relic Front Weapon
 			i+=1;item_name[i]="(None)";
 			//i+=1;item_name[i]="Thunderfire Cannon Mount";
-			i+=1;item_name[i]="Twin Linked Lascannon Mount";
+			i+=1;item_name[i]="Neutron Blaster Turret";
 			i+=1;item_name[i]="Reaper Autocannon Mount";
 			//i+=1;item_name[i]="Twin Linked Helfrost Cannon Mount";
 			//i+=1;item_name[i]="Graviton Cannon Mount";
@@ -233,7 +260,7 @@ function scr_weapons_equip() {
 			i+=1;item_name[i]="Twin Linked Assault Cannon Turret";
 			i+=1;item_name[i]="Magna-Melta Turret";
 			i+=1;item_name[i]="Plasma Destroyer Turret";
-			i+=1;item_name[i]="Heavy Conversion Beamer Turret";
+			i+=1;item_name[i]="Heavy Conversion Beam Projector";
 			i+=1;item_name[i]="Neutron Blaster Turret";
 			i+=1;item_name[i]="Volkite Saker Turret";
 			//i+=1;item_name[i]="Graviton Cannon Turret";
@@ -284,13 +311,15 @@ function scr_weapons_equip() {
 	    i+=1;item_name[i]="Armoured Ceramite";
 	    i+=1;item_name[i]="Artificer Hull";
 	    i+=1;item_name[i]="Heavy Armour";
-			if dude!=50{i+=1;item_name[i]="Lucifer Pattern Engine";} //not available for Land Raiders
+			if dude=50{i+=1;item_name[i]="Void Shield";} //only for Land Raiders
 	}
-	if (tc=5) and (tb=1) and ((dude=50) or (dude=51) or (dude=52) or (dude=54)){var i;i=0; // Tank Accessory
+	if (tc=5) and (tb=1) and ((dude=50) or (dude=51) or (dude=52) or (dude=54) or (dude=6)){var i;i=0; // Tank Accessory
 			i+=1;item_name[i]="(None)";
-	    i+=1;item_name[i]="Dozer Blades";
+	    if dude!=6 {i+=1;item_name[i]="Dozer Blades"};
 	    i+=1;item_name[i]="Searchlight";
 	    i+=1;item_name[i]="Smoke Launchers";
+		i+=1;item_name[i]="Frag Assault Launchers";
+		if dude!=50 and dude!=6{i+=1;item_name[i]="Lucifer Pattern Engine"}; //not available for Land Raiders
 	}
 
 	if (tc=3) and (dude=1){ // dude=1 for normal infantry gear
@@ -343,7 +372,7 @@ function scr_weapons_equip() {
 			var valid=3;		
 			for (i=1;i<array_length(obj_ini.equipment);i++){
 				equip_data=gear_weapon_data("gear", obj_ini.equipment[i]);
-				if (is_struct(equip_data) && obj_ini.equipment_number[i]>0){
+				if (is_struct(equip_data) && obj_ini.equipment_number[i]>0  && !equip_data.has_tag("vehicle")){
 					item_name[valid]=equip_data.name;
 					valid++;
 				}
@@ -367,7 +396,7 @@ function scr_weapons_equip() {
 			var valid=3;		
 			for (i=1;i<array_length(obj_ini.equipment);i++){
 				equip_data=gear_weapon_data("mobility", obj_ini.equipment[i]);
-				if (is_struct(equip_data) && obj_ini.equipment_number[i]>0){
+				if (is_struct(equip_data) && obj_ini.equipment_number[i]>0  && !equip_data.has_tag("vehicle")){
 					item_name[valid]=equip_data.name;
 					valid++;
 				}

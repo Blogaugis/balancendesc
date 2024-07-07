@@ -18,7 +18,8 @@ function disposition_description_chart(dispo){
 	}
 }
 
-function garrison_force(planet_operatives, turn_end=false)constructor{
+
+function garrison_force(planet_operatives, turn_end=false, type="garrison")constructor{
 	garrison_squads=[];
 	total_garrison = 0;
 	garrison_leader=false;
@@ -29,7 +30,7 @@ function garrison_force(planet_operatives, turn_end=false)constructor{
 	var operative, unit, member;
 	 for (var ops=0;ops<array_length(planet_operatives);ops++){
       	if(planet_operatives[ops].type=="squad"){
-      		if (planet_operatives[ops].job == "garrison"){//marine garrison on planet
+      		if (planet_operatives[ops].job == type){//marine garrison on planet
       			if (array_length(obj_ini.squads[planet_operatives[ops].reference].members)>0){
       				operative = obj_ini.squads[planet_operatives[ops].reference];
 	      			array_push(garrison_squads, operative)
@@ -131,7 +132,7 @@ function garrison_force(planet_operatives, turn_end=false)constructor{
 		for (var s=0;s<array_length(garrison_squads);s++){
 			squad = garrison_squads[s];
 			for (mem=0; mem<array_length(squad.members);mem++){
-				unit = obj_ini.TTRPG[squad.members[mem][0]][squad.members[mem][1]];
+				unit = fetch_unit(squad.members[mem]);
 			}
 		}
 	}
@@ -149,8 +150,10 @@ function garrison_force(planet_operatives, turn_end=false)constructor{
 		if (system.dispo[planet]>-1){
 			var disposition = disposition_description_chart(system.dispo[planet]);
 			report_string+=$"Our Relationship with the Rulers of the planet is {disposition}#";
-		} else if(system.dispo[planet]<-1000){
+		} else if(system.dispo[planet]<-1000 && system.p_owner[planet] = eFACTION.Player){
 			report_string+=$"Rule of the planet is going well";
+		} else {
+			report_string+=$"There is no clear chain of command on the planet we suspect the existence of Xenos or Heretic Forces";
 		}
 
 		return report_string;
@@ -158,15 +161,15 @@ function garrison_force(planet_operatives, turn_end=false)constructor{
 
 	static garrison_disposition_change = function(star, planet, up_or_down = false){
 		dispo_change = 0;
-		if (array_contains(obj_controller.imperial_factions, star.p_owner[planet])){
+		if (array_contains(obj_controller.imperial_factions, star.p_owner[planet]) && star.dispo[planet]>-1){
 			planet_disposition = star.dispo[planet];
 
-			var disposition_modifier =planet_disposition<=50 ? (planet_disposition/10) :((planet_disposition-50)/10)%5;
+			var disposition_modifier = planet_disposition<=50 ? (planet_disposition/10) :((planet_disposition-50)/10)%5;
 
 			disposition_modifier = planet_disposition/10
 			time_modifier = time_on_planet/2.5;
 			if (time_modifier>10) then time_modifier = 10;
-			var final_modifier =5 + total_garrison/10 - disposition_modifier + time_modifier;
+			var final_modifier = 5 + total_garrison/10 - disposition_modifier + time_modifier;
 			if (up_or_down){
 				dispo_change =  garrison_leader.charisma+final_modifier;
 				if (dispo_change<50 && planet_disposition<obj_controller.disposition[star.p_owner[planet]]){
@@ -176,7 +179,7 @@ function garrison_force(planet_operatives, turn_end=false)constructor{
 				var charisma_test = global.character_tester.standard_test(garrison_leader, "charisma", final_modifier);
 				if (!charisma_test[0]){
 					if (planet_disposition<obj_controller.disposition[star.p_owner[planet]]){
-						dispo_change=charisma_test[1]/10;
+						dispo_change = -charisma_test[1]/10;
 					} else {
 						dispo_change=0;
 					}
@@ -184,7 +187,6 @@ function garrison_force(planet_operatives, turn_end=false)constructor{
 					dispo_change=charisma_test[1]/10;
 				}
 			}
-
 		} else {
 			dispo_change = "none";
 		}
@@ -257,21 +259,26 @@ function garrison_force(planet_operatives, turn_end=false)constructor{
 }
 
 
-function determine_pdf_defence(pdf, garrison="none", planet_forti=0){
+function determine_pdf_defence(pdf, garrison="none", planet_forti=0, enemy=0){
 	var explanations = "";
 	var defence_mult = planet_forti*0.1;
 	var pdf_score=0;
 	explanations += $"Planet Defences:X{defence_mult+1}#"
 	if (garrison!="none"){//if player supports give garrison bonus
     	var garrison_mult = garrison.viable_garrison*(0.008+(0.001*planet_forti))
+    	var siege_masters =array_contains(obj_ini.adv, "Siege Masters");
+    	if (siege_masters) then garrison_mult*=2;
     	explanations += $"Garrison Bonus:X{garrison_mult+1}#";
+    	if (siege_masters){
+    		explanations += $"     Siege Masters:X2#";
+    	}
     	if (!garrison.garrison_leader){
 	    	garrison.find_leader();
 	    }
     	defence_mult+=garrison_mult;
-    	var leader_bonus = garrison.garrison_leader.wisdom/40;
+    	var leader_bonus = garrison.garrison_leader.wisdom/30;
     	defence_mult*=leader_bonus;//modified by how good a commander the garrison leader is
-    	explanations += $"     Garrison Leader Bonus:X{leader_bonus}#"
+    	explanations += $"     Garrison Leader Bonus:X{leader_bonus}(WIS/30)#"
     	//makes pdf more effective if planet has defences or marines present
 	}
 

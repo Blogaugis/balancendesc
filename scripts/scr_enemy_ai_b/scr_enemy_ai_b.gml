@@ -2,30 +2,23 @@ function scr_enemy_ai_b() {
 	// Imperial Repleneshes numbers
 	// If no enemies and guard < pop /470 then increase guardsman
 	// If no enemies and population < max_pop then increase by like 1%
-	var rando=0,success=false,i=0, garrison_force=false, garrisons=[], total_garrison=0, sabotage_force=false;
+	var rando=0,success=false,i=0, is_garrison_force=false, total_garrison=0, sabotage_force=false;
 
 
 	i=0;
 	for (i=1;i<=planets;i++){
-		sabotage_force=false;
-		garrison_force=false;
-		var planet_string = $"{string(name)} {scr_roman_numerals()[i-1]}";
-	    for (var ops=0;ops<array_length(p_operatives[i]);ops++){
-	      	if(p_operatives[i][ops].type=="squad"){
-	      		squad_operation = p_operatives[i][ops];
-	      		if (squad_operation.job== "garrison"){//marine garrison on planet
-	      			garrison_force=true;
-	      			array_push(garrisons, obj_ini.squads[p_operatives[i][ops].reference])
-	      			total_garrison += array_length(obj_ini.squads[p_operatives[i][ops].reference].members);
-	      		} else if (squad_operation.job=="sabotage"){
-	      			sabotage_force=true;
-	      		}
-	      	}
-	      }		
+		var cur_garrison =  system_garrison[i-1];
+		var cur_sabatours =  system_sabatours[i-1];
+		
+		sabotage_force=cur_sabatours.garrison_force;
+		total_garrison = cur_garrison.total_garrison;
+		is_garrison_force=cur_garrison.garrison_force;
+
+		var planet_string = $"{string(name)} {scr_roman_numerals()[i-1]}";	
 				// Orks grow in number
 		var ork_growth=floor(random(100))+1;
 		success=false;// This part handles the increasing in numbers
-	    if (p_owner[i]=7) and (p_orks[i]<5) and (p_traitors[i]=0) and (p_player[i]<=0 || !garrison_force){
+	    if (p_owner[i]=7) and (p_orks[i]<5) and (p_traitors[i]=0) and (p_player[i]<=0 || !is_garrison_force){
 	        if (p_orks[i]>0) and (p_orks[i]<5) and (ork_growth<=15){
 	        	if(sabotage_force){
 	        		if (irandom(3)<2){
@@ -203,7 +196,7 @@ function scr_enemy_ai_b() {
 		    if (success) and (p_type[i] != "Space Hulk") {
 		        rando=floor(random(100))+1;
 		        // // // obj_controller.x=self.x;obj_controller.y=self.y;
-		        if (garrison_force) {
+		        if (is_garrison_force) {
 		            rando -= total_garrison;
 		        }
 
@@ -216,7 +209,7 @@ function scr_enemy_ai_b() {
 		        	notixt = true;
 		            var garrison_mod = choose(0.05, 0.1, 0.15, 0.2);
 
-		            if (garrison_force) {
+		            if (is_garrison_force) {
 		                garrison_mod -= 0.005 * total_garrison;
 		            }
 
@@ -246,7 +239,7 @@ function scr_enemy_ai_b() {
 		            }
 		            // Cult crushed; don't bother showing if there's already fighting going on over there
 		        } else if (rando >= 41) and (rando < 81) and (p_traitors[i] < 2) {
-		            if (garrison_force) {
+		            if (is_garrison_force) {
 		                traitor_mod = choose(1, 2);
 		            } else {
 		                traitor_mod = 2;
@@ -255,7 +248,7 @@ function scr_enemy_ai_b() {
 		            p_traitors[i] = traitor_mod;
 		            tixt = $"Heretic cults have appeared in {planet_string}."
 		        } else if (rando >= 81) and (rando < 91) and (p_traitors[i] < 3) { // Minor uprising
-		            if (garrison_force) {
+		            if (is_garrison_force) {
 		                traitor_mod = choose(2, 3);
 		            } else {
 		                traitor_mod = 3;
@@ -272,9 +265,10 @@ function scr_enemy_ai_b() {
 		            if (obj_controller.faction_defeated[10] = 0) and (obj_controller.faction_gender[10] = 1) then
 		                p_traitors[i] = 5;
 
-		            scr_popup("Heretic Revolt", "A massive heretic uprising on " + string(name) + " " + scr_roman(i) + " threatens to plunge the star system into chaos.", "chaos_cultist", "");
-		            scr_alert("red", "owner", "Massive heretic uprising on " + string(name) + " " + scr_roman(i) + ".", x, y);
-		            scr_event_log("purple", "Massive heretic uprising on " + string(name) + " " + scr_roman(i) + ".", name);
+		            var n_name = planet_numeral_name(i);
+		            scr_popup("Heretic Revolt", $"A massive heretic uprising on {n_name} threatens to plunge the star system into chaos.", "chaos_cultist", "");
+		            scr_alert("red", "owner", $"Massive heretic uprising on {n_name}.", x, y);
+		            scr_event_log("purple", $"Massive heretic uprising on {n_name}.", name);
 		        } // Huge uprising
 
 		        if (rando >= 100) and (p_traitors[i] < 5) {
@@ -288,10 +282,10 @@ function scr_enemy_ai_b() {
 		            	p_heresy[i] = 80;
 		            }
 
-		            tixt = "Daemonic incursion on " + string(name) + " " + string(i) + "!";
+		            tixt = $"Daemonic incursion on {planet_numeral_name(i)}!";
 		        } // Oh god what
 
-		        if (rando >= 41) and (!notixt) {
+		        if ((rando >= 41) and (!notixt) && tixt!="") {
 		            scr_alert("red", "owner", tixt, x, y);
 		            scr_event_log("purple", tixt, name);
 		        }
@@ -300,24 +294,58 @@ function scr_enemy_ai_b() {
 
 		}
 		// Genestealer cults grow in number
-	    if (p_tyranids[i]>0) and (p_tyranids[i]<=3) and (p_type[i]!="Space Hulk"){
-	        var spread=0;
-	        rando=floor(random(100))+1;
-	      
-	        if (rando<=15) then spread=1;
-	      
-	        if (p_type[i]="Lava") and (p_tyranids[i]=2) then spread=0;
-	        if ((p_type[i]="Ice") or (p_type[i]="Desert")) and (p_tyranids[i]=3) then spread=0;
-	      
-	        if (spread=1) then p_tyranids[i]+=1;
-	    }
+		if (planet_feature_bool(p_feature[i], P_features.Gene_Stealer_Cult)){
+			var cult = return_planet_features(p_feature[i], P_features.Gene_Stealer_Cult)[0];
+			cult.cult_age++;
+			adjust_influence(eFACTION.Tyranids, cult.cult_age/100, i)
+			var planet_garrison = system_garrison[i-1];
+			if (cult.hiding){
+				var find_nid_chance = 50 - planet_garrison.total_garrison;
+				if (p_influence[i][eFACTION.Tyranids]>50){
+					var find_cult_chance = irandom(50);
+					var alert_text = $"A hidden Genestealer Cult in {name} Has suddenly burst forth from hiding!"
+					if (planet_garrison.garrison_force){
+						var alert_text = $"A hidden Genestealer Cult in {name} Has been discovered by marine garrison!"
+						find_cult_chance-=25;
+					}
+					if(find_cult_chance<1){
+						cult.hiding=false;
+	                    scr_popup("System Lost",alert_text,"Genestealer Cult","");
+	                    owner = eFACTION.Tyranids;
+	                    scr_event_log("red",$"A hidden Genestealer Cult in {name} {i} has Started a revolt.", name);		
+	                    p_tyranids[i]+=1;				
+					}
+				}
+			}
+		    if (!cult.hiding) and (p_tyranids[i]<=3) and (p_type[i]!="Space Hulk") && (p_influence[i][eFACTION.Tyranids]>10){
+		        var spread=0;
+		        rando=irandom(150);
+		      	rando-=p_influence[i][eFACTION.Tyranids];
+		        if (rando<=15) then spread=1;
+		      
+		        if (p_type[i]="Lava") and (p_tyranids[i]=2) then spread=0;
+		        if ((p_type[i]="Ice") or (p_type[i]="Desert")) and (p_tyranids[i]=3) then spread=0;
+		      
+		        if (spread=1) then p_tyranids[i]+=1;
+		    }
+		    if (p_influence[i][eFACTION.Tyranids]>55){
+		    	p_owner[i] = eFACTION.Tyranids;
+		    }
+		} else if (p_influence[i][eFACTION.Tyranids]>5){
+			adjust_influence(eFACTION.Tyranids, -1, i);
+			if ((irandom(200)+(p_influence[i][eFACTION.Tyranids]/10)) > 195){
+				array_push(p_feature[i], new new_planet_feature(P_features.Gene_Stealer_Cult));
+			}
+		}
 
 // Spread influence on controlled sector
-	    if (p_heresy[i]<70) and (owner=10) and (p_type[i]!="Space Hulk") and (p_type[i]!="Dead") then p_heresy[i]+=2;
-	    if (p_heresy[i]<70) and (owner=8) and (p_type[i]!="Space Hulk") and (p_type[i]!="Dead"){
-	        var doggy=floor(random(100))+1;
-	        if (doggy<=5) and (p_heresy[i]>=20) then p_heresy[i]+=1;
-	    }
+		if ((p_type[i]!="Space Hulk") and (p_type[i]!="Dead")){
+		    if (p_heresy[i]<70) and (owner=10)  then p_heresy[i]+=2;
+		    if (p_heresy[i]<70) and (owner=8) {
+		        var doggy=floor(random(100))+1;
+		        if (doggy<=5) and (p_heresy[i]>=20) then p_heresy[i]+=1;
+		    }
+		}
     
 	    if (p_type[i]=="Daemon") and (p_type[i]!="Space Hulk"){
 	        if (p_pdf[i]>0) then p_pdf[i]=0;
@@ -329,32 +357,34 @@ function scr_enemy_ai_b() {
 	if (present_fleet[8]>=1) and (owner != eFACTION.Tau){
 	    var flit, ran1, ran2, tau_chance;
 	    flit=instance_nearest(x-24,y-24,obj_en_fleet);
-	    ran1=0;ran2=floor(random(planets))+1;
+	    ran1=0;
+	    ran2=floor(random(planets))+1;
     
     
 	    if (flit.owner = eFACTION.Tau){
 	        ran1=floor(random(100))+1;
-        
-	        if (flit.image_index=1) and (ran1<=90){
-	            if (p_type[ran2]!="Dead") and (p_influence[ran2]<90) then p_influence[ran2]+=choose(2,3);
-	            if (p_type[ran2]=="Forge") and (p_influence[ran2]>=3) then p_influence[ran2]-=3;
-	        }
-	        if (flit.image_index>1) and (flit.image_index<4) and (ran1<=90){
-	            if (p_type[ran2]!="Dead") and (p_influence[ran2]<90) then p_influence[ran2]+=choose(7,9,11,13);
-	            if (p_type[ran2]=="Forge") and (p_influence[ran2]>=10) then p_influence[ran2]-=10;
-	        }
-	        if (flit.image_index>=4){
-	            if (p_type[ran2]!="Dead") and (p_influence[ran2]<90) then p_influence[ran2]+=choose(9,11,13,15,17);
-	            if (p_type[ran2]=="Forge") and (p_influence[ran2]>=13) then p_influence[ran2]-=13;
-	        }
-	        if (p_type[ran2]="Lava") and (p_influence[ran2]<90) then p_influence[ran2]+=10;
+        	var tau_influence = p_influence[ran2][eFACTION.Tau];
+        	if (tau_influence<90 && (p_type[ran2]!="Dead")){
+		        if (flit.image_index=1) and (ran1<=90){
+		           adjust_influence(eFACTION.Tau, choose(2,3), ran2);
+		            if (p_type[ran2]=="Forge") and (tau_influence>=3) then adjust_influence(eFACTION.Tau, -3, ran2);
+		        }else if (flit.image_index>1) and (flit.image_index<4) and (ran1<=90){
+		            adjust_influence(eFACTION.Tau, choose(7,9,11,13), ran2);
+		            if (p_type[ran2]=="Forge") and (tau_influence>=10) then adjust_influence(eFACTION.Tau, -10, ran2);
+		        }else if (flit.image_index>=4){
+		            adjust_influence(eFACTION.Tau, choose(9,11,13,15,17), ran2);
+		            if (p_type[ran2]=="Forge") and (tau_influence>=13) then adjust_influence(eFACTION.Tau, -13, ran2);
+		        }
+		    }
+	        if (p_type[ran2]="Lava") and (tau_influence<90) then tau_influence+=10;
 	    }
     
     
 		for (i=1;i<=planets;i++){
+			var tau_influence = p_influence[i][eFACTION.Tau];
 	        tau_chance=floor(random(100))+1;
         
-	        if (i<=planets) and (p_influence[i]>=70) and (p_owner[i]!=8) and (p_owner[i]!=10) and (p_owner[i]!=7) and (p_owner[i]!=9) and (p_type[i]!="Space Hulk"){
+	        if (i<=planets) and (tau_influence>=70) and (p_owner[i]!=8) and (p_owner[i]!=10) and (p_owner[i]!=7) and (p_owner[i]!=9) and (p_type[i]!="Space Hulk"){
 	        	for (var s=1;s<=planets;s++){
 	        		 if (p_owner[s]=8) then tau_chance+=5;
 	        	}
@@ -386,27 +416,29 @@ function scr_enemy_ai_b() {
 						if (visited==1) {  //visited variable checks whether the star has been visited by the chapter or not 1 for true 0 for false
 							if(p_type[i]=="Forge") { 
 								dispo[i]-=10; // 10 disposition decreases for the respective planet
-								obj_controller.disposition[3]-=10; // 10 disposition decrease for the toaster Fetishest since they aren't that many toasters in 41 millennia
+								obj_controller.disposition[eFACTION.Mechanicus]-=10; // 10 disposition decrease for the toaster Fetishest since they aren't that many toasters in 41 millennia
 							}  
 							else if(planet_feature_bool(p_feature[i], P_features.Sororitas_Cathedral) or (p_type[i]=="Shrine")) { 
 								dispo[i]-=10; // 10 disposition decreases for the respective planet
-								obj_controller.disposition[5]-=5;} 
+								obj_controller.disposition[5]-=5;
+							} 
 							else dispo[i]-=10; // you had only 1 job.
 						} 
 					}
 
 	                if (badd=2){
-	                    scr_popup("System Lost","The "+string(name)+" system has been taken by the Tau Empire!","tau","");owner = eFACTION.Tau;
-	                    scr_event_log("red","System "+string(name)+" has been taken by the Tau Empire.", name);
+	                    scr_popup("System Lost",$"The {name} system has been taken by the Tau Empire!","tau","");
+	                    owner = eFACTION.Tau;
+	                    scr_event_log("red",$"System {name} has been taken by the Tau Empire.", name);
 	                }
                 
 	                if (p_pdf[i]!=0) then p_pdf[i]=round(p_pdf[i]*0.75);
 	                if (p_guardsmen[i]!=0) then p_guardsmen[i]=round(p_guardsmen[i]*0.75);
 	            }
 	        }
-		    if (p_owner[i]=8) and (p_influence[i]<80){
-		    	if ((p_type[i]!="Forge") and (p_type[i]!="Shrine")){p_influence[i]+=2;}
-		    	else if ((p_type[i]="Forge") or (p_type[i]="Shrine")) then p_influence[i]+=choose(0,1);
+		    if (p_owner[i]=8) and (tau_influence<80){
+		    	if ((p_type[i]!="Forge") and (p_type[i]!="Shrine")){tau_influence+=2;}
+		    	else if ((p_type[i]="Forge") or (p_type[i]="Shrine")) then tau_influence+=choose(0,1);
 		    }        
 	    }// End repeat
        

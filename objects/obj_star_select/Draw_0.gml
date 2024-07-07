@@ -23,7 +23,23 @@ var yy=__view_get( e__VW.YView, 0 )+0;
 if (loading=1){
     xx=xx;
     yy=yy;
+} else if (loading==1){
+    var xx, yy, temp1, dist;
+    xx=__view_get( e__VW.XView, 0 )+0;
+    yy=__view_get( e__VW.YView, 0 )+0;
+    dist=999;
+    
+    obj_controller.selecting_planet=0;
+    button1="";
+    button2="";
+    button3="";
+    button4="";
+
+    if (instance_exists(target)){
+        if (target.space_hulk=1) then exit;
+    }
 }
+
 if (mouse_check_button(mb_left)){
     if (obj_controller.menu=0) and (obj_controller.zoomed=0) and (!instance_exists(obj_bomb_select)) and (!instance_exists(obj_drop_select)) and (obj_controller.cooldown<=0){
         var closes=0,sta1=0,sta2=0;
@@ -100,36 +116,26 @@ if (target.craftworld=0) and (target.space_hulk=0){
 }
 
 if (target.craftworld=0) and (target.space_hulk=0){
-    if (target.owner  = eFACTION.Player) or (target.owner = eFACTION.Ecclesiarchy) then draw_set_color(c_white);
-    if (target.owner = eFACTION.Imperium) then draw_set_color(c_gray);
-    if (target.owner = eFACTION.Mechanicus) then draw_set_color(c_red);
-    if (target.owner = eFACTION.Ork) then draw_set_color(38144);
-    if (target.owner = eFACTION.Tau) then draw_set_color(117758);
-    if (target.owner = eFACTION.Tyranids) then draw_set_color(7492269);
-    if (target.owner = eFACTION.Chaos) then draw_set_color(c_purple);
-    if (target.owner = eFACTION.Necrons) then draw_set_color(65408);
+    draw_set_color(global.star_name_colors[target.owner]);
     draw_text_transformed(xx+184,yy+180,system_string,1,1,0);
 }
 
 
-if (global.cheat_debug == true && obj_controller.selecting_planet > 0 && loading == false)
+if (global.cheat_debug && obj_controller.selecting_planet && !loading)
     {
-        draw_set_color(c_gray)
-        draw_rectangle(((xx + 184) - 123), (yy + 200), ((xx + 184) + 123), (yy + 226), false)
-        draw_set_color(c_black)
-        draw_text((xx + 184), (yy + 204), string_hash_to_newline("Debug"))
-        draw_set_color(c_white)
-        draw_set_alpha(0.2)
-        if (scr_hit(((xx + 184) - 123), ((xx + 184) + 123), (yy + 200), (yy + 226)) == true)
-        {
-            draw_rectangle(((xx + 184) - 123), (yy + 200), ((xx + 184) + 123), (yy + 226), false)
-            if (obj_controller.cooldown <= 0 && obj_controller.mouse_left == 1)
-            {
-                debug = true
-                obj_controller.cooldown = 8000
-            }
+        draw_set_color(c_gray);
+        var rect = [((xx + 184) - 123), (yy + 200), ((xx + 184) + 123), (yy + 226)];
+        draw_rectangle(rect[0],rect[1],rect[2],rect[3], false);
+        draw_set_color(c_black);
+        draw_text((xx + 184), (yy + 204), string_hash_to_newline("Debug"));
+        draw_set_color(c_white);
+        draw_set_alpha(0.2);
+        if (point_and_click(rect)){
+            debug = true;
         }
-        draw_set_alpha(1)
+        if (scr_hit(((xx + 184) - 123), ((xx + 184) + 123), (yy + 200), (yy + 226)) == true){
+            draw_rectangle(((xx + 184) - 123), (yy + 200), ((xx + 184) + 123), (yy + 226), false);
+        }
     }
 
 
@@ -142,36 +148,10 @@ if (loading!=0){
 }
 
 
-
+//the draw and click on planets logic
+planet_selection_action();
 draw_set_font(fnt_40k_14b);
 
-var pt,xxx;pt=0;
-repeat(4){
-    pt+=1;xxx=159-41+(pt*41);
-    if (target.planets>=pt) and (target.craftworld=0) and (target.space_hulk=0){
-        if (target.p_type[pt]="Lava") then temp1=0;if (target.p_type[pt]="Desert") then temp1=2;
-        if (target.p_type[pt]="Dead") then temp1=12;if (target.p_type[pt]="Hive") then temp1=4;
-        if (target.p_type[pt]="Temperate") or (target.p_type[pt]="Feudal") then temp1=8;
-        if (target.p_type[pt]="Agri") then temp1=6;
-        if (target.p_type[pt]="Death") then temp1=5;if (target.p_type[pt]="Ice") then temp1=10;
-        if (target.p_type[pt]="Forge") then temp1=3;if (target.p_type[pt]="Daemon") then temp1=14;
-        if (target.p_type[pt]="Shrine") then temp1=15;draw_sprite(spr_planets,temp1,xx+xxx,yy+287);
-        
-        if (target.p_owner[pt]=1) then draw_set_color(c_blue);if (target.p_owner[pt]=2) then draw_set_color(c_gray);
-        if (target.p_owner[pt]=3) then draw_set_color(16512);if (target.p_owner[pt]=5) then draw_set_color(c_white);
-        if (target.p_owner[pt]=7) then draw_set_color(38144);if (target.p_owner[pt]=8) then draw_set_color(117758);
-        if (target.p_owner[pt]=10) then draw_set_color(c_purple);
-        
-        if (pt=1) then draw_text(xx+xxx,yy+255,string_hash_to_newline("I"));if (pt=2) then draw_text(xx+xxx,yy+255,string_hash_to_newline("II"));
-        if (pt=3) then draw_text(xx+xxx,yy+255,string_hash_to_newline("III"));if (pt=4) then draw_text(xx+xxx,yy+255,string_hash_to_newline("IV"));
-    }
-}
-if (instance_exists(target)){
-    if (target.craftworld=1) then obj_controller.selecting_planet=1;
-    if (target.space_hulk=1) then obj_controller.selecting_planet=1;
-    x=target.x;
-    y=target.y;
-}
 if (obj_controller.selecting_planet!=0){
 // Buttons that are available
     if (!buttons_selected){
@@ -276,10 +256,11 @@ if (obj_controller.selecting_planet!=0){
         
         // Draw disposition here
         var succession,yyy;succession=0;yyy=0;
-        repeat(4){yyy+=1;if (target.p_problem[current_planet,yyy]="succession") then succession=1;}
-        
+
+        if (has_problem_planet(current_planet, "succession",target)) then succession=1;
+
         if ((target.dispo[current_planet]>=0) and (target.p_owner[current_planet]<=5) and (target.p_population[current_planet]>0)) and (succession=0){
-            var wack;wack=0;
+            var wack=0;
             draw_set_color(c_blue);
             draw_rectangle(xx+349,yy+175,xx+349+(min(100,target.dispo[current_planet])*3.68),yy+192,0);
         }
@@ -287,16 +268,41 @@ if (obj_controller.selecting_planet!=0){
         draw_rectangle(xx+349,yy+175,xx+717,yy+192,1);
         draw_set_color(c_white);
         
-        if (succession=0){
+        if (!succession){
             if (target.dispo[current_planet]>=0) and (target.p_first[current_planet]<=5) and (target.p_owner[current_planet]<=5) and (target.p_population[current_planet]>0) then draw_text(xx+534,yy+176,string_hash_to_newline("Disposition: "+string(min(100,target.dispo[current_planet]))+"/100"));
             if (target.dispo[current_planet]>-30) and (target.dispo[current_planet]<0) and (target.p_owner[current_planet]<=5) and (target.p_population[current_planet]>0) then draw_text(xx+534,yy+176,string_hash_to_newline("Disposition: ???/100"));
             if ((target.dispo[current_planet]>=0) and (target.p_first[current_planet]<=5) and (target.p_owner[current_planet]>5)) or (target.p_population[current_planet]<=0) then draw_text(xx+534,yy+176,string_hash_to_newline("-------------"));
-            if (target.dispo[current_planet]<=-3000) then draw_text(xx+534,yy+176,string_hash_to_newline("Disposition: N/A"));
-        }
-        if (succession=1) then draw_text(xx+534,yy+176,string_hash_to_newline("War of Succession"));
+            if (target.dispo[current_planet]<=-3000) then draw_text(xx+534,yy+176,"Disposition: N/A");
+        }else  if (succession=1) then draw_text(xx+534,yy+176,"War of Succession");
         draw_set_color(c_gray);
         // End draw disposition
-        
+        draw_set_color(c_gray);
+        draw_rectangle(xx+349,yy+193,xx+717,yy+210,0);
+        var bar_width = 717-349;
+        var bar_start_point = xx+349;
+        var bar_percent_length = (bar_width/100);
+        var current_bar_percent = 0;
+        with (target){
+            var hidden_cult = false;
+            if (planet_feature_bool(p_feature[current_planet],P_features.Gene_Stealer_Cult)){
+                hidden_cult = return_planet_features(p_feature[current_planet],P_features.Gene_Stealer_Cult)[0].hiding;
+            }            
+            for (var i=1;i<13;i++){
+                if (p_influence[current_planet][i]>0){
+                    draw_set_color(global.star_name_colors[i]);
+                    if (hidden_cult){
+                        draw_set_color(global.star_name_colors[eFACTION.Imperium]);
+                    }
+                    var current_start = bar_start_point+(current_bar_percent*bar_percent_length)
+                    draw_rectangle(current_start,yy+193,current_start+(bar_percent_length*p_influence[current_planet][i]),yy+210,0);
+                    current_bar_percent+=p_influence[current_planet][i];
+                }
+                draw_set_color(c_gray);
+            }
+        }
+        draw_set_color(c_white);   
+        draw_text(xx+534,yy+194,"Population Influence");
+        yy+=20;
         draw_set_font(fnt_40k_14b);draw_set_halign(fa_left);
         if (target.craftworld=0) and (target.space_hulk=0) then draw_text(xx+480,yy+196,string_hash_to_newline(string(target.name)+" "+string(nm)+"  ("+string(target.p_type[current_planet])+")"));
         if (target.craftworld=1) then draw_text(xx+480,yy+196,string_hash_to_newline(string(target.name)+" (Craftworld)"));
@@ -360,7 +366,8 @@ if (obj_controller.selecting_planet!=0){
                 
                 
                 var improve_cost,yep,o;improve_cost=1500;
-                o=0;yep=0;repeat(4){o+=1;if (obj_ini.adv[o]="Siege Masters") then yep=1;}if (yep=1) then improve_cost=1100;
+                o=0;yep=0;
+                if (array_contains(obj_ini.adv, "Siege Masters")) then improve_cost=1100;
                 
                 draw_set_color(0);
                 draw_text(xx+671-1,yy+281-1,string_hash_to_newline(string(improve_cost)));
@@ -371,23 +378,22 @@ if (obj_controller.selecting_planet!=0){
                 draw_text(xx+671,yy+281,string_hash_to_newline(string(improve_cost)));
                 
                 if (scr_hit(xx+481,yy+282,xx+716,yy+300)=true){
-                    draw_set_color(0);draw_set_alpha(0.2);draw_rectangle(xx+481,yy+280,xx+716,yy+298,0);
+                    draw_set_color(0);
+                    draw_set_alpha(0.2);
+                    draw_rectangle(xx+481,yy+280,xx+716,yy+298,0);
                     if (obj_controller.cooldown<=0) and (obj_controller.mouse_left=1) and (obj_controller.requisition>=improve_cost){
                         obj_controller.cooldown=8000;
                         obj_controller.requisition-=improve_cost;
                         target.p_fortified[current_planet]+=1;
                         
                         if (target.dispo[current_planet]>0) and (target.dispo[current_planet]<=100){
-                            if (target.p_fortified[current_planet]=1) then target.dispo[current_planet]=min(100,target.dispo[current_planet]+8);
-                            if (target.p_fortified[current_planet]=2) then target.dispo[current_planet]=min(100,target.dispo[current_planet]+7);
-                            if (target.p_fortified[current_planet]=3) then target.dispo[current_planet]=min(100,target.dispo[current_planet]+6);
-                            if (target.p_fortified[current_planet]=4) then target.dispo[current_planet]=min(100,target.dispo[current_planet]+5);
-                            if (target.p_fortified[current_planet]=5) then target.dispo[current_planet]=min(100,target.dispo[current_planet]+4);
+                            target.dispo[current_planet]=min(100,target.dispo[current_planet]+(9-target.p_fortified[current_planet]));
                         }
                     }
                     
                 }
-                draw_set_alpha(1);draw_set_color(0);
+                draw_set_alpha(1);
+                draw_set_color(0);
             }
             var forti_string = ["None", "Sparse","Light","Moderate","Heavy","Major","Extreme"];
             var planet_forti = $"Defenses: {forti_string[target.p_fortified[current_planet]]}";
@@ -403,13 +409,15 @@ if (obj_controller.selecting_planet!=0){
         }
         
         var temp6="???";
-        if (max(target.p_heresy[current_planet],target.p_influence[current_planet])<=10) then temp6="None";
-        if (max(target.p_heresy[current_planet],target.p_influence[current_planet])>10) and (max(target.p_heresy[current_planet],target.p_influence[current_planet])<=30) then temp6="Little";
-        if (max(target.p_heresy[current_planet],target.p_influence[current_planet])>30) and (max(target.p_heresy[current_planet],target.p_influence[current_planet])<=50) then temp6="Major";
-        if (max(target.p_heresy[current_planet],target.p_influence[current_planet])>50) and (max(target.p_heresy[current_planet],target.p_influence[current_planet])<=70) then temp6="Heavy";
-        if (max(target.p_heresy[current_planet],target.p_influence[current_planet])>70) and (max(target.p_heresy[current_planet],target.p_influence[current_planet])<=96) then temp6="Extreme";
-        if (target.p_heresy[current_planet]>=96) or (target.p_influence[current_planet]>=96) then temp6="Maximum";
-        draw_text(xx+480,yy+300,string_hash_to_newline("Corruption: "+string(temp6)));
+        var tau_influence = target.p_influence[current_planet][eFACTION.Tau];
+        var target_planet_heresy=target.p_heresy[current_planet];
+        if (max(target_planet_heresy,tau_influence)<=10) then temp6="None";
+        if (max(target_planet_heresy,tau_influence)>10) and (max(target_planet_heresy,tau_influence)<=30) then temp6="Little";
+        if (max(target_planet_heresy,tau_influence)>30) and (max(target_planet_heresy,tau_influence)<=50) then temp6="Major";
+        if (max(target_planet_heresy,tau_influence)>50) and (max(target_planet_heresy,tau_influence)<=70) then temp6="Heavy";
+        if (max(target_planet_heresy,tau_influence)>70) and (max(target_planet_heresy,tau_influence)<=96) then temp6="Extreme";
+        if (target_planet_heresy>=96) or (tau_influence>=96) then temp6="Maximum";
+        draw_text(xx+480,yy+300,$"Corruption: {temp6}");
         
         
         draw_set_font(fnt_40k_14b);
@@ -421,15 +429,16 @@ if (obj_controller.selecting_planet!=0){
         var temp8="",t=-1;
         repeat(8){
             var ahuh,ahuh2,ahuh3;ahuh="";ahuh2=0;ahuh3=0;t+=1;
-            
-            if (t=0){ahuh="Adepta Sororitas: ";ahuh2=target.p_sisters[current_planet];}
-            if (t=1){ahuh="Ork Presence: ";ahuh2=target.p_orks[current_planet];}
-            if (t=2){ahuh="Tau Presence: ";ahuh2=target.p_tau[current_planet];}
-            if (t=3){ahuh="Tyranid Presence: ";ahuh2=target.p_tyranids[current_planet];}
-            if (t=4){ahuh="Traitor Presence: ";ahuh2=target.p_traitors[current_planet];if (ahuh2>6) then ahuh="Daemon Presence: ";}
-            if (t=5){ahuh="CSM Presence: ";ahuh2=target.p_chaos[current_planet];}
-            if (t=6){ahuh="Daemon Presence: ";ahuh2=target.p_demons[current_planet];}
-            if (t=7){ahuh="Necron Presence: ";ahuh2=target.p_necrons[current_planet];}
+            with (target){
+                if (t=0){ahuh="Adepta Sororitas: ";ahuh2=p_sisters[current_planet];}
+                if (t=1){ahuh="Ork Presence: ";ahuh2=p_orks[current_planet];}
+                if (t=2){ahuh="Tau Presence: ";ahuh2=p_tau[current_planet];}
+                if (t=3){ahuh="Tyranid Presence: ";ahuh2=p_tyranids[current_planet];}
+                if (t=4){ahuh="Traitor Presence: ";ahuh2=p_traitors[current_planet];if (ahuh2>6) then ahuh="Daemon Presence: ";}
+                if (t=5){ahuh="CSM Presence: ";ahuh2=p_chaos[current_planet];}
+                if (t=6){ahuh="Daemon Presence: ";ahuh2=p_demons[current_planet];}
+                if (t=7){ahuh="Necron Presence: ";ahuh2=p_necrons[current_planet];}
+            }
             
             if (t!=0){
                 if (ahuh2=1) then ahuh3="Tiny";if (ahuh2=2) then ahuh3="Sparse";
@@ -450,21 +459,26 @@ if (obj_controller.selecting_planet!=0){
         var fit,to_show,temp9;t=-1;to_show=0;temp9="";
         repeat(11){t+=1;fit[t]="";}
     	var planet_displays = [], i;
-    	var feat_count;
+    	var feat_count, _cur_feature;
     	var feat_count = array_length(target.p_feature[current_planet]);
         var upgrade_count = array_length(target.p_upgrades[current_planet]);
         var size = ["", "Small", "", "Large"]
     	if ( feat_count > 0){
         	for (i =0; i <  feat_count ;i++){
-        		if (target.p_feature[current_planet][i].planet_display != 0){
-        			if (target.p_feature[current_planet][i].player_hidden == 1){
+                cur_feature= target.p_feature[current_planet][i]
+        		if (cur_feature.planet_display != 0){
+                    if (cur_feature.f_type == P_features.Gene_Stealer_Cult){
+                        if (!cur_feature.hiding){
+                            array_push(planet_displays, [cur_feature.planet_display, cur_feature]);
+                        }
+                    }else if (cur_feature.player_hidden == 1){
                         array_push(planet_displays, ["????", ""] );
                     }else{
-                        array_push(planet_displays, [target.p_feature[current_planet][i].planet_display, target.p_feature[current_planet][i]]);
+                        array_push(planet_displays, [cur_feature.planet_display, cur_feature]);
         			}
-                    if (target.p_feature[current_planet][i].f_type == P_features.Monastery){
-                        if (target.p_feature[current_planet][i].forge>0){
-                            var forge = target.p_feature[current_planet][i].forge_data;
+                    if (cur_feature.f_type == P_features.Monastery){
+                        if (cur_feature.forge>0){
+                            var forge = cur_feature.forge_data;
                             var size_string= $"{size[forge.size]} Chapter Forge"
                             array_push(planet_displays, [size_string, target.p_feature[current_planet][i].forge_data]);
                         }
@@ -489,7 +503,7 @@ if (obj_controller.selecting_planet!=0){
         for (i=0; i< array_length(planet_displays); i++){
             button_colour = c_green;
             if (planet_displays[i][0] == "????") then button_colour = c_red;
-            button_size = draw_unit_buttons([xx+535,yy+346+y_move], planet_displays[i][0],[1,1], button_colour,fa_left, fnt_40k_14b, 1);
+            button_size = draw_unit_buttons([xx+535,yy+346+y_move], planet_displays[i][0],[1,1], button_colour,, fnt_40k_14b, 1);
             y_move += button_size[3]-button_size[1];
             if (point_in_rectangle(mouse_x, mouse_y, button_size[0], button_size[1],button_size[2],button_size[3]) && (mouse_check_button_pressed(mb_left))){
                 if (planet_displays[i][0] != "????"){
@@ -532,6 +546,9 @@ if (obj_controller.selecting_planet!=0){
             feature.draw_planet_features(xx+344+main_data_slate.width-4,yy+165)
             if (feature.remove){
                 feature="";
+            }else if (feature.destroy){
+                instance_destroy();
+                exit;
             }
         }
     }else if (garrison!=""){
@@ -633,11 +650,9 @@ if (obj_controller.selecting_planet!=0){
                     obj_controller.recruiting_worlds_bought-=1;
                     array_push(target.p_feature[obj_controller.selecting_planet] ,new new_planet_feature(P_features.Recruiting_World))
                     
-                    if (obj_controller.selecting_planet=1) then obj_controller.recruiting_worlds+=string(target.name)+" I|";
-                    if (obj_controller.selecting_planet=2) then obj_controller.recruiting_worlds+=string(target.name)+" II|";
-                    if (obj_controller.selecting_planet=3) then obj_controller.recruiting_worlds+=string(target.name)+" III|";
-                    if (obj_controller.selecting_planet=4) then obj_controller.recruiting_worlds+=string(target.name)+" IV|";
-                    
+                    if (obj_controller.selecting_planet){
+                         obj_controller.recruiting_worlds+=planet_numeral_name(obj_controller.selecting_planet,target);
+                    }
                     obj_controller.income_recruiting=(obj_controller.recruiting*-2)*string_count("|",obj_controller.recruiting_worlds);
                     if (obj_controller.recruiting_worlds_bought=0){
                         if (button1=="+Recruiting") then button1="";
@@ -695,13 +710,15 @@ if (target!=0){
 
 
 
-if (debug=1){
+if (debug){
     var xx,yy,current_planet;
     xx=__view_get( e__VW.XView, 0 )+0;
     yy=__view_get( e__VW.YView, 0 )+0;
     
     if (scr_hit(xx+274,yy+426,xx+337,yy+451)=true) and (obj_controller.cooldown<=0) and (obj_controller.mouse_left=1){
-        debug=0;obj_controller.cooldown=8000;exit;
+        debug=0;
+        obj_controller.cooldown=8000;
+        exit;
     }
     
     xx=__view_get( e__VW.XView, 0 )+27;

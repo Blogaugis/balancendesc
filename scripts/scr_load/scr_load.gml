@@ -11,6 +11,15 @@ function scr_load(argument0, argument1) {
 				obj_ini.TTRPG[company, marine].load_json_data(marStruct);
 			} else {obj_ini.TTRPG[company, marine] = new TTRPG_stats("chapter", company, marine,"blank");}		
 	};
+
+	function return_json_from_ini(ini_area,ini_code, default_val=[]){
+		var ini_fetch = ini_read_string(ini_area,ini_code,"");
+		if (ini_fetch!=""){
+			return json_parse(base64_decode(ini_fetch));
+		} else {
+			return default_val;
+		}
+	}
 	var rang,i,g,stars,pfleets,efleets,unit;
 	rang=0;i=0;g=0;stars=0;pfleets=0;efleets=0;
 
@@ -123,7 +132,10 @@ function scr_load(argument0, argument1) {
 	        obj_controller.stc_vehicles_un=ini_read_real("Controller","stc_vehicles_un",0);
 	        obj_controller.stc_ships_un=ini_read_real("Controller","stc_ships_un",0);
 	    var j;j=0;repeat(6){j+=1;obj_controller.stc_bonus[j]=ini_read_real("Controller","stc_bonus_"+string(j),0);}
-	    j=-1;repeat(5){j+=1;obj_ini.adv[j]=ini_read_string("Controller","adv"+string(j),"");obj_ini.dis[j]=ini_read_string("Controller","dis"+string(j),"");} //
+	    j=-1;repeat(5){
+	    	j+=1;obj_ini.adv[j]=ini_read_string("Controller","adv"+string(j),"");
+	    	obj_ini.dis[j]=ini_read_string("Controller","dis"+string(j),"");
+		} //
 
 
 
@@ -256,15 +268,19 @@ function scr_load(argument0, argument1) {
 
 
 	    ini_read_real("Controller","blandify",0);
-	    var g=-1;
-	    repeat(obj_controller.recruits+1){
-	    	g++;
-	        obj_controller.recruit_name[g]=ini_read_string("Recruit","rcr"+string(g),"Error");
-	        obj_controller.recruit_corruption[g]=ini_read_real("Recruit","rcr_cr"+string(g),0);
-	        obj_controller.recruit_distance[g]=ini_read_real("Recruit","rcr_ds"+string(g),0);
-	        obj_controller.recruit_training[g]=ini_read_real("Recruit","rcr_tr"+string(g),0);
-	        obj_controller.recruit_exp[g]=ini_read_real("Recruit","rcr_ex"+string(g),0);
-	    }
+	    var recruit_data = return_json_from_ini("Recruit", "data", {
+	    	names:[""],
+	    	corruption :[0],
+	    	distance :[0],
+	    	experience :[0],
+	    	training :[0],	    	
+	    })
+    	obj_controller.recruit_name = recruit_data.names;
+    	obj_controller.recruit_corruption= recruit_data.corruption;
+    	obj_controller.recruit_distance= recruit_data.distance;
+    	obj_controller.recruit_exp= recruit_data.experience;
+    	obj_controller.recruit_training = recruit_data.training;    
+
 	    var g=-1;repeat(30){g+=1;
 	        obj_controller.loyal[g]=ini_read_string("Controller","lyl"+string(g),"Error");
 	        obj_controller.loyal_num[g]=ini_read_real("Controller","lyl_nm"+string(g),0);
@@ -349,33 +365,97 @@ function scr_load(argument0, argument1) {
 	    var tempa,tempa2,q,good;q=0;good=0;tempa="";tempa2=0;
 	    scr_colors_initialize();
 
-	    tempa=ini_read_string("Controller","main_color","Error");tempa2=0;
-	    q=0;good=0;repeat(30){q+=1;if (tempa=col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.main_color=tempa2;obj_ini.main_color=tempa2;
+		tempa = ini_read_string("Controller", "main_color", "Error");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.main_color = tempa2;
+		obj_ini.main_color = tempa2;
 
-	    tempa=ini_read_string("Controller","secondary_color","Error");tempa2=0;
-	    q=0;good=0;repeat(30){q+=1;if (tempa=col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.secondary_color=tempa2;obj_ini.secondary_color=tempa2;
+		tempa = ini_read_string("Controller", "secondary_color", "Error");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.secondary_color = tempa2;
+		obj_ini.secondary_color = tempa2;
 
-	    tempa=ini_read_string("Controller","trim_color","Error");tempa2=0;
-	    q=0;good=0;repeat(30){q+=1;if (tempa=col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.trim_color=tempa2;obj_ini.trim_color=tempa2;
+		tempa = ini_read_string("Controller", "trim_color", "Error");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.trim_color = tempa2;
+		obj_ini.trim_color = tempa2;
 
-	    tempa=ini_read_string("Controller","pauldron2_color","Error");tempa2=0;
-	    q=0;good=0;repeat(30){q+=1;if (tempa=col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.pauldron2_color=tempa2;obj_ini.pauldron2_color=tempa2;
+		tempa = ini_read_string("Controller", "pauldron2_color", "Error");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.pauldron2_color = tempa2;
+		obj_ini.pauldron2_color = tempa2;
 
-	    tempa=ini_read_string("Controller","pauldron_color","Error");tempa2=0;
-	    q=0;good=0;repeat(30){q+=1;if (tempa=col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.pauldron_color=tempa2;obj_ini.pauldron_color=tempa2;
+		tempa = ini_read_string("Controller", "pauldron_color", "Error");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.pauldron_color = tempa2;
+		obj_ini.pauldron_color = tempa2;
 
-	    tempa=ini_read_string("Controller","lens_color","Error");tempa2=0;
-	    q=0;good=0;repeat(30){q+=1;if (tempa=col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.lens_color=tempa2;obj_ini.lens_color=tempa2;
+		tempa = ini_read_string("Controller", "lens_color", "Error");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.lens_color = tempa2;
+		obj_ini.lens_color = tempa2;
 
-	    tempa=ini_read_string("Controller","weapon_color","Error");tempa2=0;
-	    q=0;good=0;repeat(30){q+=1;if (tempa=col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.weapon_color=tempa2;obj_ini.weapon_color=tempa2;
+		tempa = ini_read_string("Controller", "weapon_color", "Error");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+
+	    obj_controller.weapon_color = tempa2;
+	    obj_ini.weapon_color = tempa2;
 
 	    obj_controller.col_special=ini_read_real("Controller","col_special",0);obj_ini.col_special=obj_controller.col_special;
 	    obj_controller.trim=ini_read_real("Controller","trimmed",0);obj_ini.trim=obj_controller.trim;
@@ -440,6 +520,12 @@ function scr_load(argument0, argument1) {
 	        new_star.craftworld=ini_read_real("Star","sr"+string(i)+"craftworld",0);
 	        new_star.space_hulk=ini_read_real("Star","sr"+string(i)+"spacehulk",0);
 	        if (new_star.space_hulk=1) then new_star.sprite_index=spr_star_hulk;
+	        new_star.present_fleet=ini_read_string("Star","sr"+string(i)+"present_fleets","");
+	        if (new_star.present_fleet!=""){
+	        	new_star.present_fleet = json_parse(base64_decode(new_star.present_fleet));
+	        } else {
+	        	new_star.present_fleet = array_create(30, 0);
+	        }
 
 	        var g=0;
 	        repeat(4){g+=1;
@@ -496,41 +582,31 @@ function scr_load(argument0, argument1) {
 	                new_star.p_sisters[g]=ini_read_real("Star","sr"+string(i)+"si"+string(g),0);
 	                new_star.p_necrons[g]=ini_read_real("Star","sr"+string(i)+"ne"+string(g),0);
 	                new_star.p_tyranids[g]=ini_read_real("Star","sr"+string(i)+"tyr"+string(g),0);
-	                    new_star.p_halp[g]=ini_read_real("Star","sr"+string(i)+"halp"+string(g),0);
+	                new_star.p_halp[g]=ini_read_real("Star","sr"+string(i)+"halp"+string(g),0);
 
 	                new_star.p_heresy[g]=ini_read_real("Star","sr"+string(i)+"heresy"+string(g),0);
 	                new_star.p_hurssy[g]=ini_read_real("Star","sr"+string(i)+"hurssy"+string(g),0);
 	                new_star.p_hurssy_time[g]=ini_read_real("Star","sr"+string(i)+"hurssy_time"+string(g),0);
 	                new_star.p_heresy_secret[g]=ini_read_real("Star","sr"+string(i)+"heresy_secret"+string(g),0);
-	                new_star.p_influence[g]=ini_read_real("Star","sr"+string(i)+"influence"+string(g),0);
+	                new_star.p_influence[g]=ini_read_string("Star","sr"+string(i)+"influence"+string(g),"");
+	                if (new_star.p_influence[g] != ""){
+	                	new_star.p_influence[g]=json_parse(base64_decode(new_star.p_influence[g]));
+	                } else {
+	                	new_star.p_influence[g] = array_create(15, 0);
+	                }
 	                new_star.p_raided[g]=ini_read_real("Star","sr"+string(i)+"raided"+string(g),0);
 
 
-
-	                /*
-	                ini_write_string("Star","sr"+string(i)+"prob"+string(g)+".1",instance_array[i].p_problem[g,1]);
-	                ini_write_real("Star","sr"+string(i)+"time"+string(g)+".1",instance_array[i].p_timer[g,1]);
-
-	                ini_write_string("Star","sr"+string(i)+"prob"+string(g)+"2",instance_array[i].p_problem[g,2]);
-	                ini_write_real("Star","sr"+string(i)+"time"+string(g)+".2",instance_array[i].p_timer[g,2]);
-
-	                ini_write_string("Star","sr"+string(i)+"prob"+string(g)+".3",instance_array[i].p_problem[g,3]);
-	                ini_write_real("Star","sr"+string(i)+"time"+string(g)+".3",instance_array[i].p_timer[g,3]);
-
-	                ini_write_string("Star","sr"+string(i)+"prob"+string(g)+".4",instance_array[i].p_problem[g,4]);
-	                ini_write_real("Star","sr"+string(i)+"time"+string(g)+".4",instance_array[i].p_timer[g,4]);
-	                */
-
-
-
-	                new_star.p_problem[g,1]=ini_read_string("Star","sr"+string(i)+"prob"+string(g)+".1","");
-	                new_star.p_timer[g,1]=ini_read_real("Star","sr"+string(i)+"time"+string(g)+".1",0);
-	                new_star.p_problem[g,2]=ini_read_string("Star","sr"+string(i)+"prob"+string(g)+".2","");
-	                new_star.p_timer[g,2]=ini_read_real("Star","sr"+string(i)+"time"+string(g)+".2",0);
-	                new_star.p_problem[g,3]=ini_read_string("Star","sr"+string(i)+"prob"+string(g)+".3","");
-	                new_star.p_timer[g,3]=ini_read_real("Star","sr"+string(i)+"time"+string(g)+".3",0);
-	                new_star.p_problem[g,4]=ini_read_string("Star","sr"+string(i)+"prob"+string(g)+".4","");
-	                new_star.p_timer[g,4]=ini_read_real("Star","sr"+string(i)+"time"+string(g)+".4",0);
+	                for (var p=0;p<8;p++){
+	                	new_star.p_problem[g,p]=ini_read_string("Star",$"sr{i}prob{g}.{p}","");
+	                	new_star.p_timer[g,p]=ini_read_real("Star",$"sr{i}time{g}.{p}",-1);
+	                	new_star.p_problem_other_data[g,p]=ini_read_string("Star",$"sr{i}prob_other{g}.{p}","");
+	                	if (new_star.p_problem_other_data[g][p]!=""){
+	                		new_star.p_problem_other_data[g][p] = json_parse(base64_decode(new_star.p_problem_other_data[g][p]));
+	                	} else {
+	                		new_star.p_problem_other_data[g][p]={};
+	                	}
+	                }
 	            }
 	        }
 	    }
@@ -589,6 +665,13 @@ function scr_load(argument0, argument1) {
 	    obj_ini.master_necron_vehicles=ini_read_real("Ini","master_necron_vehicles",0);
 	    obj_ini.master_monolith=ini_read_real("Ini","master_monolith",0);
 	    obj_ini.master_special_killed=ini_read_string("Ini","master_special","");
+	    obj_ini.complex_livery_data=ini_read_string("Ini","complex_livery","");
+	    if (obj_ini.complex_livery_data!=""){
+	    	obj_ini.complex_livery_data=json_parse(base64_decode(obj_ini.complex_livery_data));
+	    } else{
+	    	//TODO centralise and initialisation method for this other reference place is obj_creation create
+			obj_ini.complex_livery_data = complex_livery_default();	    	
+	    }
 	    //
 	    obj_ini.preomnor=ini_read_real("Ini","preomnor",0);
 	    obj_ini.voice=ini_read_real("Ini","voice",0);
@@ -782,8 +865,7 @@ function scr_load(argument0, argument1) {
                     obj_ini.race[coh,mah]=ini_read_real("Mar","co"+string(coh)+"."+string(mah),0);
                     obj_ini.loc[coh,mah]=ini_read_string("Mar","lo"+string(coh)+"."+string(mah),"");
                     obj_ini.name[coh,mah]=ini_read_string("Mar","num"+string(coh)+"."+string(mah),"");
-                    obj_ini.role[coh,mah]=ini_read_string("Mar","rol"+string(coh)+"."+string(mah),"");// temp_name;
-                    obj_ini.lid[coh,mah]=ini_read_real("Mar","li"+string(coh)+"."+string(mah),0);							
+                    obj_ini.role[coh,mah]=ini_read_string("Mar","rol"+string(coh)+"."+string(mah),"");// temp_name;					
 
                     if (coh=0){
                         if (obj_ini.role[coh,mah]="Chapter Master"){
@@ -931,24 +1013,25 @@ function scr_load(argument0, argument1) {
 	        fla.hurssy_time=ini_read_real("Fleet","pf"+string(i)+"hurssy_time",0);
 	        fla.orbiting=ini_read_real("Fleet","pf"+string(i)+"orb",0);
 
-	        var g;g=-1;repeat(10){g+=1;
-	            fla.capital[g]=ini_read_string("Fleet","pf"+string(i)+"capital"+string(g),"");
-	            fla.capital_num[g]=ini_read_real("Fleet","pf"+string(i)+"capital_num"+string(g),0);
-	            fla.capital_sel[g]=ini_read_real("Fleet","pf"+string(i)+"capital_sel"+string(g),0);
-	            fla.capital_uid[g]=ini_read_real("Fleet","pf"+string(i)+"capital_uid"+string(g),0);
-	        }
-	        g=-1;repeat(21){g+=1;
-	            fla.frigate[g]=ini_read_string("Fleet","pf"+string(i)+"frigate"+string(g),"");
-	            fla.frigate_num[g]=ini_read_real("Fleet","pf"+string(i)+"frigate_num"+string(g),0);
-	            fla.frigate_sel[g]=ini_read_real("Fleet","pf"+string(i)+"frigate_sel"+string(g),0);
-	            fla.frigate_uid[g]=ini_read_real("Fleet","pf"+string(i)+"frigate_uid"+string(g),0);
-	        }
-	        g=-1;repeat(35){g+=1;
-	            fla.escort[g]=ini_read_string("Fleet","pf"+string(i)+"escort"+string(g),"");
-	            fla.escort_num[g]=ini_read_real("Fleet","pf"+string(i)+"escort_num"+string(g),0);
-	            fla.escort_sel[g]=ini_read_real("Fleet","pf"+string(i)+"escort_sel"+string(g),0);
-	            fla.escort_uid[g]=ini_read_real("Fleet","pf"+string(i)+"escort_uid"+string(g),0);
-	        }
+	        fla.complex_route = return_json_from_ini("Fleet", $"pf{i}complex_route", []);
+	        fla.just_left = ini_read_real("Fleet",$"pf{i}just_left",0);
+
+	        fla.capital = return_json_from_ini("Fleet", $"pf{i}capital", array_create(100, ""));
+	        fla.capital_num = return_json_from_ini("Fleet", $"pf{i}capital_num", array_create(100, -1));
+	        fla.capital_sel = return_json_from_ini("Fleet", $"pf{i}capital_sel", array_create(100, 0));
+	        fla.capital_uid = return_json_from_ini("Fleet", $"pf{i}capital_uid", array_create(100, -1));
+
+
+	        fla.frigate = return_json_from_ini("Fleet", $"pf{i}frigate", array_create(100, ""));
+	        fla.frigate_num = return_json_from_ini("Fleet", $"pf{i}frigate_num", array_create(100, -1));
+	        fla.frigate_sel = return_json_from_ini("Fleet", $"pf{i}frigate_sel", array_create(100, 0));
+	        fla.frigate_uid = return_json_from_ini("Fleet", $"pf{i}frigate_uid", array_create(100, -1));
+
+
+	        fla.escort = return_json_from_ini("Fleet", $"pf{i}escort", array_create(100, ""));
+	        fla.escort_num = return_json_from_ini("Fleet", $"pf{i}escort_num", array_create(100, -1));
+	        fla.escort_sel = return_json_from_ini("Fleet", $"pf{i}escort_sel", array_create(100, 0));
+	        fla.escort_uid = return_json_from_ini("Fleet", $"pf{i}escort_uid", array_create(100, -1));	        
 	    }
 
 	    // ENEMY FLEET OBJECTS
@@ -983,6 +1066,7 @@ function scr_load(argument0, argument1) {
 	        fla.orbiting=ini_read_real("Fleet","ef"+string(i)+"orb",0);
 	        fla.navy=ini_read_real("Fleet","ef"+string(i)+"navy",0);
 	        fla.guardsmen_unloaded=ini_read_real("Fleet","ef"+string(i)+"unl",0);
+	        fla.inquisitor=ini_read_real("Fleet","ef"+string(i)+"inquis",-1);
 
 	        if (fla.navy=1){var e;e=-1;
 	            repeat(20){e+=1;
@@ -1040,33 +1124,89 @@ function scr_load(argument0, argument1) {
 
 	    var tempa,tempa2,q,good;tempa="";tempa2=0;q=0;good=0;
 
-	    tempa=ini_read_string("Res","maincol","");
-	    tempa2=0;q=0;good=0;repeat(30){q+=1;if (tempa=obj_controller.col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.restart_main_color=tempa2;
+		tempa = ini_read_string("Res", "maincol", "");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = obj_controller.col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.restart_main_color = tempa2;
 
-	    tempa=ini_read_string("Res","seccol","");
-	    tempa2=0;q=0;good=0;repeat(30){q+=1;if (tempa=obj_controller.col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.restart_secondary_color=tempa2;
+		tempa = ini_read_string("Res", "seccol", "");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = obj_controller.col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.restart_secondary_color = tempa2;
 
-	    tempa=ini_read_string("Res","tricol","");
-	    tempa2=0;q=0;good=0;repeat(30){q+=1;if (tempa=obj_controller.col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.restart_trim_color=tempa2;
+		tempa = ini_read_string("Res", "tricol", "");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = obj_controller.col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.restart_trim_color = tempa2;
 
-	    tempa=ini_read_string("Res","paul2col","");
-	    tempa2=0;q=0;good=0;repeat(30){q+=1;if (tempa=obj_controller.col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.restart_pauldron2_color=tempa2;
+		tempa = ini_read_string("Res", "paul2col", "");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = obj_controller.col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.restart_pauldron2_color = tempa2;
 
-	    tempa=ini_read_string("Res","paul1col","");
-	    tempa2=0;q=0;good=0;repeat(30){q+=1;if (tempa=obj_controller.col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.restart_pauldron_color=tempa2;
+		tempa = ini_read_string("Res", "paul1col", "");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = obj_controller.col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.restart_pauldron_color = tempa2;
 
-	    tempa=ini_read_string("Res","lenscol","");
-	    tempa2=0;q=0;good=0;repeat(30){q+=1;if (tempa=obj_controller.col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.restart_lens_color=tempa2;
+		tempa = ini_read_string("Res", "lenscol", "");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = obj_controller.col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.restart_lens_color = tempa2;
 
-	    tempa=ini_read_string("Res","wepcol","");
-	    tempa2=0;q=0;good=0;repeat(30){q+=1;if (tempa=obj_controller.col[q]) and (good=0){good=q;tempa2=q;}}
-	    obj_controller.restart_weapon_color=tempa2;
+		tempa = ini_read_string("Res", "wepcol", "");
+		tempa2 = 0;
+		q = 0;
+		good = 0;
+		for(var q=0; q<global.colors_count; q++){
+			if (tempa = obj_controller.col[q]) and(good = 0) {
+				good = q;
+				tempa2 = q;
+			}
+		}
+		obj_controller.restart_weapon_color = tempa2;
 
 	    //
 

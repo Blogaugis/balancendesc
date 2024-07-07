@@ -1,3 +1,4 @@
+
 /*
     Creates all instances and logic for the game, 
     This is the MAIN script to load in the actual game UI and where most if not all MISC Stuff from the game is:
@@ -71,7 +72,7 @@
     
     The Machine God watches over you.
 */
-
+scr_colors_initialize();
 is_test_map=false;
 target_navy_number=5;
 global.sound_playing=0;
@@ -183,7 +184,7 @@ for(var i=100; i<103; i++){
     obj_controller.r_role[i,2]="Honor Guard";
     obj_controller.r_wep1[i,2]="Power Sword";
     obj_controller.r_wep2[i,2]="Bolter";
-    obj_controller.r_armour[i,2]="Power Armour";
+    obj_controller.r_armour[i,2]="Artificer Armour";
     obj_controller.r_mobi[i,2]="";
     obj_controller.r_gear[i,2]="";
     
@@ -206,7 +207,7 @@ for(var i=100; i<103; i++){
     obj_controller.r_wep2[i,5]="Bolt Pistol";
     obj_controller.r_armour[i,5]="Power Armour";
     obj_controller.r_mobi[i,5]="";
-    obj_controller.r_gear[i,5]="";
+    obj_controller.r_gear[i,5]="Iron Halo";
     
     obj_controller.r_role[i,6]="Dreadnought";
     obj_controller.r_wep1[i,6]="Close Combat Weapon";
@@ -217,10 +218,10 @@ for(var i=100; i<103; i++){
     
     obj_controller.r_role[i,7]="Company Champion";
     obj_controller.r_wep1[i,7]="Power Sword";
-    obj_controller.r_wep2[i,7]="Storm Shield";
+    obj_controller.r_wep2[i,7]="Bolt Pistol";
     obj_controller.r_armour[i,7]="Power Armour";
     obj_controller.r_mobi[i,7]="";
-    obj_controller.r_gear[i,7]="";
+    obj_controller.r_gear[i,7]="Combat Shield";
     
     obj_controller.r_role[i,8]="Tactical Marine";
     obj_controller.r_wep1[i,8]="Bolter";
@@ -230,10 +231,10 @@ for(var i=100; i<103; i++){
     obj_controller.r_gear[i,8]="";
     
     obj_controller.r_role[i,9]="Devastator Marine";
-    obj_controller.r_wep1[i,9]="Heavy Ranged";
+    obj_controller.r_wep1[i,9]="";
     obj_controller.r_wep2[i,9]="Combat Knife";
     obj_controller.r_armour[i,9]="Power Armour";
-    obj_controller.r_mobi[i,9]="Heavy Weapons Pack";
+    obj_controller.r_mobi[i,9]="";
     obj_controller.r_gear[i,9]="";
     
     obj_controller.r_role[i,10]="Assault Marine";
@@ -243,6 +244,13 @@ for(var i=100; i<103; i++){
     obj_controller.r_mobi[i,10]="Jump Pack";
     obj_controller.r_gear[i,10]="";
     
+    obj_controller.r_role[i,11]="Ancient";
+    obj_controller.r_wep1[i,11]="Company Standard";
+    obj_controller.r_wep2[i,11]="Power Sword";
+    obj_controller.r_armour[i,11]="Power Armour";
+    obj_controller.r_mobi[i,11]="";
+    obj_controller.r_gear[i,11]="";
+
     obj_controller.r_role[i,12]="Scout";
     obj_controller.r_wep1[i,12]="Sniper Rifle";
     obj_controller.r_wep2[i,12]="Combat Knife";
@@ -258,7 +266,7 @@ for(var i=100; i<103; i++){
     obj_controller.r_mobi[i,14]="";
     
     obj_controller.r_role[i,15]="Apothecary";
-    obj_controller.r_wep1[i,15]="Power Sword";
+    obj_controller.r_wep1[i,15]="Chainsword";
     obj_controller.r_wep2[i,15]="Bolt Pistol";
     obj_controller.r_armour[i,15]="Power Armour";
     obj_controller.r_gear[i,15]="Narthecium";
@@ -267,7 +275,7 @@ for(var i=100; i<103; i++){
     obj_controller.r_role[i,16]="Techmarine";
     obj_controller.r_wep1[i,16]="Power Axe";
     obj_controller.r_wep2[i,16]="Storm Bolter";
-    obj_controller.r_armour[i,16]="Power Armour";
+    obj_controller.r_armour[i,16]="Artificer Armour";
     obj_controller.r_gear[i,16]="Servo Arms";
     obj_controller.r_mobi[i,16]="";
     
@@ -418,6 +426,7 @@ tooltip_other="";
 
 // ** For weapon display in management **
 unit_profile=false;
+unit_bio=false;
 view_squad=false;
 company_report=false;
 company_data = {};
@@ -461,11 +470,17 @@ ship_max=0;
 ship_see=0;
 man_sel[0]=0;
 man_size=0;
+man_count = 0;
+squad_sel_action=-1;
+squad_sel_count=0;
+squad_sel=-1
 selecting_location="";
 selecting_types="";
 selecting_dudes="";
 sel_all="";
 sel_promoting=0;
+drag_square=[];
+rectangle_action = -1;
 sel_loading=0;
 sel_uid=0;
 
@@ -780,12 +795,14 @@ recruits=0;
 recruiting_worlds="";
 recruit_trial="Challenge";
 recruit_last=0;
+
+recruit_name[0]="";
+recruit_corruption[0]=0;
+recruit_distance[0]=0;
+recruit_training[0]=0;
+recruit_exp[0]=0;
+
 for(var i=0; i<501; i++){
-    recruit_name[i]="";
-    recruit_corruption[i]=0;
-    recruit_distance[i]=0;
-    recruit_training[i]=0;
-    recruit_exp[i]=0;
     
     // For loyalty penalties
     if (i<=50){
@@ -986,8 +1003,10 @@ enum eFACTION {
 	Tyranids,
 	Chaos,
 	Heretics,
+    Genestealer,
 	Necrons = 13
 }
+
 imperial_factions = [
     eFACTION.Imperium,
     eFACTION.Mechanicus,
@@ -1314,6 +1333,13 @@ if (instance_exists(obj_ini)){
         debugl("New Game");
     }
 }
+//Set player colour
+try{
+    global.star_name_colors[1] = make_color_rgb(body_colour_replace[0],body_colour_replace[1],body_colour_replace[2]);
+}
+catch(_exception){
+    global.star_name_colors[1] = make_color_rgb(col_r[1],col_g[1],col_b[1]);
+}
 // ** Loads the game **
 if (global.load>0){
     load_game=global.load;
@@ -1409,6 +1435,10 @@ squads = false;
 
 // **sets up starting forge_points
 calculate_research_points()
+
+//** sets up marine_by_location view
+location_viewer = new scr_unit_quick_find_pane();
+
 // ** Sets up the number of marines per company **
 marines=0;
 marines=obj_ini.specials+obj_ini.firsts+obj_ini.seconds+obj_ini.thirds+obj_ini.fourths+obj_ini.fifths;
@@ -1497,7 +1527,7 @@ for(var company=0; company<10; company++){
         if (obj_ini.role[com,mm]==obj_ini.role[100][14]) then chap+=1;
         if (obj_ini.role[com,mm]==obj_ini.role[100][15]) then apoth+=1;
         if (obj_ini.role[com,mm]==obj_ini.role[100][16]) then techa+=1;
-        if (obj_ini.role[com,mm]=="Standard Bearer") then standard+=1;
+        if (obj_ini.role[com,mm]==obj_ini.role[100][11]) then standard+=1;
         if (obj_ini.role[com,mm]==obj_ini.role[100][8]) then tact+=1;
         if (obj_ini.role[com,mm]==obj_ini.role[100][10]) then assa+=1;
         if (obj_ini.role[com,mm]==obj_ini.role[100][9]) then deva+=1;
@@ -1536,7 +1566,7 @@ for(var company=0; company<10; company++){
     if (techa==1) then temp[njm]+=", "+string(techa)+" "+string(obj_ini.role[100][16]);
     if (techa>1) then temp[njm]+=", "+string(techa)+" "+string(obj_ini.role[100][16])+"s";
     
-    if (standard==1) then temp[njm]+=", 1 Standard Bearer, 1 Company Champion, ";
+    if (standard==1) then temp[njm]+=", "+string(standard)+" "+string(obj_ini.role[100][11])+"s";
     if (termi>0) then temp[njm]+=", "+string(termi)+" "+string(obj_ini.role[100][4])+"s";
     if (veter>0) then temp[njm]+=", "+string(veter)+" "+string(obj_ini.role[100][3])+"s";
     if (tact>0) then temp[njm]+=", "+string(tact)+" "+string(obj_ini.role[100][8])+"s";

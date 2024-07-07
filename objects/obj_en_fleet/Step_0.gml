@@ -2,8 +2,17 @@
 if (global.load>0) or (instance_exists(obj_saveload)) then exit;
 
 if (action!="") and (orbiting!=0){
-    if (instance_exists(orbiting)){orbiting.present_fleet[owner]-=1;}
-    orbiting=0;
+    if (instance_exists(orbiting)){
+        if (variable_instance_exists(orbiting, "present_fleet")){
+            orbiting.present_fleet[owner]-=1;
+            orbiting=0;
+        } else {
+            orbiting = instance_nearest(x, y , obj_star);
+            var cur_owner_fleet = orbiting.present_fleet[owner];
+            orbiting.present_fleet[owner] = cur_owner_fleet> 0? cur_owner_fleet-1 : cur_owner_fleet=0;
+            orbiting=0;
+        }
+    }
 }
 
 if (capital_number<0) then capital_number=0;
@@ -22,8 +31,12 @@ if (ii_check=0){
     ii_check=10;
     
     if (owner != eFACTION.Eldar) and (owner  != eFACTION.Inquisition){
-        var ii;ii=0;ii+=capital_number;ii+=round((frigate_number/2));ii+=round((escort_number/4));
-        if (ii<=1) then ii=1;image_index=ii;
+        var ii=0;
+        ii+=capital_number;
+        ii+=round((frigate_number/2));
+        ii+=round((escort_number/4));
+        if (ii<=1) then ii=1;
+        image_index=ii;
         image_index=min(image_index,9);
     }
     if (owner = eFACTION.Eldar){

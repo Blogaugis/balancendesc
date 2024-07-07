@@ -3,6 +3,7 @@ var __b__;
 __b__ = action_if_variable(name, "", 0);
 if (!__b__){
     {
+
         draw_self();
 
         draw_set_color(38144);

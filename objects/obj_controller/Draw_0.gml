@@ -14,10 +14,33 @@ if (is_test_map==true){
 }
 // if (instance_exists(obj_turn_end)) then exit;
 
-script_execute(scr_ui_manage,0,0,0,0,0);
-script_execute(scr_ui_advisors,0,0,0,0,0);
-script_execute(scr_ui_diplomacy,0,0,0,0,0);
-script_execute(scr_ui_settings,0,0,0,0,0);
+try{
+    script_execute(scr_ui_manage,0,0,0,0,0);
+} catch(_exception){
+    show_debug_message(_exception.message);
+    manage = 0;
+    menu = 0;
+
+}
+try{
+    script_execute(scr_ui_advisors,0,0,0,0,0);
+} catch(_exception){
+    manage = 0;
+    menu = 0;   
+}
+try{
+    script_execute(scr_ui_diplomacy,0,0,0,0,0);
+} catch(_exception){
+    manage = 0;
+    menu = 0;   
+}
+try{
+    script_execute(scr_ui_settings,0,0,0,0,0);
+} catch(_exception){
+    manage = 0;
+    menu = 0;   
+}
+
 var xx =__view_get( e__VW.XView, 0 );
 var yy =__view_get( e__VW.YView, 0 );
 // Main UI
@@ -157,6 +180,10 @@ if (zoomed==0) and (zui==0){
     draw_set_color(16291875);
     draw_text(xx+495-10,yy+16,string_hash_to_newline(string(marines)+"/"+string(command)));
     draw_text(xx+495.5-10,yy+16.5,string_hash_to_newline(string(marines)+"/"+string(command)));
+
+    if (menu==0){
+        location_viewer.draw();
+    }
 }
 
 draw_set_font(fnt_40k_14b);

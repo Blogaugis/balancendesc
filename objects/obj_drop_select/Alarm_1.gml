@@ -73,12 +73,12 @@ repeat(11){co+=1;i=0;
                 if (unit.role()="Company Champion") then l_champions+=1;
                 
                 if (string_count("Bike",obj_ini.role[co][i])=0) or (attack=0){
-                    if (obj_ini.role[co][i]="Standard Bearer") then l_mahreens+=1;
+                    if (obj_ini.role[co][i]=obj_ini.role[100][11]) then l_mahreens+=1;
                     if (unit.IsSpecialist("rank_and_file")) then l_mahreens++
                     if (obj_ini.role[co][i]=obj_ini.role[100][3]) then l_veterans+=1;
                 }
                 if (string_count("Bike",obj_ini.role[co][i])>0) and (attack=1){
-                    if (obj_ini.role[co][i]="Standard Bearer") then l_bikes+=1;
+                    if (obj_ini.role[co][i]=obj_ini.role[100][11]) then l_bikes+=1;
                     if (unit.IsSpecialist("rank_and_file")) then l_bikes++
                     if (obj_ini.role[co][i]=obj_ini.role[100][3]) then l_bikes+=1;
                 }
@@ -202,13 +202,12 @@ if (bes_score>0) then attacking=bes;
 
 var spesh;spesh=false;
 if (planet_feature_bool(p_target.p_feature[obj_controller.selecting_planet],P_features.Warlord10)==1) and (obj_controller.faction_defeated[10]=0) and (obj_controller.faction_gender[10]=1) and (obj_controller.known[eFACTION.Chaos]>0) and (obj_controller.turn>=obj_controller.chaos_turn) then spesh=true;
-
-    if (p_target.p_problem[obj_controller.selecting_planet,1]="tyranid_org"){tyranids=2;attacking=9;}
-    if (p_target.p_problem[obj_controller.selecting_planet,2]="tyranid_org"){tyranids=2;attacking=9;}
-    if (p_target.p_problem[obj_controller.selecting_planet,3]="tyranid_org"){tyranids=2;attacking=9;}
-    if (p_target.p_problem[obj_controller.selecting_planet,4]="tyranid_org"){tyranids=2;attacking=9;}
     
 
+if (has_problem_planet(obj_controller.selecting_planet, "tyranid_org", p_target)){
+    tyranids=2;
+    attacking=9;
+}
 
 var forces,t_attack;forces=0;t_attack=0;
 if (sisters>0){forces+=1;force_present[forces]=5;}
@@ -296,21 +295,16 @@ if (sh_target!=-50){
 }
 
 if (p_target.p_player[obj_controller.selecting_planet]>0) then max_ships+=1;
+var pp=obj_controller.selecting_planet;
+purge_d = p_target.p_type[pp]!="Dead";
 
-var succession,yyy,pp;succession=0;yyy=0;pp=obj_controller.selecting_planet
-repeat(4){yyy+=1;
-    if (planet_feature_bool(p_target.p_feature[pp],P_features.Monastery)==1) and (obj_controller.homeworld_rule!=1) then purge_d=0;
-    if (p_target.p_problem[pp,yyy]="succession") then succession=1;
-    if (p_target.dispo[yyy]<-2000) then purge_d=0;
-}
-if (succession=1) then purge_d=0;
+if (has_problem_planet(pp,"succession",p_target)) then purge_d=0
+
+if (p_target.dispo[pp]<-2000) then purge_d=0;
+
+if (planet_feature_bool(p_target.p_feature[pp],P_features.Monastery)==1) and (obj_controller.homeworld_rule!=1) then purge_d=0;
+
 if (p_target.p_type[pp]="Dead") then purge_d=0;
-
-
-// show_message(string(purge_d));
-// window_set_fullscreen(true);
-
-
 
 
 }
