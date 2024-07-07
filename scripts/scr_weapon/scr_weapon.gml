@@ -528,21 +528,6 @@ global.weapons={
         "second_profiles":["Integrated Bolters"],
         "tags":["power", "fist", "bolt"],
     },    
-    "Power Fists": {
-        "abbreviation": "PwrFists", 
-        "attack": {
-            "standard": 425,
-            "master_crafted": 468,
-            "artifact": 510
-        },
-        "description": "While not quite as strong as two Power Fists, these artifacts allow the use of an additional, third weapon.",
-        "melee_hands": 2,
-        "ranged_hands": 0,
-        "ammo": 0,
-        "range": 1,
-        "spli": 2,
-        "arp": 1
-    },
     "Gauntlets of Ultramar": {
         "abbreviation": "GntltUltrm", 
         "attack": {
@@ -560,48 +545,477 @@ global.weapons={
         "second_profiles":["Integrated Bolters"],
         "tags":["artifact","power","fist","pair"],
     },
-    "Force Staff": {
-        "attack": {
-            "standard": 150,
-            "master_crafted": 200,
-            "artifact": 240
-        },
+	"Company Standard": {
+		"abbreviation": "CmpStnd",
+		"special_properties": ["Morale Boost"],
+		"description": "A banner that represents the honor of a particular company and will bolster the morale of nearby Astartes.",
+		"attack": {
+			"standard": 45,
+			"master_crafted": 60,
+			"artifact": 100
+		},
+		"hp_mod": {
+			"standard": 20,
+			"master_crafted": 20,
+			"artifact": 20
+		},
+		"melee_hands": 1,
+		"ranged_hands": 1,
+		"range": 1,
+		"spli": 1,
+		"tags": ["banner"],
+	},
+	"Eviscerator": {
+		"abbreviation": "Evisc",
+		"attack": {
+			"standard": 180,
+			"master_crafted": 190,
+			"artifact": 200
+		},
 		"melee_mod": {
-            "standard": 1,
-            "master_crafted": 1,
-            "artifact": 1
-        },
-        "abbreviation": "FrcStff", 
-        "description": "An advanced, psychically-attuned close combat weapon that is only fully effective in the hands of a psyker.",
-        "melee_hands": 1,
-        "ranged_hands": 1,
-        "range": 1,
-        "spli": 30,
-        "arp": 1,
+			"standard": 2,
+			"master_crafted": 2,
+			"artifact": 2
+		},
+		"description": "An obscenely large Chainsword, this two-handed weapon can carve through flesh and plasteel with equal ease.",
+		"melee_hands": 2,
+		"ranged_hands": 1,
+		"ammo": 0,
+		"range": 1,
+		"spli": 3,
+		"arp": 1,
+		"tags": ["chain", "sword"],
+	},
+	"Power Sword": {
+		"abbreviation": "PwrSwrd",
+		"attack": {
+			"standard": 180,
+			"master_crafted": 200,
+			"artifact": 240
+		},
+		"melee_mod": {
+			"standard": 1,
+			"master_crafted": 1.1,
+			"artifact": 1.2
+		},
+		"description": "The most common kind of Power Weapon. When active, the blade becomes sheathed in a lethal haze of disruptive energy that seamlessly cuts through ceramite and flesh.",
+		"melee_hands": 1,
+		"ranged_hands": 0,
+		"ammo": 0,
+		"range": 1,
+		"spli": 4,
+		"arp": 1,
+		"special_properties": ["Parry"],
+		"tags": ["power", "sword"],
+	},
+	"Power Spear": {
+		"abbreviation": "PwrSpear",
+		"attack": {
+			"standard": 200,
+			"master_crafted": 220,
+			"artifact": 260
+		},
+		"melee_mod": {
+			"standard": 1,
+			"master_crafted": 1.1,
+			"artifact": 1.2
+		},
+		"description": "A rare kind of Power Weapon, a power blade mounted on the end of a long shaft, requires great skill to wield. When active, the blade becomes sheathed in a lethal haze of disruptive energy and can tear through all manners of material with ease.",
+		"melee_hands": 1,
+		"ranged_hands": 0,
+		"ammo": 0,
+		"range": 1,
+		"spli": 6,
+		"arp": 1,
+		"special_properties": ["Parry"],
+		"tags": ["power", "spear"],
+	},
+	"Chainfist": {
+		"abbreviation": "ChFst",
+		"attack": {
+			"standard": 550,
+			"master_crafted": 600,
+			"artifact": 700
+		},
+		"description": "Created by mounting a chainsword to a power fist, this weapon is easily able to carve through armoured bulkheads.",
+		"melee_hands": 1.25,
+		"ranged_hands": 1,
+		"range": 1,
+		"spli": 2,
+		"arp": 1,
+		"tags": ["power", "chain", "fist", "dual", "siege"],
+	},
+	"Lascutter": {
+		"abbreviation": "Lasct",
+		"attack": {
+			"standard": 100,
+			"master_crafted": 150,
+			"artifact": 200
+		},
+		"description": "Origonally industrial tools used for breaking through bulkheads, this laser weapon is devastating in close combat.",
+		"melee_hands": 1,
+		"range": 1,
+		"arp": 1,
+		"tags": ["laser", "siege"],
+	},
+	"Eldar Power Sword": {
+		"abbreviation": "EldPwrSwrd",
+		"attack": {
+			"standard": 170,
+			"master_crafted": 180,
+			"artifact": 190
+		},
+		"melee_mod": {
+			"standard": 1.1,
+			"master_crafted": 1.1,
+			"artifact": 1.1
+		},
+		"description": "Power weapons, infused with arcane energy, are used by Howling Banshees and Dire Avenger Exarchs. Swords such as these are as much an artistic statement as a weapon and are effective against even heavily armored troops.",
+		"melee_hands": 1.1,
+		"ranged_hands": 0,
+		"ammo": 0,
+		"range": 1,
+		"spli": 3,
+		"arp": 1,
+		"special_properties": ["Parry"],
+		"tags": ["power", "sword", "elder", "xenos"],
+	},
+	"Power Weapon": {
+		"abbreviation": "PwrWpn",
+		"attack": {
+			"standard": 135,
+			"master_crafted": 145,
+			"artifact": 155
+		},
+		"melee_mod": {
+			"standard": 1.1,
+			"master_crafted": 1.1,
+			"artifact": 1.1
+		},
+		"description": "An makeshift power weapon made by Astartes during long term deployment behind enemy lines or when cut from supply lines for long periods of time.",
+		"melee_hands": 1.1,
+		"ranged_hands": 0,
+		"ammo": 0,
+		"range": 1,
+		"spli": 3,
+		"arp": 1,
+		"tags": ["power"],
+	},
+	"Power Axe": {
+		"abbreviation": "PwrAxe",
+		"attack": {
+			"standard": 190,
+			"master_crafted": 220,
+			"artifact": 260
+		},
+		"melee_mod": {
+			"standard": 1,
+			"master_crafted": 1.1,
+			"artifact": 1.2
+		},
+		"description": "This weapon's power systems can be activated with the press of a button to sheathe the axe-head in a lethal haze of disruptive energy. Those fortunate enough to get their hands on two tend to duel-wield them.",
+		"melee_hands": 1,
+		"ranged_hands": 0,
+		"ammo": 0,
+		"range": 1,
+		"spli": 5,
+		"arp": 1,
+		"tags": ["power", "axe", "dual"],
+	},
+	"Executioner Power Axe": {
+		"abbreviation": "ExPwrAxe",
+		"attack": {
+			"standard": 300,
+			"master_crafted": 350,
+			"artifact": 400
+		},
+		"melee_mod": {
+			"standard": 10,
+			"master_crafted": 15,
+			"artifact": 20
+		},
+		"description": "A heavy two-handed power axe used to rend armor and tear through multiple infantry at once.",
+		"melee_hands": 2.5,
+		"ranged_hands": 2,
+		"ammo": 0,
+		"range": 1,
+		"spli": 2,
+		"arp": 1,
+		"tags": ["power", "axe"],
+	},
+	"Power Fists": {
+		"abbreviation": "PwrFsts",
+		"attack": {
+			"standard": 900,
+			"master_crafted": 1000,
+			"artifact": 1200
+		},
+		"description": "A large, ceramite clad gauntlets surrounded by power energy fields. Though cumbersome to use, they dish out tremendous damage to enemies, leaving very little behind.",
+		"melee_hands": 2,
+		"ranged_hands": 2,
+		"ammo": 0,
+		"range": 1,
+		"spli": 4,
+		"arp": 1,
+		"tags": ["power", "fist", "pair"],
+	},
+	"Boltstorm Gauntlet": {
+		"abbreviation": "BlstGnt",
+		"attack": {
+			"standard": 450,
+			"master_crafted": 500,
+			"artifact": 600
+		},
+		"description": "The Boltstorm Gauntlet is a Power Fists with an Integrated Bolter, so aside from being reinforced with a crackling power field and able to crush armour, bone and even thick vehicle plating, it is also capable of firing bolts at an astonishing rate",
+		"melee_hands": 2,
+		"ranged_hands": 2,
+		"ammo": 0,
+		"range": 1,
+		"spli": 2,
+		"arp": 1,
+		"second_profiles": ["Integrated Bolter"],
+		"tags": ["power", "fist"],
+	},
+	"Lightning Claw": {
+		"abbreviation": "LghtClw",
+		"attack": {
+			"standard": 450,
+			"master_crafted": 500,
+			"artifact": 600
+		},
+		"description": "Lightning claws are specialized close combat weapons with built-in disruptor fields. These lethal claws rip into infantry like butter, bringing terror to the foe.",
+		"melee_hands": 1.1,
+		"ranged_hands": 1,
+		"ammo": 0,
+		"range": 1,
+		"spli": 5,
+		"arp": 1,
+		"tags": ["power", "dual", "fist"],
+	},
+	"Dreadnought Lightning Claw": {
+		"abbreviation": "LghtClw",
+		"attack": {
+			"standard": 300,
+			"master_crafted": 400,
+			"artifact": 600
+		},
+		"melee_mod": {
+			"standard": 1.2,
+			"master_crafted": 1.2,
+			"artifact": 1.2
+		},
+		"description": "A specialized Lightning Claw variant designed for Dreadnoughts, these claws are capable of ripping through enemy vehicles and infantry with ease.",
+		"melee_hands": 5,
+		"ranged_hands": 0,
+		"ammo": 0,
+		"range": 1,
+		"spli": 15,
+		"arp": 1,
+		"tags": ["power", "vehicle", "dual", "dreadnought", "fist"],
+	},
+	"Thunder Hammer": {
+		"abbreviation": "ThndHmr",
+		"attack": {
+			"standard": 650,
+			"master_crafted": 750,
+			"artifact": 900
+		},
+		"melee_mod": {
+			"standard": 1.3,
+			"master_crafted": 1.3,
+			"artifact": 1.3
+		},
+		"description": "A Thunder hammer is a weapon with a long pole and a double headed hammer on the top. This weapon unleashes a massive, devastating disruption field on impact. Only experienced Astartes can use Thunder Hammers, typically Terminators.",
+		"melee_hands": 1.1,
+		"ranged_hands": 1,
+		"ammo": 0,
+		"range": 1,
+		"spli": 10,
+		"arp": 1,
+		"tags": ["power", "hammer", "siege"],
+		"req_exp": 100,
+	},
+	"Heavy Thunder Hammer": {
+		"abbreviation": "HvyThndHmr",
+		"attack": {
+			"standard": 975,
+			"master_crafted": 1125,
+			"artifact": 1350,
+		},
+		"melee_mod": {
+			"standard": 1.3,
+			"master_crafted": 1.3,
+			"artifact": 1.3,
+		},
+		"description": "The Heavy Thunder Hammer is the largest man-portable Thunder Hammer that is used by the Adeptus Astartes - a giant, crushing tool of destruction so heavy even a Space Marine cannot use it one-handed.",
+		"melee_hands": 2,
+		"ranged_hands": 2,
+		"ammo": 0,
+		"range": 1,
+		"spli": 15,
+		"arp": 1,
+		"tags": ["heavy_melee", "power", "hammer", "siege"],
+		"req_exp": 100,
+	},
+	"Power Mace": {
+		"abbreviation": "PwrMace",
+		"attack": {
+			"standard": 600,
+			"master_crafted": 700,
+			"artifact": 800
+		},
+		"melee_mod": {
+			"standard": 1.3,
+			"master_crafted": 1.3,
+			"artifact": 1.3
+		},
+		"description": "Commonly referred to as Power Maul, is a blunt weapon surrounded by a power field. It's quite different from the less lethal Shock Maul, which is a similar type of close combat weapon. In the hands of a skilled warrior, the Power Mace is not just a weapon, it's a statement of power and authority in the grim darkness of far future.",
+		"melee_hands": 2.25,
+		"ranged_hands": 2,
+		"ammo": 0,
+		"range": 1,
+		"spli": 10,
+		"arp": 1,
+		"tags": ["power", "mace", "siege"],
+		"req_exp": 100,
+	},
+	"Mace of Absolution": {
+		"abbreviation": "AbsltMace",
+		"attack": {
+			"standard": 600,
+			"master_crafted": 700,
+			"artifact": 800
+		},
+		"melee_mod": {
+			"standard": 1.3,
+			"master_crafted": 1.3,
+			"artifact": 1.3,
+		},
+		"description": "Wreathed in glowing smoke, these massive weapons are as sinister in aspect as they are lethal in application, and are capable of obliterating even the mightiest heretics in a blaze of killing light.",
+		"special_description": "Dark Angels exclusive",
+		"melee_hands": 2.25,
+		"ranged_hands": 2,
+		"ammo": 0,
+		"range": 1,
+		"spli": 10,
+		"arp": 1,
+		"tags": ["power", "mace", "siege", "pious"],
+		"req_exp": 100,
+	},
+	"Crozius Arcanum": {
+		"abbreviation": "Crzus",
+		"attack": {
+			"standard": 220,
+			"master_crafted": 250,
+			"artifact": 300
+		},
+		"melee_mod": {
+			"standard": 1,
+			"master_crafted": 1,
+			"artifact": 1
+		},
+		"description": "The Crozius Arcanum serves as both a sacred staff of office and a close combat weapon for Astartes Chaplains.",
+		"melee_hands": 1,
+		"ranged_hands": 0,
+		"ammo": 0,
+		"range": 1,
+		"spli": 4,
+		"arp": 1,
+		"tags": ["power", "mace", "pious"],
+	},
+	"Relic Blade": {
+		"abbreviation": "RlcBld",
+		"attack": {
+			"standard": 700,
+			"master_crafted": 850,
+			"artifact": 1000
+		},
+		"melee_mod": {
+			"standard": 1,
+			"master_crafted": 1.1,
+			"artifact": 1.2
+		},
+		"description": "Ancient Blades of various origins smithed through arcane forging or lost techniques, these blades are deadly beyond belief. These peerless blades slice through ceramite and flesh with ease.",
+		"melee_hands": 2,
+		"ranged_hands": 1,
+		"ammo": 0,
+		"range": 1,
+		"spli": 8,
+		"arp": 1,
+		"special_properties": ["Parry"],
+		"tags": ["power", "sword"],
+	},
+	"Dreadnought Power Claw": {
+		"abbreviation": "PwrClw",
+		"attack": {
+			"standard": 400,
+			"master_crafted": 600,
+			"artifact": 800
+		},
+		"description": "A brutal crushing claw capable of tearing open armor and flesh with ease utilizing disruptor fields.",
+		"melee_hands": 5,
+		"range": 1,
+		"spli": 10,
+		"arp": 1,
+		"tags": ["power", "vehicle", "dual", "dreadnought", "fist"]
+	},
+	"Close Combat Weapon": {
+		"abbreviation": "CCW",
+		"attack": {
+			"standard": 350,
+			"master_crafted": 450,
+			"artifact": 550
+		},
+		"description": "While a variety of melee weapons are used by dreadnoughts, this power fist with an integrated flamer is the most common.",
+		"melee_hands": 5,
+		"range": 1,
+		"spli": 10,
+		"arp": 1,
+		"tags": ["vehicle", "dreadnought", "flame", "fist"]
+	},
+	"Force Staff": {
+		"attack": {
+			"standard": 200,
+			"master_crafted": 230,
+			"artifact": 270
+		},
+		"melee_mod": {
+			"standard": 1,
+			"master_crafted": 1.1,
+			"artifact": 1.2
+		},
+		"abbreviation": "FrcStff",
+		"description": "An advanced, psychically-attuned close combat weapon that is only fully effective in the hands of a psyker.",
+		"melee_hands": 1,
+		"ranged_hands": 1,
+		"range": 1,
+		"spli": 5,
+		"arp": 1,
 		"special_description": "Spell Damage +100%",
-        "tags":["psy",]
-    },
-	    "Force Sword": {
-         "abbreviation": "FrcSwrd",
-        "attack": {
-            "standard": 300,
-            "master_crafted": 350,
-            "artifact": 400
-        },
-        "melee_mod": {
-            "standard": 1.3,
-            "master_crafted": 1.5,
-            "artifact": 2
-        },
-        "description": "The Force Sword is a psychically-attuned close combat weapon that is only fully effective in the hands of a psyker.",
-        "melee_hands": 1,
-        "ranged_hands": 0,
-        "ammo": 0,
-        "range": 1,
-        "spli": 1,
-        "arp": 1,
-        "special_description": "Parry, Spell damage +25%",
-        "tags":["psy", "sword"],
+		"tags": ["force", ]
+	},
+	"Force Sword": {
+		"abbreviation": "FrcSwrd",
+		"attack": {
+			"standard": 180,
+			"master_crafted": 200,
+			"artifact": 240
+		},
+		"melee_mod": {
+			"standard": 1,
+			"master_crafted": 1.1,
+			"artifact": 1.2
+		},
+		"description": "The Force Sword is a psychically-attuned close combat weapon that is only fully effective in the hands of a psyker.",
+		"melee_hands": 1,
+		"ranged_hands": 0,
+		"ammo": 0,
+		"range": 1,
+		"spli": 4,
+		"arp": 1,
+		"special_description": "Spell damage +25%",
+		"special_properties": ["Parry"],
+		"tags": ["force", "sword"],
 	},
 	"Force Axe": {
          "abbreviation": "FrcAxe",
@@ -1708,7 +2122,6 @@ global.weapons={
     },  
 				
 }
-
 global.gear = {
   "armour": {
     "Dreadnought": {
@@ -2493,7 +2906,7 @@ function equipment_struct(item_data, core_type,quality="none") constructor{
                     break;
                 case "spli":
                     if (spli>0){
-                        item_desc_tooltip += $"Attack Count: {spli}#"
+                        item_desc_tooltip += $"Max Kills: {spli}#"
                     }
                     break;
                 case "ranged_mod":
@@ -2621,7 +3034,7 @@ function equipment_struct(item_data, core_type,quality="none") constructor{
     static has_tags_all = function(search_tags, require_all=false){
         var satisfied=false;
         var wanted_tags_length=array_length(search_tags);
-        for (var i=0;i<array_Length(tags);i++){
+        for (var i=0;i<array_length(tags);i++){
             for (var s=0;s<wanted_tags_length;s++){
                 if (search_tags[s]==tags[i]){
                     array_delete(search_tags,s,1);

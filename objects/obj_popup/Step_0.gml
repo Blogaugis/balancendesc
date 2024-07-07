@@ -146,7 +146,9 @@ if (image="debug_banshee") and (cooldown<=0){
                 else with(flit1){instance_destroy();}
                 onceh=1;
             }
-            if (onceh=0) and (!instance_exists(flit1)) and (instance_exists(flit2)){if (point_distance(x,y,flit2.x,flit2.y)<=40) then with(flit2){instance_destroy();}onceh=1;}
+            if (onceh=0) and (!instance_exists(flit1)) and (instance_exists(flit2)){
+                if (point_distance(x,y,flit2.x,flit2.y)<=40) then with(flit2){instance_destroy();}onceh=1;
+            }
             if (onceh=0) and (instance_exists(flit1)) and (!instance_exists(flit2)){if (point_distance(x,y,flit1.x,flit1.y)<=40) then with(flit1){instance_destroy();}onceh=1;}
             
             instance_destroy();
@@ -175,7 +177,6 @@ if (image="chaos_messenger") and (title="Chaos Meeting"){
         }
         if (option1!=""){
             if (press=1){
-                remove_planet_problem()
                 with(obj_star){
                     var i=0;
                     repeat(planets){
@@ -277,44 +278,32 @@ if (image="inquisition") and (loc="contraband"){
     demand=0;
     option1="Hand over all Chaos and Daemonic Artifacts";
     option2="Over your dead body";
-    
+    var arti;
     if (press=1){
-        var e,ca,ia;e=0;ca=0;ia=0;
-        repeat(obj_controller.artifacts){e+=1;
-            if (string_count("aemon",obj_ini.artifact_tags[e])>0) or (string_count("haos",obj_ini.artifact_tags[e])>0){
-                obj_ini.artifact[e]="";
-                obj_ini.artifact_tags[e]="";
-                obj_ini.artifact_identified[e]=0;
-                obj_ini.artifact_condition[e]=100;
-                obj_ini.artifact_loc[e]="";
-                obj_ini.artifact_sid[e]=0;
-                obj_controller.artifacts-=1;
-                if (obj_controller.menu_artifact>obj_controller.artifacts) then obj_controller.menu_artifact=obj_controller.artifacts;
-            }
-        }
-        
-        var noom1,noom2;noom1=0;noom2=0;
-        noom1=instance_nearest(obj_temp_arti.x,obj_temp_arti.y,obj_star);noom2=noom1.name;
-        repeat(4400){
-            if (ca<=10) and (ca>=0){
-                ia+=1;if (ia=400){ca+=1;ia=1;if (ca=11) then ca=-5;}
-                if (ca>=0) and (ca<11){
-                    if (string(obj_ini.loc[ca,ia])=noom2){
-                        // show_message(string(obj_ini.loc[ca,ia])+" is at the right location");
-                        // show_message("wep1: "+string(obj_ini.wep1[ca,ia])+", wep2: "+string(obj_ini.wep2[ca,ia]));
-                        if (string_count("aemon",obj_ini.wep1[ca,ia])>0) or (string_count("haos",obj_ini.wep1[ca,ia])>0) then obj_ini.wep1[ca,ia]="";
-                        if (string_count("aemon",obj_ini.wep2[ca,ia])>0) or (string_count("haos",obj_ini.wep2[ca,ia])>0) then obj_ini.wep2[ca,ia]="";
-                        if (string_count("aemon",obj_ini.armour[ca,ia])>0) or (string_count("haos",obj_ini.armour[ca,ia])>0) then obj_ini.armour[ca,ia]="";
-                        if (string_count("aemon",obj_ini.mobi[ca,ia])>0) or (string_count("haos",obj_ini.mobi[ca,ia])>0) then obj_ini.mobi[ca,ia]="";
-                        if (string_count("aemon",obj_ini.gear[ca,ia])>0) or (string_count("haos",obj_ini.gear[ca,ia])>0) then obj_ini.gear[ca,ia]="";
-                    }
+        var contraband=[];
+        for (var i=0;i<array_length(obj_ini.artifact_struct);i++){
+            if (obj_ini.artifact!=""){
+                arti=obj_ini.artifact_struct[i];
+                if (arti.inquisition_disaprove()){
+                    array_push(contraband, i);
                 }
             }
         }
+        for (i=0;i<array_length(contraband);i++){
+            delete_artifact(contraband[i]);
+        }
+        obj_controller.cooldown=10;option1="";
+        option2="";
+        loc="";
+        text="All Chaos and Daemonic Artifacts present have been handed over to the Inquisitor.  They remain seething, but your destruction has been stalled.  Or so mission_star imagine.";
+        exit;        
     }
     
-    if (press=1){obj_controller.cooldown=10;option1="";option2="";loc="";text="All Chaos and Daemonic Artifacts present have been handed over to the Inquisitor.  They remain seething, but your destruction has been stalled.  Or so mission_star imagine.";exit;}
-    if (press=2){obj_controller.cooldown=10;if (number!=0) then obj_turn_end.alarm[1]=4;instance_destroy();}
+    if (press=2){
+        obj_controller.cooldown=10;
+        if (number!=0) then obj_turn_end.alarm[1]=4;
+        instance_destroy();
+    }
 }
 
 
@@ -1049,6 +1038,7 @@ if (press=1) and (option1!="") or ((demand=1) and (mission!="") and (string_coun
         }
         if (!mission_is_go){
             if (mission="artifact"){
+                var last_artifact;
                 scr_quest(0,"artifact_loan",4,estimate);
                 if (obj_ini.fleet_type=1){
                     image="fortress";
@@ -1059,31 +1049,24 @@ if (press=1) and (option1!="") or ((demand=1) and (mission!="") and (string_coun
                     if (obj_ini.icon_name="dorf1") then image="fortress_dorf";
                     if (obj_ini.icon_name="dorf2") then image="fortress_dorf";
                     if (obj_ini.icon_name="dorf3") then image="fortress_dorf";
-                    scr_add_artifact("good","inquisition",0,obj_ini.home_name,2);
+                    last_artifact = scr_add_artifact("good","inquisition",0,obj_ini.home_name,2);
                 }else if (obj_ini.fleet_type!=1){
                     image="artifact_given";
-                    scr_add_artifact("good","inquisition",0,obj_ini.ship[1],501);
+                    last_artifact =scr_add_artifact("good","inquisition",0,obj_ini.ship[1],501);
                 }
                 
-                title="New Artifact";fancy_title=0;text_center=0;
+                title="New Artifact";
+                fancy_title=0;
+                text_center=0;
                 text="The Inquisition has left an Artifact in your care, until it may be retrieved.  It has been stored ";
                 if (obj_ini.fleet_type=1) then text+="within your Fortress Monastery.";
                 if (obj_ini.fleet_type!=1) then text+="upon your ship '"+string(obj_ini.ship[1])+"'.";
                 scr_event_log("","Inquisition Mission Accepted: The Inquisition has left an Artifact in your care.");
                 
-                var i,last_artifact;i=0;last_artifact=0;
-                repeat(100){
-                    if (last_artifact=0){
-                        i+=1;
-                        if (obj_ini.artifact[i]=""){
-                            last_artifact=i-1;
-                            break;
-                        }
-                    }
-                }
-                
                 text+="  It is some form of "+string(obj_ini.artifact[last_artifact])+".";
-                option1="";option2="";option3="";
+                option1="";
+                option2="";
+                option3="";
                 obj_controller.cooldown=10;exit;
             }
         }
@@ -1569,6 +1552,7 @@ if (image=="new_forge_master"){
             text="With neither faction receiving your favor it is not long until the BloodLetting begins. Within a month a brutal civil war engulfs the Tech ranks with losses suffered on both sides";
         } else if (press==2){
             text="With your full support the so called 'heretics' who have seen through the lies of the bureaucracy of Mars eliminate those who will not be swayed to see the truth.";
+            obj_controller.tech_status = "heretics";
         } else if(press==3){
             text="The extremists and heretics that have been allowed to grow like a cancer in the Armentarium are rooted out and disposed of.";
         }
