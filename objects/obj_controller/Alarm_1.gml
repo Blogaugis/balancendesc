@@ -483,24 +483,26 @@ if (did==1){
         instance_activate_object(obj_star);
     }
     // Chaos
-    repeat(2+irandom(4)){
-        xx=floor(random(1152))+64;
-        yy=floor(random(748))+64;
-        current_system=instance_nearest(xx,yy,obj_star);
-        with (current_system){
-            if (planets>0) and (owner == eFACTION.Imperium){
-                planet[1]=1;
-                p_owner[1]=10;
-                owner = eFACTION.Chaos;
-            }
-        }
-        instance_deactivate_object(current_system);
-    }
+
+    // repeat(2+irandom(4)){
+    //    xx=floor(random(1152))+64;
+    //    yy=floor(random(748))+64;
+    //    current_system=instance_nearest(xx,yy,obj_star);
+    //    with (current_system){
+    //        if (planets>0) and (owner == eFACTION.Imperium){
+    //            planet[1]=1;
+    //            p_owner[1]=10;
+    //            owner = eFACTION.Chaos;
+    //        }
+    //    }
+    //    instance_deactivate_object(current_system);
+    //}
+	// Remove comments above to restore functionality
     // More sneaky this way; you have to be noted of rising heresy or something, or have a ship in the system
     var hell_holes = ["Badab", "Hellsiris","Vraks","Isstvan","Stygies","Stygia","Nostromo","Jhanna","Gangrenous Rot"];
     with(obj_star){
         if (array_contains(hell_holes, name)){
-            rando=choose(1,1); // make 1's 0's if you want less chaos
+            rando=choose(0,0); // make 1's 0's if you want less chaos
             if (rando==1){
 				
                 owner = eFACTION.Chaos;
