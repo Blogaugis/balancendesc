@@ -114,7 +114,7 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 
 	if (obj_ncombat.enemy=7){
 
-	    if (argument0="Choppa"){atta=28;arp=0;rang=1;spli=3;}
+	    if (argument0="Choppa"){atta=50;arp=0;rang=1;spli=3;}
 	    if (argument0="Power Klaw"){atta=150;arp=1;rang=1;spli=3;}
 	    if (argument0="Slugga"){atta=20;arp=0;rang=5;amm=4;spli=3;}
 	    if (argument0="Tankbusta Bomb"){atta=264;arp=1;rang=1;amm=2;spli=0;}

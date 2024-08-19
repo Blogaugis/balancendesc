@@ -717,7 +717,7 @@ repeat(20){j+=1;
     if (dudes[j]="Kommando"){
 		scr_en_weapon("Choppa",true,dudes_num[j],dudes[j],j);
 		scr_en_weapon("Rokkit Launcha",true,dudes_num[j],dudes[j],j);
-		dudes_ac[j]=10;dudes_hp[j]=80;men+=dudes_num[j];}
+		dudes_ac[j]=12;dudes_hp[j]=80;men+=dudes_num[j];}
     if (dudes[j]="Burna Boy"){
 		scr_en_weapon("Choppa",true,dudes_num[j],dudes[j],j);
 		scr_en_weapon("Burna",true,dudes_num[j],dudes[j],j);
