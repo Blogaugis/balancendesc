@@ -397,17 +397,17 @@ hide_banner=0;
 var xx=__view_get( e__VW.XView, 0 );
 var yy=__view_get( e__VW.YView, 0 );
 menu_buttons = {
-    "chapter_manage":new main_menu_button(spr_ui_but_1, spr_ui_hov_1),
-    "chapter_settings":new main_menu_button(spr_ui_but_1, spr_ui_hov_1),
-    "apoth":new main_menu_button(spr_ui_but_3, spr_ui_hov_3),
-    "reclu":new main_menu_button(spr_ui_but_3, spr_ui_hov_3),
-    "lib":new main_menu_button(spr_ui_but_3, spr_ui_hov_3),
-    "arm":new main_menu_button(spr_ui_but_3, spr_ui_hov_3),
-    "recruit":new main_menu_button(spr_ui_but_3, spr_ui_hov_3),
-    "fleet":new main_menu_button(spr_ui_but_3, spr_ui_hov_3),
-    "diplo":new main_menu_button(spr_ui_but_2, spr_ui_hov_2),
-    "event":new main_menu_button(spr_ui_but_2, spr_ui_hov_2),
-    "end_turn":new main_menu_button(spr_ui_but_2, spr_ui_hov_2),
+    "chapter_manage":new main_menu_button(spr_ui_but_1, spr_ui_hov_1,,,ord("M"),scr_toggle_manage),
+    "chapter_settings":new main_menu_button(spr_ui_but_1, spr_ui_hov_1,,,ord("S"),scr_toggle_setting),
+    "apoth":new main_menu_button(spr_ui_but_3, spr_ui_hov_3,,,ord("A"),scr_toggle_apothecarion),
+    "reclu":new main_menu_button(spr_ui_but_3, spr_ui_hov_3,,,ord("R"),scr_toggle_reclu),
+    "lib":new main_menu_button(spr_ui_but_3, spr_ui_hov_3,,,ord("L"),scr_toggle_lib),
+    "arm":new main_menu_button(spr_ui_but_3, spr_ui_hov_3,,,ord("N"),scr_toggle_armamentarium),
+    "recruit":new main_menu_button(spr_ui_but_3, spr_ui_hov_3,,,ord("T"),scr_toggle_recruiting),
+    "fleet":new main_menu_button(spr_ui_but_3, spr_ui_hov_3,,,ord("F"),scr_toggle_fleet_area),
+    "diplo":new main_menu_button(spr_ui_but_2, spr_ui_hov_2,,,ord("D"),scr_toggle_diplomacy),
+    "event":new main_menu_button(spr_ui_but_2, spr_ui_hov_2,,,ord("O"),scr_toggle_event_log),
+    "end_turn":new main_menu_button(spr_ui_but_2, spr_ui_hov_2,,,ord("E"),scr_end_turn),
 
 }
 new_button_highlight="";
@@ -522,14 +522,14 @@ for(var i=0; i<40; i++){
 }
 // TODO command_set is used for equipement. We should re do this and have an array for all available equipement
 command_set[1]=0;
-command_set[2]=0;
+command_set[2]=1;
 command_set[3]=1;
 command_set[4]=1;
 command_set[5]=1;
 command_set[6]=1;
 command_set[7]=1;
-command_set[8]=0;
-command_set[9]=0;
+command_set[8]=1;
+command_set[9]=1;
 command_set[20]=1;
 command_set[24]=1;
 blandify=0;
@@ -803,6 +803,7 @@ recruit_corruption[0]=0;
 recruit_distance[0]=0;
 recruit_training[0]=0;
 recruit_exp[0]=0;
+recruit_data[0]={};
 
 for(var i=0; i<501; i++){
     
@@ -1326,7 +1327,7 @@ if (instance_exists(obj_ini)){
         weapon_color=obj_ini.weapon_color;
         col_special=obj_ini.col_special;
         trim=obj_ini.trim;
-        recruit_trial=obj_ini.aspirant_trial;
+        recruit_trial=obj_ini.recruit_trial;
         homeworld_rule=obj_ini.homeworld_rule;
         
         scr_colors_initialize();
@@ -1377,6 +1378,7 @@ tech_points=0;
 tech_aspirant=0;
 recruiting=0;
 penitorium=0;
+end_turn_insights = {};
 // Redefines training based on chapter
 if (instance_exists(obj_ini)){
     if (string_count("Intolerant",obj_ini.strin2)>0) then training_psyker=0;

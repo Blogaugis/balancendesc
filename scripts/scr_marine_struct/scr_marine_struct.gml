@@ -436,6 +436,12 @@ global.trait_list = {
 		flavour_text:"a superlative duelist favoring traditional dueling weaponry",
 		effect:"Bonus to using swords and advantages in duels",
 
+	},
+	"siege_master" : {
+		wisdom : [2,2,"max"],
+		constitution : [2,2],
+		flavour_text:"Understands the ins and outs of defences both in building them and in taking them appart",
+		effect:"Bonus when commanding defences and extra boosts when leading a garrison",
 	}
 }
 global.base_stats = { //tempory stats subject to change by anyone that wishes to try their luck
@@ -679,6 +685,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 	squad = "none";
 	stat_point_exp_marker = 0;
 	bionics=0;
+	favorite=false;
 	spawn_data = other_spawn_data;
 	if (faction=="chapter" && !struct_exists(spawn_data, "recruit_data")){
 		spawn_data.recruit_data = {
@@ -749,7 +756,11 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 			if (role() == obj_ini.role[100][12] && new_role!=obj_ini.role[100][12]){
 		  		if (!get_body_data("black_carapace","torso")){
 		  			alter_body("torso", "black_carapace", true);
-		  			stat_boosts({strength:4, constitution:4,dexterity:4})//will decide on if these are needed
+		  			stat_boosts(
+		  				{strength:4, 
+		  				constitution:4,
+		  				dexterity:4
+		  			})//will decide on if these are needed
 		  		}	
 			}
 			if (!is_specialist(role())){//logs changes too and from specialist status
@@ -1591,7 +1602,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 					qual_string = "exp_low";
 				}  			
 	   		quality=scr_add_item(new_weapon,-1,quality);
-	   		if (quality == "no_item") then return "no_items";
+	   		if (quality == "no_item") then return [false, "no_items"]
 	   		qual_string = quality!=undefined? quality:"standard";
 	    } else {
 	    	viable = false;
@@ -1936,7 +1947,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 				}
 			};
 			var basic_wep_string = $"{primary_weapon.name}: {primary_weapon.attack}#";
-			if IsSpecialist("libs"){
+			if IsSpecialist("libs") or has_trait("warp_touched"){
 				if (primary_weapon.has_tag("force") ||_wep2.has_tag("force")){
 					var force_modifier = (((weapon_skill/100) * (psionic/10) * (intelligence/10)) + (experience()/1000)+0.1);
 					primary_weapon.attack *= force_modifier;
@@ -2035,7 +2046,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 					return obj_ini.squads[squad].assignment.type;
 				}
 			}
-			if (job!= "none"){
+			if (job != "none"){
 				return job.type;
 			} else {
 				return "none"
@@ -2172,7 +2183,13 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 				load_unit_to_fleet(player_fleet,self);
 				spawn_location_chosen=true;
 			}
-		}			
+			//TODO add more work arounds in case of no valid spawn point
+			if (!spawn_location_chosen){
+				if (player_fleet != "none"){
+
+				}
+			}
+		}		
 	}
 
 
@@ -2512,10 +2529,34 @@ function pen_and_paper_sim() constructor{
 
 		return [winner, pass_margin];
 	}
+	static evaluate_tags = function(unit, tags){
+		var total_mod = 0,tag;
+		for (var i=0;i<array_length(tags);i++){
+			tag=tags[i];
+			if (tag=="siege"){
+                if (scr_has_adv("Siege Masters")){
+                    total_mod+=10
+                }
+                if (unit.has_trait("siege_master")){
+                	total_mod+=10;
+                }			
+			}
+			else if (tag=="tyranids"){
+				if (unit.scr_has_adv("Enemy: Tyranids")){
+					total_mod+=10
+				}
+				if (unit.has_trait("tyrannic_vet")){
+                	total_mod+=10;
+                }
+			}
+		}
+		return total_mod;
+	}
 
-	static standard_test = function(unit, stat, difficulty_mod=0){
+	static standard_test = function(unit, stat, difficulty_mod=0, tags = []){
 		var passed =false;
-		var margin=0
+		var margin=0;
+		difficulty_mod+=evaluate_tags(unit, tags);
 		var random_roll = irandom(99)+1;
 		if (random_roll<unit[$ stat]+difficulty_mod){
 			passed = true;

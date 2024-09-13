@@ -7,6 +7,35 @@ enum ShaderType {
     RightPauldron,
     Weapon
 }
+function colour_item() constructor{
+    function scr_unit_draw_data(){
+        map_colour = {
+            left_leg_lower : 0,
+            left_leg_upper : 0,
+            left_leg_knee : 0,
+            left_right_lower : 0,
+            left_right_upper : 0,
+            left_right_knee : 0,
+            metallic_trim : 0,
+            right_trim : 0,
+            left_trim : 0,
+            left_chest : 0,
+            right_chest : 0,
+            left_thorax : 0,
+            right_thorax : 0, 
+            left_pauldron : 0,
+            right_pauldron: 0,
+            left_head : 0,
+            right_head: 0,                       
+        }
+    }
+    static set_legs_solid = function(col){
+        var legs = ["left_leg_lower","left_leg_upper","left_leg_knee","left_right_lower","left_right_upper","left_right_knee"];
+        for (var i=0 ;i<array_length(legs);i++){
+            map_colour[legs[i]] = col;
+        }
+    }
+}
 
 function unit_image(unit_surface) constructor{
     u_surface = unit_surface;
@@ -32,6 +61,12 @@ function unit_image(unit_surface) constructor{
         if (surface_exists(u_surface)){
             draw_surface_part(u_surface, left+200, top+90, width,height, xx,yy);
         }       
+    }
+
+    static destroy_image = function(){
+        if (surface_exists(u_surface)){
+            surface_free(u_surface);
+        }
     }
 }
 

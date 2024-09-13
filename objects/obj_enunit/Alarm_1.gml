@@ -542,6 +542,7 @@ repeat(20){j+=1;
     if (dudes[j]="Howling Banshee Exarch"){
 		scr_en_weapon("Executioner",true,dudes_num[j],dudes[j],j);
 		dudes_ac[j]=30;dudes_hp[j]=50;men+=dudes_num[j];}
+
     if (dudes[j]="Striking Scorpion"){
         scr_en_weapon("Scorpion Chainsword",true,dudes_num[j],dudes[j],j);
         scr_en_weapon("Shuriken Pistol",true,dudes_num[j],dudes[j],j);
@@ -558,6 +559,7 @@ repeat(20){j+=1;
         scr_en_weapon("Combat Knife",true,dudes_num[j],dudes[j],j);
         dudes_ac[j]=15;dudes_hp[j]=30;men+=dudes_num[j];}
     if (dudes[j]="Fire Dragon Exarch"){
+
 		scr_en_weapon("Firepike",true,dudes_num[j],dudes[j],j);
 		scr_en_weapon("Power Weapon",true,dudes_num[j],dudes[j],j);
 		dudes_ac[j]=20;dudes_hp[j]=50;men+=dudes_num[j];} 
@@ -637,7 +639,6 @@ repeat(20){j+=1;
         dudes_ac[j]=40;dudes_hp[j]=200;
         veh+=dudes_num[j];dudes_vehicle[j]=1;
     }
-    
     if (dudes[j]="Phantom Titan"){
         scr_en_weapon("Two Power Fists",false,dudes_num[j],dudes[j],j);
         scr_en_weapon("Phantom Pulsar",false,dudes_num[j]*2,dudes[j],j);
@@ -919,7 +920,7 @@ repeat(20){j+=1;
     if (dudes[j]="Chaos Sorcerer"){
 		scr_en_weapon("Plasma Pistol",true,dudes_num[j],dudes[j],j);
 		scr_en_weapon("Force Staff",true,dudes_num[j],dudes[j],j);
-		dudes_ac[j]=17;dudes_hp[j]=100;men+=dudes_num[j];}
+		dudes_ac[j]=25;dudes_hp[j]=100;men+=dudes_num[j];}
     if (dudes[j]="Warpsmith"){
 		scr_en_weapon("Chainfist",true,dudes_num[j],dudes[j],j);
 		scr_en_weapon("Meltagun",true,dudes_num[j],dudes[j],j);
@@ -951,11 +952,11 @@ repeat(20){j+=1;
     if (dudes[j]="Chaos Chosen"){
 		scr_en_weapon("Meltagun",true,dudes_num[j],dudes[j],j);
 		scr_en_weapon("Chainsword",true,dudes_num[j],dudes[j],j);
-		dudes_ac[j]=17;dudes_hp[j]=125;men+=dudes_num[j];}
+		dudes_ac[j]=25;dudes_hp[j]=125;men+=dudes_num[j];}
     if (dudes[j]="Venerable Chaos Chosen"){
 		scr_en_weapon("Meltagun",true,dudes_num[j],dudes[j],j);
 		scr_en_weapon("Chainsword",true,dudes_num[j],dudes[j],j);
-		dudes_ac[j]=20;dudes_hp[j]=125;men+=dudes_num[j];dudes_dr[j]=0.75;}
+		dudes_ac[j]=30;dudes_hp[j]=125;men+=dudes_num[j];dudes_dr[j]=0.75;}
     
     if (dudes[j]="Possessed"){
 		scr_en_weapon("Possessed Claws",true,dudes_num[j],dudes[j],j);
@@ -976,11 +977,11 @@ repeat(20){j+=1;
     if (dudes[j]="World Eater"){
 		scr_en_weapon("Bolter",true,dudes_num[j],dudes[j],j);
 		scr_en_weapon("Chainaxe",true,dudes_num[j],dudes[j],j);
-		dudes_ac[j]=17;dudes_hp[j]=100;men+=dudes_num[j];}
+		dudes_ac[j]=20;dudes_hp[j]=100;men+=dudes_num[j];}
     if (dudes[j]="World Eaters Veteran"){
 		scr_en_weapon("Combi-Flamer",true,dudes_num[j],dudes[j],j);
 		scr_en_weapon("Chainaxe",true,dudes_num[j],dudes[j],j);
-		dudes_ac[j]=17;dudes_hp[j]=100;men+=dudes_num[j];}
+		dudes_ac[j]=22;dudes_hp[j]=100;men+=dudes_num[j];}
     
     
     if (dudes[j]="Khorne Berzerker"){
@@ -1018,6 +1019,7 @@ repeat(20){j+=1;
 		scr_en_weapon("Storm Bolter",false,dudes_num[j]*2,dudes[j],j);
 		scr_en_weapon("Medium Vehicle Melee",false,dudes_num[j],dudes[j],j);
 		dudes_ac[j]=20;dudes_hp[j]=200;veh+=dudes_num[j];dudes_vehicle[j]=1;}
+
     if (dudes[j]="Predator"){
         scr_en_weapon("Lascannon",false,dudes_num[j]*2,dudes[j],j);
         scr_en_weapon("Twin Linked Lascannon",false,dudes_num[j],dudes[j],j);
@@ -1064,9 +1066,6 @@ repeat(20){j+=1;
 		scr_en_weapon("Daemonhost Claws",true,dudes_num[j],dudes[j],j);
 		scr_en_weapon("Daemonhost_Powers",true,dudes_num[j],dudes[j],j);
 		dudes_ac[j]=30;dudes_hp[j]=300;dudes_dr[j]=0.5;medi+=dudes_num[j];}
-    if (dudes[j]="Possessed"){
-		scr_en_weapon("Possessed Claws",true,dudes_num[j],dudes[j],j);
-		dudes_ac[j]=17;dudes_hp[j]=100;men+=dudes_num[j];}
     
     
     

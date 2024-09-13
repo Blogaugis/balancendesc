@@ -149,7 +149,8 @@ function scr_save(save_slot,save_id) {
 
 	    ini_write_real("Formation","last_attack",obj_controller.last_attack_form);
 	    ini_write_real("Formation","last_raid",obj_controller.last_raid_form);
-	    j=0;repeat(14){j+=1;
+	    j=0;
+	    repeat(14){j+=1;
 	        if (obj_controller.bat_formation[j]!=""){
 	            ini_write_string("Formation","form"+string(j),obj_controller.bat_formation[j]);
 	            ini_write_real("Formation","form_type"+string(j),obj_controller.bat_formation_type[j]);
@@ -214,11 +215,12 @@ function scr_save(save_slot,save_id) {
 
 	    ini_write_string("Controller","recruiting_worlds",obj_controller.recruiting_worlds);
 	    ini_write_real("Controller","recruiting",obj_controller.recruiting);
-	    ini_write_string("Controller","trial",obj_controller.recruit_trial);
+	    ini_write_real("Controller","trial",obj_controller.recruit_trial);
 	    ini_write_real("Controller","recruits",obj_controller.recruits);
 	    ini_write_real("Controller","recruit_last",obj_controller.recruit_last);
 	    //
-	    var g=-1;repeat(30){g+=1;
+	    var g=-1;
+	    repeat(30){g+=1;
 	        ini_write_real("Controller","command"+string(g),obj_controller.command_set[g]);
 	    }
 	    ini_write_real("Controller","blandify",obj_controller.blandify);
@@ -229,18 +231,18 @@ function scr_save(save_slot,save_id) {
 	    	distance :obj_controller.recruit_distance,
 	    	experience :obj_controller.recruit_exp,
 	    	training :obj_controller.recruit_training,
+	    	data : obj_controller.recruit_data
 
 	    });
-	    g=-1;repeat(30){g+=1;
-	        ini_write_string("Controller","lyl"+string(g),obj_controller.loyal[g]);
-	        ini_write_real("Controller","lyl_nm"+string(g),obj_controller.loyal_num[g]);
-	        ini_write_real("Controller","lyl_tm"+string(g),obj_controller.loyal_time[g]);
-	    }
-	    g=-1;repeat(11){g+=1;
-	        ini_write_string("Controller","inq"+string(g),obj_controller.inquisitor[g]);
-	        ini_write_real("Controller","inq_ge"+string(g),obj_controller.inquisitor_gender[g]);
-	        ini_write_string("Controller","inq_ty"+string(g),obj_controller.inquisitor_type[g]);
-	    }
+	   	ini_encode_and_json("Controller","lyl",obj_controller.loyal);
+	    ini_encode_and_json("Controller","lyl_nm",obj_controller.loyal_num);
+	    ini_encode_and_json("Controller","lyl_tm",obj_controller.loyal_time);
+
+
+	   	ini_encode_and_json("Controller","inq",obj_controller.inquisitor);
+	    ini_encode_and_json("Controller","inq_ge",obj_controller.inquisitor_gender);
+	    ini_encode_and_json("Controller","inq_ty",obj_controller.inquisitor_type);
+
 	    //
 	    g=-1;repeat(14){g+=1;
 	        ini_write_string("Factions","fac"+string(g),obj_controller.faction[g]);
@@ -530,6 +532,7 @@ function scr_save(save_slot,save_id) {
 	        ini_write_real("Fleet","ef"+string(i)+"connected",instance_array[i].connected);
 	        ini_write_real("Fleet","ef"+string(i)+"loaded",instance_array[i].loaded);
 	        ini_write_string("Fleet","ef"+string(i)+"trade",instance_array[i].trade_goods);
+	        ini_encode_and_json("Fleet",$"ef{i}cargo", instance_array[i].cargo_data);
 	        ini_write_real("Fleet","ef"+string(i)+"guardsmen",instance_array[i].guardsmen);
 	        ini_write_real("Fleet","ef"+string(i)+"orb",instance_array[i].orbiting);
 	        ini_write_real("Fleet","ef"+string(i)+"navy",instance_array[i].navy);
@@ -594,39 +597,7 @@ function scr_save(save_slot,save_id) {
 	    ini_write_real("Ini","progenitor_disposition",obj_controller.progenitor_disposition);
 	    ini_write_real("Ini","imperium_disposition",obj_controller.imperium_disposition);
 	    ini_write_real("Ini","astartes_disposition",obj_controller.astartes_disposition);
-
-	    ini_write_real("Ini","master_autarch",obj_ini.master_autarch);
-	    ini_write_real("Ini","master_avatar",obj_ini.master_avatar);
-	    ini_write_real("Ini","master_farseer",obj_ini.master_farseer);
-	    ini_write_real("Ini","master_aspect",obj_ini.master_aspect);
-	    ini_write_real("Ini","master_eldar",obj_ini.master_eldar);
-	    ini_write_real("Ini","master_eldar_vehicles",obj_ini.master_eldar_vehicles);
-	    ini_write_real("Ini","master_tau",obj_ini.master_tau);
-	    ini_write_real("Ini","master_battlesuits",obj_ini.master_battlesuits);
-	    ini_write_real("Ini","master_kroot",obj_ini.master_kroot);
-	    ini_write_real("Ini","master_tau_vehicles",obj_ini.master_tau_vehicles);
-	    ini_write_real("Ini","master_ork_boyz",obj_ini.master_ork_boyz);
-	    ini_write_real("Ini","master_ork_nobz",obj_ini.master_ork_nobz);
-	    ini_write_real("Ini","master_ork_warboss",obj_ini.master_ork_warboss);
-	    ini_write_real("Ini","master_ork_vehicles",obj_ini.master_ork_vehicles);
-	    ini_write_real("Ini","master_heretics",obj_ini.master_heretics);
-	    ini_write_real("Ini","master_chaos_marines",obj_ini.master_chaos_marines);
-	    ini_write_real("Ini","master_lesser_demons",obj_ini.master_lesser_demons);
-	    ini_write_real("Ini","master_greater_demons",obj_ini.master_greater_demons);
-	    ini_write_real("Ini","master_chaos_vehicles",obj_ini.master_chaos_vehicles);
-	    ini_write_real("Ini","master_gaunts",obj_ini.master_gaunts);
-	    ini_write_real("Ini","master_warriors",obj_ini.master_warriors);
-	    ini_write_real("Ini","master_carnifex",obj_ini.master_carnifex);
-	    ini_write_real("Ini","master_synapse",obj_ini.master_synapse);
-	    ini_write_real("Ini","master_tyrant",obj_ini.master_tyrant);
-	    ini_write_real("Ini","master_gene",obj_ini.master_gene);
-	    ini_write_real("Ini","master_necron_overlord",obj_ini.master_necron_overlord);
-	    ini_write_real("Ini","master_destroyer",obj_ini.master_destroyer);
-	    ini_write_real("Ini","master_necron",obj_ini.master_necron);
-	    ini_write_real("Ini","master_wraith",obj_ini.master_wraith);
-	    ini_write_real("Ini","master_necron_vehicles",obj_ini.master_necron_vehicles);
-	    ini_write_real("Ini","master_monolith",obj_ini.master_monolith);
-	    ini_write_string("Ini","master_special",obj_ini.master_special_killed);
+	    
 	    ini_write_string("Ini","complex_livery",base64_encode(json_stringify(obj_ini.complex_livery_data)));
 
 
@@ -733,34 +704,29 @@ function scr_save(save_slot,save_id) {
 	}
 
 
-	if (save_slot=3) or (save_slot=0){debugl("Saving to slot "+string(save_id)+" part 3");
-	    ini_open("save"+string(save_id)+".ini");
+	if (save_slot=3) or (save_slot=0){debugl($"Saving to slot {save_id} part 3");
+	    ini_open($"save{save_id}.ini");
 	    var coh,mah,good;
-	    good=0;coh=10;mah=100;
-	    repeat(1000){
-	        if (good=0){
-	            mah-=1;
-	            if (mah=0){mah=100;coh-=1;}
-	            if (obj_ini.veh_role[coh,mah]!=""){
-	                ini_write_real("Veh","co"+string(coh)+"."+string(mah),obj_ini.veh_race[coh,mah]);
-	                ini_write_string("Veh","lo"+string(coh)+"."+string(mah),obj_ini.veh_loc[coh,mah]);
-	                ini_write_string("Veh","rol"+string(coh)+"."+string(mah),obj_ini.veh_role[coh,mah]);
-	                ini_write_real("Veh","lid"+string(coh)+"."+string(mah),obj_ini.veh_lid[coh,mah]);
-	                ini_write_real("Veh","uid"+string(coh)+"."+string(mah),obj_ini.veh_uid[coh,mah]);
-	                ini_write_real("Veh","wid"+string(coh)+"."+string(mah),obj_ini.veh_wid[coh,mah]);
-
-	                ini_write_string("Veh","w1"+string(coh)+"."+string(mah),obj_ini.veh_wep1[coh,mah]);
-	                ini_write_string("Veh","w2"+string(coh)+"."+string(mah),obj_ini.veh_wep2[coh,mah]);
-	                ini_write_string("Veh","w3"+string(coh)+"."+string(mah),obj_ini.veh_wep3[coh,mah]);
-	                ini_write_string("Veh","up"+string(coh)+"."+string(mah),obj_ini.veh_upgrade[coh,mah]);
-	                ini_write_string("Veh","ac"+string(coh)+"."+string(mah),obj_ini.veh_acc[coh,mah]);
-
-	                ini_write_real("Veh","hp"+string(coh)+"."+string(mah),obj_ini.veh_hp[coh,mah]);
-	                ini_write_real("Veh","cha"+string(coh)+"."+string(mah),obj_ini.veh_chaos[coh,mah]);
-	                // ini_write_real("Veh","pil"+string(coh)+"."+string(mah),obj_ini.veh_pilots[coh,mah]);
-	            }
-	            if (coh=1) and (mah=1) then good=1;
-	        }
+	    for (coh=1;coh<=10;coh++){
+            for (mah=1;mah<=100;mah++){
+                if (obj_ini.veh_role[coh][mah]!=""){
+                    ini_write_real("Veh",$"co{coh}.{mah}",obj_ini.veh_race[coh,mah]);
+                    ini_write_string("Veh",$"lo{coh}.{mah}",obj_ini.veh_loc[coh,mah]);
+                    ini_write_string("Veh",$"rol{coh}.{mah}",obj_ini.veh_role[coh,mah]);
+                    ini_write_real("Veh",$"lid{coh}.{mah}",obj_ini.veh_lid[coh,mah]);
+                    ini_write_real("Veh",$"uid{coh}.{mah}",obj_ini.veh_uid[coh,mah]);
+                    ini_write_real("Veh",$"wid{coh}.{mah}",obj_ini.veh_wid[coh,mah]);
+    
+                    ini_write_string("Veh",$"w1{coh}.{mah}",obj_ini.veh_wep1[coh,mah]);
+                    ini_write_string("Veh",$"w2{coh}.{mah}",obj_ini.veh_wep2[coh,mah]);
+                    ini_write_string("Veh",$"w3{coh}.{mah}",obj_ini.veh_wep3[coh,mah]);
+                    ini_write_string("Veh",$"up{coh}.{mah}",obj_ini.veh_upgrade[coh,mah]);
+                    ini_write_string("Veh",$"ac{coh}.{mah}",obj_ini.veh_acc[coh,mah]);
+    
+                    ini_write_real("Veh",$"hp{coh}.{mah}",obj_ini.veh_hp[coh,mah]);
+                    ini_write_real("Veh",$"cha{coh}.{mah}",obj_ini.veh_chaos[coh,mah]);
+                }
+            }
 	    }
 
 
@@ -849,47 +815,53 @@ function scr_save(save_slot,save_id) {
 	    ini_close();
 	}
 
-	if (save_slot=4) or (save_slot=0){debugl("Saving to slot "+string(save_id)+" part 4");
+	if (save_slot=4) or (save_slot=0){
+		debugl("Saving to slot "+string(save_id)+" part 4");
 	    ini_open("save"+string(save_id)+".ini");
 	    var coh,mah,good;
 	    good=0;coh=100;mah=0;
 	    repeat(30){mah+=1;
 	        if (obj_ini.role[coh,mah]!=""){
-	            ini_write_real("Mar","co"+string(coh)+"."+string(mah),obj_ini.race[coh,mah]);
-	            ini_write_string("Mar","num"+string(coh)+"."+string(mah),obj_ini.name[coh,mah]);
-	            ini_write_string("Mar","rol"+string(coh)+"."+string(mah),obj_ini.role[coh,mah]);
-	            ini_write_string("Mar","w1"+string(coh)+"."+string(mah),obj_ini.wep1[coh,mah]);
-	            ini_write_string("Mar","w2"+string(coh)+"."+string(mah),obj_ini.wep2[coh,mah]);
-	            ini_write_string("Mar","ar"+string(coh)+"."+string(mah),obj_ini.armour[coh,mah]);
-	            ini_write_string("Mar","ge"+string(coh)+"."+string(mah),obj_ini.gear[coh,mah]);
-	            ini_write_string("Mar","mb"+string(coh)+"."+string(mah),obj_ini.mobi[coh,mah]);	
+	            ini_write_real("Mar",$"co{coh}.{mah}",obj_ini.race[coh,mah]);
+	            ini_write_string("Mar",$"num{coh}.{mah}",obj_ini.name[coh,mah]);
+	            ini_write_string("Mar",$"rol{coh}.{mah}",obj_ini.role[coh,mah]);
+	            ini_write_string("Mar",$"w1{coh}.{mah}",obj_ini.wep1[coh,mah]);
+	            ini_write_string("Mar",$"w2{coh}.{mah}",obj_ini.wep2[coh,mah]);
+	            ini_write_string("Mar",$"ar{coh}.{mah}",obj_ini.armour[coh,mah]);
+	            ini_write_string("Mar",$"ge{coh}.{mah}",obj_ini.gear[coh,mah]);
+	            ini_write_string("Mar",$"mb{coh}.{mah}",obj_ini.mobi[coh,mah]);	
 	        }
 	    }
 	    for (coh=0;coh<=10;coh++){
+	    	with (obj_ini){
+	    		scr_company_order(coh);
+	    	}
 	        for (mah=0;mah<=500;mah++){
-	        	if (obj_ini.name[coh,mah] != ""){
-	                ini_write_real("Mar","co"+string(coh)+"."+string(mah),obj_ini.race[coh,mah]);
-	                ini_write_string("Mar","lo"+string(coh)+"."+string(mah),obj_ini.loc[coh,mah]);
-	                ini_write_string("Mar","num"+string(coh)+"."+string(mah),obj_ini.name[coh,mah]);
-	                ini_write_string("Mar","rol"+string(coh)+"."+string(mah),obj_ini.role[coh,mah]);
+	        	if (obj_ini.name[coh][mah] != ""){
+	                ini_write_real("Mar",$"co{coh}.{mah}",obj_ini.race[coh,mah]);
+	                ini_write_string("Mar",$"lo{coh}.{mah}",obj_ini.loc[coh,mah]);
+	                ini_write_string("Mar",$"num{coh}.{mah}",obj_ini.name[coh,mah]);
+	                ini_write_string("Mar",$"rol{coh}.{mah}",obj_ini.role[coh,mah]);
 
-	                ini_write_string("Mar","w1"+string(coh)+"."+string(mah),obj_ini.wep1[coh,mah]);
-	                ini_write_string("Mar","w2"+string(coh)+"."+string(mah),obj_ini.wep2[coh,mah]);
-	                ini_write_string("Mar","ar"+string(coh)+"."+string(mah),obj_ini.armour[coh,mah]);
-	                ini_write_string("Mar","ge"+string(coh)+"."+string(mah),obj_ini.gear[coh,mah]);
-	                ini_write_string("Mar","mb"+string(coh)+"."+string(mah),obj_ini.mobi[coh,mah]);
+	                ini_write_string("Mar",$"w1{coh}.{mah}",obj_ini.wep1[coh,mah]);
+	                ini_write_string("Mar",$"w2{coh}.{mah}",obj_ini.wep2[coh,mah]);
+	                ini_write_string("Mar",$"ar{coh}.{mah}",obj_ini.armour[coh,mah]);
+	                ini_write_string("Mar",$"ge{coh}.{mah}",obj_ini.gear[coh,mah]);
+	                ini_write_string("Mar",$"mb{coh}.{mah}",obj_ini.mobi[coh,mah]);
 
-	                ini_write_real("Mar","hp"+string(coh)+"."+string(mah),obj_ini.TTRPG[coh,mah].hp());
-	                ini_write_real("Mar","exp"+string(coh)+"."+string(mah),obj_ini.experience[coh,mah]);
-	                ini_write_real("Mar","ag"+string(coh)+"."+string(mah),obj_ini.age[coh,mah]);
-	                ini_write_string("Mar","spe"+string(coh)+"."+string(mah),obj_ini.spe[coh,mah]);
-	                ini_write_real("Mar","god"+string(coh)+"."+string(mah),obj_ini.god[coh,mah]);
-					if (!is_struct(obj_ini.TTRPG[coh,mah])){
-						TTRPG[coh,mah]= new TTRPG_stats("chapter", coh,mah, "blank");
+	                ini_write_real("Mar",$"hp{coh}.{mah}",obj_ini.TTRPG[coh,mah].hp());
+	                ini_write_real("Mar",$"exp{coh}.{mah}",obj_ini.experience[coh,mah]);
+	                ini_write_real("Mar",$"ag{coh}.{mah}",obj_ini.age[coh,mah]);
+	                ini_write_string("Mar",$"spe{coh}.{mah}",obj_ini.spe[coh,mah]);
+	                ini_write_real("Mar",$"god{coh}.{mah}",obj_ini.god[coh,mah]);
+					if (!is_struct(obj_ini.TTRPG[coh][mah])){
+						TTRPG[coh][mah]= new TTRPG_stats("chapter", coh,mah, "blank");
 					} else{
-						ini_write_string("Mar","Struct"+string(coh)+"."+string(mah),base64_encode(jsonify_marine_struct(coh,mah)));
+						ini_write_string("Mar",$"Struct{coh}.{mah}",base64_encode(jsonify_marine_struct(coh,mah)));
 					}
-				}	
+				} else {
+					if (mah>0) then break;
+				}
 	        }
 	    }
 	    var squad_copies = [];
@@ -904,23 +876,24 @@ function scr_save(save_slot,save_id) {
 	    coh=100;mah=-1;
 	    repeat(21){mah+=1;
 	        if (obj_ini.role[coh,mah]!=""){
-	            ini_write_string("Mar","rol"+string(coh)+"."+string(mah),obj_ini.role[coh,mah]);
-	            ini_write_string("Mar","w1"+string(coh)+"."+string(mah),obj_ini.wep1[coh,mah]);
-	            ini_write_string("Mar","w2"+string(coh)+"."+string(mah),obj_ini.wep2[coh,mah]);
-	            ini_write_string("Mar","ar"+string(coh)+"."+string(mah),obj_ini.armour[coh,mah]);
-	            ini_write_string("Mar","ge"+string(coh)+"."+string(mah),obj_ini.gear[coh,mah]);
-	            ini_write_string("Mar","mb"+string(coh)+"."+string(mah),obj_ini.mobi[coh,mah]);				
+	            ini_write_string("Mar",$"rol{coh}.{mah}",obj_ini.role[coh,mah]);
+	            ini_write_string("Mar",$"w1{coh}.{mah}",obj_ini.wep1[coh,mah]);
+	            ini_write_string("Mar",$"w2{coh}.{mah}",obj_ini.wep2[coh,mah]);
+	            ini_write_string("Mar",$"ar{coh}.{mah}",obj_ini.armour[coh,mah]);
+	            ini_write_string("Mar",$"ge{coh}.{mah}",obj_ini.gear[coh,mah]);
+	            ini_write_string("Mar",$"mb{coh}.{mah}",obj_ini.mobi[coh,mah]);				
 	        }
 	    }
-	    coh=102;mah=-1;
+	    coh=102;
+	    mah=-1;
 	    repeat(21){mah+=1;
 	        if (obj_ini.role[coh,mah]!=""){
-	            ini_write_string("Mar","rol"+string(coh)+"."+string(mah),obj_ini.role[coh,mah]);
-	            ini_write_string("Mar","w1"+string(coh)+"."+string(mah),obj_ini.wep1[coh,mah]);
-	            ini_write_string("Mar","w2"+string(coh)+"."+string(mah),obj_ini.wep2[coh,mah]);
-	            ini_write_string("Mar","ar"+string(coh)+"."+string(mah),obj_ini.armour[coh,mah]);
-	            ini_write_string("Mar","ge"+string(coh)+"."+string(mah),obj_ini.gear[coh,mah]);
-	            ini_write_string("Mar","mb"+string(coh)+"."+string(mah),obj_ini.mobi[coh,mah]);			
+	            ini_write_string("Mar",$"rol{coh}.{mah}",obj_ini.role[coh,mah]);
+	            ini_write_string("Mar",$"w1{coh}.{mah}",obj_ini.wep1[coh,mah]);
+	            ini_write_string("Mar",$"w2{coh}.{mah}",obj_ini.wep2[coh,mah]);
+	            ini_write_string("Mar",$"ar{coh}.{mah}",obj_ini.armour[coh,mah]);
+	            ini_write_string("Mar",$"ge{coh}.{mah}",obj_ini.gear[coh,mah]);
+	            ini_write_string("Mar",$"mb{coh}.{mah}",obj_ini.mobi[coh,mah]);			
 	        }
 	    }
 	    ini_close();

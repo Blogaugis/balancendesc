@@ -1,3 +1,59 @@
+Version  0.9.2.0
+
+Fixed:
+	- recruit trial being wrong on game start occasionally
+	- updating garrison log creating crashes due to vehicle arrays
+	- some recruit trials used to produced no recruits
+	- data leak from sprites causing game to randomly crash when doing lots of troop movement
+	- general reliability improvements with game memory usage
+	- hopefully fixed problem where faction sprites could occaisionally corrupt making the main map a cluster fuck
+	- no longer able to attempt to zoom to terra to see training techs causing a crash
+	- marines on terra no longer selectable
+
+Changed:
+	- player will now get alerts when ship production ceases due to a lack of active forge worlds
+	- new cheat "artifactpopulate" adds a artifact to every planet
+	- promotion thresholds modified and reworked to be inline with equipment exp limits 
+	- general promotion improvements
+
+	- decentralised much of company code so theoretically able to now have chapters with more than 10 companies (full implementation a long way off)
+
+	- lots of under the hood restructuring of fleets
+
+added:
+	- from company manage
+		- tooltips on numbers 1 through 0(10) to automatically jump to companies in the company view screen
+		- M to go to next company
+		- N to previous
+		- Q,E,R,T,Y, to travel between the specialist manage areas from manage
+		- new filter mode in spreadsheet manage view that allows the select buttons to be used to filter marines 
+		- shift + keys in order to utilize load, set to boarders and other functions (tooltips provide keys)
+
+	- from map area
+		- alt F for fleet
+		- alt M for manage
+		- alt A for apothcarium
+		- alt F for fleet
+		- alt S for settings
+		- alt R for reclusiam
+		- alt L for librarium
+		- alt N for armamentarium
+		- alt T for recruiting
+		- alt D for diplomacy
+		- alt O for event log
+		- alt E for end turn
+
+	- new govornor missions, complete missions for planetary governors to increase disposition or gain other rewards.
+	- added new chapter advantages:
+		- venerable ancients : increases start dreadnoughts but reduced chapter strength
+
+	- ability to have a more indepth view of population and it's influences (needs much extension and work)
+	- ability to spend req in order to fund colonisation attempts to increase populations or repopulate worlds from 0
+		- new colonists may bring with them genestealer cults, heretics or have greater good thinkings...
+
+
+-----------------------
+versions  0.9.1.1 - 0.9.1.12 bug fix and stability versions
 -----------------------
 
 Version  0.9.1.0

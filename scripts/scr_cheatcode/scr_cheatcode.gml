@@ -50,7 +50,7 @@ function scr_cheatcode(argument0) {
             new_inquisitor_inspection();
         }        
         if (cheatcode_string=="sisterhospitaler"){
-            scr_add_man("Sister Hospitaler",0,"","","","","",0,true,"default","");
+            scr_add_man("Sister Hospitaler",0,"","",0,true,"default");
         }
         if (cheatcode_string=="chaosfleetspawn"){
             spawn_chaos_warlord();
@@ -71,6 +71,26 @@ function scr_cheatcode(argument0) {
             scr_quest(0,"artifact_loan",4,10);
             var last_artifact =scr_add_artifact("good","inquisition",0,obj_ini.ship[1],501);
          }
+        if (cheatcode_string=="govmission"){
+            with (obj_star){
+                for (i=1;i<=planets;i++){
+                    var existing_problem = false;//has_any_problem_planet(i);
+                    if (!existing_problem){
+                        if (p_owner[i]==eFACTION.Imperium){
+                            show_debug_message("mission");
+                            scr_new_governor_mission(i);
+                        }
+                    }
+                }
+            }
+        }
+        if (cheatcode_string=="artifactpopulate"){
+            with (obj_star){
+                for (i=1;i<=planets;i++){
+                    array_push(p_feature[i], new new_planet_feature( P_features.Artifact));
+                }
+            }
+        }
         if (string_count("event", cheatcode_string) >0) {
             if (string_count("crusade", cheatcode_string) >0) {
                 show_debug_message("crusading");
@@ -185,6 +205,7 @@ function scr_cheatcode(argument0) {
             array_insert(obj_controller.recruit_distance , i, 0);
             array_insert(obj_controller.recruit_training, i, 1);
             array_insert(obj_controller.recruit_exp, i, 20); 
+             array_insert(obj_controller.recruit_data, i, {}); 
             array_insert(obj_controller.recruit_name, i, global.name_generator.generate_space_marine_name());
         }
         scr_alert("green", "recruitment", (string(cheatcode_m_digits) + "has started training."), 0, 0)

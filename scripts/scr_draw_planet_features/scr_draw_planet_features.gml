@@ -94,11 +94,11 @@ function feature_selected(Feature) constructor{
 				generic=true;
 				if (feature.awake==0 && feature.sealed==0){
 					title = "Dormant Necron Tomb";
-					body = "Scans indicate a Necron TOmb lies hidden under the surface of the planet, all signs indicate the tombis dormant as we must hope it remains";
-				} else if (feature.sealed==1){
+					body = "Scans indicate a Necron Tomb lies hidden under the surface of the planet, all signs indicate the tombis dormant as we must hope it remains";
+				} else if (feature.sealed){
 					title = "Sealed Necron Tomb";
-					body = "Exterminatus and standard imperial armenants are no proof against the Necron Scourge with any luck those sealed within this tomb will remain there";
-				} else if (feature.awake==1){
+					body = "Exterminatus and standard imperial armaments are no proof against the Necron Scourge with any luck those sealed within this tomb will remain there";
+				} else if (feature.awake){
 					title = "Awake Tomb";
 					body = "The Cursed ranks of living metal spew forth from the Necron tomb below"
 				}
@@ -140,6 +140,88 @@ function feature_selected(Feature) constructor{
 						feature.forge_data = new player_forge();
 					};
 				}
+				break;
+			case P_features.Mission:
+				var mission_description=$"";
+				var planet_name = planet_numeral_name(obj_controller.selecting_planet, obj_star_select.target);
+				var button_text="none";
+				var button_function="none";
+				var help = "none";
+				switch(feature.problem){
+					case "provide_garrison":
+						var reason;
+						if (feature.reason == "importance"){
+
+						}
+						mission_description=$"The governor of {planet_name} has requested a force of marines might stay behind following your departure.\n\n\n assign a squad to garrison to initiate mission, The garrison leeader will need to be capable of conducting himself in a diplomatic manor in order for the garrison duration to be a success";
+
+						break;
+					case "join_communion":
+						mission_description=$"The governor of {planet_name} has Invited a delegate of your forces to take part in ceremony.";
+						break;
+					case "hunt_beast":
+						mission_description=$"The governor of {planet_name} has bemoaned the raiding of huge beasts on the fringes of the planets largest city, the numbers have swelled recently and are causing huge damage to the planets small economy. You could send a force to intervene, it would provide a fine test of metal for any that partake.";
+						button_text = "Send Hunters";
+						button_function = function(){
+							var dudes = collect_role_group("all", obj_star_select.target.name);
+							group_selection(dudes,{
+								purpose:"Beast Hunt",
+								purpose_code : feature.problem,
+								number:3,
+								system:obj_controller.selected.id,
+								feature:obj_star_select.feature,
+								planet : obj_controller.selecting_planet,
+								selections : []
+							});
+							destroy=true;
+						}
+						break;
+					case "protect_raiders":
+						mission_description=$"The governor of {planet_name} has sent many requests to the sector commander for help with defending against xenos raids on the populace of the planet, the reports seem to suggest the xenos in question are in fact dark elder.";
+						help = "Set a squad to ambush ";
+						break;
+					case "train_forces":
+						mission_description=$"The governor of {planet_name} fears the planet will not hold in the case of major incursion, it has not seen war in some time and he fears the ineptitude of the commanders available, he asks for aid in planning a thorough plan for defense and schedule of works for a period of at least 6 months.";
+						help = $"A task best suited to the more knowledgable or wise of your Commanders"
+						button_text = "Assign Officer";
+						button_function = function(){
+							var dudes = collect_role_group("captain_candidates", obj_star_select.target.name);
+							group_selection(dudes,{
+								purpose:"Select Officer",
+								purpose_code : feature.problem,
+								number:1,
+								system:obj_controller.selected.id,
+								feature:obj_star_select.feature,
+								planet : obj_controller.selecting_planet,
+								selections : []
+							});
+							destroy=true;
+						}						
+						break;																				
+					case "Purge_enemies":
+						mission_description=$"The governor of {planet_name} has expressed his distaste of the neighboring governance of {target.name} {feature.target} he has expressed his views that they engage in heretical ways and harbor xenos enemies though in truth it is more likely that he simply wishes his political enemies disposed of, whatever the case his planet has great economic means and he has made bare his plans to compensate the emperors angels for their aid";
+						break;	
+				}
+				draw_text_transformed(xx+(area_width/2), yy +5, mission_name_key(feature.problem), 2, 2, 0);
+				draw_set_halign(fa_left);
+				draw_set_color(c_gray);
+				draw_text_ext(xx+10, yy+40,mission_description,-1,area_width-20);
+				var text_body_height = string_height_ext(string_hash_to_newline(mission_description),-1,area_width-20);
+				if (help!="none"){
+					draw_text_ext(xx+10, yy+40+text_body_height+10,help,-1,area_width-20);
+					text_body_height+=string_height_ext(string_hash_to_newline(mission_description),-1,area_width-20)+10;
+				}
+				
+				if (button_text!="none"){
+					if (point_and_click(draw_unit_buttons([xx+((area_width/2)-(string_width(button_text)/2)), yy+40+text_body_height+10], button_text))){
+						if (is_method(button_function)){
+							button_function();
+							destroy=true;
+						} else {
+							tooltip_draw("no implemented function");
+						}
+					}
+				}			
 				break;
 		}
 		if (generic){
@@ -214,7 +296,7 @@ function rack_and_pinion(Type="forward") constructor{
 				} else {
 					rotation+=4;
 				}
-				rack_y = (75.3982236862/360)*(360-rotation)
+				rack_y = (75.3982236862/360)*(360-rotation);
 				if (rack_y > 70){
 					reverse = true;
 				} else if (rack_y < 2){

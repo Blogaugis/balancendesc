@@ -523,7 +523,7 @@ while (i<array_length(recruit_name)){
     };
     if  (recruit_distance[i]<=0) then recruit_training[i]-=1;
     if (recruit_training[i]<=0){
-        scr_add_man(obj_ini.role[100][12],10,"Scout Armour",obj_ini.role[100][12],"",recruit_exp[i],recruit_name[i],recruit_corruption[i],false,"default","");
+        scr_add_man(obj_ini.role[100][12],10,recruit_exp[i],recruit_name[i],recruit_corruption[i],false,"default",recruit_data[i]);
         if (recruit_first=="") then recruit_first=recruit_name[i];
         recruits_finished+=1;
         array_delete(recruit_name,i,1);
@@ -531,11 +531,15 @@ while (i<array_length(recruit_name)){
         array_delete(recruit_distance,i,1);
         array_delete(recruit_training,i,1);
         array_delete(recruit_exp,i,1);
+        array_delete(recruit_data,i,1);
         continue;
     } else {
         total_recruits++;
     }
     i++;
+}
+with(obj_ini){
+    scr_company_order(10);
 }
 if (recruits_finished==1){
     scr_alert("green","recruitment",$"{obj_ini.role[100][12]} {recruit_first} has joined X Company.",0,0);
@@ -1121,24 +1125,25 @@ for(var i=1; i<=99; i++){
             // Ships construction
             if (string_count("new_",event[i])>0){
                 var new_ship_event=event[i];
-                with(obj_temp5){instance_destroy();}
+                var active_forges = [];
+                var chosen_star = false;
                 with(obj_star){
                     if (owner==eFACTION.Mechanicus){
-                        if (p_type[1]=="Forge") and (p_owner[1]==eFACTION.Mechanicus) then instance_create(x,y,obj_temp5);
-                        if (p_type[2]=="Forge") and (p_owner[2]==eFACTION.Mechanicus) then instance_create(x,y,obj_temp5);
-                        if (p_type[3]=="Forge") and (p_owner[3]==eFACTION.Mechanicus) then instance_create(x,y,obj_temp5);
-                        if (p_type[4]=="Forge") and (p_owner[4]==eFACTION.Mechanicus) then instance_create(x,y,obj_temp5);
+                        for (i=1;i<=planets;i++){
+                            if (p_type[i]=="Forge") and (p_owner[i]==eFACTION.Mechanicus){
+                                array_push(active_forges,new PlanetData(i, self));
+                            }
+                        }
                     }
                 }
-                if (instance_number(obj_temp5)>0){
-                    var that,that2,new_defense_fleet;
-                    that=instance_nearest(random(room_width),random(room_height),obj_temp5);
-                    that2=instance_nearest(that.x,that.y,obj_star);
-                    new_defense_fleet=instance_create(that2.x+24,that2.y-24,obj_p_fleet);
+                if (array_length(active_forges)>0){
+                    var ship_spawn = active_forges[irandom(array_length(active_forges)-1)];
+                    var new_defense_fleet=instance_create(ship_spawn.system.x+24,ship_spawn.system.y-24,obj_p_fleet);
 
                     // Creates the ship
 
-                    last_ship = new_player_ship(new_ship_event, that2.name);
+                    var last_ship = new_player_ship(new_ship_event, ship_spawn.system.name);
+
                     if (obj_ini.ship_class[last_ship] =="Battle Barge"){
                         new_defense_fleet.capital[1]=obj_ini.ship[last_ship];
                         new_defense_fleet.capital_number=1;
@@ -1166,17 +1171,18 @@ for(var i=1; i<=99; i++){
 
                     // show_message(string(obj_ini.ship_class[last_ship])+":"+string(obj_ini.ship[last_ship]));
 
-                    if (instance_exists(that2)){
-                        if (obj_ini.ship_size[last_ship]!=1) then scr_popup("Ship Constructed","Your new "+string(obj_ini.ship_class[last_ship])+" '"+string(obj_ini.ship[last_ship])+"' has finished being constructed.  It is orbiting "+string(that2.name)+" and awaits its maiden voyage.","shipyard","");
-                        if (obj_ini.ship_size[last_ship]==1) then scr_popup("Ship Constructed","Your new "+string(obj_ini.ship_class[last_ship])+" Escort '"+string(obj_ini.ship[last_ship])+"' has finished being constructed.  It is orbiting "+string(that2.name)+" and awaits its maiden voyage.","shipyard","");
-                        var bob=instance_create(that2.x+16,that2.y-24,obj_star_event);
-                        bob.image_alpha=1;
-                        bob.image_speed=1;
-                    }
+                    if (obj_ini.ship_size[last_ship]!=1) then scr_popup("Ship Constructed",$"Your new {obj_ini.ship_class[last_ship]} '{obj_ini.ship[last_ship]}' has finished being constructed.  It is orbiting {ship_spawn.system.name} and awaits its maiden voyage.","shipyard","");
+                    if (obj_ini.ship_size[last_ship]==1) then scr_popup("Ship Constructed",$"Your new {obj_ini.ship_class[last_ship]} Escort '{obj_ini.ship[last_ship]}' has finished being constructed.  It is orbiting {ship_spawn.system.name} and awaits its maiden voyage.","shipyard","");
+                    var bob=instance_create(that2.x+16,that2.y-24,obj_star_event);
+                    bob.image_alpha=1;
+                    bob.image_speed=1;
                 }
-                if (instance_number(obj_temp5)==0) then event_duration[i]=2;
-                with(obj_temp5){instance_destroy();}
-                event[i]="";event_duration[i]-=1;
+                if (array_length(active_forges)==0){
+                    event_duration[i]=2;
+                    scr_popup("Ship Construction halted",$"A lack of suitable forge worlds in the system has halted construction of your requested ship","shipyard","");
+                }
+                event[i]="";
+                event_duration[i]-=1;
             }
             // Spare the inquisitor
             if (string_count("inquisitor_spared",event[i])>0){
@@ -1193,7 +1199,9 @@ for(var i=1; i<=99; i++){
                 if (diceh>85) and (event[i]="inquisitor_spared2"){
                     scr_popup("Anonymous Message","You recieve an anonymous letter of thanks.  It mentions that motions are underway to destroy any local forces of Chaos.","","");
                     with(obj_star){
-                        for(var o=1; o<=4; o++){p_heresy[o]=max(0,p_heresy[o]-10);}
+                        for(var o=1; o<=planets; o++){
+                            p_heresy[o]=max(0,p_heresy[o]-10);
+                        }
                     }
                 }
             }
@@ -1225,35 +1233,36 @@ for(var i=1; i<=99; i++){
                     tixt+="it is a finely crafted Rhino, conforming to STC standards.  The other "+string(obj_ini.role[100][16])+" are surprised at the rapid pace of his work.";
                 }
                 if (item=="Artifact"){
-                    scr_event_log("",string(obj_ini.role[100][16])+" "+string(marine_name)+" constructs an Artifact.");
-                    if (obj_ini.fleet_type==1) then scr_add_artifact("random_nodemon","",0,obj_ini.home_name,2);
-                    if (obj_ini.fleet_type!=1) then scr_add_artifact("random_nodemon","",0,obj_ini.ship_location[1],501);
                     var last_artifact=0;
-                    for(var k=1; k<=100; k++){
-                        if (last_artifact==0){
-                            if (obj_ini.artifact[k]=="") then last_artifact=k-1;
+                    scr_event_log("",string(obj_ini.role[100][16])+" "+string(marine_name)+" constructs an Artifact.");
+                    if (obj_ini.fleet_type==1){
+                        last_artifact =  scr_add_artifact("random_nodemon","",0,obj_ini.home_name,2);
+                    } else {
+                        if (obj_ini.fleet_type!=1){
+                            last_artifact = scr_add_artifact("random_nodemon","",0,obj_ini.ship_location[1],501);
                         }
                     }
-                    tixt+="some form of divine inspiration has seemed to have taken hold of him.  An artifact "+string(obj_ini.artifact[k])+" has been crafted.";
+
+                    tixt+=$"some form of divine inspiration has seemed to have taken hold of him.  An artifact {obj_ini.artifact[last_artifact]} has been crafted.";
                 }
                 if (item=="baby"){
                     unit.edit_corruption(choose(8,12,16,20))
                     tixt+="some form of horrendous statue.  A weird amalgram of limbs and tentacles, the sheer atrocity of it is made worse by the tiny, baby-like form, the once natural shape of a human child twisted nearly beyond recognition.";
                 }
-                if (item=="robot"){
+                else if (item=="robot"){
                     unit.edit_corruption(choose(2,4,6,8,10));
-                    tixt+="some form of small, box-like robot.  It seems to teeter around haphazardly, nearly falling over with each step.  "+string(marine_name)+" maintains that it has no AI, though the other "+string(obj_ini.role[100][16])+" express skepticism.";
+                    tixt+=$"some form of small, box-like robot.  It seems to teeter around haphazardly, nearly falling over with each step. {unit.name()} maintains that it has no AI, though the other "+string(obj_ini.role[100][16])+" express skepticism.";
                     unit.add_trait("tech_heretic");
                 }
-                if (item=="demon"){
+                else if (item=="demon"){
                     unit.edit_corruption(choose(8,12,16,20));
                     tixt+="some form of horrendous statue.  What was meant to be some sort of angel, or primarch, instead has a mishappen face that is hardly human in nature.  Between the fetid, ragged feathers and empty sockets it is truly blasphemous.";
                     unit.add_trait("tech_heretic");
                 }
-                if (item=="fusion"){
+                else if (item=="fusion"){
                     //TODO if tech heretic chosen don't kill the dude
                     // unit.corruption+=choose(70);
-                    tixt+="some kind of ill-mannered ascension.  One of your battle-brothers enters the armamentarium to find "+string(marine_name)+" fused to a vehicle, his flesh twisted and submerged into the frame.  Mechendrites and weapons fire upon the marine without warning, a windy scream eminating from the abomination.  It takes several battle-brothers to take out what was once a "+string(obj_ini.role[100][16])+".";
+                    tixt+=$"some kind of ill-mannered ascension.  One of your battle-brothers enters the armamentarium to find {marine_name} fused to a vehicle, his flesh twisted and submerged into the frame.  Mechendrites and weapons fire upon the marine without warning, a windy scream eminating from the abomination.  It takes several battle-brothers to take out what was once a "+string(obj_ini.role[100][16])+".";
 
                     // This is causing the problem
 
@@ -1281,9 +1290,9 @@ with(obj_turn_end){scr_battle_sort();}
 for(var i=1; i<=10; i++){
     if (turns_ignored[i]>0) and (turns_ignored[i]<500) then turns_ignored[i]-=1;
 }
-if (known[eFACTION.Eldar]>=2) and (faction_gender[6]==2) and (floor(turn/10)==(turn/10)) then turns_ignored[6]+=floor(random_range(0,6));
+if (known[eFACTION.Eldar]>=2) and (faction_gender[6]==2) and (turn%10==0) then turns_ignored[6]+=floor(random_range(0,6));
 
-with(obj_temp4){instance_destroy();}
+with(obj_ground_mission){instance_destroy();}
 scr_random_event(true);
 
 // ** Random events here **
@@ -1364,3 +1373,8 @@ research_end();
 apothecary_simple();
 
 //complex route plotting for player fleets
+with (obj_p_fleet){
+    if (array_length(complex_route)>0  && action == ""){
+        set_new_player_fleet_course(complex_route);
+    }
+}

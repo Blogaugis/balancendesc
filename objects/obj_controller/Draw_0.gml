@@ -17,7 +17,7 @@ if (is_test_map==true){
 try{
     script_execute(scr_ui_manage,0,0,0,0,0);
 } catch(_exception){
-    show_debug_message(_exception.message);
+    show_debug_message(_exception);
     manage = 0;
     menu = 0;
 
@@ -25,21 +25,21 @@ try{
 try{
     script_execute(scr_ui_advisors,0,0,0,0,0);
 } catch(_exception){
-    show_debug_message(_exception.message);
+    show_debug_message(_exception);
     manage = 0;
     menu = 0;   
 }
 try{
     script_execute(scr_ui_diplomacy,0,0,0,0,0);
 } catch(_exception){
-    show_debug_message(_exception.message);
+    show_debug_message(_exception);
     manage = 0;
     menu = 0;   
 }
 try{
     script_execute(scr_ui_settings,0,0,0,0,0);
 } catch(_exception){
-    show_debug_message(_exception.message);
+    show_debug_message(_exception);
     manage = 0;
     menu = 0;   
 }
@@ -47,7 +47,7 @@ try{
 var xx =__view_get( e__VW.XView, 0 );
 var yy =__view_get( e__VW.YView, 0 );
 // Main UI
-if (zoomed==0) and (zui==0){
+if (!zoomed && !zui){
     draw_sprite(spr_new_ui,0,xx+0,yy+0);
     draw_set_color(c_white);
     // Buttons here

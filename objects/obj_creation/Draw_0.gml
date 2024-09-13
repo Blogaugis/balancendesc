@@ -527,8 +527,14 @@ if (slide=2){
             }
         }
         draw_set_alpha(1);
-        if (scr_hit(436,564,631,583)){tooltip="Chapter Advantages";tooltip2="Advantages cost 20 points, and improve the performance of your chapter in a specific domain.";}
-        if (scr_hit(810,564,1030,583)){tooltip="Chapter Disadvantages";tooltip2="Disadvantages Grant 20 additional points, and penalize the performance of your chapter.";}
+        if (scr_hit(436,564,631,583)){
+            tooltip="Chapter Advantages";
+            tooltip2="Advantages cost 20 points, and improve the performance of your chapter in a specific domain.";
+        }
+        if (scr_hit(810,564,1030,583)){
+            tooltip="Chapter Disadvantages";
+            tooltip2="Disadvantages Grant 20 additional points, and penalize the performance of your chapter.";
+        }
     }else if (popup="icons"){
         draw_set_alpha(1);
         draw_set_color(0);
@@ -541,17 +547,19 @@ if (slide=2){
         
         draw_set_font(fnt_40k_30b);
         draw_set_halign(fa_center);
-        draw_text_transformed(800,211,string_hash_to_newline("Select an Icon"),0.6,0.6,0);
-        draw_text_transformed(800,687,string_hash_to_newline("Cancel"),0.6,0.6,0);
+        draw_text_transformed(800,211,"Select an Icon",0.6,0.6,0);
+        draw_text_transformed(800,687,"Cancel",0.6,0.6,0);
         
         var cw,ch;
         cw=string_width(string_hash_to_newline("Cancel"))*0.6;
         ch=string_height(string_hash_to_newline("Cancel"))*0.6;
         
         if (scr_hit(800,687,800+cw,687+ch)){
-            draw_set_color(c_white);draw_set_alpha(0.25);
+            draw_set_color(c_white);
+            draw_set_alpha(0.25);
             draw_text_transformed(800,687,string_hash_to_newline("Cancel"),0.6,0.6,0);
-            draw_set_color(38144);draw_set_alpha(1);
+            draw_set_color(38144);
+            draw_set_alpha(1);
             
             if (mouse_left=1) and (cooldown<=0){
                 cooldown=8000;
@@ -1825,14 +1833,11 @@ if (slide=5){
     draw_text_transformed(580,118,string_hash_to_newline("Successor Chapters: "+string(successors)),0.6,0.6,0);
     draw_set_font(fnt_40k_14b);
     
-    
-    draw_line(445,200,1125,200);
-    draw_line(445,201,1125,201);
-    draw_line(445,202,1125,202);
+    draw_rectangle(445, 200, 1125, 202, true);
     
     draw_set_font(fnt_40k_30b);
     draw_text_transformed(503,210,string_hash_to_newline("Gene-Seed Mutations"),0.6,0.6,0);
-    if (mutations>mutations_selected) then draw_text_transformed(585,230,string_hash_to_newline("Select "+string(mutations-mutations_selected)+" More"),0.5,0.5,0);
+    if (mutations>mutations_selected) then draw_text_transformed(585,230,$"Select {mutations-mutations_selected} More",0.5,0.5,0);
     
     var x1,y1,spac=34;
     
@@ -1933,7 +1938,7 @@ if (slide=5){
             if (mutation_data.data){
                 mutation_data.data=0;
                 mutations_selected-=mutation_data.mutation_points;
-                if (struct_exists(mutation_data, disposition)){
+                if (struct_exists(mutation_data, "disposition")){
                    for (var s=0;s<array_length(mutation_data.disposition);s++){
                         disposition[mutation_data.disposition[s][0]] -= mutation_data.disposition[s][1];
                    }
@@ -1942,7 +1947,7 @@ if (slide=5){
             else if (!mutation_data.data) and (mutations>mutations_selected){
                 mutation_data.data=1;
                 mutations_selected+=mutation_data.mutation_points;
-                if (struct_exists(mutation_data, disposition)){
+                if (struct_exists(mutation_data, "disposition")){
                    for (var s=0;s<array_length(mutation_data.disposition);s++){
                         disposition[mutation_data.disposition[s][0]] += mutation_data.disposition[s][1];
                    }
