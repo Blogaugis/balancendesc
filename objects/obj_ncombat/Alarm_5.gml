@@ -280,8 +280,9 @@ if (defeat=0) and (npowers=true){
 
 	
     if (enemy!=2){
-        if (attacker=0) then new_power=en_power-1;
-        if ((attacker=1) or (dropping=1)) then new_power=en_power-2;
+        if (attacker=0) then new_power=en_power-2;
+        if (attacker=1) then new_power=en_power-2;
+		if (dropping=1) then new_power=en_power-1;
 
         new_power=max(new_power,0);
 		
@@ -483,6 +484,9 @@ if (((leader)) or ((battle_special="world_eaters") and (!obj_controller.faction_
     newline=line_break;
     scr_newtext();
     instance_activate_object(obj_event_log);
+	if (enemy=2) then scr_event_log("","Enemy Leader Assassinated: Sector Commander");
+	if (enemy=3) then scr_event_log("","Enemy Leader Assassinated: Fabricator-General");
+	if (enemy=4) then scr_event_log("","Enemy Leader Assassinated: Inquisitor Lord");
     if (enemy=5) then scr_event_log("","Enemy Leader Assassinated: Ecclesiarchy Prioress");
     if (enemy=6) then scr_event_log("","Enemy Leader Assassinated: Eldar Farseer");
     if (enemy=7){
@@ -490,7 +494,10 @@ if (((leader)) or ((battle_special="world_eaters") and (!obj_controller.faction_
 		if (Warlord !=0){Warlord.kill_warboss()}
 		}
     if (enemy=8) then scr_event_log("","Enemy Leader Assassinated: Tau Diplomat");
+	// if (enemy=9) then scr_event_log("","Enemy Leader Assassinated: Hive Queen");
     if (enemy=10) then scr_event_log("","Enemy Leader Assassinated: Chaos Lord");
+
+	// if (enemy=13) then scr_event_log("","Enemy Leader Assassinated: Necron Lord");
 }
 
 var endline,inq_eated;endline=1;
