@@ -36,15 +36,16 @@ function scr_trade_add(argument0) {
 	        if (string_count("Useful Info",woj)>1){trade_tnum[thinz]=0;tomp1=0;trade_take[thinz]="";}
 	    }
     
-	    if (argument0="Condemnor Boltgun"){get_integer2("Condemnor Boltguns wanted?",20,"t"+string(thinz),"Condemnor Boltgun");}
+	   // if (argument0="Condemnor Boltgun"){get_integer2("Condemnor Boltguns wanted?",20,"t"+string(thinz),"Condemnor Boltgun");}
 	    if (argument0="Hellrifle"){get_integer2("Hellrifles wanted?",3,"t"+string(thinz),"Hellrifle");}
 	    if (argument0="Incinerator"){get_integer2("Incinerators wanted?",10,"t"+string(thinz),"Incinerator");}
 	    if (argument0="Crusader"){get_integer2("Crusaders wanted?",5,"t"+string(thinz),"Crusader");}
 	    if (argument0="Exterminatus"){trade_tnum[thinz]=1;tomp1=1;}
 	    if (argument0="Cyclonic Torpedo"){trade_tnum[thinz]=1;tomp1=1;}
+
 	    if (argument0="Eviscerator"){get_integer2("Eviscerators wanted?",10,"t"+string(thinz),"Eviscerator");}
 	    if (argument0="Heavy Flamer"){get_integer2("Heavy Flamers wanted?",10,"t"+string(thinz),"Heavy Flamer");}
-	    if (argument0="Inferno Bolts"){trade_tnum[thinz]=20;tomp1=20;}
+	   // if (argument0="Inferno Bolts"){trade_tnum[thinz]=20;tomp1=20;}
 	    if (argument0="Sister of Battle"){get_integer2("Sisters of Battle wanted?",3,"t"+string(thinz),"Sister of Battle");}
 	    if (argument0="Sister Hospitaler"){trade_tnum[thinz]=1;tomp1=1;}
     
@@ -53,6 +54,10 @@ function scr_trade_add(argument0) {
 	    if (argument0="Flash Git"){get_integer2("Flash Gitz wanted?",6,"t"+string(thinz),"Flash Git");}
     
 	    if (argument0="Test"){trade_tnum[thinz]=1;tomp1=1;}
+		// if (argument0="Plasma Rifle"){get_integer2("Plasma Rifles wanted?",10,"t"+string(thinz),"Plasma Rifle");}
+		// if (argument0="Fire Warrior"){get_integer2("Fire Warriors wanted?",3,"t"+string(thinz),"Fire Warrior");}
+	
+		// if (argument0="Tome"){trade_tnum[thinz]=1;tomp1=1;}
     
 	    // if (trade_tnum[thinz]=0){trade_tnum[thinz]=0;trade_take[thinz]="";}
 	    // if (trade_tnum[thinz]>tomp1) then trade_tnum[thinz]=tomp1;

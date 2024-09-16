@@ -574,37 +574,37 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
             // Inquisition trade goods
             if (diplomacy==4){
                 cooldown=8;
-                trade_theirs[1]="Condemnor Boltgun";
-                trade_theirs[2]="Hellrifle";
-                trade_theirs[3]="Incinerator";
-                trade_theirs[4]="Crusader";
-                trade_theirs[5]="Exterminatus";
-                trade_theirs[6]="Cyclonic Torpedo";
-                trade_disp[1]=20;
-                trade_disp[2]=30;
-                trade_disp[3]=20;
-                trade_disp[4]=30;
-                trade_disp[5]=40;
-                trade_disp[6]=60;
+               // trade_theirs[1]="Condemnor Boltgun";
+                trade_theirs[1]="Hellrifle";
+                trade_theirs[2]="Incinerator";
+                trade_theirs[3]="Crusader";
+                trade_theirs[4]="Exterminatus";
+                trade_theirs[5]="Cyclonic Torpedo";
+               // trade_disp[1]=20;
+                trade_disp[1]=30;
+                trade_disp[2]=20;
+                trade_disp[3]=30;
+                trade_disp[4]=40;
+                trade_disp[5]=60;
             }
             // Ecclesiarchy trade goods
             if (diplomacy==5){
                 cooldown=8;
                 trade_theirs[1]="Eviscerator";
                 trade_theirs[2]="Heavy Flamer";
-                trade_theirs[3]="Inferno Bolts";
-                trade_theirs[4]="Sister of Battle";
-                trade_theirs[5]="Sister Hospitaler";
+               // trade_theirs[3]="Inferno Bolts";
+                trade_theirs[3]="Sister of Battle";
+                trade_theirs[4]="Sister Hospitaler";
                 trade_disp[1]=20;
                 trade_disp[2]=30;
-                trade_disp[3]=30;
+               // trade_disp[3]=30;
+                trade_disp[3]=50;
                 trade_disp[4]=50;
-                trade_disp[5]=50;
             }
             // Eldar trade goods
             if (diplomacy==6){
                 cooldown=8;
-                trade_theirs[1]="Master Crafted Power Sword";
+                trade_theirs[1]="Eldar Power Sword";
                 trade_theirs[2]="Archeotech Laspistol";
                 trade_theirs[3]="Ranger";
                 trade_theirs[4]="Useful Information";
@@ -623,7 +623,15 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
             }
 			// Tau to be added
             if (diplomacy==8) then trade_theirs[1]="Test";
+			// trade_theirs[2]="Plasma Rifle";
+			// trade_theirs[3]="Fire Warrior";
+			// trade_theirs[4]="Test";
+			// }
+
 			// Also add heretic/chaos trade options
+			// if (diplomacy==10){
+			// trade_theirs[1]="Tome";
+			// }
         }
     }
     if (trading==0) and ((diplo_option[1]!="") or (diplo_option[2]!="") or (diplo_option[3]!="") or (diplo_option[4]!="")){

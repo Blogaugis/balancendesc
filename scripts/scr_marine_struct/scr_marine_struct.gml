@@ -324,7 +324,7 @@ global.trait_list = {
 		piety:[2,1],
 		constitution: -2,
 	},
-	"guardian":{ // Again, migth warrant Gaussian stuff, as it is his mental trait
+	"guardian":{ // Again, might warrant Gaussian stuff, as it is his mental trait
 		display_name:"Guardian",
 		weapon_skill:[2,2,"max"],
 		ballistic_skill:[2,2,"max"],

@@ -1221,7 +1221,7 @@ global.weapons={
         "ranged_hands": 1.9,
         "ammo": 16,
         "range": 12,
-        "spli": 3,
+        "spli": 5,
         "arp": 1,
         "tags":["plasma"]
     },
@@ -1237,7 +1237,7 @@ global.weapons={
         "ranged_hands": 3,
         "ammo": 16,
         "range": 14,
-        "spli": 3,
+        "spli": 9,
         "arp": 1,
         "tags":["plasma", "heavy_weapon", "Dreadnought"]
     },
@@ -1253,7 +1253,7 @@ global.weapons={
         "ranged_hands": 3,
         "ammo": 16,
         "range": 14,
-        "spli": 3,
+        "spli": 9,
         "arp": 1,
         "tags":["plasma", "vehicle", "turret"]
     },
@@ -1600,22 +1600,22 @@ global.weapons={
     "melee_hands": 1,
     "range": 1,
     "spli": 3, 
-    "tags":["power", "dual", "fist"]
+    "tags":["power", "dual", "fist", "ork"]
   },
   "Snazzgun": {
     "abbreviation": "Snazz",
     "attack": {
-      "standard": 80,
-      "master_crafted": 92,
-      "artifact": 104
+      "standard": 200,
+      "master_crafted": 240,
+      "artifact": 300
     },
 	"description": "A shoddy ranged weapon that is commonly seen among orks.",
-    "ranged_hands": 1,
+    "ranged_hands": 1.1,
     "ammo": 20,
-    "range": 3.1,
-    "spli": 1,
+    "range": 10,
+    "spli": 5,
     "arp": 0,
-    "tags":["rifle"]
+    "tags":["rifle", "ork"]
   },
 
     "Archeotech Laspistol": {
@@ -1643,11 +1643,11 @@ global.weapons={
             "master_crafted": 60,
             "artifact": 100
         },      
-           // "hp_mod": {
-           // "standard": 20, 
-           // "master_crafted": 20,
-           // "artifact": 20
-       // },
+      "damage_resistance_mod": {
+        "standard": 5, 
+        "master_crafted": 10, 
+        "artifact": 20 
+      },
         "melee_hands": 1,
         "ranged_hands": 1,
         "range": 1,

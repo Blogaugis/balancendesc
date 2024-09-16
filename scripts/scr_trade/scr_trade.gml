@@ -37,7 +37,6 @@ function scr_trade(argument0) {
 	    }
     
     
-	    if (trade_take[i]="Test") then their_worth+=trade_tnum[i]*5000;
     
 	    if (trade_take[i]="Requisition") then their_worth+=trade_tnum[i];
     
@@ -57,7 +56,7 @@ function scr_trade(argument0) {
 	    if (trade_take[i]="Skitarii") then their_worth+=trade_tnum[i]*20;
 	    if (trade_take[i]="Techpriest") then their_worth+=trade_tnum[i]*150;
     
-	    if (trade_take[i]="Condemnor Boltgun") then their_worth+=trade_tnum[i]*15;
+	   // if (trade_take[i]="Condemnor Boltgun") then their_worth+=trade_tnum[i]*15;
 	    if (trade_take[i]="Hellrifle") then their_worth+=trade_tnum[i]*20;
 	    if (trade_take[i]="Incinerator") then their_worth+=trade_tnum[i]*20;
 	    if (trade_take[i]="Crusader") then their_worth+=trade_tnum[i]*40;
@@ -66,7 +65,7 @@ function scr_trade(argument0) {
     
 	    if (trade_take[i]="Eviscerator") then their_worth+=trade_tnum[i]*20;
 	    if (trade_take[i]="Heavy Flamer") then their_worth+=trade_tnum[i]*12;
-	    if (trade_take[i]="Inferno Bolts") then their_worth+=trade_tnum[i]*5;
+	   // if (trade_take[i]="Inferno Bolts") then their_worth+=trade_tnum[i]*5;
 	    if (trade_take[i]="Sister of Battle") then their_worth+=trade_tnum[i]*50;
 	    if (trade_take[i]="Sister Hospitaler") then their_worth+=trade_tnum[i]*70;
     
@@ -79,6 +78,11 @@ function scr_trade(argument0) {
 	    if (trade_take[i]="Ork Sniper") then their_worth+=trade_tnum[i]*30;
 	    if (trade_take[i]="Flash Git") then their_worth+=trade_tnum[i]*60;
     
+	    if (trade_take[i]="Test") then their_worth+=trade_tnum[i]*5000;
+		// if (trade_take[i]="Plasma Rifle") then their_worth+=trade_tnum[i]*15;
+		// if (trade_take[i]="Fire Warrior") then their_worth+=trade_tnum[i]*50;
+	
+		// if (trade_take[i]="Tome") then their_worth+=trade_tnum[i]*500;
     
 	    if (trade_take[i]="Artifact"){
 	        if (diplomacy=2) then their_worth+=300;
