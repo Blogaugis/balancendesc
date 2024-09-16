@@ -10,7 +10,6 @@ function scr_enemy_ai_d() {
 	for (var i=1;i<=planets;i++){
 
         //this will skip for given planet if no problems associated wiht planet
-        problem_count_down(i);
 		var numeral_name = planet_numeral_name(i);
 	    if (p_necrons[i]>0) and (p_necrons[i]<6) then p_necrons[i]+=1;
     
@@ -55,6 +54,7 @@ function scr_enemy_ai_d() {
     }
     for (var i=1;i<=planets;i++){
         if (planet_problemless(i)) then continue;
+        problem_count_down(i);
         numeral_name = planet_numeral_name(i);
 	    if (has_problem_planet_and_time(i, "succession", 0)){
             var dice1,dice2,result,alert_text;
@@ -432,9 +432,9 @@ function scr_enemy_ai_d() {
             }
         }
         var beast_hunt = has_problem_planet_and_time(i,"hunt_beast", 0);
-        if (garrison_mission>-1){
+        if (beast_hunt>-1){
             var planet = new PlanetData(i, self);
-            if (planet.problem_data[garrison_mission].stage=="active"){
+            if (planet.problem_data[beast_hunt].stage=="active"){
 
                 scr_popup($"Agreed Garrison of {planet_numeral_name(i)} complete story line mission and rewards need work",mission_string,"","");
                

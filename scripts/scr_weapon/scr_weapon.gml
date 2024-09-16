@@ -2276,6 +2276,50 @@ global.gear = {
         }, 
         "tags":["vehicle","Upgrade"],              
     },                
+    "Smoke Launchers": {
+      "description": "Useful for providing concealment in open terrain, these launchers project wide-spectrum concealing smoke to prevent accurate targeting of the vehicle.",
+      "abbreviation": "SmkLnchrs",
+      "damage_resistance_mod": {
+        "standard": 5,
+        "master_crafted": 10,
+        "artifact": 15
+      },
+      "tags":["smoke", "conceal", "vehicle", "dreadnought"]
+    },
+    "Dozer Blades": {
+      "description": "An attachment for the front of vehicles, useful for clearing difficult terrain and can be used as an improvised weapon. ",
+      "abbreviation": "DzrBlds",
+        "attack": {
+            "standard": 30,
+            "master_crafted": 35,
+            "artifact": 50
+        },
+        "ammo": 0,
+        "range": 1,
+        "spli": 1,
+        "arp": 0,
+       "tags":["vehicle"],              
+    },
+    "Searchlight": {
+      "description": "A simple solution for fighting in dark environments, searchlights serve to illuminate enemies for ease of targeting.",
+      "abbreviation": "SrchLght",
+      "ranged_mod": {
+        "standard": 5,
+        "master_crafted": 10,
+        "artifact": 15
+      },
+       "tags":["vehicle", "dreadnought"],              
+    },
+    "Frag Assault Launchers": {
+        "abbreviation": "FrgAssLnchrs", 
+        "description": "These launchers enable a vehicle to clear an area for its loaded troops, or prevent boarding by an enemy at close range.",
+      "damage_resistance_mod": {
+        "standard": 10,
+        "master_crafted": 15,
+        "artifact": 20
+      },
+         "tags":["vehicle"],              
+    },
  // bionics and other stuff
   "gear": {
     "Sororitas Medkit":{
@@ -2366,50 +2410,6 @@ global.gear = {
         "melee_hands": 0.5,
         "ranged_hands": 0.5,  
     },
-    "Smoke Launchers": {
-      "description": "Useful for providing concealment in open terrain, these launchers project wide-spectrum concealing smoke to prevent accurate targeting of the vehicle.",
-      "abbreviation": "SmkLnchrs",
-      "damage_resistance_mod": {
-        "standard": 5,
-        "master_crafted": 10,
-        "artifact": 15
-      },
-      "tags":["smoke", "conceal", "vehicle", "dreadnought"]
-    },
-    "Dozer Blades": {
-      "description": "An attachment for the front of vehicles, useful for clearing difficult terrain and can be used as an improvised weapon. ",
-      "abbreviation": "DzrBlds",
-        "attack": {
-            "standard": 30,
-            "master_crafted": 35,
-            "artifact": 50
-        },
-        "ammo": 0,
-        "range": 1,
-        "spli": 1,
-        "arp": 0,
-       "tags":["vehicle"],              
-    },
-    "Searchlight": {
-      "description": "A simple solution for fighting in dark environments, searchlights serve to illuminate enemies for ease of targeting.",
-      "abbreviation": "SrchLght",
-      "ranged_mod": {
-        "standard": 5,
-        "master_crafted": 10,
-        "artifact": 15
-      },
-       "tags":["vehicle", "dreadnought"],              
-    },
-    "Frag Assault Launchers": {
-        "abbreviation": "FrgAssLnchrs", 
-        "description": "These launchers enable a vehicle to clear an area for its loaded troops, or prevent boarding by an enemy at close range.",
-      "damage_resistance_mod": {
-        "standard": 10,
-        "master_crafted": 15,
-        "artifact": 20
-      },
-         "tags":["vehicle"],              
-    },
     "Combat Shield": {
         "description":"A lighter, more maneuverable version of a Storm Shield. Due to its flexibility, Combat Shields leave other hand of a Space Marine free to use other hand-to-hand weaponry.",
         "abbreviation": "CmbtShld",
@@ -2418,13 +2418,13 @@ global.gear = {
             "master_crafted": 6,
             "artifact": 8
         } ,
-        "weight":3,
+        // "weight":3,
         "tags":["shield"],
-        "hp_mod":{
-          "standard": 10,
-          "master_crafted": 15,
-          "artifact": 20
-        },
+        // "hp_mod":{
+        //  "standard": 10,
+        //  "master_crafted": 15,
+        //  "artifact": 20
+        //},
       },  
   },
   "mobility":{
