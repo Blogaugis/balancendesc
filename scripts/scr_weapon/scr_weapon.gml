@@ -1083,7 +1083,7 @@ global.weapons={
             "master_crafted": 6050,
             "artifact": 6600
         },
-        "description": "A much larger and bulkier flamer. Few armies carry them on hand, instead choosing to mount them to vehicles.",
+        "description": "A much larger and bulkier flamer. These sizable sponsons are usually restricted to vehicles.",
         "abbreviation": "TwnHvyFlmrs", 
         "melee_hands": 3.5,
         "ranged_hands": 5,
@@ -1816,7 +1816,7 @@ global.gear = {
       },
       "melee_hands":1,
       "ranged_hands":1,
-      "description": "An early variant of heavy power armor. It generally is a modified heavy-duty industrial armour, it tends to be the weakest of terminator armours.",
+      "description": "A simple variant of personal heavy power armour. It generally is a modified heavy-duty industrial armour, hence is typically the weakest.",
        "tags":["terminator"],
     },
     "Terminator Armour": {
@@ -1838,7 +1838,7 @@ global.gear = {
       },
       "melee_hands":2,
       "ranged_hands":2,
-      "description": "The toughest and most powerful armour designed by humanity. Only the most veteran of Astartes are allowed to wear these.",
+      "description": "One of the strongest heavy powered personal armours. Only the most experienced of Space Marines are allowed to wear these.",
       "tags":["terminator"],
       "req_exp":90,
     },
@@ -1861,7 +1861,7 @@ global.gear = {
       },
       "melee_hands":2,
       "ranged_hands":2,      
-      "description": "This pattern is possibly considered the most advanced form of Terminator Armour, providing greater mobility for the wearer compared to the Indomitus with no loss in durability. In the M41 considered to be incredibly rare with wars being fought to secure more suits.",
+      "description": "This pattern is considered the most advanced form of Heavy Power Armour, providing greater mobility for the wearer compared to the Indomitus with no loss in durability. Considered to be very rare.",
       "tags":["terminator"],
       "req_exp":90,
     },
@@ -1884,7 +1884,7 @@ global.gear = {
 	},
       "melee_hands":2,
       "ranged_hands":2,      
-      "description": "Among the first issued to the Space Marine Legions. Having additional plating and shield generators installed within the shoulder pads resulted in severe straining of the suit's exoskeleton and reduced the wearer's maneuverability, leading to its decline among some legions.",
+      "description": "Among the first issued to the Space Marine Legions. Having additional protection systems made this suit rather bulky, leading to its decline among some legions.",
       "tags":["terminator"],
       "req_exp":90,
     },
@@ -1928,7 +1928,7 @@ global.gear = {
       },
       "melee_hands": 0.1,
       "ranged_hands": 0.1,
-      "description": "A suit of Adeptus Astartes power armour. The Mark can no longer be determined- it appears to be a combination of several types.",
+      "description": "A suit of power armour intended to be used by Space Marines. It appears to be custom made.",
       "tags":["power_armour"],
     },
     "Artificer Armour": {
@@ -1950,7 +1950,7 @@ global.gear = {
       },
       "melee_hands": 0.25,
       "ranged_hands": 0.25,
-      "description": "Heavily modified by the chapter artificers, and decorated without compare, this ancient Power Armour is beyond priceless.",
+      "description": "A power armour that is made with as high quality as possible.",
       "tags":["power_armour"],
     },
     "MK1 Thunder Armour": {
@@ -2124,7 +2124,7 @@ global.gear = {
       },
       "melee_hands": 0.15,
       "ranged_hands": 0.15,
-    "description": "The newest and most advanced of the standard mark power armours as such production has not yet reached maximum capacity creating a supply shortage.",
+    "description": "The newest and, in a way, most advanced of the standardized power armours. It still tends to be rare and expensive.",
     "tags":["power_armour"],
     },
     "MK10 Tacticus": {
@@ -2203,15 +2203,15 @@ global.gear = {
             "master_crafted": 5, // Augmented
             "artifact": 10 // Augmented
             },
-        "description": "Mismatched basic armour used by ork forces"
+        "description": "This shoddy collection of scraps are usually seen used by ork forces"
         },
 		"Fire Warrior Armour": {
 			"abbreviation": "FWarArm",
 			"description": "This armour is used by T'au fire warriors.",
 			 "armour_value": {
-                "standard": 12,
-                "master_crafted": 14, // Augmented
-                "artifact": 16 // Augmented
+                "standard": 13,
+                "master_crafted": 15, // Augmented
+                "artifact": 18 // Augmented
             },                   
 		},
     } , 
@@ -2328,7 +2328,7 @@ global.gear = {
     },
     "Bionics": {
         "abbreviation": "Bncs",
-      "description": "Bionics may be given to wounded Astartes to quickly get them back into a combat-ready state, replacing damaged flesh. This is utilized when a Astarte enters a critical state.",
+      "description": "Bionics are electro-mechanic limbs and other organs, intended to replace lost ones. Best used on marines in critical condition.",
       "hp_mod": {
         "standard": 30, // Adjusted
         "master_crafted": 40, // Adjusted
@@ -2341,19 +2341,49 @@ global.gear = {
       "description": "An advanced medical field kit, these allow Space Marines to heal or recover Gene-Seed from fallen marines.",
         "melee_hands": 0.15,
         "ranged_hands": 0.15,       
+      "armour_value": {
+        "standard": 0,
+        "master_crafted": 2,
+        "artifact": 5
+      } ,
+      "damage_resistance_mod": {
+        "standard": 0, // Adjusted
+        "master_crafted": 5, // Adjusted
+        "artifact": 10 // Adjusted
+      },
+      "melee_mod": { // The idea is, having various devices analyse the biological properties - both friend and foe - gives a better idea of enemy weakpoints
+            "standard": 10,
+            "master_crafted": 15,
+            "artifact": 20
+        },
+      "ranged_mod": {
+        "standard": 5,
+        "master_crafted": 10,
+        "artifact": 15
+      },
     },
     "Psychic Hood": {
     "abbreviation": "PsyHd",
       "special_properties": ["Perils Protection 50"],
-      "description": "An arcane hood that protects Psykers from enemy psychic powers and enhances control of their psychic abilities.",
+      "description": "An attachment to armour intended to help psykers keep their powers under control. Helps to reduce casualties.",
+      "armour_value": {
+        "standard": 0,
+        "master_crafted": 2,
+        "artifact": 5
+      } ,
+      "damage_resistance_mod": {
+        "standard": 0, // Adjusted
+        "master_crafted": 5, // Adjusted
+        "artifact": 10 // Adjusted
+      },
     },
     "Rosarius": {
         "abbreviation": "Rsrius",
-      "description": "Also called the 'Soul's Armour', this amulet has a built-in, powerful shield generator. They are an icon of the Imperial Creed.",
+      "description": "An attachment to armour that also serves as an icon of faith. Has a built-in shield generator.",
       "armour_value": {
-        "standard": 1,
-        "master_crafted": 2,
-        "artifact": 3
+        "standard": 2,
+        "master_crafted": 5,
+        "artifact": 10
       } ,
       "damage_resistance_mod": {
         "standard": 10, // Adjusted
@@ -2369,11 +2399,11 @@ global.gear = {
     "Iron Halo": {
         "abbreviation": "IrnHalo",
       "special_description": "",
-      "description": "An ancient artifact, these powerful conversion field generators are granted to high ranking battle brothers or heroes. Bearers are often looked to for guidance.",
+      "description": "A powerful personal shield generator, designed in ancient, more enlightened, times.",
       "armour_value": {
-        "standard": 2,
-        "master_crafted": 3,
-        "artifact": 5
+        "standard": 5,
+        "master_crafted": 10,
+        "artifact": 20
       } ,
       "damage_resistance_mod": {
         "standard": 15, // Adjusted
@@ -2402,6 +2432,26 @@ global.gear = {
       "description": "A pair of powerful mechanical arms. They include several tools that allow trained Astartes to repair vehicles rapidly alongside an integrated flamer to beat back the Emperor's foes.",
         "melee_hands": 0.25,
         "ranged_hands": 0.25,  
+      "armour_value": {
+        "standard": 1,
+        "master_crafted": 3,
+        "artifact": 5
+      } ,
+      "damage_resistance_mod": {
+        "standard": 5, // Adjusted
+        "master_crafted": 10, // Adjusted
+        "artifact": 15 // Adjusted
+      },
+      "melee_mod": {
+            "standard": 5,
+            "master_crafted": 10,
+            "artifact": 15
+        },
+      "ranged_mod": {
+        "standard": 5,
+        "master_crafted": 10,
+        "artifact": 15
+      },
     },
     "Master Servo Arms": {
     "abbreviation": "MsSrvArms",
@@ -2409,6 +2459,26 @@ global.gear = {
       "description": "This master servo harness includes additional mechanical arms and tools, allowing a greater capacity and rate of repairs.",
         "melee_hands": 0.5,
         "ranged_hands": 0.5,  
+      "armour_value": {
+        "standard": 3,
+        "master_crafted": 5,
+        "artifact": 10
+      } ,
+      "damage_resistance_mod": {
+        "standard": 10, // Adjusted
+        "master_crafted": 15, // Adjusted
+        "artifact": 20 // Adjusted
+      },
+      "melee_mod": {
+            "standard": 10,
+            "master_crafted": 15,
+            "artifact": 20
+        },
+      "ranged_mod": {
+        "standard": 10,
+        "master_crafted": 15,
+        "artifact": 20
+      },
     },
     "Combat Shield": {
         "description":"A lighter, more maneuverable version of a Storm Shield. Due to its flexibility, Combat Shields leave other hand of a Space Marine free to use other hand-to-hand weaponry.",
@@ -2455,15 +2525,15 @@ global.gear = {
        // "artifact": 5
      // },
       "damage_resistance_mod": {
-        "standard": 10,
-        "master_crafted": 15,
-        "artifact": 20
+        "standard": 20,
+        "master_crafted": 25,
+        "artifact": 30
       },
       "tags":["jump"],
     },
     "Heavy Weapons Pack": {
     "abbreviation": "HvyWpPck",
-      "description": "A heavy ammunition backpack commonly used by devastators in conjunction with a heavy support weapon.",
+      "description": "A heavy ammunition backpack commonly used by marines in conjunction with a heavy ranged weapon.",
       "ranged_mod": {
         "standard": 5,
         "master_crafted": 10,

@@ -537,6 +537,7 @@ global.base_stats = { //tempory stats subject to change by anyone that wishes to
 			base_group : "skitarii",
 	},
 	"tech_priest":{
+			title : "Tech Priest",
 			strength:[20,1],
 			constitution:[30,1],
 			dexterity:[20,1],
@@ -546,7 +547,6 @@ global.base_stats = { //tempory stats subject to change by anyone that wishes to
 			wisdom:[20,3],
 			charisma :[30,1], // "I hold the secrets, of the machine." "As You wish, so shall it be done." "Ah, a challenge worthy of my skill!"
 			religion : "cult_mechanicus",
-			title : "Tech Priest",
 			piety : [45,3],
 			luck :10,
 			technology :[55,3],
