@@ -11,10 +11,12 @@ ret=0;
 hurt=0;
 orbiting=0;
 rep=3;
-minimum_eta=0;
+minimum_eta=2;
 navy=0;
 guardsmen_ratio=0;
 guardsmen_unloaded=0;
+complex_route = [];
+warp_able = false;
 ii_check=floor(random(5))+1;
 etah=0;safe=0;
 //TODO set up special save method for faction specific fleet variables

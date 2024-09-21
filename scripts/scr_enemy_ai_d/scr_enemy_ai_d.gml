@@ -385,7 +385,7 @@ function scr_enemy_ai_d() {
         var garrison_mission = has_problem_planet_and_time(i,"provide_garrison", 0);
         if (garrison_mission>-1){
             var planet = new PlanetData(i, self);
-            if (planet.problem_data[garrison_mission].stage=="active"){
+            if (problem_has_key_and_value(i,garrison_mission,"stage", "active")){
                 if (planet.current_owner == eFACTION.Imperium && system_garrison[i-1].garrison_force){
                     var mission_string = $"The garrison on {planet_numeral_name(i)} has finished the period of garrison support agreed with the planetary governor.";
                     var p_garrison = system_garrison[i-1];
@@ -426,16 +426,17 @@ function scr_enemy_ai_d() {
                     dispo[i] -= 20;
                     scr_popup($"Agreed Garrison of {planet_numeral_name(i)}",$"your agreed garrison of  {planet_numeral_name(i)} was cut short by your chapter the planetary governor has expressed his displeasure (disposition -20)","","");
                 }
-                remove_planet_problem(i, "provide_garrison")
+                remove_planet_problem(i, "provide_garrison");
             } else {
-                remove_planet_problem(i, "provide_garrison")
+                remove_planet_problem(i, "provide_garrison");
             }
         }
         var beast_hunt = has_problem_planet_and_time(i,"hunt_beast", 0);
         if (beast_hunt>-1){
             var planet = new PlanetData(i, self);
-            if (planet.problem_data[beast_hunt].stage=="active"){
-
+            if (problem_has_key_and_value(i,beast_hunt,"stage","active")){
+                mission_string = "";
+                
                 scr_popup($"Agreed Garrison of {planet_numeral_name(i)} complete story line mission and rewards need work",mission_string,"","");
                
                 remove_planet_problem(i, "hunt_beast");
@@ -447,7 +448,7 @@ function scr_enemy_ai_d() {
 	    if ((p_tyranids[i]=3) or (p_tyranids[i]=4)) and (p_population[i]>0){
 	        if (!(has_problem_planet(i, "Hive Fleet"))){
 	            var roll, cont;
-	            roll=floor(random(100))+201;
+	            roll=irandom_range(100,300);
 	            cont=0;
         
             

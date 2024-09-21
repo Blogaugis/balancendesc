@@ -3,6 +3,7 @@ function new_colony_fleet (doner_star, doner_planet, target, target_planet, miss
     new_colonise_fleet.owner = eFACTION.Imperium;
     new_colonise_fleet.sprite_index=spr_fleet_civilian;
     new_colonise_fleet.image_index=3;
+    new_colonise_fleet.warp_able=false;
 
     var doner_volume = 0;
     if (doner_star.p_large[doner_planet]) {
@@ -20,13 +21,12 @@ function new_colony_fleet (doner_star, doner_planet, target, target_planet, miss
         colonist_influence : doner_star.p_influence[doner_planet]
     }
 
+    new_colonise_fleet.trade_goods="colonize";
     //TODO flesh out colonisation efforts
     if (doner_star.p_population[target_planet] && doner_star.p_type[doner_planet] == "Hive"){
     	new_colonise_fleet.image_index=3; 
-        new_colonise_fleet.trade_goods="colonize";
     } else {
     	new_colonise_fleet.image_index=choose(1,2);
-        new_colonise_fleet.trade_goods="colonize";
     }
 
     new_colonise_fleet.cargo_data.colonize = new_cargo; 
@@ -83,7 +83,7 @@ function deploy_colonisers(star){
                     star.p_large[r]=0;
                     guardsmen=0;
                 }
-                if (lag=2){
+                else if (lag=2){
                     star.p_population[r] += data.colonists;
                     star.p_large[r]=1;
                     guardsmen=0;
@@ -101,3 +101,4 @@ function deploy_colonisers(star){
         struct_remove(cargo_data, "colonize");
     }
 }
+

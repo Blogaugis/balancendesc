@@ -26,7 +26,8 @@ global.SystemHelps = new NSystemSearchHelpers();
 function fetch_faction_group(group="imperium_default") {
 	switch(group){
 		case "imperium_default":
-			var imperium =  [eFACTION.Imperium,
+			var imperium =  [
+					eFACTION.Imperium,
 					eFACTION.Mechanicus,
 					eFACTION.Inquisition,
 					eFACTION.Ecclesiarchy
@@ -131,7 +132,7 @@ function star_by_name(search_name){
 	return "none";
 }
 
-function distance_removed_star(origional_x,origional_y, star_offset = choose(2,3), disclude_hulk=true, disclude_elder=true, disclude_deads=true){
+function distance_removed_star(origional_x,origional_y, star_offset = choose(2,3), disclude_hulk=true, disclude_elder=true, disclude_deads=true, warp_concious=true){
 	var from = instance_nearest(origional_x,origional_y,obj_star);
     for(var i=0; i<star_offset; i++){
         from=instance_nearest(origional_x,origional_y,obj_star);
@@ -156,11 +157,14 @@ function distance_removed_star(origional_x,origional_y, star_offset = choose(2,3
     }
     //from=instance_nearest(origional_x,origional_y,obj_star);
     instance_activate_object(obj_star);
+    //TODO finish this off to make the distance remove more concious of warp lanes
+    /*if (warp_concious){
+    	var options = [from];
+    }*/
     return from;     
 }
-function star_distace_calc(star1,star2){
-	return point_distance(star1.x, star1.y, star2.x, star2.y);
-}
+
+
 function nearest_star_proper(xx,yy) {
 	var i=0;
 	var cur_star;
@@ -177,7 +181,7 @@ function nearest_star_proper(xx,yy) {
 }
 
 
-function nearest_star_with_ownership(xx,yy, ownership){
+function nearest_star_with_ownership(xx,yy, ownership, start_star="none"){
 	var nearest = "none"
 	var total_stars =  instance_number(obj_star);
 	var i=0;
@@ -187,6 +191,12 @@ function nearest_star_with_ownership(xx,yy, ownership){
 	while (nearest=="none" && i<total_stars){
 		i++;
 		var cur_star =  instance_nearest(xx,yy, obj_star);
+		if (start_star!="none"){
+			if (start_star.id == cur_star.id){
+				instance_deactivate_object(cur_star.id);
+				continue;
+			}
+		}
 		if (array_contains(ownership, cur_star.owner)){
 			nearest=cur_star.id;
 		} else {
@@ -225,6 +235,18 @@ function new_star_event_marker(colour){
     bob.image_alpha=1;
     bob.image_speed=1;
     bob.color=colour;
+}
+
+function nearest_from_array(xx,yy,list){
+	var _nearest = 0;
+	var nearest_dist = point_distance(xx, yy ,list[_nearest].x, list[_nearest].y)
+	for (var i=1;i<array_length(list);i++){
+		if (point_distance(xx, yy, list[i].x,list[i].y) < nearest_dist){
+			_nearest = i;
+			nearest_dist = point_distance(xx, yy, list[i].x,list[i].y);
+		}
+	}
+	return 
 }
 
 function is_dead_star(star="none"){
@@ -366,4 +388,70 @@ function PlanetData(planet, system) constructor{
 //		array_push(player_fleets,id);
 //	}
 //	return player_fleets;
+
+
 //}
+function draw_warp_lanes(){
+	static routes = [];
+	if (array_length(routes)==0){
+		var star_degrade_list = [];
+		var total_stars = instance_number(obj_star);
+		var cur_star,this_star,connection,i, check_star;
+		for (i = 0; i < total_stars; i++){
+			array_push(star_degrade_list, i);
+		}
+		for (i = 0; i < total_stars; i++){
+		    cur_star = instance_find(obj_star,star_degrade_list[i]);
+		    var this_star = cur_star.id;
+			var in_view = true;
+
+		   	//var in_view = in_camera_view(star_box_shape(this_star));
+		   	//if (!in_view) then  in_view = zoomed;
+		    if (array_length(cur_star.warp_lanes)>0){
+	    	    for (var s = 0; s < total_stars; s++){
+	    	    	if (s==i) then continue
+	    	    	check_star = instance_find(obj_star,star_degrade_list[s]);
+	    	    	//if (!in_view && !in_camera_view(star_box_shape(check_star))) then continue;
+	    	    	connection = determine_warp_join(check_star.id, this_star);
+	    	    	if (connection){
+	    	    		array_push(routes, [[check_star.x,check_star.y,this_star.x,this_star.y],connection]);
+	    		    }
+	    	    }
+	    	}
+		    array_delete(star_degrade_list, i,1);
+		    total_stars--;
+		    i--;
+		}
+	}
+	var route;
+	for (var i = 0;i<array_length(routes);i++){
+		draw_set_color(c_gray);
+		route = routes[i];
+		if (route[1]==4) then draw_set_color(c_yellow);
+		var route_coords = route[0];
+		for (var s=0;s<route[1];s++){
+			draw_line(route_coords[0]+(s),route_coords[1]+(s),route_coords[2]+(s),route_coords[3]+(s));
+		}
+	}
+}
+
+
+
+function star_box_shape(star="none"){
+	if (star=="none"){
+		return [x-60, y+5, x+60 , y-40];
+	} else {
+		with (star){
+			return [x-60, y+5, x+60 , y-40];
+		}
+	}
+}
+function in_camera_view(rect){
+	var cam = view_get_camera(view_current);
+	var x1 = camera_get_view_x(cam);
+	var y1 = camera_get_view_y(cam);
+	var w = x1 + camera_get_view_width(view_current);
+	var h = y1 + camera_get_view_height(view_current);
+	return rectangle_in_rectangle(rect[0],rect[1],rect[2],rect[3], x1, y1, w, h);
+}
+

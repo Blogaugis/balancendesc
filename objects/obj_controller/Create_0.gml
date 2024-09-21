@@ -410,6 +410,8 @@ menu_buttons = {
     "end_turn":new main_menu_button(spr_ui_but_2, spr_ui_hov_2,,,ord("E"),scr_end_turn),
 
 }
+
+instance_create(x,y, obj_planet_map);
 new_button_highlight="";
 // new_button_highlighting=0;
 new_buttons_hide=0;
@@ -1388,10 +1390,11 @@ if (instance_exists(obj_ini)){
 // 0: none      1: management
 // 11: apothecary       12: chaplain        13: librarium       14: armamentarium
 // ** Sets the star for the chapter ? **
-instance_create(irandom(room_width-400),irandom(room_height-400),obj_star);
+instance_create(irandom_range(400,room_width-400),irandom_range(400,room_height-400),obj_star);
 planet=floor(random(5))+19;
 planet=30*1.5;
 planet=100;
+
 if (is_test_map=true) then planet=20;
 
 

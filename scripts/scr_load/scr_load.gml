@@ -535,6 +535,7 @@ function scr_load(argument0, argument1) {
 	        new_star.y2=ini_read_real("Star",$"sr{i}y2",0);
 	        new_star.old_x=ini_read_real("Star",$"sr{i}ox",0);
 	        new_star.old_y=ini_read_real("Star",$"sr{i}oy",0);
+	        new_star.warp_lanes = return_json_from_ini("Star",$"sr{i}warp_lanes",[]);
 
 	        new_star.vision=ini_read_real("Star",$"sr{i}vision",1);
 	        new_star.storm=ini_read_real("Star",$"sr{i}storm",0);
@@ -1040,6 +1041,7 @@ function scr_load(argument0, argument1) {
 	        fla.navy=ini_read_real("Fleet",$"ef{i}navy",0);
 	        fla.guardsmen_unloaded=ini_read_real("Fleet",$"ef{i}unl",0);
 	        fla.inquisitor=ini_read_real("Fleet",$"ef{i}inquis",-1);
+	        fla.complex_route = return_json_from_ini("Fleet", $"ef{i}complex_route", []);
 
 	        if (fla.navy=1){var e;e=-1;
 	            repeat(20){e+=1;
