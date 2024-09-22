@@ -1,4 +1,4 @@
-# Chapter Master
+# Space Brigade Master
 
 This is a fork of Chapter Master: Adeptus Dominus.\
 Chapter Master (CM) is described as a strategy/simulation game written in GML2, originally designed and developed by Duke.\
@@ -7,8 +7,10 @@ It aims to continue development on the game, fix any bugs, expand and add featur
 
 ## The Fork
 
-The aims of this fork are:\
-To be less tied to 40k lore and it's inconsistencies, and more about grimdark in general;\
+The fork attempts to be an answer of:\
+What if we strip away the assets tied to Warhammer 40k universe, with something generic instead?\
+With a bit more details:\
+To be less tied to 40k lore and it's inconsistencies;\
 Tuning down the anti-player events and mechanics;\
 And otherwise being more generous to how player wants to play.
 
@@ -18,7 +20,9 @@ And otherwise being more generous to how player wants to play.
 A place where majority of devs are hanging out.\
 [Bay12Forum](http://www.bay12forums.com/smf/index.php?topic=142620.0)
 Where Chapter Master was also discussed.\
-There also used to be a link on 1d4chan, and tg.
+There also used to be a link on 1d4chan, though we now have a 1d6chan:\
+[1d6chan](https://1d6chan.miraheze.org/wiki/Chapter_Master_(game))
+There also was tg.
 
 ## Contributing
 
