@@ -598,8 +598,10 @@ function scr_initialize_custom() {
 	}
 	if (obj_creation.fleet_type = 1) {
 		strike_cruisers = 8;
+		if (array_contains(obj_creation.adv, "Boarders")) strike_cruisers += 2;
 		gladius = 7;
 		hunters = 3;
+		if (array_contains(obj_creation.adv, "Kings of Space")) battle_barges += 1;
 		// obj_controller.fleet_type="Homeworld";
 	}
 
@@ -3264,6 +3266,7 @@ function scr_initialize_custom() {
 
 			// if (company=2){dready=1;
 			if (string_count("Sieged", strin2) > 0) or(obj_creation.custom = 0) then dready += 1;
+			dready = 1;
 			rhinoy = 8;
 			whirly = whirlwind;
 			speedy = 2;
