@@ -13,7 +13,8 @@ with(obj_controller){scr_save(3,obj_saveload.save_number);}trickle=10;save_part=
 
 if (save_part=3){txt="Charting Sector";
 
-with(obj_controller){scr_save(2,obj_saveload.save_number);}trickle=10;save_part=4;}
+    with(obj_controller){scr_save(2,obj_saveload.save_number);}trickle=10;save_part=4;
+}
 
 if (save_part=2){txt="Finding Servo Skulls";
 
@@ -22,9 +23,12 @@ with(obj_controller){scr_save(1,obj_saveload.save_number);}trickle=10;save_part=
 if (save_part=1){
     if (file_exists("save"+string(save_number)+".ini")) then file_delete("save"+string(save_number)+".ini");
     if (file_exists("screen"+string(save_number)+".png")) then file_delete("screen"+string(save_number)+".png");
-    ini_open("saves.ini");ini_section_delete(string(save_number));ini_close();
+    ini_open("saves.ini");
+    ini_section_delete(string(save_number));
+    ini_close();
     obj_saveload.save[save_number]=0;
-    save_part+=1;trickle=10;
+    save_part+=1;
+    trickle=10;
     txt="Preparing";
 }
 
