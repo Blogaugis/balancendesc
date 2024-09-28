@@ -31,7 +31,7 @@ If you can code or design or draw and you have an interest in WH40K, or grimdark
 ## Running the game locally and developing
 
 To simply play the game, you only need GameMaker.\
-0. Ensure you have [GameMaker](https://gamemaker.io/en/download) installed. Ideally versions IDE v2023.8.2.108; Runtime v2023.8.2.152.
+0. Ensure you have [GameMaker](https://gamemaker.io/en/download) installed. Ideally versions IDE v2023.8.2.108; Runtime v2023.8.2.152. Though, IDE v2023.11.1.129; Runtime v2023.11.1.160 also work on my end.
 1. Clone the repo.
 2. Open ChapterMaster.yyp with GameMaker.
 3. In GameMaker, click the Run button or press F5 to build the project and start the game.
@@ -41,7 +41,8 @@ If You are using more advanced features of GameMaker, the further instructions a
 The game will then run inside a web app managed by GameMaker, which should also open a new tab in your browser.\
 	- If no new tab opens check the output log in GameMaker, there should be a line like this:\
 	  _Attempting to open browser - "" with URL "http://localhost:51264/runner.html?game=ChapterMaster"._ \
-      Use the link to open the game instance.
+      Use the link to open the game instance. \
+
 4. Play the game!
 5. (Optional) Read the code, modify it, test, repeat.
 
@@ -57,9 +58,9 @@ Both are free and popular.
 
 ## Exporting and creating packages
 
-Creating a package (i.e. creating an .exe with the game) unfortunately requires a GameMaker's Creator paid subscription. If you don't have one, you will only be able to test the game locally and upload the source code and any assets to the repo. 
+At the moment there is no package, as the game does not have the features I believe it needs. 
 
-However, periodically we do create packages from this repo's _main_ branch, so even if you do not have a licence, any changes that you make, publish and get successfully merged to this repo will get exported at some point and the created package will be hosted on a server somewhere, for players to download, play and enjoy. 
+You can export it anyway, via GameMaker. 
 
 [GameMaker subscriptions comparison](https://gamemaker.io/en/get) - you need the Desktop Exports option to create the .exe.\
 [Setting up GameMaker export for Windows](https://help.yoyogames.com/hc/en-us/articles/235186048-Setting-Up-For-Windows) - if you have a subscription which allows for creating executables, this link will help you setup the process.
