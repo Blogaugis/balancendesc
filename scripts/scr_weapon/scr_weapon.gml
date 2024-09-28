@@ -659,15 +659,19 @@ global.weapons={
         "abbreviation": "Bltr",             
         "attack": {
             "standard": 750,
-            "master_crafted": 800,
-            "artifact": 850
+            "master_crafted": 1200,
+            "artifact": 1700
         },
         "description": "A standard Bolter, a 2-handed firearm that launches bolts of explosive material. It's a versatile and iconic weapon of Space Marines.",
         "melee_hands": 0,
         "ranged_hands": 1.1,
         "ammo": 16,
         "range": 12,
-        "spli": 10,
+        "spli": {
+            "standard": 10,
+            "master_crafted": 15,
+            "artifact": 20
+        },
         "arp": 0,
         "tags":["bolt"]
     },
