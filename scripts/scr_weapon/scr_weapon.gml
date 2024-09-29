@@ -1477,6 +1477,22 @@ global.weapons={
     "tags":["las"],
     // ... (other attributes)
   },
+	"Servo-arm(M)": {
+		"abbreviation": "MchArm",
+		"attack": {
+			"standard": 220,
+			"master_crafted": 330,
+			"artifact": 500
+		},
+		"description": "",
+		"melee_hands": 0,
+		"ranged_hands": 0,
+		"ammo": 0,
+		"range": 1,
+		"spli": 2,
+		"arp": 1,
+		"tags": ["siege"],
+	},
 
     "Sarissa": {
         "abbreviation": "Saris",
@@ -2500,6 +2516,39 @@ global.gear = {
         //  "artifact": 20
         //},
       },  
+		"Servo-arm": {
+			"abbreviation": "SrvArm",
+			"special_properties": ["Repairs Vehicles"],
+			"second_profiles": ["Servo-arm(M)"],
+			"description": "A manipulator mechandendrite, also known as a Servo-arm. This artificial limb is a great aid to help trained Techmarines repair damaged vehicles on the battlefield, yet may be used in melee combat, thanks to its considerable crushing power and weight.",
+			"damage_resistance_mod": {
+				"standard": 0, // Adjusted
+				"master_crafted": 5, // Adjusted
+				"artifact": 10 // Adjusted
+			},
+			"melee_hands": -0.25,
+			"ranged_hands": -0.25,
+		},
+		"Servo-harness": {
+			"abbreviation": "SrvHrns",
+			"special_properties": ["Repairs Vehicles"],
+			"second_profiles": ["Servo-arm(M)", "Servo-arm(M)", "Flamer", "Plasma Cutter"],
+			"description": "A Servo-Harness is a special type of augmetic aid, often used by Chapter's Master of the Forge or his senior Techmarines. It consists of many blessed tools, two Servo-arms and a couple of deadly weapons. With it, one can make battlefield repairs on any vehicle, shore up defences, or even assist his battle-brothers in combat.",
+			"damage_resistance_mod": {
+				"standard": 5, // Adjusted
+				"master_crafted": 10, // Adjusted
+				"artifact": 15 // Adjusted
+			},
+			"melee_hands": -0.5,
+			"ranged_hands": -0.5,
+		},
+		"Conversion Beamer Pack": {
+			"abbreviation": "CnvBmr",
+			"second_profiles": ["Conversion Beam Projector"],
+			"description": "The Conversion Beam Projector is a heavy energy weapon that harnesses advanced technology to project a concentrated beam of destructive energy. Armor detonates as the matter that comproises it is transformed into pure energy.",
+			"melee_hands": -0.5,
+			"ranged_hands": -0.5,
+		},
   },
   "mobility":{
    "Bike": {
