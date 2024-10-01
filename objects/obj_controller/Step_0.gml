@@ -1,5 +1,8 @@
 // Handles most logic for main menus, audio and checks if cheats are enabled
 // TODO refactor will wait untill squads PR (#76) is merged
+if (menu==0){
+    scr_zoom_keys();
+}
 if (double_click>=0) then double_click-=1;
 if (text_bar>0){
     text_bar+=1;
@@ -159,22 +162,9 @@ if (text_bar>60) then text_bar=1;
 
 if (obj_controller.disposition[4]<=20) or (obj_controller.loyalty<=33) and (demanding==0) then demanding=1;
 if (obj_controller.disposition[4]>20) and (obj_controller.loyalty>33) and (demanding==1) then demanding=0;
-// Main menu movement
-if ((menu==0) and (formating==0)) or (instance_exists(obj_fleet)){
-    var spd=12,keyb=""; // player move speed on campaign map
-    if ((!instance_exists(obj_ingame_menu)) and (!instance_exists(obj_ncombat))) or (instance_exists(obj_fleet)){
-        if keyboard_check(vk_shift){spd*=3;} // shift down, increase speed
-        if ((keyboard_check(vk_left)) or (mouse_x<=__view_get( e__VW.XView, 0 )+2) or (keyboard_check(ord("A")))) and (x>800) then x-=spd;
-        if ((keyboard_check(vk_right)) or (mouse_x>=__view_get( e__VW.XView, 0 )+1598) or (keyboard_check(ord("D")))) and (x<(room_width-800)) then x+=spd;
-        if ((keyboard_check(vk_up)) or (mouse_y<=__view_get( e__VW.YView, 0 )+2) or (keyboard_check(ord("W")))) and (y>450) then y-=spd;
-        if ((keyboard_check(vk_down)) or (mouse_y>=__view_get( e__VW.YView, 0 )+898) or (keyboard_check(ord("S")))) and (y<(room_height-450)) then y+=spd;
-    }
-}
 
-if (x<800) then x=800;
-if (y<450) then y=450;
-if (x>(room_width-800)) then x=room_width-800;
-if (y>(room_height-450)) then y=room_height-450;
+main_map_move_keys();
+
 // For testing purposes
 if (is_test_map=true) then with(obj_en_fleet){
     if (owner = eFACTION.Imperium){

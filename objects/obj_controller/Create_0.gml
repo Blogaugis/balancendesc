@@ -93,6 +93,7 @@ current_eventing="";
 chaos_rating=0;
 chapter_made = 0;
 obj_cuicons.alarm[1]=1; // Clean up custom icons
+map_scale =1;
 
 diplomacy_pathway = "";
 option_selections=[];
@@ -276,8 +277,8 @@ for(var i=100; i<103; i++){
     obj_controller.r_wep1[i,16]="Power Axe";
     obj_controller.r_wep2[i,16]="Storm Bolter";
     obj_controller.r_armour[i,16]="Artificer Armour";
-    obj_controller.r_gear[i,16]="Servo Arms";
-    obj_controller.r_mobi[i,16]="";
+    obj_controller.r_gear[i,16]="";
+    obj_controller.r_mobi[i,16]="Servo-arm";
     
     obj_controller.r_role[i,17]="Librarian";
     obj_controller.r_wep1[i,17]="Force Staff";
@@ -1395,15 +1396,24 @@ planet=100;
 
 if (is_test_map=true) then planet=20;
 
-
+var xx, yy, nearest_star, repeats;
 mask_index = spr_star
 while(instance_number(obj_star)<planet) {
-    xx = irandom(room_width-200) // dictates how far away from the edge stars spawn
-    yy = irandom(room_height-200)
+    xx = irandom_range(200, room_width-150); // dictates how far away from the edge stars spawn
+    yy = irandom_range(130, room_height-130);
+    nearest_star = instance_nearest(xx, yy, obj_star);
+    repeats = 0;
+    while (point_distance(xx, yy, nearest_star.x,nearest_star.y)<90 && repeats<100){
+        xx = irandom_range(200, room_width-150); // dictates how far away from the edge stars spawn
+        yy = irandom_range(130, room_height-130);
+        repeats++;       
+    }
+    if (repeats!=100){
+        if !place_meeting(xx, yy, obj_star) {
+            instance_create(xx,yy,obj_star);
+        }
+    }
 	
-	if !place_meeting(xx, yy, obj_star) {
-		instance_create(xx,yy,obj_star);
-	}
 }
 mask_index = -1;
 
@@ -1751,3 +1761,5 @@ if (vih>=5){
 remov=string_length(string(temp[65])+string(temp[66])+string(temp[67])+string(temp[68])+string(temp[69]))+1;
 
 action_set_alarm(2, 0);
+
+instance_create(0,0,obj_tooltip );

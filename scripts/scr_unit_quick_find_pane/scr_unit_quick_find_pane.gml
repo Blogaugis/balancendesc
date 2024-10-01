@@ -267,7 +267,7 @@ function scr_unit_quick_find_pane() constructor{
 				hover_count=0;
 				hover_item="none";
 			}else if (hover_item!="none"){
-		    	if point_and_click(hover_item.draw(xx+10, yy+90+(20*hover_item.root_item), "Manage")){
+		    	if point_and_click(hover_item.draw(10, 90+(20*hover_item.root_item), "Manage")){
 					group_selection(garrison_log[$system_names[hover_item.root_item]].units,{
 						purpose:$"{system_names[hover_item.root_item]} Management",
 						purpose_code : "manage",
@@ -282,34 +282,34 @@ function scr_unit_quick_find_pane() constructor{
 		} else if (view_area == "missions"){
 			draw_set_color(c_white);
 			draw_set_halign(fa_center);
-		    draw_text(xx+80, yy+50, "Location");
-		    draw_text(xx+160, yy+50, "Mission");
-		    draw_text(xx+310, yy+50, "Time Remaining");
+		    draw_text(80, 50, "Location");
+		    draw_text(160, 50, "Mission");
+		    draw_text(310, 50, "Time Remaining");
 		    var i = 0;
-		    while(i<array_length(mission_log) && (yy+90+(20*i)+12 +20)<main_panel.YY+yy+main_panel.height)		
+		    while(i<array_length(mission_log) && (90+(20*i)+12 +20)<main_panel.height)		
 			{
 				mission = mission_log[i];
 				entered=false;
-				if (scr_hit(xx+10, yy+90+(20*i),xx+main_panel.width,yy+90+(20*i)+18)){
+				if (scr_hit(10, 90+(20*i),main_panel.width,90+(20*i)+18)){
 					draw_set_color(c_gray);
-					draw_rectangle(xx+10+20, yy+90+(20*i)-2,xx+main_panel.width-20,yy+90+(20*i)+18, 0)
+					draw_rectangle(10+20, 90+(20*i)-2,main_panel.width-20,90+(20*i)+18, 0)
 					draw_set_color(c_white);
 					entered=true;
 				}
 				if (mission.system!=""){
-			    	draw_text(xx+80, yy+90+(20*i), $"{mission.system} {scr_roman_numerals()[mission.planet-1]}" );
+			    	draw_text(80, 90+(20*i), $"{mission.system} {scr_roman_numerals()[mission.planet-1]}" );
 				}
 			    draw_set_halign(fa_left);
 			    if (entered){
-			    	draw_text(xx+160-20, yy+90+(20*i), mission.mission);
+			    	draw_text(160-20, 90+(20*i), mission.mission);
 			    } else {
-			    	draw_text(xx+160-20, yy+90+(20*i), string_truncate(mission.mission,150));
+			    	draw_text(160-20, 90+(20*i), string_truncate(mission.mission,150));
 			    }
 			    draw_set_halign(fa_center);
 			    if (!entered){
-			    	draw_text(xx+310, yy+90+(20*i), mission.time);
+			    	draw_text(310, 90+(20*i), mission.time);
 			    }
-			    if (point_and_click([xx+10, yy+90+(20*i)-2,xx+main_panel.width,yy+90+(20*i)+18])){
+			    if (point_and_click([10, 90+(20*i)-2,main_panel.width,90+(20*i)+18])){
 			    	var star = star_by_name(mission.system);
 			    	if (star!="none")
 			    	travel_target = [star.x, star.y];
@@ -337,33 +337,32 @@ function scr_unit_quick_find_pane() constructor{
 	static draw = function(){
 		if (obj_controller.menu==0 && obj_controller.zoomed==0 ){
 			if (!instance_exists(obj_fleet_select) && !instance_exists(obj_star_select)){
-				var xx=__view_get( e__VW.XView, 0 )+0;
-				var yy=__view_get( e__VW.YView, 0 )+0;
-				var x_draw=xx;
-				var lower_draw = yy+main_panel.height+110;
+
+				var x_draw=0;
+				var lower_draw = main_panel.height+110;
 				if (hide_sequence=30) then hide_sequence=0;
 				if ((hide_sequence>0 && hide_sequence<15) || (hide_sequence>15 && hide_sequence<30)){
 					if (hide_sequence>15){
-						x_draw=(xx-main_panel.width) +((main_panel.width/15)*(hide_sequence-15));
+						x_draw=(-main_panel.width) +((main_panel.width/15)*(hide_sequence-15));
 					} else {
-						x_draw=xx-((main_panel.width/15)*hide_sequence);
+						x_draw=((-main_panel.width/15)*hide_sequence);
 					}
 					hide_sequence++;
 				}
 				if (hide_sequence>15 || hide_sequence<15){
-					main_panel.draw(x_draw, yy+110, 0.46, 0.75);
-					if(tab_buttons.fleets.draw(x_draw,yy+79, "Fleets")){
+					main_panel.draw(x_draw, 110, 0.46, 0.75);
+					if(tab_buttons.fleets.draw(x_draw,79, "Fleets")){
 					    view_area="fleets";
 					}
-					if (tab_buttons.garrisons.draw(x_draw+115,yy+79, "System Troops")){
+					if (tab_buttons.garrisons.draw(115+x_draw,79, "System Troops")){
 					    view_area="garrisons";
 					    update_garrison_log();
 					}
-					if (tab_buttons.missions.draw(x_draw+230,yy+79, "Missions")){
+					if (tab_buttons.missions.draw(230+x_draw,79, "Missions")){
 					    view_area="missions";
 					    update_garrison_log();
 					}					
-					if (x_draw+280<xx){
+					if (x_draw<0){
 						tab_buttons.hider.draw(xx,lower_draw, "Show")
 					} else {
 						if (tab_buttons.hider.draw(x_draw+280,lower_draw, "Hide")){
@@ -371,11 +370,11 @@ function scr_unit_quick_find_pane() constructor{
 						}					
 					}					
 				} else if (hide_sequence==15){
-					if (tab_buttons.hider.draw(xx,lower_draw, "Show")){
+					if (tab_buttons.hider.draw(0,lower_draw, "Show")){
 					    hide_sequence++;
 					}
 				}
-				/*if (tab_buttons.troops.draw(xx+345,yy+79, "Troops")){
+				/*if (tab_buttons.troops.draw(345,79, "Troops")){
 				    view_area="troops";
 				}*/							
 			}
@@ -389,7 +388,7 @@ function  hover_box() constructor{
 	relative_y=0;
 	location = [0,0,0,0];
 	static draw = function(xx, yy, button_text){
-		location = draw_unit_buttons([xx+relative_x, yy+relative_y], button_text,[1,1], c_green,, fnt_40k_14b, 1);
+		location = draw_unit_buttons([relative_x, relative_y], button_text,[1,1], c_green,, fnt_40k_14b, 1);
 		return location;
 	}
 }
@@ -537,113 +536,161 @@ function jail_selection(){
 }
 
 function equip_selection(){
-	if (instance_number(obj_popup)==0){
-	    var f=0,god=0,nuuum=0;
-	    var o_wep1="",o_wep2="",o_armour="",o_gear="",o_mobi="";
-	    var b_wep1=0,b_wep2=0,b_armour=0,b_gear=0,b_mobi=0;
-	    var vih=0, unit;
-	    var company = managing<=10 ? managing :10;
-	    var prev_role;
-	    var allow = true;
+	try {
+		if (instance_number(obj_popup) == 0) {
+			// Initialize variables
+			var unit_type = unit_type_unknown; // 1 - marine, 4 - terminator, 6 - dreadnought, 50+ vehicles
+			var unit_is_vehicle = false;
+			var selected_units = 0;
+			var equipment = {
+				wep1: "",
+				wep2: "",
+				armour: "",
+				gear: "",
+				mobi: ""
+			};
+			var blank_equipment = {
+				wep1: 0,
+				wep2: 0,
+				armour: 0,
+				gear: 0,
+				mobi: 0
+			};
+			var allow_selection = true;
+			var prev_role;
+		
+			// Loop through selected units
+			for (var i = 0; i < array_length(display_unit); i++) {
+				if (man_sel[i]!= 1) continue;
+		
+				// Determine unit type
+				if (unit_type == unit_type_unknown) {
+					if (man[i] == "man" && is_struct(display_unit[i])) {
+						unit_type = get_unit_type(display_unit[i]);
+					} else if (man[i] == "vehicle") {
+						unit_type = get_vehicle_type(ma_role[i]);
+						unit_is_vehicle = true;
+					}
+				}
+		
+				// Check if unit type is consistent
+				if (unit_type != unit_type_unknown) {
+					if (man[i] == "man" && is_struct(display_unit[i])) {
+						if (get_unit_type(display_unit[i])!= unit_type) {
+							allow_selection = false;
+							break;
+						}
+					} else if (man[i] == "vehicle") {
+						if (get_vehicle_type(ma_role[i])!= unit_type) {
+							allow_selection = false;
+							break;
+						}
+					}
+				}
+		
+				// Update equipment and blank equipment counts
+				if (unit_type != unit_type_unknown) {
+					selected_units++;
+					update_equipment(equipment, blank_equipment, ma_wep1[i], ma_wep2[i], ma_armour[i], ma_gear[i], ma_mobi[i]);
+				}
+			}
+		
+			// Check if all units have the same equipment
+			if (blank_equipment.wep1 == selected_units) equipment.wep1 = "";
+			if (blank_equipment.wep2 == selected_units) equipment.wep2 = "";
+			if (blank_equipment.armour == selected_units) equipment.armour = "";
+			if (blank_equipment.gear == selected_units) equipment.gear = "";
+			if (blank_equipment.mobi == selected_units) equipment.mobi = "";
+		
+			// Create popup instance
+			if (unit_type != unit_type_unknown && man_size > 0 && allow_selection) {
+				var pip = instance_create(0, 0, obj_popup);
+				pip.type = 6;
+				pip.o_wep1 = equipment.wep1;
+				pip.o_wep2 = equipment.wep2;
+				pip.o_armour = equipment.armour;
+				pip.o_gear = equipment.gear;
+				pip.o_mobi = equipment.mobi;
+				pip.n_wep1 = equipment.wep1;
+				pip.n_wep2 = equipment.wep2;
+				pip.n_armour = equipment.armour;
+				pip.n_gear = equipment.gear;
+				pip.n_mobi = equipment.mobi;
+				pip.company = managing;
+				pip.units = selected_units;
+				pip.unit_type = unit_type;
+				pip.unit_is_vehicle = unit_is_vehicle;
+			}
+		}
+	} catch(_exception) {
+		log_into_file(_exception.longMessage);
+		log_into_file(_exception.script);
+		log_into_file(_exception.stacktrace);
+		show_debug_message(_exception.longMessage);
+	}
+}
 
-	    // Need to make sure that group selected is all the same type
-	    for(var f=0; f<array_length(display_unit); f++){
+/// Returns the unit type based on the unit's armour.
+function get_unit_type(unit) {
+	var _equip_data;
+	var _unit_type = unit_type_unknown;
 
-	        // Set different vih depending on unit type
-	        if (man_sel[f]!=1) then continue;
-	        if (vih==0){
-	            if (man[f]=="man" && is_struct(display_unit[f])){
-	                unit=display_unit[f];
-	                if (unit.armour()!="Dreadnought"){
-	                    vih=1;
-	                } else {
-	                    vih=6;
-	                }
-	            } else if (man[f]=="vehicle"){
-	                if (ma_role[f]=="Land Raider") { vih=50;}
-	                else if (ma_role[f]=="Rhino") { vih=51;}
-	                else if (ma_role[f]=="Predator") {vih=52;}
-	                else if (ma_role[f]=="Land Speeder") { vih=53;}
-	                else if (ma_role[f]=="Whirlwind") {vih=54;}
-	                prev_role = ma_role[f]=="Whirlwind";
-	            }
-	        } else {
-	            if (vih==1 || vih==6){
-	                if (man[f]=="vehicle"){
-	                    allow=false;
-	                    break;
-	                } else if (man[f]=="man" && is_struct(display_unit[f])){
-	                    unit=display_unit[f];
-	                    if (unit.armour()=="Dreadnought" && vih==1){
-	                        allow=false;
-	                        break;
-	                    } else if (unit.armour()!="Dreadnought" && vih==6){
-	                        allow=false;
-	                        break;
-	                    }
-	                }
-	            } else if (vih>=50){
-	                if (man[f]=="man"){
-	                    allow=false;
-	                    break;
-	                } else if(man[f]=="vehicle"){
-	                    if (prev_role != ma_role[f]){
-	                        allow=false;
-	                        break;
-	                    }
-	                }
-	            }
-	        }
+	try {
+		_equip_data = gear_weapon_data("armour", unit.armour());
+		if (is_struct(_equip_data)){
+			if (array_length(_equip_data.change_unit) != 0){
+				_unit_type = _equip_data.change_unit[0];
+			}
+		} else {
+			_unit_type = unit.base_group;
+		}
+		return _unit_type;
+	} catch(_exception) {
+		log_into_file(_exception.longMessage);
+		log_into_file(_exception.script);
+		log_into_file(_exception.stacktrace);
+		show_debug_message(_exception.longMessage);
+	}
 
-	        if (vih>0){
-	            nuuum+=1;
-	            if (o_wep1=="") and (ma_wep1[f]!="") then o_wep1=ma_wep1[f];
-	            if (o_wep2=="") and (ma_wep2[f]!="") then o_wep2=ma_wep2[f];
-	            if (o_armour=="") and (ma_armour[f]!="") then o_armour=ma_armour[f];
-	            if (o_gear=="") and (ma_gear[f]!="") then o_gear=ma_gear[f];
-	            if (o_mobi=="") and (ma_mobi[f]!="") then o_mobi=ma_mobi[f];
+}
 
-	            if (ma_wep1[f]=="") then b_wep1+=1;
-	            if (ma_wep2[f]=="") then b_wep2+=1;
-	            if (ma_armour[f]=="") then b_armour+=1;
-	            if (ma_gear[f]=="") then b_gear+=1;
-	            if (ma_mobi[f]=="") then b_mobi+=1;
+/// Returns the vehicle type based on the role.
+function get_vehicle_type(role) {
+	switch (role) {
+		case "Land Raider":
+			return "land_raider";
+		case "Rhino":
+			return "rhino";
+		case "Predator":
+			return "predator";
+		case "Land Speeder":
+			return "land_speeder";
+		case "Whirlwind":
+			return "whirlwind";
+		default:
+			return unit_type_unknown;
+	}
+}
 
-	            if ((o_wep1!="") and (ma_wep1[f]!=o_wep1)) or (b_wep1==1) then o_wep1="Assortment";
-	            if ((o_wep2!="") and (ma_wep2[f]!=o_wep2)) or (b_wep2==1) then o_wep2="Assortment";
-	            if ((o_armour!="") and (ma_armour[f]!=o_armour)) or (b_armour==1) then o_armour="Assortment";
-	            if ((o_gear!="") and (ma_gear[f]!=o_gear)) or (b_gear==1) then o_gear="Assortment";
-	            if ((o_mobi!="") and (ma_mobi[f]!=o_mobi)) or (b_mobi==1) then o_mobi="Assortment";
-	        }
-	    }
+/// Updates the equipment and blank equipment counts.
+function update_equipment(equipment, blank_equipment, wep1, wep2, armour, gear, mobi) {
+	if (equipment.wep1 == "" && wep1!= "") equipment.wep1 = wep1;
+	if (equipment.wep2 == "" && wep2!= "") equipment.wep2 = wep2;
+	if (equipment.armour == "" && armour!= "") equipment.armour = armour;
+	if (equipment.gear == "" && gear!= "") equipment.gear = gear;
+	if (equipment.mobi == "" && mobi!= "") equipment.mobi = mobi;
 
-	    if (b_wep1==nuuum) then o_wep1="";
-	    if (b_wep2==nuuum) then o_wep2="";
-	    if (b_armour==nuuum) then o_armour="";
-	    if (b_gear==nuuum) then o_gear="";
-	    if (b_mobi==nuuum) then o_mobi="";
+	if (wep1 == "") blank_equipment.wep1++;
+	if (wep2 == "") blank_equipment.wep2++;
+	if (armour == "") blank_equipment.armour++;
+	if (gear == "") blank_equipment.gear++;
+	if (mobi == "") blank_equipment.mobi++;
 
-	    if (vih>0 && man_size>0 && allow){
-
-	        var pip=instance_create(0,0,obj_popup);
-	        pip.type=6;
-	        pip.o_wep1=o_wep1;
-	        pip.o_wep2=o_wep2;
-	        pip.o_armour=o_armour;
-	        pip.o_gear=o_gear;
-	        pip.n_wep1=o_wep1;
-	        pip.n_wep2=o_wep2;
-	        pip.n_armour=o_armour;
-	        pip.n_gear=o_gear;
-	        pip.o_mobi=o_mobi;
-	        pip.n_mobi=o_mobi;
-	        pip.company=managing;
-	        pip.units=nuuum;
-
-	        //Forwards vih selection to the vehicle_equipment variable used in mouse_50 obj_popup and weapons_equip script
-	        pip.vehicle_equipment=vih;
-	    }
-	}		
+	if ((equipment.wep1!= "" && wep1!= equipment.wep1) || blank_equipment.wep1 == 1) equipment.wep1 = "Assortment";
+	if ((equipment.wep2!= "" && wep2!= equipment.wep2) || blank_equipment.wep2 == 1) equipment.wep2 = "Assortment";
+	if ((equipment.armour!= "" && armour!= equipment.armour) || blank_equipment.armour == 1) equipment.armour = "Assortment";
+	if ((equipment.gear!= "" && gear!= equipment.gear) || blank_equipment.gear == 1) equipment.gear = "Assortment";
+	if ((equipment.mobi!= "" && mobi!= equipment.mobi) || blank_equipment.mobi == 1) equipment.mobi = "Assortment";
 }
 
 function load_selection(){
@@ -751,7 +798,7 @@ function planet_selection_action(){
 		}
 	    for (var i = 0;i<target.planets;i++){
 	    	var planet_draw = c_white;
-	        if (point_distance(xx+159+(i*41),yy+287,mouse_x,mouse_y)<=22){
+	        if (mouse_distance_less(159+(i*41),287, 22)){
 	            obj_controller.selecting_planet=i+1;
 	            var sel_plan = obj_controller.selecting_planet;
 	            var planet_is_allies = scr_is_planet_owned_by_allies(target, sel_plan);
@@ -943,11 +990,11 @@ function planet_selection_action(){
 	            with (target){
 	            	planet_frame = scr_planet_image_numbers(p_type[sel_plan]);
 	            }
-	            draw_sprite_ext(spr_planets,planet_frame,xx+xxx, yy+287, 1, 1, 0, planet_draw, 0.9)
+	            draw_sprite_ext(spr_planets,planet_frame,xxx, 287, 1, 1, 0, planet_draw, 0.9)
 	            
 	            draw_set_color(global.star_name_colors[target.p_owner[sel_plan]]);
 
-	            draw_text(xx+xxx,yy+255,scr_roman(sel_plan));
+	            draw_text(xxx,255,scr_roman(sel_plan));
 	            
 	        }	                   
 	    }

@@ -8,7 +8,7 @@ function scr_menu_clear_up(specific_area_function){
 		var menu_action_allowed = (action_if_number(obj_saveload, 0, 0) &&
 				    action_if_number(obj_drop_select, 0, 0) &&
 				    action_if_number(obj_popup_dialogue, 0, 0) &&
-				    action_if_number(obj_ncombat, 0, 0))
+				    action_if_number(obj_ncombat, 0, 0));
 
 		if (menu_action_allowed){
 		    if (combat!=0) then exit;
@@ -47,13 +47,15 @@ function scr_menu_clear_up(specific_area_function){
 		    if (zoomed==0) and (!instance_exists(obj_ingame_menu)) and (!instance_exists(obj_popup)){
 		        // Main Menu
 		        if (scr_hit(xx+1485,yy+7,xx+1589,yy+48)){
+		        	set_zoom_to_defualt();
 		            instance_create(0,0,obj_ingame_menu);
 		        }
 		        // Menu - Help
 		        if (scr_hit(xx+1375,yy+7,xx+1480,yy+48)) and (cooldown<=0){
+		        	set_zoom_to_defualt();
 		            if (menu!=17.5) and (onceh==0){
 		                menu=17.5;
-		                onceh=1;
+		                
 		                cooldown=8000;
 		                click=1;
 		                hide_banner=0;
@@ -63,7 +65,7 @@ function scr_menu_clear_up(specific_area_function){
 		            }
 		            if (menu==17.5) and (onceh==0){
 		                menu=0;
-		                onceh=1;
+		                
 		                cooldown=8000;
 		                click=1;
 		                hide_banner=0;
@@ -84,8 +86,9 @@ function scr_menu_clear_up(specific_area_function){
 
 
 function scr_change_menu(specific_area_function){
-	var continue_sequence = false;;
+	var continue_sequence = false;
 	with (obj_controller){
+		set_zoom_to_defualt();
 		continue_sequence = scr_menu_clear_up(function(){
 			if (zoomed==0)  && (diplomacy==0){
 				return true;
@@ -104,8 +107,6 @@ function scr_toggle_manage(){
 	    if (menu!=1){
 	        scr_management(1);
 	        menu=1;
-	        cooldown=8000;
-	        click=1;
 	        popup=0;
 	        selected=0;
 	        hide_banner=1;
@@ -113,8 +114,6 @@ function scr_toggle_manage(){
 	    }
 	    else if (menu==1){
 	        menu=0;
-	        cooldown=8000;
-	        click=1;
 	        hide_banner=0;
 	        location_viewer.update_garrison_log();
 	    }
@@ -128,8 +127,6 @@ function scr_toggle_setting(){
 		with (obj_controller){
         if (menu!=21){
             menu=21;
-            cooldown=8000;
-            click=1;
             popup=0;
             selected=0;
             hide_banner=1;
@@ -160,16 +157,12 @@ function scr_toggle_apothecarion(){
         if (scr_role_count("Master of the Apothecarion","0")==0) then menu_adept=1;
         if (menu!=11){
             menu=11;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
             temp[36]=scr_role_count(obj_ini.role[100][15],"");
         }
         else if (menu==11){
             menu=0;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
         }
         managing=0;
     }
@@ -184,9 +177,7 @@ function scr_toggle_reclu(){
         if (scr_role_count("Master of Sanctity","0")==0) then menu_adept=1;
         if (menu!=12){
             menu=12;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
             temp[36]=string(scr_role_count(obj_ini.role[100][14],"field"));
             temp[37]=string(scr_role_count(obj_ini.role[100][14],"home"));
             penitorium=0;
@@ -206,9 +197,7 @@ function scr_toggle_reclu(){
         }
         else if (menu==12){
             menu=0;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
             location_viewer.update_garrison_log();
         }
         managing=0;
@@ -224,9 +213,7 @@ function scr_toggle_lib(){
         if (scr_role_count("Chief "+string(obj_ini.role[100][17]),"0")==0) then menu_adept=1;
         if (menu!=13){
             menu=13;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
             if (artifacts>0) and (menu_artifact==0) then menu_artifact=1;
             temp[36]=scr_role_count(obj_ini.role[100][17],"");
             temp[37]=scr_role_count("Codiciery","");
@@ -239,9 +226,7 @@ function scr_toggle_lib(){
         }
         else if (menu==13){
             menu=0;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
             location_viewer.update_garrison_log();
         }
         managing=0;
@@ -259,9 +244,7 @@ function scr_toggle_armamentarium(){
             set_up_armentarium();
         }else if (menu==14){
             menu=0;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
         }
         managing=0;
     }
@@ -285,9 +268,7 @@ function scr_toggle_recruiting(){
             set_up_recruitment_view();
         } else if (menu==15){
             menu=0;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
             location_viewer.update_garrison_log();
         }
 
@@ -310,7 +291,7 @@ function scr_toggle_fleet_area(){
 	    if (menu!=16){
 	    	//TODO rewrite all this shit when fleets finally become OOP
 	        menu=16;
-	        onceh=1;
+	        
 	        cooldown=8000;
 	        click=1;
 	        for (var i=37;i<=41;i++){
@@ -361,7 +342,7 @@ function scr_toggle_fleet_area(){
 	    }
 	    else if (menu==16){
 	        menu=0;
-	        onceh=1;
+	        
 	        cooldown=8000;
 	        click=1;
 	    }
@@ -375,16 +356,12 @@ function scr_toggle_diplomacy(){
 		with (obj_controller){
         if (menu!=20) {
             menu=20;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
             hide_banner=1;
         }
         else if (menu==20) {
             menu=0;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
             hide_banner=0;
             location_viewer.update_garrison_log();
         }
@@ -398,18 +375,14 @@ function scr_toggle_event_log(){
 		with (obj_controller){
         if (menu!=17){
             menu=17;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
             hide_banner=1;
             instance_activate_object(obj_event_log);
             obj_event_log.top=1;
         }
         else if (menu==17){
             menu=0;
-            onceh=1;
-            cooldown=8000;
-            click=1;
+            
             hide_banner=0;
         }
         managing=0;
@@ -489,7 +462,7 @@ function scr_end_turn(){
 
 	    if (menu==1) and (onceh==0){
 	        menu=0;
-	        onceh=1;
+	        
 	        cooldown=8000;
 	        click=1;
 	        hide_banner=0;

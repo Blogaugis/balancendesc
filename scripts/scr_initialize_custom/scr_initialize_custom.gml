@@ -1301,8 +1301,8 @@ function scr_initialize_custom() {
 		wep1[i, 16] = "Power Axe";
 		wep2[i, 16] = "Bolt Pistol";
 		armour[i, 16] = "Artificer Armour";
-		gear[i, 16] = "Servo Arms";
-		mobi[i, 16] = "";
+		gear[i, 16] = "";
+		mobi[i, 16] = "Servo-arm";
 
 		role[i, 17] = "Librarian";
 		wep1[i, 17] = "Force Staff";
@@ -2501,11 +2501,12 @@ function scr_initialize_custom() {
 	race[company, 2] = 1;
 	loc[company, 2] = home_name;
 	role[company, 2] = "Forge Master";
-	wep1[company, 2] = "Conversion Beam Projector";
+	wep1[company, 2] = "Infernus Pistol";
 	name[company, 2] = obj_creation.fmaster;
-	wep2[company, 2] = "Power Weapon";
+	wep2[company, 2] = "Power Axe";
 	armour[company, 2] = "Artificer Armour";
-	gear[company, 2] = "Master Servo Arms";
+	mobi[company, 2] = "Servo-harness";
+	gear[company, 2] = "";
 	chaos[company, 2] = 0;
 	spawn_unit = TTRPG[company, 2];
 	if (spawn_unit.technology < 40) {
@@ -2635,6 +2636,7 @@ function scr_initialize_custom() {
 		wep1[company][k] = wep1[101, 16];
 		wep2[company][k] = choose_weighted(weapon_weighted_lists.pistols);
 		gear[company][k] = gear[101, 16];
+		mobi[company][k] = mobi[101, 16];
 	}
 
 	// Librarians in the librarium
@@ -2900,7 +2902,7 @@ function scr_initialize_custom() {
 			spawn_unit = TTRPG[company][k]
 			spawn_unit.marine_assembling();
 			wep1[company][k] = wep1[101, 14];
-			wep2[company][k] = "Storm Bolter";
+			wep2[company][k] = wep2[101, 4];
 			armour[company][k] = "Terminator Armour";
 			gear[company][k] = gear[101, 14]
 			if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
@@ -2918,7 +2920,7 @@ function scr_initialize_custom() {
 		name[company][k] = global.name_generator.generate_space_marine_name();
 		spawn_unit = TTRPG[company][k]
 		spawn_unit.marine_assembling();
-		wep1[company][k] = "Storm Bolter";
+		wep1[company][k] = wep2[101, 4];
 		wep2[company][k] = "";
 		armour[company][k] = "Terminator Armour";
 		gear[company][k] = gear[101, 15];
@@ -2938,7 +2940,7 @@ function scr_initialize_custom() {
 			spawn_unit = TTRPG[company][k]
 			spawn_unit.marine_assembling();
 			wep1[company][k] = wep1[101, 15];
-			wep2[company][k] = wep2[101, 15];
+			wep2[company][k] = wep2[101, 4];
 			armour[company][k] = "Terminator Armour";
 			gear[company][k] = gear[101, 15];
 			if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
@@ -2960,7 +2962,7 @@ function scr_initialize_custom() {
 			spawn_unit.marine_assembling();
 			gear[company][k] = gear[101, 17];
 			wep1[company][k] = wep1[101, 17];
-			wep2[company][k] = choose_weighted(weapon_weighted_lists.pistols);
+			wep2[company][k] = wep2[101, 4];
 			armour[company][k] = "Terminator Armour";
 			if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
 			if (terminator <= 0) then armour[company][k] = "MK6 Corvus";
@@ -3006,7 +3008,7 @@ function scr_initialize_custom() {
 			spawn_unit = TTRPG[company][k]
 			spawn_unit.marine_assembling();
 			wep1[company][k] = wep1[101, 16];
-			wep2[company][k] = "Storm Bolter";
+			wep2[company][k] = wep2[101, 4];
 			armour[company][k] = "Terminator Armour";
 			gear[company][k] = gear[101, 16];
 			if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
@@ -3025,7 +3027,7 @@ function scr_initialize_custom() {
 		spawn_unit = TTRPG[company][k]
 		spawn_unit.marine_assembling();
 		wep1[company][k] = "Company Standard";
-		wep2[company][k] = "Storm Bolter";
+		wep2[company][k] = wep2[101, 4];
 		armour[company][k] = "Terminator Armour";
 		if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
 		if (terminator <= 0) then armour[company][k] = "MK6 Corvus";
@@ -3044,7 +3046,7 @@ function scr_initialize_custom() {
 		spawn_unit = TTRPG[company][k]
 		spawn_unit.marine_assembling();
 		wep1[company][k] = "Thunder Hammer";
-		wep2[company][k] = "Storm Bolter";
+		wep2[company][k] = wep2[101, 4];
 		gear[company][k] = gear[101, 7];
 		armour[company][k] = "Terminator Armour";
 		if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
