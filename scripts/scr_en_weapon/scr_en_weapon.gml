@@ -255,8 +255,12 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 	var b,goody,first;b=0;goody=0;first=0;
 	repeat(30){b+=1;
 	    if (wep[b]=name) and (goody=0){
-	        att[b]+=atta*man_number;apa[b]+=arp*man_number;range[b]=rang;wep_num[b]+=man_number;
-	        if (obj_ncombat.started=0) then ammo[b]=amm;goody=1;
+	        att[b]+=atta*man_number;
+	        apa[b]+=arp*man_number;
+	        range[b]=rang;
+	        wep_num[b]+=man_number;
+	        if (obj_ncombat.started=0) then ammo[b]=amm;
+	        goody=1;
         
 	        if (wep_owner[b]!="") or (man_number>1) then wep_owner[b]="assorted";
 	        if (wep_owner[b]="") and (man_number=1) then wep_owner[b]=man_type;
@@ -264,7 +268,10 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 	    if (wep[b]="") and (first=0) then first=b;
 	}
 	if (goody=0){wep[first]=name;splash[first]=spli;
-	    att[first]+=atta*man_number;apa[first]+=arp*man_number;range[first]=rang;wep_num[first]+=man_number;
+	    att[first]+=atta*man_number;
+	    apa[first]+=arp*man_number;
+	    range[first]=rang;
+	    wep_num[first]+=man_number;
 	    if (obj_ncombat.started=0) then ammo[first]=amm;goody=1;
     
 	    if (man_number=1) then wep_owner[first]=man_type;
