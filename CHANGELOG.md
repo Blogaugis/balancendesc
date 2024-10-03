@@ -29,7 +29,6 @@ All notable changes to this project will be documented in this file.
     - Graded warp travel routes.
 	- Ability to cancel warp travel within the same turn you commanded fleet to travel.
 - New Squad type - Breachers.
-- Zooming on map with either +- keys or mouse wheel.
 - New cheats:
 	- Refer to CHEATCODES.md in the game folder for a full reference with input rules.
 	- Many of the old cheatcodes are a bit changed, so make SURE to read the reference.
@@ -44,6 +43,7 @@ All notable changes to this project will be documented in this file.
 		- Basically just a backpack item with an integrated conversion beamer.
 	- Laspistols for Tech Priests.
 - zooming on map with either + - keys or mouse wheel
+
 ### Changed:
 - Stars will no longer spawn over the top of each other.
 - Player should now be able to move camera closer to the edge of the screen.
@@ -73,6 +73,9 @@ All notable changes to this project will be documented in this file.
 	- Minor Power Spear sprite adjustments.
 	- Techmarines now have eye attachments.
 	- Edited Servo-arm and Servo-harness sprites.
+- genestealer cults now have names.
+- purging with fire now also removes genestealer population influence.
+
 ### Fixed:
 - Crashes: 
 	- Caused Inquisitors snooping on player bases.
