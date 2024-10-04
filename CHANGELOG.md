@@ -1,4 +1,4 @@
-# Change Log
+# CHANGELOG
 All notable changes to this project will be documented in this file.
 
 ----------------------------------
@@ -30,11 +30,23 @@ All notable changes to this project will be documented in this file.
 	- Ability to cancel warp travel within the same turn you commanded fleet to travel.
 - New Squad type - Breachers.
 - New cheats:
-	- sisterofbattle - spawns 1 Sister of Battle.
-	- skitarii - spawns 1 Skitarii.
-	- flashgit - spawns 1 Flash Git.
+	- Refer to CHEATCODES.md in the game folder for a full reference with input rules.
+	- Many of the old cheatcodes are a bit changed, so make SURE to read the reference.
+	- sisterofbattle - spawns a Sister of Battle.
+	- skitarii - spawns a Skitarii.
+	- flashgit - spawns a Flash Git.
+	- crusader - spawns a Crusader (fixed).
+	- techpriest - spawns a Tech Priest (fixed).
+	- additem - used to spawn specific items.
+- Equipment and weapons:
+	- Conversion Beamer Pack backpack item.
+		- Basically just a backpack item with an integrated conversion beamer.
+	- Laspistols for Tech Priests.
+- zooming on map with either + - keys or mouse wheel
 
 ### Changed:
+- Stars will no longer spawn over the top of each other.
+- Player should now be able to move camera closer to the edge of the screen.
 - Warp travel:
 	- Warp lane travel drawing abstracted to it's own layer.
 	- Warp lane widths now expand to be more visible when zoomed.
@@ -47,11 +59,22 @@ All notable changes to this project will be documented in this file.
 - Equipment and weapons:
     - Boarding Shields now provide advantages to boarders.
     - Underslung Flamers now have light armour piercing.
+	- Little Damage Resistance bonus to some Master Crafted and Artifact quality gear pieces.
+	- Servo-arm (Servo Arms) and Servo-harness (Master Servo Arms) are overhauled.
+		- Both now use the backpack slot.
+		- Servo-arm only has an integrated melee arm, harness has a flamer, plasma cutter and melee arms.
+		- Servo-harness can save 2 times more lost vehicles per Techmarine, in comparison to Servo-arm.
+		- You can use addi tem to get these, if old items got broken because of the rename.
+	- Tech Priest loadout is now more or less similar to lore friendly Enginseer loadout.
+- max artifact count increased to 50
 - Visual:
 	- Eviscerator and Relic Blade sprites are now vertical again and can display a second weapon.
 	- Deathwing color now is a tiny bit darker.
 	- Minor Power Spear sprite adjustments.
-- Little Damage Resistance bonus to some Master Crafted and Artifact quality gear pieces.
+	- Techmarines now have eye attachments.
+	- Edited Servo-arm and Servo-harness sprites.
+- genestealer cults now have names.
+- purging with fire now also removes genestealer population influence.
 
 ### Fixed:
 - Crashes: 
@@ -60,6 +83,7 @@ All notable changes to this project will be documented in this file.
 - Visual:
 	- Eviscerator and Relic Blade sprites display on Terminators properly now.
 	- Deathwing knights color scheme is no longer broken.
+	- Promotion gear text overlapping.
 - In-game wiki should now work (kinda).
 - Travelling without waypoints while pressing shift now fixed.
 - Vanguard Sergeants, Honour Guard and Dark Angels Veterans no longer spawn overburdened.
@@ -68,16 +92,33 @@ All notable changes to this project will be documented in this file.
 - Chaplains equip proper items on game start.
 - 1 Dreadnought to Equal Specialist Distribution custom chapters.
 - Fixed Force Staff getting double damage bonus because of a code mistake.
+- stars should no longer spawn very close to the right or bottom edge of the map
+- will no longer be able to select all ships globally wiht select all on bombard
+- hopefully fixed company view some times not coming up
 
 ### Under The Hood:
 - Ork Warbosses are now stored in the fleet carge_data area and the struct is transferred directly to a planet.
 - Git: resource_order is now in gitignore.
-- Scripts: is_specialist supports Space Wolves and Iron Hands.
-- Scripts: in-game Wiki refactored (part one).
+- is_specialist supports Space Wolves and Iron Hands.
+- In-game Wiki refactored (part one).
 - Refactor of drop select
     - alarm_1
     - step_0
     - scr_drop_fiddle
+- Some refactors to scr_draw_unit_image.
+- Pass scr_add_man through a formatter.
+- Almost completly refactor cheatcodes.
+- New function `string_upper_first`, used to capitalize only the first letter of a string.
+- GUI drawing layer:
+	- obj_controller drawing mostly moved to the GUI layer of drawing.
+	- Fleet select panel moved to the GUI layer of drawing.
+	- Point and click updated in function to now work in both the GUI layer and standard draw layer and take into account literal or relative screen loc.
+	- obj_star_select drawing now moved to the GUI drawing layer.
+
+- obj controller drawing largley removed to the gui layer of drawing
+- fleet select panel moved to the gui layer of drawing
+- point and click updated in function to now work in both the gui layer and standard draw layer and take into acount literal or relative screen loc
+- obj_star_select drawing now removed to the gui_drawing layer
 
 
 ## [0.9.2.4]

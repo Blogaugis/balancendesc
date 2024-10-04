@@ -676,6 +676,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 	corruption=0;
 	religion_sub_cult = "none";
 	base_group = "none";
+	unit_class = class;
 	role_history = [];
 	encumbered_ranged=false;
 	encumbered_melee=false;
@@ -1683,7 +1684,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 			if (base_group == "astartes"){
 				ranged_hands_limit = 2
 			} else if base_group == "tech_priest" {
-				ranged_hands_limit = 2+(technology/100); //Bro, let them be able to have at least some weapon.
+				ranged_hands_limit = 1+(technology/100);
 			}else if base_group == "human" {
 				ranged_hands_limit = 1;
 			}	
@@ -1850,7 +1851,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 			if (base_group == "astartes"){
 				melee_hands_limit = 2
 			} else if base_group == "tech_priest" {
-				melee_hands_limit = 2+(technology/100); //Bro, let them be able to have at least some weapon.
+				melee_hands_limit = 1+(technology/100);
 			}else if base_group == "human" {
 				melee_hands_limit = 1;
 			}				
@@ -2157,7 +2158,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 	static allocate_unit_to_fresh_spawn = function(type="default"){
 		var homestar = "none";
 		var spawn_location_chosen = false;
-	 	if ((type="home") or (type="default")) and (obj_ini.fleet_type==1){
+	 	if ((type="home") or (type="default")) and (obj_ini.fleet_type==ePlayerBase.home_world){
 	        var homestar =  star_by_name(obj_ini.home_name);
 	    } else if (type !="ship"){
 	    	var homestar =  star_by_name(type);	    	

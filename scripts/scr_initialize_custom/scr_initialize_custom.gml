@@ -2906,7 +2906,7 @@ function scr_initialize_custom() {
 			spawn_unit = TTRPG[company][k]
 			spawn_unit.marine_assembling();
 			wep1[company][k] = wep1[101, 14];
-			wep2[company][k] = "Storm Bolter";
+			wep2[company][k] = wep2[101, 4];
 			armour[company][k] = "Terminator Armour";
 			gear[company][k] = gear[101, 14]
 			if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
@@ -2924,7 +2924,7 @@ function scr_initialize_custom() {
 		name[company][k] = global.name_generator.generate_space_marine_name();
 		spawn_unit = TTRPG[company][k]
 		spawn_unit.marine_assembling();
-		wep1[company][k] = "Storm Bolter";
+		wep1[company][k] = wep2[101, 4];
 		wep2[company][k] = "";
 		armour[company][k] = "Terminator Armour";
 		gear[company][k] = gear[101, 15];
@@ -2944,7 +2944,7 @@ function scr_initialize_custom() {
 			spawn_unit = TTRPG[company][k]
 			spawn_unit.marine_assembling();
 			wep1[company][k] = wep1[101, 15];
-			wep2[company][k] = wep2[101, 15];
+			wep2[company][k] = wep2[101, 4];
 			armour[company][k] = "Terminator Armour";
 			gear[company][k] = gear[101, 15];
 			if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
@@ -2966,7 +2966,7 @@ function scr_initialize_custom() {
 			spawn_unit.marine_assembling();
 			gear[company][k] = gear[101, 17];
 			wep1[company][k] = wep1[101, 17];
-			wep2[company][k] = choose_weighted(weapon_weighted_lists.pistols);
+			wep2[company][k] = wep2[101, 4];
 			armour[company][k] = "Terminator Armour";
 			if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
 			if (terminator <= 0) then armour[company][k] = "MK6 Corvus";
@@ -3012,7 +3012,7 @@ function scr_initialize_custom() {
 			spawn_unit = TTRPG[company][k]
 			spawn_unit.marine_assembling();
 			wep1[company][k] = wep1[101, 16];
-			wep2[company][k] = "Storm Bolter";
+			wep2[company][k] = wep2[101, 4];
 			armour[company][k] = "Terminator Armour";
 			gear[company][k] = gear[101, 16];
 			if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
@@ -3031,7 +3031,7 @@ function scr_initialize_custom() {
 		spawn_unit = TTRPG[company][k]
 		spawn_unit.marine_assembling();
 		wep1[company][k] = "Company Standard";
-		wep2[company][k] = "Storm Bolter";
+		wep2[company][k] = wep2[101, 4];
 		armour[company][k] = "Terminator Armour";
 		if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
 		if (terminator <= 0) then armour[company][k] = "MK6 Corvus";
@@ -3050,7 +3050,7 @@ function scr_initialize_custom() {
 		spawn_unit = TTRPG[company][k]
 		spawn_unit.marine_assembling();
 		wep1[company][k] = "Thunder Hammer";
-		wep2[company][k] = "Storm Bolter";
+		wep2[company][k] = wep2[101, 4];
 		gear[company][k] = gear[101, 7];
 		armour[company][k] = "Terminator Armour";
 		if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";

@@ -1,9 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
-function point_and_click(rect){
-	return (point_in_rectangle(mouse_x, mouse_y, rect[0], rect[1],rect[2], rect[3]) && mouse_check_button_pressed(mb_left))
-}
 
 
 function feature_selected(Feature) constructor{
@@ -15,6 +12,7 @@ function feature_selected(Feature) constructor{
 	destroy=false;
 	exit_count = 0;
 	enter_count=18;
+	planet_data = new PlanetData(obj_controller.selecting_planet,obj_controller.selected.id);
 
 	if (feature.f_type == P_features.Forge){
 		var worker_caps= [2,4,8];
@@ -117,7 +115,23 @@ function feature_selected(Feature) constructor{
 				generic=true;
 				title = "STC Fragment";
 				body = $"Unload a {obj_ini.role[100][16]} and whatever entourage you deem necessary to recover the STC Fragment";
-				break;	
+				break;
+			case P_features.Gene_Stealer_Cult:
+				generic=true;
+				var cult_control = planet_data.population_influences[eFACTION.Tyranids];
+				title = $"Cult of {feature.name}";
+				var control_string = "";
+				if (cult_control<25){
+					control_string = "currently has limited influence on the planet but is fast gaining speed";
+				} else if (cult_control<50){
+					control_string = "Is rapidly gaining momentum with the planets populace and will soon sieze control of the planet if left unchecked";
+				}else if (cult_control<75){
+					control_string = "Has managed to galvanise the populace to overcome the former governor of the planet turning much of the local pdf to it's cause, it must be stopped, lest it spread.";
+				} else {
+					control_string = "The Cults rot and control of the planet is complete even if the cult can be dismantled the rot is great and the population will need significant purging and monitering to remove the rot";
+				}
+				body = $"The Cult of {feature.name} {control_string}";
+				break;				
 			case P_features.Victory_Shrine:
 				draw_text_transformed(xx+(area_width/2), yy +10, "Victory Shrine", 2, 2, 0);
 				draw_set_halign(fa_left);
@@ -225,7 +239,8 @@ function feature_selected(Feature) constructor{
 				break;
 		}
 		if (generic){
-			draw_text_transformed(xx+(area_width/2), yy +5, title, 2, 2, 0);
+			draw_text_ext_transformed(xx+(area_width/2), yy +5, title, -1, area_width-20, 2, 2, 0)
+
 			draw_set_halign(fa_left);
 			draw_set_color(c_gray);
 			draw_text_ext(xx+10, yy+40,body,-1,area_width-20);
@@ -242,7 +257,7 @@ function draw_building_builder(xx, yy, req_require, building_sprite){
 	if (obj_controller.requisition>=req_require){
 		if (scr_hit(image_middle+30, image_bottom+28, image_middle+78, image_bottom+44)){
 			draw_sprite_ext(spr_slate_2, 5, image_middle-10, image_bottom, 1, 1, 0, c_white, 1);
-			if (mouse_check_button(mb_left)){
+			if (scr_click_left()){
 				clicked=true;								
 			}
 		} else {
@@ -432,7 +447,7 @@ function shutter_button() constructor{
 		height = Height *scale;
 		if (text=="") then entered = false;
 		if (entered==""){
-			entered = point_in_rectangle(mouse_x, mouse_y, xx, yy, xx+width, yy+height);
+			entered = scr_hit(xx, yy, xx+width, yy+height);
 		} else {
 			entered=entered;
 		}
@@ -446,7 +461,7 @@ function shutter_button() constructor{
 				right_rack.draw(xx+width, yy, true);
 				left_rack.draw(xx, yy, true);
 			}
-			if ((mouse_check_button_pressed(mb_left) && point_in_rectangle(mouse_x, mouse_y, xx, yy, xx+width, yy+height))||click_timer>0 ){
+			if (point_and_click([xx, yy, xx+width, yy+height]) || click_timer>0 ){
 				shutter_backdrop = 6;
 				click_timer++;
 			}

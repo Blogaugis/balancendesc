@@ -15,6 +15,7 @@ global.weapons={
     },
     "melee_hands": 0.1,
      "tags":["shield"],
+     "units_whitelist": ["astartes", "terminator"],
    // "hp_mod":{
      // "standard": 15,
      // "master_crafted": 17.5,
@@ -42,6 +43,7 @@ global.weapons={
     "melee_hands": 0.9,
     "ranged_hands":0.9,
     "tags":["shield"],
+    "units_whitelist": ["astartes", "terminator"],
    // "hp_mod":{
      // "standard": 30,
      // "master_crafted": 35,
@@ -99,7 +101,7 @@ global.weapons={
         "range": 1,
         "spli": 6,
         "arp": 0,
-        "tags":["chain", "axe"],
+        "tags":["chain", "axe", "dual"],
     },
     "Eviscerator": {
          "abbreviation": "Evisc",
@@ -274,6 +276,7 @@ global.weapons={
 		"spli": 4,
 		"arp": 1,
 		"tags": ["power", "fist", "pair"],
+		"units_whitelist": ["astartes", "terminator"],
 	},
     "Power Fist": {
        "abbreviation": "PwrFst",       
@@ -529,6 +532,7 @@ global.weapons={
 		"arp": 1,
 		"second_profiles": ["Integrated Bolter"],
 		"tags": ["power", "fist"],
+		"units_whitelist": ["astartes", "terminator"],
 	},
 
 	"Mace of Absolution": {
@@ -552,6 +556,7 @@ global.weapons={
 		"spli": 10,
 		"arp": 1,
 		"tags": ["power", "mace", "siege", "pious"],
+		"units_whitelist": ["astartes", "terminator"],
 		"req_exp": 100,
 	},
 
@@ -574,7 +579,8 @@ global.weapons={
 		"spli": 5,
 		"arp": 1,
 		"special_description": "Spell Damage +100%",
-		"tags": ["force", ]
+		"tags": ["force"],
+		"units_whitelist": ["astartes", "terminator"],
 	},
 	"Force Sword": {
 		"abbreviation": "FrcSwrd",
@@ -598,6 +604,7 @@ global.weapons={
 		"special_description": "Spell damage +25%",
 		"special_properties": ["Parry"],
 		"tags": ["force", "sword"],
+		"units_whitelist": ["astartes", "terminator"],
 	},
 	"Force Axe": {
          "abbreviation": "FrcAxe",
@@ -1477,6 +1484,22 @@ global.weapons={
     "tags":["las"],
     // ... (other attributes)
   },
+	"Laspistol": {
+		"attack": {
+			"standard": 20,
+			"master_crafted": 30,
+			"artifact": 40
+		},
+		"description": "The Laspistol is the pistol version of the Lasgun and like that weapon fires a coherent beam of energetic photons that can burn through most materials. The Laspistol is powered by a miniature power pack that is usually placed within the grip.",
+		"abbreviation": "Lpstl",
+		"melee_hands": 0,
+		"ranged_hands": 0.25,
+		"ammo": 30,
+		"range": 3.1,
+		"spli": 0,
+		"arp": 0,
+		"tags": ["pistol", "las"],
+	},
 	"Servo-arm(M)": {
 		"abbreviation": "MchArm",
 		"attack": {
@@ -2606,8 +2629,8 @@ global.gear = {
 
 function equipment_struct(item_data, core_type,quality="none") constructor{ 
     //This could be done with 2d arrays [[],[]]
-    var names = ["hp_mod", "description","damage_resistance_mod", "ranged_mod", "melee_mod","armour_value" ,"attack","melee_hands","ranged_hands","ammo","range","spli","arp","special_description", "special_properties", "abbreviation","tags","name","second_profiles","req_exp"];
-    var defaults = [0,"",0,0,0,0,0,0,0,0,0,0,0,"",[],"",[],"",[],0];
+    var names = ["hp_mod", "description","damage_resistance_mod", "ranged_mod", "melee_mod","armour_value" ,"attack","melee_hands","ranged_hands","ammo","range","spli","arp","special_description", "special_properties", "abbreviation","tags","name","second_profiles","req_exp", "units_whitelist", "change_unit"];
+    var defaults = [0,"",0,0,0,0,0,0,0,0,0,0,0,"",[],"",[],"",[],0,["any"],[]];
     type = core_type;
     for (var i=0;i<array_length(names);i++){
         if (struct_exists(item_data,names[i])){
@@ -2842,6 +2865,11 @@ function equipment_struct(item_data, core_type,quality="none") constructor{
         }
         return satisfied;
     }
+
+    static has_unit = function(unit){
+        return array_contains(units_whitelist, unit);
+    }
+
     static owner_data = function(owner){//centralization of bonuses originating from weapon improvements e.g STCs
         if (owner=="chapter"){
             if (type=="weapon"){

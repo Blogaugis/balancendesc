@@ -93,6 +93,7 @@ current_eventing="";
 chaos_rating=0;
 chapter_made = 0;
 obj_cuicons.alarm[1]=1; // Clean up custom icons
+map_scale =1;
 
 diplomacy_pathway = "";
 option_selections=[];
@@ -1395,22 +1396,31 @@ planet=100;
 
 if (is_test_map=true) then planet=20;
 
-
+var xx, yy, nearest_star, repeats;
 mask_index = spr_star
 while(instance_number(obj_star)<planet) {
-    xx = irandom(room_width-200) // dictates how far away from the edge stars spawn
-    yy = irandom(room_height-200)
+    xx = irandom_range(200, room_width-150); // dictates how far away from the edge stars spawn
+    yy = irandom_range(130, room_height-130);
+    nearest_star = instance_nearest(xx, yy, obj_star);
+    repeats = 0;
+    while (point_distance(xx, yy, nearest_star.x,nearest_star.y)<130 && repeats<100){
+        xx = irandom_range(200, room_width-150); // dictates how far away from the edge stars spawn
+        yy = irandom_range(130, room_height-160);
+        repeats++;       
+    }
+    if (repeats!=100){
+        if !place_meeting(xx, yy, obj_star) {
+            instance_create(xx,yy,obj_star);
+        }
+    }
 	
-	if !place_meeting(xx, yy, obj_star) {
-		instance_create(xx,yy,obj_star);
-	}
 }
 mask_index = -1;
 
 fleet_type="";
-if (obj_ini.fleet_type==1) then fleet_type="Fleet";
-if (obj_ini.fleet_type==1) then fleet_type="Homeworld";
-if (obj_ini.fleet_type==3) then fleet_type="Crusade";
+if (obj_ini.fleet_type==ePlayerBase.home_world) then fleet_type="Homeworld";
+if (obj_ini.fleet_type==ePlayerBase.fleet_based) then fleet_type="Fleet";
+if (obj_ini.fleet_type==ePlayerBase.penitent) then fleet_type="Crusade";
 star_names="";
 // ** Sets up the number of enemy factions to appear **
 tau=1; 
@@ -1652,8 +1662,8 @@ glad_names=string_delete(glad_names,vih,1);
 vih=string_pos(",",hunt_names);
 hunt_names=string_delete(hunt_names,vih,1);
 
-if (obj_ini.fleet_type!=1) or (bb==1) then temp[62]+="Your flagship is the Battle Barge "+string(obj_ini.ship[1])+".  ";
-if (obj_ini.fleet_type==1) and (bb>1){
+if (obj_ini.fleet_type != ePlayerBase.home_world) or (bb==1) then temp[62]+="Your flagship is the Battle Barge "+string(obj_ini.ship[1])+".  ";
+if (obj_ini.fleet_type==ePlayerBase.home_world) and (bb>1){
     temp[62]+="There are "+string(bb)+" Battle Barges; "+string(bb_names)+".  ";
 }
 temp[62]+="#";
@@ -1751,3 +1761,5 @@ if (vih>=5){
 remov=string_length(string(temp[65])+string(temp[66])+string(temp[67])+string(temp[68])+string(temp[69]))+1;
 
 action_set_alarm(2, 0);
+
+instance_create(0,0,obj_tooltip );
