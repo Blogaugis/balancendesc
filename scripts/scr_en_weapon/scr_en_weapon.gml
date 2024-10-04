@@ -2,7 +2,7 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 
 	// check if double ranged/melee
 	// then add to that weapon
-                
+
 	//scr_infantry_weapon
 	// name: name
 	// is_man: man?  //Probably used to differenciate internaly between trooper and vehicle weapons
@@ -12,13 +12,23 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 
 	// Determines combined damage for enemy battle blocks for a single weapon
 
-	var atta,arp,acr,rang,amm,spli,faith_bonus,i;
-	i=0;rang=0;atta=0;spli=0;
-	arp=0;acr=0;amm=-1;faith_bonus=0;
+	var atta, arp, acr, rang, amm, spli, faith_bonus, i;
+	i = 0;
+	rang = 0;
+	atta = 0;
+	spli = 0;
+	arp = 0;
+	acr = 0;
+	amm = -1;
+	faith_bonus = 0;
 
-	if (string_count("elee",name)>0){
-	    var to;to=string_delete(name,0,5);
-	    atta=10;arp=0;rang=1;spli=3;
+	if (string_count("elee", name) > 0) {
+		var to;
+		to = string_delete(name, 0, 5);
+		atta = 10;
+		arp = 0;
+		rang = 1;
+		spli = 3;
 	}
 
 	//if (obj_ncombat.enemy=5) then faith_bonus=faith[man_type];
@@ -108,12 +118,9 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 		if (name="Combat Knife"){atta=25;arp=0;rang=1;spli=3;}
 		if (name="Medium Vehicle Melee"){atta=80;arp=0;rang=1;}
 		if (name="Light Vehicle Melee"){atta=70;arp=0;rang=1;}
-	}
 
 
-
-	if (obj_ncombat.enemy=7){
-
+	if (obj_ncombat.enemy = 7) {
 	    if (argument0="Choppa"){atta=50;arp=0;rang=1;spli=3;}
 	    if (argument0="Power Klaw"){atta=150;arp=1;rang=1;spli=3;}
 	    if (argument0="Slugga"){atta=20;arp=0;rang=5;amm=4;spli=3;}
@@ -153,8 +160,6 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 	}
 
 
-
-
 	if (obj_ncombat.enemy=9){
 
 	    if (argument0="Bonesword"){atta=120;arp=0;rang=1;spli=3;}
@@ -177,10 +182,10 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 		if (name="Combat Knife"){atta=25;arp=0;rang=1;spli=3;}
 		if (name="Medium Vehicle Melee"){atta=80;arp=0;rang=1;}
 
+
 	}
 
-
-	if (obj_ncombat.enemy>=10) or (obj_ncombat.enemy=2) or (obj_ncombat.enemy=5) or (obj_ncombat.enemy=1){
+	if (obj_ncombat.enemy >= 10) or(obj_ncombat.enemy = 2) or(obj_ncombat.enemy = 5) or(obj_ncombat.enemy = 1) {
 
 	    if (argument0="Plasma Pistol"){atta=100;arp=1;rang=5;spli=1;}
 
@@ -260,53 +265,51 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 		if (name="Large Vehicle Melee"){atta=100;arp=0;rang=1;spli=1;}
 	}
 
+	if (faith_bonus = 1) then atta = atta * 2;
+	if (faith_bonus = 2) then atta = atta * 3;
+	atta = round(atta * obj_ncombat.global_defense);
+	arp = round(arp * obj_ncombat.global_defense);
 
-	if (faith_bonus=1) then atta=atta*2;
-	if (faith_bonus=2) then atta=atta*3;
-	atta=round(atta*obj_ncombat.global_defense);
-	arp=round(arp*obj_ncombat.global_defense);
-
-
-
-
-
-	if (obj_ncombat.enemy=1){
-	    // more attack crap here
-	    if (rang<=1) or (floor(rang)!=rang) then atta=round(atta*dudes_attack[group]);
-	    if (rang>1) and (floor(rang)==rang) then atta=round(atta*dudes_ranged[group]);
+	if (obj_ncombat.enemy = 1) {
+		// more attack crap here
+		if (rang <= 1) or(floor(rang) != rang) then atta = round(atta * dudes_attack[group]);
+		if (rang > 1) and(floor(rang) == rang) then atta = round(atta * dudes_ranged[group]);
 	}
 
+	if (is_man = false) then amm = -1;
 
+	var b, goody, first;
+	b = 0;
+	goody = 0;
+	first = 0;
+	repeat(30) {
+		b += 1;
+		if (wep[b] = name) and(goody = 0) {
+			att[b] += atta * man_number;
+			apa[b] += arp * man_number;
+			range[b] = rang;
+			wep_num[b] += man_number;
+			if (obj_ncombat.started = 0) then ammo[b] = amm;
+			goody = 1;
 
-	if (is_man=false) then amm=-1;
-
-	var b,goody,first;b=0;goody=0;first=0;
-	repeat(30){b+=1;
-	    if (wep[b]=name) and (goody=0){
-	        att[b]+=atta*man_number;
-	        apa[b]+=arp*man_number;
-	        range[b]=rang;
-	        wep_num[b]+=man_number;
-	        if (obj_ncombat.started=0) then ammo[b]=amm;
-	        goody=1;
-        
-	        if (wep_owner[b]!="") or (man_number>1) then wep_owner[b]="assorted";
-	        if (wep_owner[b]="") and (man_number=1) then wep_owner[b]=man_type;
-	    }
-	    if (wep[b]="") and (first=0) then first=b;
+			if (wep_owner[b] != "") or(man_number > 1) then wep_owner[b] = "assorted";
+			if (wep_owner[b] = "") and(man_number = 1) then wep_owner[b] = man_type;
+		}
+		if (wep[b] = "") and(first = 0) then first = b;
 	}
-	if (goody=0){wep[first]=name;splash[first]=spli;
-	    att[first]+=atta*man_number;
-	    apa[first]+=arp*man_number;
-	    range[first]=rang;
-	    wep_num[first]+=man_number;
-	    if (obj_ncombat.started=0) then ammo[first]=amm;goody=1;
-    
-	    if (man_number=1) then wep_owner[first]=man_type;
-	    if (man_number>1) then wep_owner[first]="assorted";
+	if (goody = 0) {
+		wep[first] = name;
+		splash[first] = spli;
+		att[first] += atta * man_number;
+		apa[first] += arp * man_number;
+		range[first] = rang;
+		wep_num[first] += man_number;
+		if (obj_ncombat.started = 0) then ammo[first] = amm;
+		goody = 1;
+
+		if (man_number = 1) then wep_owner[first] = man_type;
+		if (man_number > 1) then wep_owner[first] = "assorted";
 	}
-
-
 
 	/*
 	wep[i]="";
