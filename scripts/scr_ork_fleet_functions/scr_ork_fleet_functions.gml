@@ -5,7 +5,7 @@ function scr_ork_fleet_functions(){
 }
 
 function new_ork_fleet(xx,yy){
-    fleet=instance_create(xx+32,yy,obj_en_fleet);
+    fleet=instance_create(xx,yy,obj_en_fleet);
     fleet.owner = eFACTION.Ork;
     fleet.sprite_index=spr_fleet_ork;
     fleet.image_index=1;
@@ -75,7 +75,7 @@ function ork_fleet_move(){
         }
         
         with(obj_star){
-            if (is_dead_star()) or (owner=eFACTION.Ork) then instance_deactivate_object(id);
+            if (is_dead_star() || owner=eFACTION.Ork || scr_orbiting_fleet(eFACTION.Ork) !="none") then instance_deactivate_object(id);
         }
         var nex=instance_nearest(x,y,obj_star);
         action_x=nex.x;
@@ -132,6 +132,14 @@ function ork_fleet_arrive_target(){
                         if (p_orks[i]>6) then p_orks[i]=6;
                         with(boat){instance_destroy();}
                         aler=1;
+                    }                    
+                } else {
+                    var new_wagh_star = distance_removed_star(x,y, choose(2,3,4,5));
+                    if (instance_exists(new_wagh_star)){
+                        action_x=new_wagh_star.x;
+                        action_y=new_wagh_star.y;
+                        action = "";
+                        set_fleet_movement();
                     }                    
                 }
             }

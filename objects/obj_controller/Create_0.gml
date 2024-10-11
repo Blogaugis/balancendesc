@@ -93,7 +93,8 @@ current_eventing="";
 chaos_rating=0;
 chapter_made = 0;
 obj_cuicons.alarm[1]=1; // Clean up custom icons
-map_scale =1;
+map_scale = 1;
+scale_mod = 1;
 
 diplomacy_pathway = "";
 option_selections=[];
@@ -409,6 +410,8 @@ menu_buttons = {
     "diplo":new main_menu_button(spr_ui_but_2, spr_ui_hov_2,,,ord("D"),scr_toggle_diplomacy),
     "event":new main_menu_button(spr_ui_but_2, spr_ui_hov_2,,,ord("O"),scr_toggle_event_log),
     "end_turn":new main_menu_button(spr_ui_but_2, spr_ui_hov_2,,,ord("E"),scr_end_turn),
+    "help":new main_menu_button(spr_ui_but_4, spr_ui_hov_4,,,ord("H"),scr_in_game_help),
+    "menu":new main_menu_button(spr_ui_but_4, spr_ui_hov_4,,,,scr_in_game_menu),
 
 }
 
@@ -433,6 +436,7 @@ unit_bio=false;
 view_squad=false;
 company_report=false;
 company_data = {};
+filter_mode = false;
 pauldron_trim=0;
 last_unit=[0,0];
 ui_coloring=""; 
@@ -566,7 +570,10 @@ master_craft_chance = 0;
 tech_status = "Cult Mechanicus";
 forge_string="";
 forge_queue=[];
-player_forges = 0;
+player_forge_data = {
+    player_forges : 0,
+    vehicle_hanger : [],
+}
 selection_data=false;
 selections = [];
 production_research = {
@@ -654,7 +661,7 @@ blood_debt=0;
 // ** Sets penitent or blood debt if chapter disadvantage is selected **
 if (instance_exists(obj_ini)){
     var bloo=0;
-    for(var o=1; o<=4; o++){if (obj_ini.dis[o]="Blood Debt") then bloo=1;}
+    if(scr_has_disadv("Blood Debt")) then bloo=1;
 
     penitent=obj_ini.penitent;
     penitent_current=obj_ini.penitent_current;

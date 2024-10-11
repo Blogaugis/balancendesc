@@ -767,6 +767,7 @@ if (shop = "equipment2") {
 
 }
 
+var player_hanger = min(array_length(obj_controller.player_forge_data.vehicle_hanger),1);
 if (shop = "vehicles") {
     i = 0;
     i += 1;
@@ -812,8 +813,8 @@ if (shop = "vehicles") {
     i += 1;
     item[i] = "Rhino";
     item_stocked[i] = scr_vehicle_count(item[i], "");
-    item_cost[i] = 100;
-    forge_cost[i] = 1000;
+    item_cost[i] = 120;
+    forge_cost[i] = 4000*player_hanger;
     if (rene = 1) {
         nobuy[i] = 1;
         item_cost[i] = 0;
@@ -822,7 +823,7 @@ if (shop = "vehicles") {
     item[i] = "Predator";
     item_stocked[i] = scr_vehicle_count(item[i], "");
     item_cost[i] = 240;
-    forge_cost[i] = 2400;
+    forge_cost[i] = 4000*player_hanger;
     if (rene = 1) {
         nobuy[i] = 1;
         item_cost[i] = 0;

@@ -255,8 +255,9 @@ function scr_unit_quick_find_pane() constructor{
 			    	any_hover=true;
     			    if (hover_count==10){
     			    	hover_item = new hover_box();
-    			    	hover_item.relative_x = (mouse_x-xx+(10-10));
-    			    	hover_item.relative_y = (mouse_y-(yy+90+(20*i)));
+    			    	var mouse_consts = return_mouse_consts()
+    			    	hover_item.relative_x = (mouse_consts[0]-xx+(10-10));
+    			    	hover_item.relative_y = (mouse_consts[1]-(yy+90+(20*i)));
     			    	hover_item.root_item=i;
     			    }
     			}
@@ -282,34 +283,34 @@ function scr_unit_quick_find_pane() constructor{
 		} else if (view_area == "missions"){
 			draw_set_color(c_white);
 			draw_set_halign(fa_center);
-		    draw_text(80, 50, "Location");
-		    draw_text(160, 50, "Mission");
-		    draw_text(310, 50, "Time Remaining");
+		    draw_text(xx+80, yy+50, "Location");
+		    draw_text(xx+160, yy+50, "Mission");
+		    draw_text(xx+290, yy+50, "Time Remaining");
 		    var i = 0;
 		    while(i<array_length(mission_log) && (90+(20*i)+12 +20)<main_panel.height)		
 			{
 				mission = mission_log[i];
 				entered=false;
-				if (scr_hit(10, 90+(20*i),main_panel.width,90+(20*i)+18)){
+				if (scr_hit(xx+10, yy+90+(20*i),xx+main_panel.width,yy+90+(20*i)+18)){
 					draw_set_color(c_gray);
-					draw_rectangle(10+20, 90+(20*i)-2,main_panel.width-20,90+(20*i)+18, 0)
+					draw_rectangle(xx+10+20, yy+90+(20*i)-2,xx+main_panel.width-20,yy+90+(20*i)+18, 0)
 					draw_set_color(c_white);
 					entered=true;
 				}
 				if (mission.system!=""){
-			    	draw_text(80, 90+(20*i), $"{mission.system} {scr_roman_numerals()[mission.planet-1]}" );
+			    	draw_text(xx+80, yy+90+(20*i), $"{mission.system} {scr_roman_numerals()[mission.planet-1]}" );
 				}
 			    draw_set_halign(fa_left);
 			    if (entered){
-			    	draw_text(160-20, 90+(20*i), mission.mission);
+			    	draw_text(xx+160-20, yy+90+(20*i), mission.mission);
 			    } else {
-			    	draw_text(160-20, 90+(20*i), string_truncate(mission.mission,150));
+			    	draw_text(xx+160-20, yy+90+(20*i), string_truncate(mission.mission,150));
 			    }
 			    draw_set_halign(fa_center);
 			    if (!entered){
-			    	draw_text(310, 90+(20*i), mission.time);
+			    	draw_text(xx+310, yy+90+(20*i), mission.time);
 			    }
-			    if (point_and_click([10, 90+(20*i)-2,main_panel.width,90+(20*i)+18])){
+			    if (point_and_click([xx+10, yy+90+(20*i)-2,xx+main_panel.width,yy+90+(20*i)+18])){
 			    	var star = star_by_name(mission.system);
 			    	if (star!="none")
 			    	travel_target = [star.x, star.y];

@@ -26,9 +26,6 @@ var yy = 0;
 if (!zoomed && !zui){
     draw_sprite(spr_new_ui,0,0,0);
     draw_set_color(c_white);
-    // Buttons here
-    draw_sprite(spr_ui_but_4,0,1374,8);
-    draw_sprite(spr_ui_but_4,0,1484,8);
 
     menu_buttons.chapter_manage.draw(34,838+y_slide, "Chapter Management",1,1,145)
     menu_buttons.chapter_settings.draw(179,838+y_slide, "Chapter Settings",1,1,145)
@@ -38,26 +35,12 @@ if (!zoomed && !zui){
     menu_buttons.arm.draw(706,838+y_slide, "Armamentarium")
     menu_buttons.recruit.draw(822,838+y_slide, "Recruitment")
     menu_buttons.fleet.draw(938,838+y_slide, "Fleet")
-    menu_buttons .diplo.draw(1130,838+y_slide, "Diplomacy",1,1,145)
-    menu_buttons .event.draw(1275,838+y_slide, "Event Log",1,1,145)
-    menu_buttons .end_turn.draw(1420,838+y_slide, "End Turn",1,1,145);
+    menu_buttons.diplo.draw(1130,838+y_slide, "Diplomacy",1,1,145)
+    menu_buttons.event.draw(1275,838+y_slide, "Event Log",1,1,145)
+    menu_buttons.end_turn.draw(1420,838+y_slide, "End Turn",1,1,145);
+    menu_buttons.help.draw(1374,8+y_slide, "Help");
+    menu_buttons.menu.draw(1484,8+y_slide, "Menu");
     
-    // Highlight here
-    draw_set_blend_mode(bm_add);
-    draw_set_alpha(h_options*2);
-    if (h_options>0) then draw_sprite(spr_ui_hov_4,0,1374,8+y_slide);
-    draw_set_alpha(h_menu*2);
-    if (h_menu>0) then draw_sprite(spr_ui_hov_4,0,1484,8+y_slide);
-    draw_set_blend_mode(bm_normal);
-    draw_set_alpha(1);
-    
-    // Text here
-    draw_set_color(c_white);
-    draw_set_halign(fa_center);
-    draw_set_font(fnt_cul_18);
-    
-    draw_text(1427,14,string_hash_to_newline("Help"));
-    draw_text(1537,14,string_hash_to_newline("Menu"));
     
     if (y_slide>0) then draw_set_alpha((100-(y_slide*2))/100);
     
@@ -170,7 +153,7 @@ draw_set_halign(fa_left);
 draw_set_alpha(1);
 // Sets up debut mode
 if (global.cheat_debug == true){
-    draw_text((__view_get((0 << 0), 0) + 1124), (__view_get((1 << 0), 0) + 7), string_hash_to_newline("DEBUG MODE"));
+    draw_text(1124, 7, string_hash_to_newline("DEBUG MODE"));
 }
 
 

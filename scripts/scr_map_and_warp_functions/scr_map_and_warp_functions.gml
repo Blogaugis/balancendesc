@@ -20,7 +20,7 @@ function main_map_move_keys(){
     var x_limits = 0;
     var y_limits = 0;
 	if ((menu==0) and (formating==0)) or (instance_exists(obj_fleet)){
-	    var spd=12*1/obj_controller.map_scale,keyb=""; // player move speed on campaign map
+	    var spd=12*obj_controller.scale_mod,keyb=""; // player move speed on campaign map
 	    if ((!instance_exists(obj_ingame_menu)) and (!instance_exists(obj_ncombat))) or (instance_exists(obj_fleet)){
 	        if keyboard_check(vk_shift){spd*=3;} // shift down, increase speed
 	        var view_x = __view_get( e__VW.XView, 0 )+2;
@@ -157,7 +157,7 @@ function draw_warp_lanes(){
 						hover_time = 0;
 					}
 
-					if (mouse_check_button_pressed(mb_left) || (instance_exists(obj_fleet_select) && hover_time>=10)){
+					if (mouse_check_button_pressed(mb_left) || (instance_exists(obj_fleet_select) && hover_time>=15)){
 						set_map_pan_to_loc(to);
 					}
 				}
@@ -187,7 +187,7 @@ function draw_warp_lanes(){
 						hover_loc = [route_coords[2], route_coords[3]];
 						hover_time = 0;
 					}
-					if (mouse_check_button_pressed(mb_left) || (instance_exists(obj_fleet_select) && hover_time>=10)){
+					if (mouse_check_button_pressed(mb_left) || (instance_exists(obj_fleet_select) && hover_time>=15)){
 						set_map_pan_to_loc(to);
 					}
 				}

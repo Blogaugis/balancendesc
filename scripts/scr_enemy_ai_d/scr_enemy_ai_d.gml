@@ -198,13 +198,13 @@ function scr_enemy_ai_d() {
                 }
         	}
             if (completion>3) and (battli=0){// Done
-                if (obj_ini.adv[1]="Shitty Luck") or (obj_ini.adv[2]="Shitty Luck") or (obj_ini.adv[3]="Shitty Luck") or (obj_ini.adv[4]="Shitty Luck") then roll1+=15;
+                if scr_has_adv("Shitty Luck") then roll1+=15;
             
                 if (roll1>40) then scr_alert("","mission","Adeptus Mechanicus research within the Necron Tomb of "+string(name)+" "+scr_roman(i)+" continues.",0,0);
             
                 if (roll1<=40){// Complete
                     var reward,text;reward=choose(1,1,2);
-                    if (obj_ini.adv[1]="Tech-Brothers") or (obj_ini.adv[2]="Tech-Brothers") or (obj_ini.adv[3]="Tech-Brothers") or (obj_ini.adv[4]="Tech-Brothers") then reward=choose(1,2);
+                    if (scr_has_adv("Tech-Brothers")) then reward=choose(1,2);
                 
                     if (reward=1){obj_controller.requisition+=400;
                         text="The Mechanicus Research team on planet "+string(name)+" "+scr_roman(i)+" have completed their work without any major setbacks.  Pleased with your astartes' work, they have granted you 400 Requisition to be used as you see fit.";
@@ -276,8 +276,9 @@ function scr_enemy_ai_d() {
                 scr_event_log("green",taxt);
             }
             
-            var flit=instance_create(x,y-32,obj_en_fleet);
-            flit.owner = eFACTION.Mechanicus;flit.sprite_index=spr_fleet_mechanicus;
+            var flit=instance_create(x,y,obj_en_fleet);
+            flit.owner = eFACTION.Mechanicus;
+            flit.sprite_index=spr_fleet_mechanicus;
             flit.capital_number=1;flit.image_index=0;flit.image_speed=0;
             flit.trade_goods="mars_spelunk1";
             flit.home_x=x;

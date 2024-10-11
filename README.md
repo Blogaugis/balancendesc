@@ -51,10 +51,11 @@ CM does not currently use any external dependencies except GameMaker.
 For code changes, you can use any text editor you like, just remember to periodically compile and test in GameMaker.
 
 If you are new to Git, then we recommend reading [Pro Git](https://git-scm.com/book/en/v2). You only need to read the first 3 chapters to comfortably work with Git, optionally chapter 6 to get more info on GitHub. If you prefer a GUI based approach to Git, then we recommend one of the below:
-- [GitKraken](https://www.gitkraken.com/) + [tutorials](https://www.gitkraken.com/learn/git/tutorials)
-- [Sourcetree](https://www.sourcetreeapp.com/) + [tutorials](https://confluence.atlassian.com/get-started-with-sourcetree)
 
-Both are free and popular. 
+-   [GitKraken](https://www.gitkraken.com/) + [tutorials](https://www.gitkraken.com/learn/git/tutorials)
+-   [Sourcetree](https://www.sourcetreeapp.com/) + [tutorials](https://confluence.atlassian.com/get-started-with-sourcetree)
+
+Both are free and popular.
 
 ## Exporting and creating packages
 

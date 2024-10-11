@@ -108,7 +108,7 @@ function send_navy_to_forge(){
 }
 
 function imperial_navy_bombard(){
-    if (guardsmen_unloaded=0) or ((orbiting.p_guardsmen[1]+orbiting.p_guardsmen[2]+orbiting.p_guardsmen[3]+orbiting.p_guardsmen[4]=0) and (guardsmen_unloaded=1)) or ((orbiting.p_player[cr]>0) and (obj_controller.faction_status[eFACTION.Imperium]="War")){
+    if (guardsmen_unloaded=0) or ((array_sum(orbiting.p_guardsmen)==0) and (guardsmen_unloaded=1)) or ((array_sum(orbiting.p_player)>0) and (obj_controller.faction_status[eFACTION.Imperium]=="War")){
         if (orbiting.present_fleet[6]+orbiting.present_fleet[7]+orbiting.present_fleet[8]+orbiting.present_fleet[9]+orbiting.present_fleet[10]+orbiting.present_fleet[13]=0){
             var hol=false;
             if ((orbiting.present_fleet[1]>0) and (obj_controller.faction_status[eFACTION.Imperium]="War")) then hol=true;
@@ -126,7 +126,8 @@ function imperial_navy_bombard(){
                         }
                         if (orbiting.p_population[p]=0) and (orbiting.p_orks[p]>0) and (orbiting.p_owner[p]=7) and (onceh=0){bombard=p;onceh=1;}
                         if (orbiting.p_owner[p]=8) and (orbiting.p_tau[p]+orbiting.p_pdf[p]>0) and (onceh=0){
-                            bombard=p;onceh=1;
+                            bombard=p;
+                            onceh=1;
                         }
                         if (orbiting.p_owner[p]=10) and ((orbiting.p_chaos[p]+orbiting.p_traitors[p]+orbiting.p_pdf[p]>0) or (orbiting.p_heresy[p]>=50)){bombard=p;onceh=1;}
                     }
@@ -188,7 +189,7 @@ function imperial_navy_bombard(){
 
 
 function navy_attack_player_world(){
-if (obj_controller.faction_status[eFACTION.Imperium]="War") and (trade_goods="invade_player") and (guardsmen_unloaded=0){
+	if (obj_controller.faction_status[eFACTION.Imperium]="War") and (trade_goods="invade_player") and (guardsmen_unloaded=0){
 	    if (instance_exists(orbiting)){
 	        var tar=0;
 			var i=0;
@@ -231,22 +232,14 @@ if (obj_controller.faction_status[eFACTION.Imperium]="War") and (trade_goods="in
 	}
 
 }
-
-function fleet_remaining_guard_ratio(){
-	var maxi=0,curr=0,i=0;
+function fleet_max_guard(){
+	var maxi=0, i=0;
 	for (i=1;i<array_length(capital_imp);i++){
 	    if (capital_max_imp[i]>0) {
 	    	if (capital_number>i){
 	    		capital_max_imp[i]=0;
 	    	} else if (capital_number<=i){
 	    		maxi+=capital_max_imp[i];
-	    	}
-	    }
-	    if (capital_imp[i]>0){ 
-	      	if (capital_number<=i){
-	    		if (!guardsmen_unloaded){
-	    			curr+=capital_imp[i];
-	    		}
 	    	}
 	    }
 	}
@@ -258,6 +251,31 @@ function fleet_remaining_guard_ratio(){
 	    		maxi+=frigate_max_imp[i];
 	    	}
 	    }
+	}
+	for (i=1;i<array_length(escort_imp);i++){
+	    if (escort_max_imp[i]>0) {
+	    	if (escort_number>i){
+	    		escort_max_imp[i]=0;
+	    	} else if (escort_number<=i){
+	    		maxi+=escort_max_imp[i];
+	    	}
+	    }
+	}
+	return maxi;
+}
+
+function fleet_guard_current(){
+	var curr=0,i=0;
+	for (i=1;i<array_length(capital_imp);i++){
+	    if (capital_imp[i]>0){ 
+	      	if (capital_number<=i){
+	    		if (!guardsmen_unloaded){
+	    			curr+=capital_imp[i];
+	    		}
+	    	}
+	    }
+	}
+	for (i=1;i<array_length(frigate_imp);i++){
 	    if (frigate_imp[i]>0){
 	      	if (frigate_number<=i){
 	    		if (!guardsmen_unloaded){
@@ -268,13 +286,6 @@ function fleet_remaining_guard_ratio(){
 	}
 
 	for (i=1;i<array_length(escort_imp);i++){
-	    if (escort_max_imp[i]>0) {
-	    	if (escort_number>i){
-	    		escort_max_imp[i]=0;
-	    	} else if (escort_number<=i){
-	    		maxi+=escort_max_imp[i];
-	    	}
-	    }
 	    if (escort_imp[i]>0){
 	      	if (escort_number<=i){
 	    		if (!guardsmen_unloaded){
@@ -283,7 +294,11 @@ function fleet_remaining_guard_ratio(){
 	    	}
 	    }
 	}
-
+	return curr;	
+}
+function fleet_remaining_guard_ratio(){
+	var curr=fleet_guard_current();
+	var maxi = fleet_max_guard();
 	guardsmen_ratio=1;
 	if (guardsmen_unloaded=0) then guardsmen_ratio=curr/maxi;
 	return 	guardsmen_ratio;
@@ -350,7 +365,7 @@ function scr_navy_planet_action(){
 	        	}
 	        }
 	    }
-    
+    	show_debug_message($"{selected_planet},{highest}, {array_sum(orbiting.p_guardsmen)}")
 	    if (selected_planet>0) and (highest>0) and (array_sum(orbiting.p_guardsmen)<=0){
 	        if (highest>2) or (orbiting.p_pdf[selected_planet]=0){
 	            scr_navy_unload_guard(selected_planet)

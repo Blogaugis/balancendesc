@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 ----------------------------------
 ## [0.0.0.0]
 
-### Added:
+### New:
 - example list
     - example nested list
 
@@ -20,13 +20,57 @@ All notable changes to this project will be documented in this file.
 - here go changes that are important only to other collaborators.
     - everything that a normal player doesn't need to know.
 ----------------------------------
+## [0.9.3.2]
+
+### Fixed:
+- crash from building forges at secret lairs
+- crash from fleets arriving at player fleets trying to trade
+- tooltips will now always draw as the top layer
+- crash from guard attempting to recruit new guard
+- ship occupancy sometimes breaking
+- crash from moving vehicles possibly fixed and being monitored
+- error log obj_controller.x=ii.x; when arriving at ork fleet
+- attempt to fix squad view screen bugging and not appearing fix status to be determined following play testing
+- custom formations not loading correctly upon save load
+- artifact arrays making some artifacts unusable
+- ork fleets will no longer death stack
+
+### Changed:
+- hide settings that currently don't do anything
+
+### New:
+- Introduction of a bug log file message_log.log
+- introduction of proper error handling of end turn sequences should vastly reduce crashes for player on turn end and will provide error log codes stored in message_log.log and displayed in to the player at turn end
+
+
+
+## [0.9.3.1]
+
+### Changed:
+- Infernus pistol melee burden is now 0, like on other pistols.
+
+### Fixed:
+- Crashes: 
+	- Upon ending turn, when forge items complete (`scr_evaluate_forge_item_completion`).
+	- (Probably fixed) After battle (`obj_centerline_Step_0`).
+	- Mid-battle caused by enunit rework (`obj_enunit_Alarm_0`).
+	- Upon ending turn (`obj_en_fleet_Alarm_1`).
+	- When purging planets (`scr_purge_world`).
+	- When using select all (ships) before battle.
+	- Chaplain duplication on drop select causing a crash (yet again).
+- Select All and Select (role) on the company view are now working properly.
+- Land raiders/land speeders being not buildable.
+- Zooming affecting attack/raid window.
+- Crafters advantage not affecting crafter trait rate, due to typo.
+- Aspirant duplication on drop select and a related crash.
+- (Maybe fixed?) Player fleet being unselectable.
 
 ## [0.9.3.0]
 
-### Added:
+### New:
 - Warp travel:
-	- Warp hub planets.
-    - Graded warp travel routes.
+    - Fast warp routes (appear as warp holes).
+	- "Warp hub systems" that have multiple fast warp routes.
 	- Ability to cancel warp travel within the same turn you commanded fleet to travel.
 - New Squad type - Breachers.
 - New cheats:
@@ -48,9 +92,15 @@ All notable changes to this project will be documented in this file.
 	- Luck also affects the chance of a marine not dying and getting injured instead.
 - Requisition points reward for winning battles, depending on the strength of the enemy that you fought.
 	- Code-wise it's just a simple table with static rewards. I can't bother with more.
+- Genestealer cults now have names.
+- Medium and larger forges now have the option to have vehicle hangers built, allowing vehicles to be built at the forge.
+	- Built vehicles will spawn at locations with said hangers.
+
 ### Changed:
 - Stars will no longer spawn on top of each other.
 - Player should now be able to move camera closer to the edge of the screen.
+- Purging with fire now also removes Genestealer population influence.
+- A lot of flavour text adjustments, for both enemies and the player. If someone attacks - it should be displayed always, nothing is skipped or "not displayed".
 - Warp travel:
 	- Warp lane travel drawing moved to it's own layer.
 	- Warp lane widths now expand to be more visible when zoomed.
@@ -70,7 +120,7 @@ All notable changes to this project will be documented in this file.
 		- Servo-harness can save 2 times more lost vehicles per Techmarine, in comparison to Servo-arm.
 		- You can use addi tem to get these, if old items got broken because of the rename.
 	- Tech Priest loadout is now more or less similar to lore friendly Enginseer loadout.
-- max artifact count increased to 50
+	- Tankbusta bombs have less ammo (2>1) and max kills(3>0).
 - Visual:
 	- Eviscerator and Relic Blade sprites are now vertical again and can display a second weapon.
 	- Deathwing color now is a tiny bit darker.
@@ -78,14 +128,21 @@ All notable changes to this project will be documented in this file.
 	- Techmarines now have eye attachments.
 	- Edited Servo-arm and Servo-harness sprites.
 	- Star sprites edited. Black backgrounds removed and slight blur is applied, to reduce jaggedness.
+
 ### Fixed:
 - Crashes: 
 	- Caused Inquisitors snooping on player bases.
 	- Caused by Chaplain duplication on drop select.
+	- (Possibly fixed) After ancient ruins ambush with a single unit.
+	- (Possibly fixed) Magic crash caused by `obj_turn_end_Alarm_0`.
+	- During save loading caused by `gml_Script_return_json_from_ini`.
+	- End turn crash caused by `gml_Script_ork_ship_production`.
+	- During save loading caused by `obj_event_log.event = json_parse(base64_decode(ini_read_string("Event","log","")));`.
 - Visual:
 	- Eviscerator and Relic Blade sprites display on Terminators properly now.
 	- Deathwing knights color scheme is no longer broken.
 	- Promotion gear text overlapping.
+	- Fix button placement on the livery/color chapter creation page.
 - In-game wiki should now work (kinda).
 - Travelling without waypoints while pressing shift now fixed.
 - Vanguard Sergeants, Honour Guard and Dark Angels Veterans no longer spawn overburdened.
@@ -96,10 +153,16 @@ All notable changes to this project will be documented in this file.
 - Fixed Force Staff getting double damage bonus because of a code mistake.
 - Stars should no longer spawn very close to the right or bottom edge of the map.
 - Will no longer be able to select all ships globally with select all on bombard.
-- Hopefully fixed company view sometimes not coming up.
+- Selecting vehicles globaly, bypassing location checks.
+	- Related negative space on spaceships bug.
+- Hopefully fixed squad view sometimes not coming up and related problems.
 - Max artifact count is increased to 50.
+- Inquisitor should no longer try inspect fleets heading out of system.
+- Player will now be able to build vehicles in the forge correctly.
+- Livery and color unit preview switching, on chapter creation, now supports non-custom chapters.
 
 ### Under The Hood:
+- Warp travel route grading support.
 - Ork Warbosses are now stored in the fleet carge_data area and the struct is transferred directly to a planet.
 - Git: resource_order is now in gitignore.
 - is_specialist supports Space Wolves and Iron Hands.
@@ -112,6 +175,7 @@ All notable changes to this project will be documented in this file.
 - Pass scr_add_man through a formatter.
 - Almost completely refactor cheatcodes.
 - Minor variable name changes in ncombat and related files.
+- A lot of files were passed through a formatter, to fix indentations and other syntax issues.
 - New function `string_upper_first`, used to capitalize only the first letter of a string.
 - GUI drawing layer:
 	- obj_controller drawing mostly moved to the GUI layer of drawing.

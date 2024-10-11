@@ -196,7 +196,7 @@ if (did==1){
         current_system.p_player[2]+=obj_ini.man_size;
     }
     
-    var fleet=instance_create(current_system.x+24,current_system.y-24,obj_p_fleet);
+    var fleet=instance_create(current_system.x,current_system.y,obj_p_fleet);
     fleet.owner  = eFACTION.Player;
     fleet.alarm[5]=5;
     
@@ -639,7 +639,7 @@ for(var i=0; i<100; i++){
         go=999;
 		array_push(craft.p_feature[1],new new_planet_feature(P_features.Warlord6));
         
-        var elforce=instance_create(xx-24,yy-24,obj_en_fleet);
+        var elforce=instance_create(xx,yy,obj_en_fleet);
         elforce.sprite_index=spr_fleet_eldar;
         elforce.owner = eFACTION.Eldar;
         elforce.capital_number=choose(2,3);

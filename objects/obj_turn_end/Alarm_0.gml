@@ -68,34 +68,15 @@ repeat(50){
 
 if (battles>0) and (current_battle<=battles){
     var ii, xx, yy, good;
-    ii=0;good=0;
+    ii=0;
+    good=0;
     
-    with(obj_star){if (name=obj_turn_end.battle_location[obj_turn_end.current_battle]) then instance_create(x,y,obj_temp3);}
+    var battle_star = star_by_name(battle_location[current_battle]);
     
-    if (instance_exists(obj_temp3)){
-        ii=instance_nearest(obj_temp3.x,obj_temp3.y,obj_star);
-        if (instance_exists(ii)){
-            if (ii.name=battle_location[current_battle]) then good=1;
-            // ii.present_fleets-=1;
-        }
-    }
-    with(obj_temp3){instance_destroy();}
-    
-    /*repeat(200){
-        if (good=0){
-            xx=random(room_width);
-            yy=random(room_height);
-            ii=instance_nearest(xx,yy,obj_star);
-            
-            if (instance_exists(ii)){if (ii.name=battle_location[current_battle]) then good=1;}
-            if (instance_exists(ii)){if (ii.name!=battle_location[current_battle]){good=0;instance_deactivate_object(ii);}}
-            ii.present_fleets-=1;
-        }
-    }*/
-    
-    if (good=1){// trying to find the star
-        instance_activate_object(obj_star);
-        obj_controller.x=ii.x;obj_controller.y=ii.y;show=current_battle;
+    if (battle_star!="none"){// trying to find the star
+        obj_controller.x=battle_star.x;
+        obj_controller.y=battle_star.y;
+        show=current_battle;
         
         if (battle_world[current_battle]=-50){
             strin[1]=string(round(battle_pobject[current_battle].capital_number));
@@ -110,9 +91,10 @@ if (battles>0) and (current_battle<=battles){
             
             var e=1;
             repeat(10){
-                e+=1;if (e=11) then e=13;
-                if (ii.present_fleet[e]>0){
-                    obj_controller.temp[1070]=ii.id;
+                e+=1;
+                if (e=11) then e=13;
+                if (battle_star.present_fleet[e]>0){
+                    obj_controller.temp[1070]=battle_star.id;
                     obj_controller.temp[1071]=e;
                     obj_controller.temp[1072]=0;
                     obj_controller.temp[1073]=0;
@@ -201,7 +183,10 @@ instance_activate_object(obj_star);
 
 
 if (battle[1]=0) or (current_battle>battles){//                         This is temporary for the sake of testing
-    if (battle[1]=0){obj_controller.x=first_x;obj_controller.y=first_y;}
+    if (battle[1]=0){
+        obj_controller.x=first_x;
+        obj_controller.y=first_y;
+    }
     alarm[1]=1;
 }
 
