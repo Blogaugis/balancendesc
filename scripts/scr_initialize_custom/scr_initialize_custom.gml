@@ -833,30 +833,30 @@ function scr_initialize_custom() {
 
 	var chapter_option, o, psyky;
 	psyky = 0;
-	if (array_contains(obj_creation.adv, "Tech-Brothers")) {
-		techs += 4;
-		tenth -= 4;
+	if scr_has_adv("Tech-Brothers") {
+		techs += 6;
+		tenth -= 6;
 	}
-	if (array_contains(obj_creation.adv, "Melee Enthusiasts")) {
+	if scr_has_adv("Melee Enthusiasts") {
 		assault += 10;
 		devastator -= 10;
 	}
-	if (array_contains(obj_creation.adv, "Siege Masters")) {
+	if scr_has_adv("Siege Masters") {
 		siege = 1;
 	}
-	if (array_contains(obj_creation.adv, "Crafters")) {
+	if scr_has_adv("Crafters") {
 		techs += 2;
 		terminator += 5;
 		tenth -= 5;
 	}
-	if (array_contains(obj_creation.adv, "Psyker Abundance")) {
+	if scr_has_adv("Psyker Abundance") {
 		tenth -= 4;
 		epistolary += 1;
 		codiciery += 1;
 		lexicanum += 2;
 		psyky = 1;
 	}
-	if (array_contains(obj_creation.dis, "Psyker Intolerant")) {
+	if scr_has_disadv("Psyker Intolerant") {
 		epistolary = 0;
 		codiciery = 0;
 		lexicanum = 0;
@@ -864,13 +864,13 @@ function scr_initialize_custom() {
 		tenth += 10;
 		intolerant = 1;
 	}
-	if (array_contains(obj_creation.dis, "Fresh Blood")) {
+	if scr_has_disadv("Fresh Blood") {
 		epistolary -= 1;
 		codiciery -= 1;
 		lexicanum -= 2;
 		tenth += 4;
 	}
-	if (array_contains(obj_creation.dis, "Sieged")) {
+	if  scr_has_disadv("Sieged") {
 		techs -= 4;
 		epistolary -= 1;
 		codiciery -= 1;
@@ -892,7 +892,7 @@ function scr_initialize_custom() {
 		siege = 0;
 		devastator = 10;
 	}
-    if	(array_contains(obj_creation.adv, "Venerable Ancients")) {
+    if	scr_has_adv("Venerable Ancients") {
 		veteran -= 10;
 		second -= 10;
 		third -= 10;
@@ -905,13 +905,16 @@ function scr_initialize_custom() {
 		tenth -= 10;
 	}
 
-	if (array_contains(obj_creation.dis, "Tech-Heresy")) {
+	if  scr_has_adv ("Tech-Heresy") {
 		techs -= 4;
 		tenth += 4;
 	}
-	if (array_contains(obj_creation.adv, "Reverent Guardians")) {
+	if scr_has_adv ("Reverent Guardians") {
 		chaap += 4;
 		tenth -= 4;
+	}
+	if scr_has_adv("Medicae Primacy") {
+		apothecary += 7;
 	}
 	
 	// if (obj_creation.custom>0) or ((global.chapter_name="Doom Benefactors") and (obj_creation.custom=0)){
@@ -2443,6 +2446,29 @@ function scr_initialize_custom() {
 			chapter_master.add_trait("still_standing");
 			chapter_master.add_trait("seasoned");
 			break;
+			case "Carcharodons":
+			
+			chapter_master.add_trait("melee_enthusiast")
+			chapter_master.add_trait("slow_and_purposeful");
+			chapter_master.add_trait("ancient");			
+			arti = obj_ini.artifact_struct[last_artifact];
+			arti.name = "Hunger";
+			arti.custom_description = "An artifact Lightning Claw of unknown origin that has an inner maw of adamantium toothed chainblades usually paired with Slake";
+			obj_ini.artifact[last_artifact] = "Lightning Claw";
+			obj_ini.artifact_identified[last_artifact] = 0;
+			arti.bearer = [0, 1];
+			chapter_master_equip.wep1 = last_artifact;
+			
+			arti.name = "Hunger & Slake";
+			arti.custom_description = "An artifact Lightning Claw of unknown origin that has an inner maw of adamantium toothed chainblades usually paired with Hunger";
+			obj_ini.artifact[last_artifact] = "Lightning Claw";
+			obj_ini.artifact_identified[last_artifact] = 0;
+			arti.bearer = [0, 1];
+			chapter_master_equip.wep2 = last_artifact;
+			
+			chapter_master_equip.armour = "Terminator Armour"
+			
+			break;
 		default:
 			chapter_master.add_trait("old_guard");
 
@@ -3095,9 +3121,8 @@ function scr_initialize_custom() {
 		mobi[company][k] = mobi[101, 3];
 	}
 
-	for (i = 0; i < 2; i++) {
+	repeat(scr_has_adv("Venerable Ancients") ? 3 : 2) {
 		k += 1;
-		if (array_contains(obj_creation.adv, "Venerable Ancients")) then k += 1;
 		commands += 1;
 		TTRPG[company][k] = new TTRPG_stats("chapter", company, k, "dreadnought");
 		race[company][k] = 1;
@@ -3267,8 +3292,9 @@ function scr_initialize_custom() {
 			// temp1-=1;
 
 			// if (company=2){dready=1;
-			if (string_count("Sieged", strin2) > 0) or(obj_creation.custom = 0) then dready += 1;
 			dready = 1;
+			if (scr_has_disadv("Sieged")) or (obj_creation.custom = 0) then dready =+ 1;
+			if (scr_has_adv("Venerable Ancients")) then dready += 1;
 			rhinoy = 8;
 			whirly = whirlwind;
 			speedy = 2;
@@ -3285,12 +3311,12 @@ function scr_initialize_custom() {
 				company_unit2 = "assault";
 				company_unit3 = "devastator";
 				dready = 1;
-				if (string_count("Sieged", strin2) > 0) or (obj_creation.custom = 0) then dready = 2;
-				if (array_contains(obj_creation.adv, "Venerable Ancients")) then dready += 1; 
+				if scr_has_adv("Venerable Ancients") then dready += 1;
+				if (scr_has_disadv("Sieged")) or (obj_creation.custom = 0) then dready += 1;
 				rhinoy = 8;
 				whirly = whirlwind;
 				speedy = 2;
-				if (array_contains(obj_creation.adv, "Lightning Warriors")) then speedy += 2; rhinoy -= 2;
+				if scr_has_adv("Lightning Warriors") then speedy += 2; rhinoy -= 2;
 				if (second = 0) then stahp = 1;
 			}
 	
@@ -3298,9 +3324,9 @@ function scr_initialize_custom() {
 				temp1 = (third - (assault + devastator));
 				company_unit2 = "assault";
 				company_unit3 = "devastator";
-				 dready = 1;
-				if (string_count("Sieged", strin2) > 0) or (obj_creation.custom = 0) then dready = 2;
-				if (array_contains(obj_creation.adv, "Venerable Ancients")) then dready +=1; 
+				dready = 1;
+				if scr_has_adv("Venerable Ancients") then dready += 1;
+				if (scr_has_disadv("Sieged")) or (obj_creation.custom = 0) then dready += 1; 
 				rhinoy = 8;
 				whirly = whirlwind;
 				speedy = 2;
@@ -3313,8 +3339,8 @@ function scr_initialize_custom() {
 				company_unit2 = "assault";
 				company_unit3 = "devastator";
 				dready = 1;
-				if (string_count("Sieged", strin2) > 0) or (obj_creation.custom = 0) then dready = 2;
-				if (array_contains(obj_creation.adv, "Venerable Ancients")) then dready += 1; 
+				if scr_has_adv("Venerable Ancients") then dready += 1;
+				if (scr_has_disadv("Sieged")) or (obj_creation.custom = 0) then dready += 1;
 				rhinoy = 8;
 				whirly = whirlwind;
 				speedy = 2;
@@ -3327,8 +3353,8 @@ function scr_initialize_custom() {
 				company_unit2 = "assault";
 				company_unit3 = "devastator";
 				dready = 1;
-				if (string_count("Sieged", strin2) > 0) or (obj_creation.custom = 0) then dready += 2;
-				if (array_contains(obj_creation.adv, "Venerable Ancients")) then dready += 1;
+				if scr_has_adv("Venerable Ancients") then dready += 1;
+				if (scr_has_disadv("Sieged")) or (obj_creation.custom = 0) then dready += 1;
 				rhinoy = 8;
 				whirly = whirlwind;
 				speedy = 2;
@@ -3341,8 +3367,8 @@ function scr_initialize_custom() {
 				company_unit2 = "";
 				company_unit3 = "";
 				dready = 1;
-				if (string_count("Sieged", strin2) > 0) or (obj_creation.custom = 0) then dready += 2;
-				if (array_contains(obj_creation.adv, "Venerable Ancients")) then dready += 1;
+				if scr_has_adv("Venerable Ancients") then dready += 1;
+				if (obj_creation.custom = 0) then dready += 1;
 				rhinoy = 8;
 				whirly = whirlwind;
 				speedy = 0;
@@ -3354,8 +3380,8 @@ function scr_initialize_custom() {
 				company_unit2 = "";
 				company_unit3 = "";
 				dready = 1
-				if (obj_creation.custom = 0) then dready = 2;
-				if (array_contains(obj_creation.adv, "Venerable Ancients")) then dready += 1;
+				if scr_has_adv("Venerable Ancients") then dready += 1;
+				if (obj_creation.custom = 0) then dready += 1;
 				rhinoy = 8;
 				whirly = 0;
 				speedy = 8;
@@ -3367,8 +3393,8 @@ function scr_initialize_custom() {
 				company_unit2 = "";
 				company_unit3 = "";
 				dready = 1
-				if (obj_creation.custom = 0) then dready = 2;
-				if (array_contains(obj_creation.adv, "Venerable Ancients")) then dready += 1;
+				if scr_has_adv("Venerable Ancients") then dready += 1;
+				if (obj_creation.custom = 0) then dready += 1;
 				rhinoy = 2;
 				whirly = 0;
 				speedy = 2;
@@ -3380,8 +3406,9 @@ function scr_initialize_custom() {
 				company_unit2 = "";
 				company_unit3 = "";
 				dready = 1
-				if (obj_creation.custom = 0) then dready = 2;
-				if (array_contains(obj_creation.adv, "Venerable Ancients")) then dready += 2;
+				if scr_has_adv("Venerable Ancients") then dready += 1;
+				if (obj_creation.custom = 0) then dready += 1;
+
 				rhinoy = 2;
 				whirly = 0;
 				speedy = 0;

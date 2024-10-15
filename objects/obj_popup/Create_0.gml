@@ -56,6 +56,7 @@ units=0;
 min_exp=0;
 cooldown=20;
 all_good=0;
+prev_selected = 0;
 
 new_target=0;
 
@@ -233,6 +234,13 @@ unit_is_vehicle=false;
 var i;i=-1;
 repeat(51){
     i+=1;item_name[i]="";
+}
+
+move_to_next_stage = function(){
+    return (scr_hit(0,0, room_width, room_height) ||
+        press_exclusive(vk_enter) ||
+        press_exclusive(vk_space) ||
+        press_exclusive(vk_enter));
 }
 
 

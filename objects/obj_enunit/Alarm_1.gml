@@ -1331,7 +1331,7 @@ repeat(20){j+=1;
     // if (dudes_dr[j]>0.8) then dudes_dr[j]=0.8;
 }
 }
-
+/*
 if (obj_ncombat.battle_special = "ruins") or(obj_ncombat.battle_special = "ruins_eldar") {
 	var i;
 	i = 0;
@@ -1350,6 +1350,7 @@ if (obj_ncombat.battle_special = "ruins") or(obj_ncombat.battle_special = "ruins
 		}
 	}
 }
+*/
 
 if (men + veh + medi <= 0) {
 	instance_destroy();
