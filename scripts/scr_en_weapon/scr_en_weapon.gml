@@ -118,7 +118,7 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 		if (name="Combat Knife"){atta=25;arp=0;rang=1;spli=3;}
 		if (name="Medium Vehicle Melee"){atta=80;arp=0;rang=1;}
 		if (name="Light Vehicle Melee"){atta=70;arp=0;rang=1;}
-
+	}
 
 	if (obj_ncombat.enemy = 7) {
 	    if (argument0="Choppa"){atta=50;arp=0;rang=1;spli=3;}
