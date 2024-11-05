@@ -64,11 +64,12 @@ function scr_cheatcode(argument0) {
 					scr_add_item(name, quantity, quality);
 					break;
 				case "artifact":
-					// Check if the second argument is not provided or is "1"
 					if (cheat_arguments[0] == "1") {
 						scr_add_artifact("random", "", 6, obj_ini.ship[1], 501);
 					} else {
-						scr_add_artifact(cheat_arguments[0], "", 6, obj_ini.ship[1], 501);
+						repeat(real(cheat_arguments[1])){
+							scr_add_artifact(cheat_arguments[0], "", 6, obj_ini.ship[1], 501);
+						}
 					}
 					break;
 				case "sisterhospitaler":
@@ -282,9 +283,6 @@ function scr_cheatcode(argument0) {
 			}
 		}
 	} catch(_exception) {
-		log_into_file(_exception.longMessage);
-		log_into_file(_exception.script);
-		log_into_file(_exception.stacktrace);
 		show_debug_message(_exception.longMessage);
 	}
 }

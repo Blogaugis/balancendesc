@@ -9,7 +9,7 @@ function scr_bomb_world(star_system, planet_number, bombard_target_faction, bomb
 	if (ships_selected>1) then txt1+="s";
 	txt1+=" position themselves over the target in close orbit, and unleash";
 	if (ships_selected=1) then txt1+="s";
-	txt1+= $" annihilation upon {star_system.name} {scr_roman_numerals()[planet_number-1]}. Even from the void, explosions can be seen, battering across the planet's surface.";
+	txt1+= $" annihilation upon {planet_numeral_name(planet_number, star_system)}.  Even from space the explosions can be seen , {choose("tearing ground", "hammering", "battering", "thundering")} across the planet's surface.";
 
 	if (star_system.p_large[planet_number]=0){
 		kill=bombard_ment_power*15000000;// Population if normal, TODO consider making loses to be more percentage-wise, rather than flat, also in scr_purge_world
@@ -267,6 +267,11 @@ function scr_bomb_world(star_system, planet_number, bombard_target_faction, bomb
 	        		obj_controller.disposition[3]-=7;
 	       		}
 	        }
+	        if (planet_feature_bool(star_system.p_feature[planet_number], P_features.Gene_Stealer_Cult)){
+	        	delete_features(star_system.p_feature[planet_number], P_features.Gene_Stealer_Cult);
+	        	adjust_influence(eFACTION.Tyranids, -100, planet_number,star_system);
+	        }
+	        pip.text+= "The xenos taint of the tyranids infecting the population has been completely eradicated with the planets cleansing";
 	    }
 	    if (bombard_target_faction=8) and (obj_controller.faction_status[eFACTION.Tau]!="War"){
 	        obj_controller.audiences+=1;
@@ -291,7 +296,7 @@ function scr_bomb_world(star_system, planet_number, bombard_target_faction, bomb
 	    reduced_bombard_score=bombard_ment_power/1.25;// fraction of bombardment score, TODO maybe we should make SHs more vulnerable to bombardment? They are out in space, and can be targeted with other weapons
 	    strength_reduction=0;txt3="";
     
-	    var rel;rel=0;
+	    var rel=0;
     
 	    if (reduced_bombard_score!=0) then rel=((star_system.p_fortified[planet_number]-reduced_bombard_score)/star_system.p_fortified[planet_number])*100;
     
@@ -309,8 +314,10 @@ function scr_bomb_world(star_system, planet_number, bombard_target_faction, bomb
 	        with(star_system){instance_destroy();}
 	        instance_activate_object(obj_star_select);
 	        with(obj_star_select){instance_destroy();}
-	        obj_controller.sel_system_x=0;obj_controller.sel_system_y=0;
-	        obj_controller.popup=0;obj_controller.cooldown=8;
+	        obj_controller.sel_system_x=0;
+	        obj_controller.sel_system_y=0;
+	        obj_controller.popup=0;
+	        obj_controller.cooldown=8;
 	    }
     
 	    var pip;

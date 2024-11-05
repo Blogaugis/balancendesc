@@ -134,7 +134,7 @@ function calculate_research_points(turn_end=false){
                 if (struct_exists(gen_data,"crafter")) then crafters++;
                 if (struct_exists(gen_data,"at_forge")){
                     at_forge++;
-                    master_craft_chance += (techs[i].experience()/50)
+                    master_craft_chance += (techs[i].experience/50)
                 }
                 forge_points += forge_point_gen[0];
                 if (techs[i].has_trait("tech_heretic")){
@@ -332,7 +332,7 @@ function scr_evaluate_forge_item_completion(item){
         } else {
             repeat(item.count){
                 var vehicle = scr_add_vehicle(item.name,9,"standard","standard","standard","standard","standard");
-                var build_loc = array_random(player_forge_data.vehicle_hanger);
+                var build_loc = array_random_element(player_forge_data.vehicle_hanger);
                 obj_ini.veh_loc[vehicle[0]][vehicle[1]] = build_loc[0];
                 obj_ini.veh_wid[vehicle[0]][vehicle[1]] = build_loc[1];
                 obj_ini.veh_lid[vehicle[0]][vehicle[1]] = 0;

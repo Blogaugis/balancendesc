@@ -20,11 +20,6 @@ function load_marine_struct(company, marine){
 };
 
 function scr_load(save_part, save_id) {
-	var int_strings = [];
-	for (var i=0;i<=20;i++){
-		array_push(int_strings, $"{i}");
-	}
-
 	var unit;
 	var rang=0,i=0,g=0,stars=0,pfleets=0,efleets=0;
 
@@ -212,36 +207,32 @@ function scr_load(save_part, save_id) {
 	    }
 	    //
 	    //
-	    var g=-1;
-	    repeat(150){g+=1;
-	        obj_ini.equipment[g]=ini_read_string("Ini","equipment"+string(g),"");
-	        obj_ini.equipment_type[g]=ini_read_string("Ini","equipment_type"+string(g),"");
-	        obj_ini.equipment_number[g]=ini_read_real("Ini","equipment_number"+string(g),0);
-	        obj_ini.equipment_condition[g]=ini_read_real("Ini","equipment_condition"+string(g),0);
-	        obj_ini.equipment_quality[g]=ini_read_string("Ini","equipment_quality"+string(g),"");
-	        obj_ini.equipment_quality[g] = return_json_from_ini("Ini", $"equipment_quality{g}", []);
+		obj_ini.equipment=return_json_from_ini("Ini",$"equipment", array_create(200,""))
+		obj_ini.equipment_type=return_json_from_ini("Ini",$"equipment_type", array_create(200,""))
+		obj_ini.equipment_number=return_json_from_ini("Ini",$"equipment_number", array_create(200,""))
+		obj_ini.equipment_condition=return_json_from_ini("Ini",$"equipment_condition",array_create(200,""))
+		obj_ini.equipment_quality = return_json_from_ini("Ini", $"equipment_quality", array_create(200,""))
 
-	        if (g<=50){
-	        	obj_ini.artifact[g]=ini_read_string("Ini","artifact"+string(g),"");
-	            obj_ini.artifact_tags[g]=ini_read_string("Ini","artifact_tags"+string(g),"");
-		        if (obj_ini.artifact_tags[g] != ""){
-		        	obj_ini.artifact_tags[g] = json_parse(base64_decode(obj_ini.artifact_tags[g]));
-		        } else {
-		        	obj_ini.artifact_tags[g] = [];
-		        }
-	            obj_ini.artifact_identified[g]=ini_read_real("Ini","artifact_ident"+string(g),0);
-	            obj_ini.artifact_condition[g]=ini_read_real("Ini","artifact_condition"+string(g),0);
-	            obj_ini.artifact_loc[g]=ini_read_string("Ini","artifact_loc"+string(g),"");
-	            obj_ini.artifact_sid[g]=ini_read_real("Ini","artifact_sid"+string(g),0);
-	            obj_ini.artifact_equipped[g]=ini_read_real("Ini","artifact_equipped"+string(g),0);
-	            obj_ini.artifact_quality[g]=ini_read_string("Ini","artifact_quality"+string(g),"artifact");
-	            obj_ini.artifact_struct[g] = new ArtifactStruct(g);
-	            var temp_data = ini_read_string("Ini","artifact_struct"+string(g),"");
-	            if (temp_data!=""){
-    	            obj_ini.artifact_struct[g].load_json_data(json_parse(base64_decode(temp_data)));
-    	        }
-	        }
-	    }
+		for (var g=0; g<array_length(obj_ini.artifact); g++){
+			obj_ini.artifact[g]=ini_read_string("Ini","artifact"+string(g),"");
+			obj_ini.artifact_tags[g]=ini_read_string("Ini","artifact_tags"+string(g),"");
+			if (obj_ini.artifact_tags[g] != ""){
+				obj_ini.artifact_tags[g] = json_parse(base64_decode(obj_ini.artifact_tags[g]));
+			} else {
+				obj_ini.artifact_tags[g] = [];
+			}
+			obj_ini.artifact_identified[g]=ini_read_real("Ini","artifact_ident"+string(g),0);
+			obj_ini.artifact_condition[g]=ini_read_real("Ini","artifact_condition"+string(g),0);
+			obj_ini.artifact_loc[g]=ini_read_string("Ini","artifact_loc"+string(g),"");
+			obj_ini.artifact_sid[g]=ini_read_real("Ini","artifact_sid"+string(g),0);
+			obj_ini.artifact_equipped[g]=ini_read_real("Ini","artifact_equipped"+string(g),0);
+			obj_ini.artifact_quality[g]=ini_read_string("Ini","artifact_quality"+string(g),"artifact");
+			obj_ini.artifact_struct[g] = new ArtifactStruct(g);
+			var temp_data = ini_read_string("Ini","artifact_struct"+string(g),"");
+			if (temp_data!=""){
+				obj_ini.artifact_struct[g].load_json_data(json_parse(base64_decode(temp_data)));
+			}
+		}
 	    //
 	    obj_ini.ship_location[0]="";
 
@@ -379,46 +370,28 @@ function scr_load(save_part, save_id) {
                     obj_ini.gear[coh,mah]=ini_read_string("Mar","ge"+string(coh)+"."+string(mah),"");
                     obj_ini.mobi[coh,mah]=ini_read_string("Mar","mb"+string(coh)+"."+string(mah),"");
 
-                    var arc,teh,teh2;arc=0;teh="";teh2="";// Give daemon weapons their dialogue lines
-                    for (arc=1;arc<6;arc++){
-                    	teh2=choose("Daemonic1a|","Daemonic2a|","Daemonic3a|","Daemonic4a|");
-                        if (arc=1) then teh=obj_ini.wep1[coh,mah];
-                        if (arc=2) then teh=obj_ini.wep2[coh,mah];
-                        if (arc=3) then teh=obj_ini.armour[coh,mah];
-                        if (arc=4) then teh=obj_ini.gear[coh,mah];
-                        if (arc=5) then teh=obj_ini.mobi[coh,mah];
-                        if (string_pos("&",teh)>0){
-                            if (string_count("Daemonic|",teh)>0) then teh=string_replace(teh,"Daemonic|",teh2);
-                            if (arc=1) then obj_ini.wep1[coh,mah]=teh;
-                            if (arc=2) then obj_ini.wep2[coh,mah]=teh;
-                            if (arc=3) then obj_ini.armour[coh,mah]=teh;
-                            if (arc=4) then obj_ini.gear[coh,mah]=teh;
-                            if (arc=5) then obj_ini.mobi[coh,mah]=teh;
-                        }
-                    }
-                    obj_ini.experience[coh,mah]=ini_read_real("Mar","exp"+string(coh)+"."+string(mah),0);
                     obj_ini.age[coh,mah]=ini_read_real("Mar","ag"+string(coh)+"."+string(mah),0);
                     obj_ini.spe[coh,mah]=ini_read_string("Mar","spe"+string(coh)+"."+string(mah),"");
                     obj_ini.god[coh,mah]=ini_read_real("Mar","god"+string(coh)+"."+string(mah),0);
                     load_marine_struct(coh,mah);
                     unit = obj_ini.TTRPG[coh,mah];
-                    if (array_contains(int_strings, unit.weapon_one())){
-                    	obj_ini.wep1[coh,mah] = real(obj_ini.wep1[coh,mah]);
-                    }
-                    if (array_contains(int_strings, unit.weapon_two())){
-                    	obj_ini.wep2[coh,mah] = real(obj_ini.wep2[coh,mah]);
-                    }
-                    if (array_contains(int_strings, unit.gear())){
-                    	obj_ini.gear[coh,mah] = real(obj_ini.gear[coh,mah]);
-                    }
-                    if (array_contains(int_strings, unit.mobility_item())){
-                    	obj_ini.mobi[coh,mah] = real(obj_ini.mobi[coh,mah]);
-                    }
-                    if (array_contains(int_strings, unit.armour())){
-                    	obj_ini.armour[coh,mah] = real(obj_ini.armour[coh,mah]);
-                    }                                                                               
-	            }
-	        }
+					if (string_length(unit.weapon_one()) != 0 && string_length(string_digits(unit.weapon_one())) == string_length(unit.weapon_one())) {
+						obj_ini.wep1[coh, mah] = real(obj_ini.wep1[coh, mah]);
+					}
+					if (string_length(unit.weapon_two()) != 0 && string_length(string_digits(unit.weapon_two())) == string_length(unit.weapon_two())) {
+						obj_ini.wep2[coh, mah] = real(obj_ini.wep2[coh, mah]);
+					}
+					if (string_length(unit.gear()) != 0 && string_length(string_digits(unit.gear())) == string_length(unit.gear())) {
+						obj_ini.gear[coh, mah] = real(obj_ini.gear[coh, mah]);
+					}
+					if (string_length(unit.mobility_item()) != 0 && string_length(string_digits(unit.mobility_item())) == string_length(unit.mobility_item())) {
+						obj_ini.mobi[coh, mah] = real(obj_ini.mobi[coh, mah]);
+					}
+					if (string_length(unit.armour()) != 0 && string_length(string_digits(unit.armour())) == string_length(unit.armour())) {
+						obj_ini.armour[coh, mah] = real(obj_ini.armour[coh, mah]);
+					}
+				}
+			}
 
 
 	        if (string_count(obj_ini.spe[0,1],"$")>0) then obj_controller.born_leader=1;

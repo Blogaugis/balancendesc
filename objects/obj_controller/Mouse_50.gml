@@ -107,7 +107,7 @@ else if (menu==15) and (cooldown<=0){
             training_chaplain+=1;
             scr_income();
         }
-        if (mouse_y>=yy+435) and (mouse_y<yy+452) and (training_psyker<6) and (string_count("Intolerant",obj_ini.strin2)==0){
+        if (mouse_y>=yy+435) and (mouse_y<yy+452) and (training_psyker<6) and (!scr_has_disadv("Psyker Intolerant")){
             cooldown=8000;
             training_psyker+=1;
             scr_income();
@@ -167,7 +167,8 @@ else if (menu==15) and (cooldown<=0){
     }
 }
 // ** Fleet count **
-if (menu==16) and (cooldown<=0){
+// Moved to scr_fleet_advisor();
+/* if (menu==16) and (cooldown<=0){
     var i=ship_current;
     for(var j=0; j<34; j++){
         i+=1;
@@ -191,7 +192,7 @@ if (menu==16) and (cooldown<=0){
             }
         }
     }
-}
+} */
 
 
 // ** Diplomacy **

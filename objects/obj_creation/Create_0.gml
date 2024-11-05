@@ -78,6 +78,10 @@ points=0;maxpoints=100;
 fleet_type=1;
 strength=5;cooperation=5;
 purity=5;stability=5;
+adv=[];
+adv_num=[];
+dis=[];
+dis_num=[];
 for(var i=0; i<16; i++){
     adv[i]="";
     adv_num[i]=0;
@@ -463,7 +467,7 @@ color_to_pauldron21="Red";
     race_21[i,6]=1;
     role_21[i,6]="Dreadnought";
     wep1_21[i,6]="Close Combat Weapon";
-    wep2_21[i,6]="Lascannon";
+    wep2_21[i,6]="Twin Linked Lascannon";
     armour_21[i,6]="Dreadnought";
 	gear_21[i,6]=""
 	mobi_21[i,6]="";
@@ -666,7 +670,8 @@ ye=99;i=-1;repeat(51){i+=1;
     wep2[ye,i]="";
     armour[ye,i]="";
     gear[ye,i]="";
-    mobi[ye,i]="";experience[ye,i]=0;
+    mobi[ye,i]="";
+    
 }
 ye=100;i=-1;repeat(51){i+=1;
     race[ye,i]=1;loc[ye,i]="";
@@ -675,7 +680,7 @@ ye=100;i=-1;repeat(51){i+=1;
     wep2[ye,i]="";
     armour[ye,i]="";
     gear[ye,i]="";
-    mobi[ye,i]="";experience[ye,i]=0;
+    mobi[ye,i]="";
 }
 ye=101;i=-1;repeat(51){i+=1;
     race[ye,i]=1;loc[ye,i]="";
@@ -684,7 +689,7 @@ ye=101;i=-1;repeat(51){i+=1;
     wep2[ye,i]="";
     armour[ye,i]="";
     gear[ye,i]="";
-    mobi[ye,i]="";experience[ye,i]=0;
+    mobi[ye,i]="";
 }
 ye=102;i=-1;repeat(51){i+=1;
     race[ye,i]=1;loc[ye,i]="";
@@ -693,7 +698,7 @@ ye=102;i=-1;repeat(51){i+=1;
     wep2[ye,i]="";
     armour[ye,i]="";
     gear[ye,i]="";
-    mobi[ye,i]="";experience[ye,i]=0;
+    mobi[ye,i]="";
 }
 ye=103;i=-1;repeat(51){i+=1;
     race[ye,i]=1;loc[ye,i]="";
@@ -702,7 +707,7 @@ ye=103;i=-1;repeat(51){i+=1;
     wep2[ye,i]="";
     armour[ye,i]="";
     gear[ye,i]="";
-    mobi[ye,i]="";experience[ye,i]=0;
+    mobi[ye,i]="";
 }
 
 
@@ -737,7 +742,7 @@ repeat(3){i+=1;// First is for the correct slot, second is for default
     race[i,6]=1;
     role[i,6]="Dreadnought";
     wep1[i,6]="Close Combat Weapon";
-    wep2[i,6]="Lascannon";
+    wep2[i,6]="Twin Linked Lascannon";
     armour[i,6]="Dreadnought";
 
     race[i,7]=1;
