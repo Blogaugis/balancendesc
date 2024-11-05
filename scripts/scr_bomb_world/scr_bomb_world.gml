@@ -228,9 +228,9 @@ function scr_bomb_world(star_system, planet_number, bombard_target_faction, bomb
 	    if (pop_before>0) and (star_system.p_type[planet_number]!="Daemon"){
 	        if (star_system.p_large[planet_number]==0){
 	        	pop_after=round(max(0,pop_after-kill)); // Potential TODO if alien planets will be implemented, add a check for planet ownership
-	        	txt3="##It had Imperium subject population of "+string(scr_display_number(floor(pop_before)))+" and "+string(scr_display_number(floor(kill)))+" were annihilated over the duration of the bombardment.";
+	        	txt3="##It had "+string(scr_display_number(floor(pop_before)))+" Imperium subjects and "+string(scr_display_number(floor(kill)))+" were annihilated over the duration of the bombardment.";
 	    	}else if (star_system.p_large[planet_number]=1){
-	    		txt3="##It had Imperium subject population of "+string(pop_before)+" billion and "+string(kill)+" billion were annihilated over the duration of the bombardment.";
+	    		txt3="##It had "+string(pop_before)+" billion Imperium subjects and "+string(kill)+" billion were annihilated over the duration of the bombardment.";
 	    	}
 	    }
     
