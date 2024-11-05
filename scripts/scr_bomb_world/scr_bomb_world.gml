@@ -150,7 +150,7 @@ function scr_bomb_world(star_system, planet_number, bombard_target_faction, bomb
 	    }else if (rel>60 && (target_strength-strength_reduction)>0){ 
 	    	txt2+=" devastating losses from the bombardment, decreasing "+string(strength_reduction)+" stages.";
 	    }else if ((target_strength-strength_reduction)<=0){ 
-	    	txt2+=" extreme losses from the bombardment. They have been wiped clean from the planet.";
+	    	txt2+=" total annihilation from the bombardment. They have been wiped clean from the planet.";
 	    }
     
 	    // 135; ?
@@ -176,7 +176,7 @@ function scr_bomb_world(star_system, planet_number, bombard_target_faction, bomb
 	            if (rel>20) and (rel<=40) then txt2+=" they suffer moderate losses from the bombardment, "+string(scr_display_number(wob))+" purged.";
 	            if (rel>40) and (rel<=60) then txt2+=" they suffer heavy losses from the bombardment, "+string(scr_display_number(wob))+" purged.";
 	            if (rel>60) and (star_system.p_pdf[planet_number]>0) then txt2+=" they suffer devastating losses from the bombardment, "+string(scr_display_number(wob))+" purged.";
-	            if (wob>0) and (star_system.p_pdf[planet_number]=0) then txt2+=" they suffer extreme losses from the bombardment.  They have been wiped clean from the planet.";
+	            if (wob>0) and (star_system.p_pdf[planet_number]=0) then txt2+=" they suffer total annihilation from the bombardment.  They have been wiped clean from the planet.";
 	        }
         
         	switch(bombard_target_faction){
