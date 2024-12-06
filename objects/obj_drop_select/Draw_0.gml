@@ -37,6 +37,9 @@ draw_rectangle(xx+1084,yy+215,xx+1142,yy+273,0);
 
 // Target
 var tt1,tt2,fork;tt1="";tt2="";fork=0;
+// if (attacking=2){fork=imperium;tt1="Imperium (";}
+// if (attacking=3){fork=mechanicus;tt1="Mechanicus (";}
+// if (attacking=4){fork=inquisition;tt1="Inquisition (";}
 if (attacking=5){fork=sisters;tt1="Ecclesiarchy (";}
 if (attacking=6){fork=eldar;tt1="Eldar (";}
 if (attacking=7){fork=ork;tt1="Orks (";}
@@ -47,12 +50,16 @@ if (attacking=11){fork=csm;tt1="CSMs (";}
 if (attacking=12){fork=demons;tt1="Daemons (";}
 if (attacking=13){fork=necrons;tt1="Necrons (";}
 if (fork=0) then tt2="";
-if (fork=1) then tt2="Negligible";
-if (fork=2) then tt2="Minor";
-if (fork=3) then tt2="Moderate";
-if (fork=4) then tt2="High";
-if (fork=5) then tt2="Very High";
-if (fork>=6) then tt2="Overwhelming";
+if (fork=1) then tt2="Squad";
+if (fork=2) then tt2="Demi-Platoon";
+if (fork=3) then tt2="Platoon";
+if (fork=4) then tt2="Demi-Company";
+if (fork=5) then tt2="Company";
+if (fork=6) then tt2="Battalion";
+if (fork=7) then tt2="Regiment";
+if (fork=8) then tt2="Brigade";
+if (fork=9) then tt2="Division";
+if (fork>=10) then tt2="Army Corps";
 tt1+=string(tt2)+")";
 draw_text(xx+550,yy+245,string_hash_to_newline(string(tt1)));
 
@@ -304,6 +311,9 @@ repeat(20){q+=1;
     if (scr_hit(xx+700-8+(q*50),yy+250-16,xx+750+8+(q*50),yy+250+16)=true) and (force_present[q]!=0){
         var tt1,tt2,fork;tt1="";tt2="";fork=0;
         
+        // if (force_present[q]=2){fork=imperium;tt1="Imperium ("+string(fork)+")";}
+        // if (force_present[q]=3){fork=mechanicus;tt1="Mechanicus ("+string(fork)+")";}
+        // if (force_present[q]=4){fork=inquisition;tt1="Inquisition ("+string(fork)+")";}
         if (force_present[q]=5){fork=sisters;tt1="Ecclesiarchy ("+string(fork)+")";}
         if (force_present[q]=6){fork=eldar;tt1="Eldar ("+string(fork)+")";}
         if (force_present[q]=7){fork=ork;tt1="Orks ("+string(fork)+")";}
@@ -315,12 +325,16 @@ repeat(20){q+=1;
         if (force_present[q]=13){fork=necrons;tt1="Necrons ("+string(fork)+")";}
         
         if (fork=0) then tt2="";
-        if (fork=1) then tt2="Negligible";
-        if (fork=2) then tt2="Minor";
-        if (fork=3) then tt2="Moderate";
-        if (fork=4) then tt2="High";
-        if (fork=5) then tt2="Very High";
-        if (fork>=6) then tt2="Overwhelming";
+        if (fork=1) then tt2="Squad";
+        if (fork=2) then tt2="Demi-Platoon";
+        if (fork=3) then tt2="Platoon";
+        if (fork=4) then tt2="Demi-Company";
+        if (fork=5) then tt2="Company";
+        if (fork=6) then tt2="Battalion";
+        if (fork=7) then tt2="Regiment";
+        if (fork=8) then tt2="Brigade";
+        if (fork=9) then tt2="Division";
+        if (fork>=10) then tt2="Army Corps";
         tt2+=" Threat Rating";
         
         draw_set_alpha(1);
@@ -418,6 +432,9 @@ if (scr_hit(xx+954,yy+556,xx+1043,yy+579)=true){
             }
         }
         
+        // if (obj_ncombat.enemy=2) then obj_ncombat.threat=imperium;
+        // if (obj_ncombat.enemy=3) then obj_ncombat.threat=mechanicus;
+        // if (obj_ncombat.enemy=4) then obj_ncombat.threat=inquisition;
         if (obj_ncombat.enemy=5) then obj_ncombat.threat=sisters;
         if (obj_ncombat.enemy=6) then obj_ncombat.threat=eldar;
         if (obj_ncombat.enemy=7) then obj_ncombat.threat=ork;
