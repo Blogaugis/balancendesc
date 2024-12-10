@@ -50,16 +50,16 @@ if (attacking=11){fork=csm;tt1="CSMs (";}
 if (attacking=12){fork=demons;tt1="Daemons (";}
 if (attacking=13){fork=necrons;tt1="Necrons (";}
 if (fork=0) then tt2="";
-if (fork=1) then tt2="Squad";
-if (fork=2) then tt2="Demi-Platoon";
-if (fork=3) then tt2="Platoon";
-if (fork=4) then tt2="Demi-Company";
-if (fork=5) then tt2="Company";
-if (fork=6) then tt2="Battalion";
-if (fork=7) then tt2="Regiment";
-if (fork=8) then tt2="Brigade";
-if (fork=9) then tt2="Division";
-if (fork>=10) then tt2="Army Corps";
+if (fork=1) then tt2="Squad (1)";
+if (fork=2) then tt2="Demi-Platoon (2)";
+if (fork=3) then tt2="Platoon (3)";
+if (fork=4) then tt2="Demi-Company (4)";
+if (fork=5) then tt2="Company (5)";
+if (fork=6) then tt2="Battalion (6)";
+if (fork=7) then tt2="Regiment (7)";
+if (fork=8) then tt2="Brigade (8)";
+if (fork=9) then tt2="Division (9)";
+if (fork>=10) then tt2="Army Corps (10)";
 tt1+=string(tt2)+")";
 draw_text(xx+550,yy+245,string_hash_to_newline(string(tt1)));
 
@@ -325,16 +325,16 @@ repeat(20){q+=1;
         if (force_present[q]=13){fork=necrons;tt1="Necrons ("+string(fork)+")";}
         
         if (fork=0) then tt2="";
-        if (fork=1) then tt2="Squad";
-        if (fork=2) then tt2="Demi-Platoon";
-        if (fork=3) then tt2="Platoon";
-        if (fork=4) then tt2="Demi-Company";
-        if (fork=5) then tt2="Company";
-        if (fork=6) then tt2="Battalion";
-        if (fork=7) then tt2="Regiment";
-        if (fork=8) then tt2="Brigade";
-        if (fork=9) then tt2="Division";
-        if (fork>=10) then tt2="Army Corps";
+        if (fork=1) then tt2="Squad (1)";
+        if (fork=2) then tt2="Demi-Platoon (2)";
+        if (fork=3) then tt2="Platoon (3)";
+        if (fork=4) then tt2="Demi-Company (4)";
+        if (fork=5) then tt2="Company (5)";
+        if (fork=6) then tt2="Battalion (6)";
+        if (fork=7) then tt2="Regiment (7)";
+        if (fork=8) then tt2="Brigade (8)";
+        if (fork=9) then tt2="Division (9)";
+        if (fork>=10) then tt2="Army Corps (10+)";
         tt2+=" Threat Rating";
         
         draw_set_alpha(1);
