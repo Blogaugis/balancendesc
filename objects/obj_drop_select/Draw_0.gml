@@ -49,17 +49,10 @@ if (attacking=10){fork=traitors;tt1="Heretics (";}
 if (attacking=11){fork=csm;tt1="CSMs (";}
 if (attacking=12){fork=demons;tt1="Daemons (";}
 if (attacking=13){fork=necrons;tt1="Necrons (";}
-if (fork=0) then tt2="";
-if (fork=1) then tt2="Squad (1)";
-if (fork=2) then tt2="Demi-Platoon (2)";
-if (fork=3) then tt2="Platoon (3)";
-if (fork=4) then tt2="Demi-Company (4)";
-if (fork=5) then tt2="Company (5)";
-if (fork=6) then tt2="Battalion (6)";
-if (fork=7) then tt2="Regiment (7)";
-if (fork=8) then tt2="Brigade (8)";
-if (fork=9) then tt2="Division (9)";
-if (fork>=10) then tt2="Army Corps (10)";
+var _size_terms = ["", "Squad (1)","Demi-Platoon (2)","Platoon (3)","Demi-Company (4)","Company (5)","Battalion (6)","Regiment (7)","Brigade (8)","Division (9)","Army Corps (10+)"];
+if (fork<array_length(_size_terms)){
+     tt2 = _size_terms[fork];
+}
 tt1+=string(tt2)+")";
 draw_text(xx+550,yy+245,string_hash_to_newline(string(tt1)));
 
